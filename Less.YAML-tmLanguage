@@ -1,0 +1,2146 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+name: Less
+scopeName: source.less
+fileTypes: [less]
+uuid: 4a0e9344-fe59-4ebd-bc1c-3f93c55150b6
+
+patterns:
+- include: '#comment-block'
+
+- include: '#selector'
+
+- include: '#at-rules'
+
+- include: '#property-list'
+
+- include: '#less-variable-assignment'
+
+repository:
+  angle-type:
+    name: constant.numeric.less
+    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(deg|grad|rad|turn))\b
+    captures:
+      '1': {name: keyword.other.unit.less}
+
+  at-charset:
+    name: meta.at-rule.charset.less
+    begin: \s*((@)charset\b)\s*
+    end: \s*((?=;|$))
+    captures:
+      '1': {name: keyword.control.at-rule.charset.less}
+      '2': {name: punctuation.definition.keyword.less}
+    patterns:
+    - include: '#literal-string'
+
+  at-counter-style:
+    name: meta.at-rule.counter-style.less
+    begin: \s*((@)counter-style\b)\s+(?:(?i:\b(decimal|none)\b)|(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+      \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+      \t\n\f]?|\\[^\n\f\h]))*))\s*(?=\{|$)
+    end: \s*(\})
+    endCaptures:
+      '1': {name: punctuation.section.property-list.less}
+    captures:
+      '1': {name: keyword.control.at-rule.counter-style.less}
+      '2': {name: punctuation.definition.keyword.less}
+      '3': {name: invalid.illegal.counter-style-name.less}
+      '4': {name: entity.other.counter-style-name.less}
+    patterns:
+    - include: '#comment-block'
+    - include: '#rule-list'
+
+  at-custom-media:
+    name: meta.at-rule.custom-media.less
+    begin: (?=\s*@custom-media\s*.*?)
+    end: \s*(?=;)
+    patterns:
+    - match: \s*;
+      captures:
+        '0': {name: punctuation.section.property-list.less}
+    - match: \s*((@)custom-media)(?=.*?)
+      captures:
+        '1': {name: keyword.control.at-rule.custom-media.less}
+        '2': {name: punctuation.definition.keyword.less}
+        '3': {name: support.constant.custom-media.less}
+    - include: '#media-query-list'
+
+  at-font-face:
+    name: meta.at-rule.font-face.less
+    begin: \s*((@)font-face)\s*(?=\{|$)
+    end: (?!\G)
+    captures:
+      '1': {name: keyword.control.at-rule.font-face.less}
+      '2': {name: punctuation.definition.keyword.less}
+    patterns:
+    - include: '#comment-block'
+    - include: '#rule-list'
+
+  at-import:
+    name: meta.at-rule.import.less
+    begin: \s*((@)import\b)\s*
+    end: \;
+    endCaptures:
+      '0': {name: punctuation.terminator.rule.less}
+    captures:
+      '1': {name: keyword.control.at-rule.import.less}
+      '2': {name: punctuation.definition.keyword.less}
+    patterns:
+    - include: '#literal-string'
+    - begin: \s*(url)\s*(\()\s*
+      beginCaptures:
+        '1': {name: support.function.url.less}
+        '2': {name: punctuation.section.function.less}
+      end: \s*(\))\s*
+      endCaptures:
+        '1': {name: punctuation.section.function.less}
+      patterns:
+      - name: variable.parameter.url.less
+        match: '[^''") \t]+'
+      - include: '#string-single'
+      - include: '#string-double'
+    - include: '#media-query-list'
+
+  at-keyframes:
+    begin: \s*((@)(-webkit-|-moz-|-o-)?keyframes)(?=.*?\{)
+    beginCaptures:
+      '1': {name: keyword.control.at-rule.keyframe.less}
+      '2': {name: punctuation.definition.keyword.less}
+      '3': {name: support.type.property-vendor.less}
+      '4': {name: support.constant.keyframe.less}
+    end: \s*(\})
+    endCaptures:
+      '1': {name: punctuation.section.property-list.end.less}
+    patterns:
+    - begin: \s*(\{)
+      beginCaptures:
+        '1': {name: punctuation.section.property-list.less}
+      end: (?=\})
+      patterns:
+      - match: \s*(?:(from|to)|((?:\.[0-9]+|[0-9]+(?:\.[0-9]*)?)(%)))\s*,?\s*
+        captures:
+          '1': {name: keyword.keyframe-selector.less}
+          '2': {name: constant.numeric.less}
+          '3': {name: keyword.other.unit.less}
+      - include: $self
+    - name: meta.at-rule.keyframe.less
+      begin: \s*(?=[^{;])
+      end: \s*(?=\{)
+      patterns:
+      - include: '#keyframe-name'
+
+  at-media:
+    begin: (?=\s*@media\s*.*?)
+    end: (?=\})
+    endCaptures:
+      '1': {name: punctuation.section.property-list.end.less}
+    patterns:
+    - name: meta.at-rule.media.less
+      begin: \s*((@)media)(?=.*?)
+      beginCaptures:
+        '1': {name: keyword.control.at-rule.media.less}
+        '2': {name: punctuation.definition.keyword.less}
+        '3': {name: support.constant.media.less}
+      end: \s*(?=\{)
+      patterns:
+      - include: '#media-query-list'
+    - begin: \s*(\{)
+      beginCaptures:
+        '1': {name: punctuation.section.property-list.begin.less}
+      end: \s*(\})
+      endCaptures:
+        '1': {name: punctuation.section.property-list.end.less}
+      patterns:
+      - include: '#rule-list-body'
+      - include: $self
+
+  at-namespace:
+    name: meta.at-rule.namespace.less
+    begin: \s*((@)namespace)\s+(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+      \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+      \t\n\f]?|\\[^\n\f\h]))*)?
+    end: \;
+    endCaptures:
+      '0': {name: punctuation.terminator.rule.less}
+    captures:
+      '1': {name: keyword.control.at-rule.namespace.less}
+      '2': {name: punctuation.definition.keyword.less}
+      '3': {name: entity.other.namespace-prefix.less}
+    patterns:
+    - include: '#literal-string'
+
+  at-page:
+    name: meta.at-rule.page.less
+    match: \s*((@)page)\s*(?:(:)(first|left|right))?\s*(?=\{|$)
+    captures:
+      '1': {name: keyword.control.at-rule.page.less}
+      '2': {name: punctuation.definition.keyword.less}
+      '3': {name: punctuation.definition.entity.less}
+      '4': {name: entity.other.pseudo-class.less}
+    patterns:
+    - include: '#comment-block'
+    - include: '#rule-list'
+
+  at-rules:
+    patterns:
+    - include: '#at-charset'
+    - include: '#at-counter-style'
+    - include: '#at-custom-media'
+    - include: '#at-document'
+    - include: '#at-font-face'
+    - include: '#at-import'
+    - include: '#at-keyframes'
+    - include: '#at-media'
+    - include: '#at-namespace'
+    - include: '#at-page'
+    - include: '#at-supports'
+
+  at-supports:
+    patterns:
+    - name: meta.at-rule.supports.less
+      begin: ((@)supports)
+      beginCaptures:
+        '1': {name: keyword.control.at-rule.supports.less}
+        '2': {name: punctuation.definition.keyword.less}
+      end: \}
+      endCaptures:
+        '0': {name: punctuation.definition.block.end.less}
+      patterns:
+      - name: meta.block.less
+        begin: \{
+        end: (?=\})
+        captures:
+          '0': {name: punctuation.definition.block.begin.less}
+        patterns:
+        - include: '#rule-list-body'
+        - include: $self
+      - include: '#at-supports-operators'
+      - include: '#at-supports-parens'
+
+  at-supports-operators:
+    name: keyword.operator.logic.less
+    match: \b(?i:and|or|not)\b
+
+  at-supports-parens:
+    name: meta.group.less
+    begin: \(
+    beginCaptures:
+      '0': {name: punctuation.definition.group.begin.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - include: '#at-supports-operators'
+    - include: '#at-supports-parens'
+    - include: '#rule-list-body'
+
+  attr-function:
+    name: meta.function-call.less
+    begin: \b(attr)(?=\()
+    beginCaptures:
+      '1': {name: support.function.filter.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#qualified-name'
+      - include: '#literal-string'
+      - name: entity.other.attribute-name.less
+        begin: (-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*)
+        end: (?=\))
+        patterns:
+        - name: keyword.other.unit.less
+          match: (?x)\b((?i:em|ex|ch|rem)|(?i:vw|vh|vmin|vmax)|(?i:cm|mm|q|in|pt|pc|px|fr)|(?i:deg|grad|rad|turn)|(?i:s|ms)|(?i:Hz|kHz)|(?i:dpi|dpcm|dppx))\b
+        - include: '#comma-delimiter'
+        - include: '#property-value-constants'
+        - include: '#numeric-values'
+      - include: '#color-values'
+
+  builtin-functions:
+    patterns:
+    - include: '#attr-function'
+    - include: '#calc-function'
+    - include: '#color-adjuster-functions'
+    - include: '#color-functions'
+    - include: '#counter-functions'
+    - include: '#cross-fade-function'
+    - include: '#cubic-bezier-function'
+    - include: '#filter-function'
+    - include: '#format-function'
+    - include: '#gradient-functions'
+    - include: '#grid-repeat-function'
+    - include: '#image-function'
+    - include: '#image-set-function'
+    - include: '#less-functions'
+    - include: '#local-function'
+    - include: '#minmax-function'
+    - include: '#regexp-function'
+    - include: '#shape-functions'
+    - include: '#steps-function'
+    - include: '#symbols-function'
+    - include: '#timing-functions'
+    - include: '#transform-functions'
+    - include: '#url-function'
+    - include: '#var-function'
+
+  calc-function:
+    name: meta.function-call.less
+    begin: \b(calc)(?=\()
+    beginCaptures:
+      '1': {name: support.function.calc.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#calc-function'
+      - include: '#var-function'
+      - name: keyword.operator.less
+        match: '[-/*+]'
+      - include: '#numeric-values'
+      - include: '#attr-function'
+
+  color-adjuster-operators:
+    name: keyword.operator.less
+    match: '[\-\+*](?=\s+)'
+
+  color-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(rgba?)(?=\()
+      beginCaptures:
+        '1': {name: support.function.color.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#comma-delimiter'
+        - include: '#percentage-type'
+        - include: '#number-type'
+    - name: meta.function-call.less
+      begin: \b(hs(l|v)a?|hwb)(?=\()
+      beginCaptures:
+        '1': {name: support.function.color.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#comma-delimiter'
+        - include: '#angle-type'
+        - include: '#percentage-type'
+        - include: '#number-type'
+    - include: '#less-color-functions'
+
+  color-values:
+    patterns:
+    - include: '#color-functions'
+    - include: '#less-functions'
+    - name: support.constant.color.w3c-standard-color-name.less
+      match: \b(aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow)\b
+    - name: support.constant.color.w3c-extended-color-keywords.less
+      match: \b(aliceblue|antiquewhite|aquamarine|azure|beige|bisque|blanchedalmond|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|gainsboro|ghostwhite|gold|goldenrod|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|limegreen|linen|magenta|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|oldlace|olivedrab|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|rebeccapurple|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|thistle|tomato|turquoise|violet|wheat|whitesmoke|yellowgreen)\b
+    - name: support.constant.color.w3c-special-color-keyword.less
+      match: \b((?i)currentColor|transparent)\b
+    - name: constant.other.color.rgb-value.less
+      match: (#)(\h{3}|\h{6})\b
+      captures:
+        '1': {name: punctuation.definition.constant.less}
+
+  comma-delimiter:
+    match: \s*(,)\s*
+    captures:
+      '1': {name: punctuation.separator.less}
+
+  comment-block:
+    patterns:
+    - name: comment.block.less
+      begin: /\*
+      end: \*/
+      captures:
+        '0': {name: punctuation.definition.comment.less}
+    - include: '#comment-line'
+
+  comment-line:
+    name: comment.line.less
+    begin: //
+    end: $\n?
+    captures:
+      '0': {name: punctuation.definition.comment.less}
+
+  counter-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(counter)(?=\()
+      beginCaptures:
+        '1': {name: support.function.filter.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - name: entity.other.counter-name.less string.unquoted.less
+          match: (-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+            \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+            \t\n\f]?|\\[^\n\f\h]))*)
+        - begin: (?=,)
+          end: (?=\))
+          patterns:
+          - include: '#comma-delimiter'
+          - name: support.constant.property-value.counter-style.less
+            match: \b((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman)|none)\b
+    - name: meta.function-call.less
+      begin: \b(counters)(?=\()
+      beginCaptures:
+        '1': {name: support.function.filter.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - name: entity.other.counter-name.less string.unquoted.less
+          match: (-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+            \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+            \t\n\f]?|\\[^\n\f\h]))*)
+        - begin: (?=,)
+          end: (?=\))
+          patterns:
+          - include: '#comma-delimiter'
+          - include: '#literal-string'
+          - name: support.constant.property-value.counter-style.less
+            match: \b((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman)|none)\b
+
+  cross-fade-function:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(cross-fade)(?=\()
+      beginCaptures:
+        '1': {name: support.function.image.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#comma-delimiter'
+        - include: '#percentage-type'
+        - include: '#color-values'
+        - include: '#image-type'
+        - include: '#literal-string'
+        - include: '#unquoted-string'
+
+  cubic-bezier-function:
+    name: meta.function-call.less
+    begin: \b(cubic-bezier)(?=\()
+    beginCaptures:
+      '0': {name: support.function.timing.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#comma-delimiter'
+      - include: '#number-type'
+
+  custom-property-name:
+    name: support.type.custom-property.less
+    match: (--)(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+      \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+      \t\n\f]?|\\[^\n\f\h]))*)
+    captures:
+      '1': {name: punctuation.definition.custom-property.less}
+      '2': {name: support.type.custom-property.name.less}
+
+  dimensions:
+    patterns:
+    - include: '#angle-type'
+    - include: '#frequency-type'
+    - include: '#length-type'
+    - include: '#resolution-type'
+    - include: '#time-type'
+
+  filter-function:
+    name: meta.function-call.less
+    begin: \b(filter)(?=\()
+    beginCaptures:
+      '1': {name: support.function.filter.less}
+    end: \)
+    endCaptures:
+      '0': {name: meta.group.less punctuation.definition.group.end.less}
+    patterns:
+    - name: meta.group.less
+      begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#comma-delimiter'
+      - include: '#image-type'
+      - include: '#literal-string'
+      - include: '#filter-functions'
+
+  filter-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(blur)(?=\()
+      beginCaptures:
+        '1': {name: support.function.filter.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#length-type'
+    - name: meta.function-call.less
+      begin: \b(brightness|contrast|grayscale|invert|opacity|saturate|sepia)(?=\()
+      beginCaptures:
+        '1': {name: support.function.filter.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#percentage-type'
+        - include: '#number-type'
+        - include: '#less-functions'
+    - name: meta.function-call.less
+      begin: \b(drop-shadow)(?=\()
+      beginCaptures:
+        '1': {name: support.function.filter.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#length-type'
+        - include: '#color-values'
+    - name: meta.function-call.less
+      begin: \b(hue-rotate)(?=\()
+      beginCaptures:
+        '1': {name: support.function.filter.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#angle-type'
+
+  format-function:
+    name: meta.function-call.less
+    begin: \b(format)(?=\()
+    beginCaptures:
+      '0': {name: support.function.font-face.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#literal-string'
+
+  frequency-type:
+    name: constant.numeric.less
+    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(Hz|kHz))\b
+    captures:
+      '1': {name: keyword.other.unit.less}
+
+  gradient-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b((?:repeating-)?linear-gradient)(?=\()
+      beginCaptures:
+        '1': {name: support.function.gradient.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#angle-type'
+        - include: '#comma-delimiter'
+        - include: '#color-values'
+        - include: '#percentage-type'
+        - include: '#length-type'
+        - name: keyword.other.less
+          match: \bto\b
+        - name: support.constant.property-value.less
+          match: \b(top|right|bottom|left)\b
+    - name: meta.function-call.less
+      begin: \b((?:repeating-)?radial-gradient)(?=\()
+      beginCaptures:
+        '1': {name: support.function.gradient.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#comma-delimiter'
+        - include: '#color-values'
+        - include: '#percentage-type'
+        - include: '#length-type'
+        - name: keyword.other.less
+          match: \b(at|circle|ellipse)\b
+        - name: support.constant.property-value.less
+          match: \b(top|right|bottom|left|center|(farthest|closest)-(corner|side))\b
+
+  grid-repeat-function:
+    name: meta.function-call.less
+    begin: \b(repeat)(?=\()
+    beginCaptures:
+      '1': {name: support.function.grid.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#comma-delimiter'
+      - include: '#length-type'
+      - include: '#percentage-type'
+      - include: '#minmax-function'
+      - include: '#integer-type'
+      - name: support.keyword.repetitions.less
+        match: \b(auto-fill|auto-fit)\b
+      - name: support.constant.property-value.less
+        match: \b(max-content|min-content|auto)\b
+
+  image-function:
+    name: meta.function-call.less
+    begin: \b(image)(?=\()
+    beginCaptures:
+      '1': {name: support.function.image.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#image-type'
+      - include: '#literal-string'
+      - include: '#color-values'
+      - include: '#comma-delimiter'
+      - include: '#unquoted-string'
+
+  image-type:
+    patterns:
+    - include: '#cross-fade-function'
+    - include: '#gradient-functions'
+    - include: '#image-function'
+    - include: '#image-set-function'
+    - include: '#url-function'
+
+  integer-type:
+    name: constant.numeric.less
+    match: (?:[-+]?\d+)
+
+  keyframe-name:
+    begin: \s*(-?(?:[_a-z]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?
+    beginCaptures:
+      '1': {name: entity.other.animation-name.less}
+    end: \s*(?:(,)|(?=[{;]))
+    endCaptures:
+      '1': {name: punctuation.definition.arbitrary-repitition.less}
+
+  length-type:
+    name: constant.numeric.less
+    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b
+    captures:
+      '1': {name: keyword.other.unit.less}
+
+  less-color-blend-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(multiply|screen|overlay|(soft|hard)light|difference|exclusion|negation|average)(?=\()
+      beginCaptures:
+        '1': {name: support.function.color-blend.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#comma-delimiter'
+        - include: '#color-values'
+
+  less-color-definition-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(argb)(?=\()
+      beginCaptures:
+        '1': {name: support.function.color-definition.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#color-values'
+
+  less-color-functions:
+    patterns:
+    - include: '#less-color-blend-functions'
+    - include: '#less-color-definition-functions'
+    - include: '#less-color-operation-functions'
+
+  less-color-operation-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(fade|shade|tint)(?=\()
+      beginCaptures:
+        '1': {name: support.function.color-operation.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#comma-delimiter'
+        - include: '#color-values'
+        - include: '#percentage-type'
+    - name: meta.function-call.less
+      begin: \b(((de)?saturate)|((light|dark)en)|(fade(in|out)))(?=\()
+      beginCaptures:
+        '1': {name: support.function.color-operation.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#comma-delimiter'
+        - include: '#color-values'
+        - include: '#percentage-type'
+        - name: constant.language.relative.less
+          match: \brelative\b
+    - name: meta.function-call.less
+      begin: \b(contrast)(?=\()
+      beginCaptures:
+        '1': {name: support.function.color-operation.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#comma-delimiter'
+        - include: '#color-values'
+        - include: '#percentage-type'
+    - name: meta.function-call.less
+      begin: \b(greyscale)(?=\()
+      beginCaptures:
+        '1': {name: support.function.color-operation.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#color-values'
+
+  less-extend:
+    name: entity.other.attribute-name.extends.less
+    begin: (:)(extend)(?=\()
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    captures:
+      '1': {name: punctuation.definition.entity.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#selector'
+      - name: constant.language.all.less
+        match: \ball\b
+
+  less-functions:
+    patterns:
+    - include: '#less-color-functions'
+    - include: '#less-list-functions'
+    - include: '#less-math-functions'
+    - include: '#less-misc-functions'
+    - include: '#less-string-functions'
+    - include: '#less-type-functions'
+
+  less-list-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(length)(?=\()\b
+      beginCaptures:
+        '1': {name: support.function.length.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+    - name: meta.function-call.less
+      begin: \b(extract)(?=\()\b
+      beginCaptures:
+        '1': {name: support.function.extract.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#comma-delimiter'
+        - include: '#integer-type'
+
+  less-math-functions:
+    name: meta.function-call.less
+    begin: \b(ceil|floor|percentage|round|sqrt|abs|a?(sin|cos|tan))(?=\()
+    beginCaptures:
+      '1': {name: support.function.math.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#less-variables'
+      - include: '#numeric-values'
+
+  less-misc-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(image-(size|width|height))(?=\()
+      beginCaptures:
+        '1': {name: support.function.image.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#literal-string'
+        - include: '#unquoted-string'
+    - name: meta.function-call.less
+      begin: \b(convert|unit)(?=\()
+      beginCaptures:
+        '1': {name: support.function.convert.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#dimensions'
+        - include: '#literal-string'
+        - include: '#comma-delimiter'
+        - name: keyword.other.unit.less
+          match: ((c|m)?m|in|p(t|c|x)|m?s|g?rad|deg|turn|%|r?em|ex|ch)
+    - name: meta.function-call.less
+      begin: \b(data-uri)(?=\()
+      beginCaptures:
+        '1': {name: support.function.data-uri.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#literal-string'
+        - match: \s*(?:(,))
+          captures:
+            '1': {name: punctuation.definition.arbitrary-repitition.less}
+    - name: support.function.default.less
+      match: \b(default(\()(\)))\b
+      captures:
+        '2': {name: punctuation.definition.group.begin.less}
+        '3': {name: punctuation.definition.group.end.less}
+
+  less-number-units:
+    patterns:
+    - name: keyword.other.unit.less
+      match: \b((c|m)?m|in|p(t|c)|m?s|g?rad|deg|turn)\b
+    - match: \b(r?em|ex|ch|vw|vh|vmin|vmax|cm|mm|q|in|pt|pc|px|fr|s|ms|Hz|kHz|dpi|dpcm|dppx|deg|grad|rad|turn)\b
+
+  less-string-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(escape)(?=\()\b
+      beginCaptures:
+        '1': {name: support.function.escape.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#comma-delimiter'
+        - include: '#literal-string'
+        - include: '#unquoted-string'
+    - name: meta.function-call.less
+      begin: \b(%)(?=\()\b
+      beginCaptures:
+        '1': {name: support.function.format.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#comma-delimiter'
+        - include: '#literal-string'
+        - include: '#property-values'
+    - name: meta.function-call.less
+      begin: \b(replace)(?=\()\b
+      beginCaptures:
+        '1': {name: support.function.replace.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#comma-delimiter'
+        - include: '#literal-string'
+        - include: '#property-values'
+
+  less-strings:
+    patterns:
+    - name: markup.raw.inline.less string.quoted.other.less
+      begin: (~)('|")
+      beginCaptures:
+        '1': {name: constant.character.escape.less}
+        '2': {name: punctuation.definition.string.begin.less}
+      end: ('|")|(\n)
+      endCaptures:
+        '1': {name: punctuation.definition.string.end.less}
+        '2': {name: invalid.illegal.newline.less}
+      patterns:
+      - include: '#string-content'
+
+  less-type-functions:
+    name: meta.function-call.less
+    begin: \b(is(number|string|color|keyword|url|pixel|em|percentage|unit|ruleset))(?=\()
+    beginCaptures:
+      '1': {name: support.function.type.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#less-variables'
+      - include: '#color-values'
+      - include: '#numeric-values'
+      - include: '#literal-string'
+      - include: '#unquoted-string'
+
+  less-variable-assignment:
+    patterns:
+    - begin: (@)([-]?([_a-z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+        \t\n\f]?|\\[^\n\f\h]))*)
+      beginCaptures:
+        '0': {name: variable.other.less}
+        '1': {name: punctuation.definition.variable.less}
+        '2': {name: support.other.variable.less}
+      end: \s*(;|(?=(\)|\.{3})))
+      endCaptures:
+        '1': {name: punctuation.terminator.rule.less}
+      patterns:
+      - match: (:)([ \t]*)
+        captures:
+          '1': {name: punctuation.separator.key-value.less}
+          '2': {name: meta.property-value.less}
+      - include: '#property-values'
+      - name: string.unquoted.less
+        match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*)*
+      - name: punctuation.separator.less
+        match: ','
+
+  less-variable-comparison:
+    patterns:
+    - begin: (@)([-]?([_a-z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+        \t\n\f]?|\\[^\n\f\h]))*)
+      beginCaptures:
+        '0': {name: variable.other.less}
+        '1': {name: punctuation.definition.variable.less}
+        '2': {name: support.other.variable.less}
+      end: \s*(?=\))
+      endCaptures:
+        '1': {name: punctuation.terminator.rule.less}
+      patterns:
+      - match: \s*((<|>)?(=)?)\s*
+        captures:
+          '1': {name: keyword.operator.logical.less}
+      - include: '#property-values'
+      - include: '#selector'
+      - name: string.unquoted.less
+        match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*)*
+      - name: punctuation.separator.less
+        match: ','
+
+  less-variable-interpolation:
+    name: variable.other.less
+    begin: (@)(\{)
+    beginCaptures:
+      '1': {name: punctuation.definition.variable.less}
+      '2': {name: punctuation.definition.expression.less}
+    end: \}
+    endCaptures:
+      '0': {name: punctuation.definition.expression.less}
+    patterns:
+    - name: support.other.variable.less
+      match: '[-]?([_a-z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+        \t\n\f]?|\\[^\n\f\h]))*'
+
+  less-variables:
+    name: variable.other.less
+    match: (@{1,2})([-]?([_a-z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:\\\h{1,6}[
+      \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+      \t\n\f]?|\\[^\n\f\h]))*)
+    captures:
+      '1': {name: punctuation.definition.variable.less}
+      '2': {name: support.other.variable.less}
+
+  literal-string:
+    patterns:
+    - name: string.quoted.single.less
+      begin: ''''
+      beginCaptures:
+        '0': {name: punctuation.definition.string.begin.less}
+      end: (')|(\n)
+      endCaptures:
+        '1': {name: punctuation.definition.string.end.less}
+        '2': {name: invalid.illegal.newline.less}
+      patterns:
+      - include: '#string-content'
+    - name: string.quoted.double.less
+      begin: '"'
+      beginCaptures:
+        '0': {name: punctuation.definition.string.begin.less}
+      end: (")|(\n)
+      endCaptures:
+        '1': {name: punctuation.definition.string.end.less}
+        '2': {name: invalid.illegal.newline.less}
+      patterns:
+      - include: '#string-content'
+    - include: '#less-strings'
+
+  local-function:
+    name: meta.function-call.less
+    begin: \b(local)(?=\()
+    beginCaptures:
+      '0': {name: support.function.font-face.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#unquoted-string'
+
+  media-query:
+    begin: (?i)\s*(only|not)?\s*(all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)?
+    beginCaptures:
+      '1': {name: keyword.operator.logic.media.less}
+      '2': {name: support.constant.media.less}
+    end: \s*(?:(,)|(?=[{;]))
+    endCaptures:
+      '1': {name: punctuation.definition.arbitrary-repitition.less}
+    patterns:
+    - include: '#less-variables'
+    - begin: \s*(and)?\s*(\()\s*
+      beginCaptures:
+        '1': {name: keyword.operator.logic.media.less}
+        '2': {name: punctuation.definition.group.begin.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: (?x)((-webkit-|-o-)?((min|max)-)?(-moz-)?(((device-)?(height|width|aspect-ratio|pixel-ratio))|(color(-index)?)|monochrome|resolution))|grid|scan|orientation\s*(?=[:)])
+        beginCaptures:
+          '0': {name: support.type.property-name.media.less}
+          '2': {name: support.type.vendor-prefix.less}
+          '5': {name: support.type.vendor-prefix.less}
+        end: (:)|(?=\))
+        endCaptures:
+          '1': {name: punctuation.separator.key-value.less}
+      - name: support.constant.property-value.less
+        match: \b(portrait|landscape|progressive|interlace)
+      - match: \s*(\d+)(/)(\d+)
+        captures:
+          '1': {name: constant.numeric.less}
+          '2': {name: keyword.operator.arithmetic.less}
+          '3': {name: constant.numeric.less}
+      - include: '#numeric-values'
+
+  media-query-list:
+    begin: \s*(?=[^{;])
+    end: \s*(?=[{;])
+    patterns:
+    - include: '#media-query'
+
+  minmax-function:
+    name: meta.function-call.less
+    begin: \b(minmax)(?=\()
+    beginCaptures:
+      '1': {name: support.function.grid.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#comma-delimiter'
+      - include: '#length-type'
+      - name: support.constant.property-value.less
+        match: \b(max-content|min-content)\b
+
+  number-type:
+    name: constant.numeric.less
+    match: '[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))'
+
+  numeric-values:
+    patterns:
+    - include: '#dimensions'
+    - include: '#percentage-type'
+    - include: '#number-type'
+
+  percentage-type:
+    name: constant.numeric.less
+    match: '[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(%)'
+    captures:
+      '1': {name: keyword.other.unit.less}
+
+  property-list:
+    patterns:
+    - begin: (?=\{)
+      end: \}
+      endCaptures:
+        '0': {name: punctuation.definition.block.end.less}
+      patterns:
+      - include: '#rule-list'
+
+  property-value-constants:
+    patterns:
+    - name: support.constant.property-value.less
+      match: |-
+        (?x)\b(
+            absolute|active|add
+          | all(-(petite|small)-caps|-scroll)?
+          | alpha(betic)?
+          | alternate(-reverse)?
+          | always|annotation|antialiased|at
+          | auto(hiding-scrollbar)?
+          | avoid(-column|-page|-region)?
+          | background(-color|-image|-position|-size)?
+          | backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink
+          | block(-line-height)?
+          | blur
+          | bold(er)?
+          | border(-bottom|-left|-right|-top)?-(color|radius|width|style)
+          | border-(bottom|top)-(left|right)-radius
+          | border-image(-outset|-repeat|-slice|-source|-width)?
+          | border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?
+          | both|bottom
+          | box(-shadow)?
+          | break-(all|word)
+          | brightness
+          | butt(on)?
+          | capitalize
+          | cent(er|ral)
+          | char(acter-variant)?
+          | cjk-ideographic|clip|clone|close-quote
+          | closest-(corner|side)
+          | col-resize|collapse
+          | color(-stop|-burn|-dodge)?
+          | column((-count|-gap|-reverse|-rule(-color|-width)?|-width)|s)?
+          | common-ligatures|condensed|consider-shifts|contain
+          | content(-box|s)?
+          | contextual|contrast|cover
+          | crisp(-e|E)dges
+          | crop
+          | cross(hair)?
+          | da(rken|shed)
+          | default|dense|diagonal-fractions|difference|disabled
+          | discretionary-ligatures|disregard-shifts
+          | distribute(-all-lines|-letter|-space)?
+          | dotted|double|drop-shadow
+          | (nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize
+          | ease(-in-out|-in|-out)?
+          | element|ellipsis|embed|end|EndColorStr|evenodd
+          | exclu(de(-ruby)?|sion)
+          | expanded
+          | (extra|semi|ultra)-(condensed|expanded)
+          | farthest-(corner|side)?
+          | fill(-box|-opacity)?
+          | filter|fixed|flat
+          | flex((-basis|-end|-grow|-shrink|-start)|box)?
+          | flip|flood-color
+          | font(-size(-adjust)?|-stretch|-weight)?
+          | forwards
+          | from(-image)?
+          | full-width|geometricPrecision|glyphs|gradient|grayscale
+          | grid(-height)?
+          | groove|hand|hanging|hard-light|height|help|hidden|hide
+          | historical-(forms|ligatures)
+          | horizontal(-tb)?
+          | hue
+          | ideograph(-alpha|-numeric|-parenthesis|-space|ic)
+          | inactive|include-ruby|infinite|inherit|initial
+          | inline(-block|-box|-flex(box)?|-line-height|-table)?
+          | inset|inside
+          | inter(-ideograph|-word|sect)
+          | invert|isolat(e|ion)|italic
+          | jis(04|78|83|90)
+          | justify(-all)?
+          | keep-all
+          | large[r]?
+          | last|left|letter-spacing
+          | light(e[nr]|ing-color)
+          | line(-edge|-height|-through)?
+          | linear(-gradient|RGB)?
+          | lining-nums|list-item|local|loose|lowercase|lr-tb|ltr
+          | lumin(osity|ance)|manual
+          | margin(-bottom|-box|-left|-right|-top)?
+          | marker(-offset|s)?
+          | mathematical
+          | max-(content|height|lines|size|width)
+          | medium|middle
+          | min-(content|height|width)
+          | miter|mixed|move|multiply|newspaper
+          | no-(change|clip|(close|open)-quote|(common|discretionary|historical)-ligatures|contextual|drop|repeat)
+          | none|nonzero|normal|not-allowed|nowrap|oblique
+          | offset(-after|-before|-end|-start)?
+          | oldstyle-nums|opacity|open-quote
+          | optimize(Legibility|Precision|Quality|Speed)
+          | order|ordinal|ornaments
+          | outline(-color|-offset|-width)?
+          | outset|outside|over(line|-edge|lay)
+          | padding(-bottom|-box|-left|-right|-top|-box)?
+          | page|painted|paused
+          | perspective-origin
+          | petite-caps|pixelated|pointer
+          | pre(-line|-wrap)?
+          | preserve-3d
+          | progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)
+          | progress
+          | proportional-(nums|width)
+          | radial-gradient|recto|region|relative
+          | repeat(-[xy])?
+          | repeating-(linear|radial)-gradient
+          | replaced|reset-size|reverse|ridge|right
+          | round
+          | row(-resize|-reverse)?
+          | rtl|ruby|running|saturat(e|ion)|screen
+          | scroll(-position|bar)?
+          | separate|sepia
+          | scale-down
+          | shape-(image-threshold|margin|outside)
+          | show
+          | sideways(-lr|-rl)?
+          | simplified
+          | slashed-zero|slice
+          | small(-caps|er)?
+          | smooth|snap|solid|soft-light
+          | space(-around|-between)?
+          | span|sRGB
+          | stack(ed-fractions)?
+          | start(ColorStr)?
+          | static
+          | step-(end|start)
+          | sticky
+          | stop-(color|opacity)
+          | stretch|strict
+          | stroke(-box|-dash(array|offset)|-miterlimit|-opacity|-width)?
+          | style(set)?
+          | stylistic
+          | sub(grid|pixel-antialiased|tract)?
+          | super|swash
+          | table(-caption|-cell|(-column|-footer|-header|-row)-group|-column|-row)?
+          | tabular-nums|tb-rl
+          | text((-bottom|-(decoration|emphasis)-color|-indent|-(over|under)-edge|-shadow|-size(-adjust)?|-top)|field)?
+          | thi(ck|n)
+          | titling-ca(ps|se)
+          | to[p]?
+          | touch|traditional
+          | transform(-origin)?
+          | under(-edge|line)?
+          | unicase|unset|uppercase|upright
+          | use-(glyph-orientation|script)
+          | verso
+          | vertical(-align|-ideographic|-lr|-rl|-text)?
+          | view-box
+          | viewport-fill(-opacity)?
+          | visibility
+          | visible(Fill|Painted|Stroke)?
+          | wait|wavy|weight|whitespace|width|word-spacing
+          | wrap(-reverse)?
+          | x{1,2}-(large|small)
+          | z-index|zero
+          | zoom(-in|-out)?
+          | ((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman))
+        )\b
+    - name: support.constant.font-name.less
+      match: \b(?i:sans-serif|serif|monospace|fantasy|cursive)\b(?=\s*[;,\n}])
+
+  property-values:
+    patterns:
+    - include: '#comment-block'
+    - include: '#vendor-prefix'
+    - include: '#builtin-functions'
+    - include: '#color-functions'
+    - include: '#less-functions'
+    - include: '#less-variables'
+    - include: '#unicode-range'
+    - include: '#numeric-values'
+    - include: '#color-values'
+    - include: '#property-value-constants'
+    - include: '#literal-string'
+    - name: keyword.other.important.less
+      match: \!\s*important
+
+  pseudo-classes:
+    patterns:
+    - name: entity.other.attribute-name.pseudo-class.less
+      begin: (:)(dir|lang)(?=\()
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      captures:
+        '1': {name: punctuation.definition.entity.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#unquoted-string'
+    - name: entity.other.attribute-name.pseudo-class.less
+      begin: (:)(matches|not|has)(?=\()
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      captures:
+        '1': {name: punctuation.definition.entity.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#selector'
+    - name: entity.other.attribute-name.pseudo-class.less
+      begin: (:)(drop)(?=\()
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      captures:
+        '1': {name: punctuation.definition.entity.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - name: keyword.other.pseudo-class.less
+          match: \b(active|valid|invalid)\b
+    - name: meta.function-call.less
+      begin: (:)(nth-last-child|nth-child|nth-last-of-type|nth-of-type)(?=\()
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      captures:
+        '1': {name: punctuation.definition.entity.less}
+        '2': {name: entity.other.attribute-name.pseudo-class.less}
+      patterns:
+      - name: meta.group.less
+        begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - name: keyword.other.pseudo-class.less
+          match: \b(even|odd)\b
+        - name: constant.numeric.less
+          match: (?:[-+]?(?:\d+)?(n)(\s*[-+]\s*\d+)?|[-+]?\s*\d+)
+          captures:
+            '1': {name: keyword.other.unit.less}
+    - name: entity.other.attribute-name.pseudo-class.less
+      match: (:)(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+        \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+        \t\n\f]?|\\[^\n\f\h]))*)
+      captures:
+        '1': {name: punctuation.definition.entity.less}
+
+  pseudo-elements:
+    name: entity.other.pseudo-element.less
+    match: |-
+      (?x:
+          (:{1,2})(?:before|after|first-line|first-letter) # CSS1 & CSS2 require : or ::
+        | (::)(-(?:moz|ms|webkit)-)?(?:-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*) # CSS3 requires ::
+      )\b
+    captures:
+      '1': {name: punctuation.definition.entity.less}
+      '2': {name: punctuation.definition.entity.less}
+      '3': {name: support.type.vendor-prefix.less}
+
+  qualified-name:
+    match: (?:(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+      \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+      \t\n\f]?|\\[^\n\f\h]))*)|(\*))?([|])(?!=)
+    captures:
+      '1': {name: entity.other.namespace-prefix.less}
+      '2': {name: entity.name.namespace.wildcard.less}
+      '3': {name: punctuation.separator.namespace.less}
+
+  regexp-function:
+    name: support.function.regexp.less
+    begin: \b(regexp)(?=\()
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - name: meta.function-call.less
+      begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#literal-string'
+
+  resolution-type:
+    name: constant.numeric.less
+    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(dpi|dpcm|dppx))\b
+    captures:
+      '1': {name: keyword.other.unit.less}
+
+  rule-list:
+    patterns:
+    - name: meta.property-list.less
+      begin: \{
+      beginCaptures:
+        '0': {name: punctuation.definition.block.begin.less}
+      end: (?=\s*\})
+      patterns:
+      - include: '#less-extend'
+      - include: '#rule-list-body'
+
+  rule-list-body:
+    patterns:
+    - include: '#comment-block'
+    - include: '#vendor-prefix'
+    - name: invalid.deprecated.custom-property.less
+      match: \b(var-)(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+        \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+        \t\n\f]?|\\[^\n\f\h]))*)(?=\s)
+      captures:
+        '1': {name: keyword.other.custom-property.prefix.less}
+        '2': {name: support.type.custom-property.name.less}
+    - include: '#custom-property-name'
+    - include: '#filter-function'
+    - name: meta.property-name.less
+      begin: \bfont(-family)?(?!-)\b
+      beginCaptures:
+        '0': {name: support.type.property-name.less}
+      end: \s*(;)|(?=[})])
+      endCaptures:
+        '1': {name: punctuation.terminator.rule.less}
+      patterns:
+      - captures:
+          '1': {name: punctuation.separator.key-value.less}
+          '2': {name: meta.property-value.less}
+        match: (:)([ \t]*)
+      - include: '#property-values'
+      - match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*)*
+        name: string.unquoted.less
+      - match: ','
+        name: punctuation.separator.less
+    - name: meta.property-name.less
+      begin: \banimation(-name)?\b
+      beginCaptures:
+        '0': {name: support.type.property-name.less}
+      end: \s*(;)|(?=[})])
+      endCaptures:
+        '1': {name: punctuation.terminator.rule.less}
+      patterns:
+      - match: (:)([ \t]*)
+        captures:
+          '1': {name: punctuation.separator.key-value.less}
+          '2': {name: meta.property-value.less}
+      - include: '#property-values'
+      - name: entity.other.animation-name.less
+        match: (-?(?:[_a-z]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?
+    - name: meta.property-name.less
+      begin: \btransition(-(property|duration|delay|timing-function))?\b
+      beginCaptures:
+        '0': {name: support.type.property-name.less}
+      end: \s*(;)|(?=[})])
+      endCaptures:
+        '1': {name: punctuation.terminator.rule.less}
+      patterns:
+      - match: (:)([ \t]*)
+        captures:
+          '1': {name: punctuation.separator.key-value.less}
+          '2': {name: meta.property-value.less}
+      - include: '#time-type'
+      - include: '#property-values'
+      - include: '#timing-functions'
+      - match: \s*(?:(,))
+        captures:
+          '1': {name: punctuation.definition.arbitrary-repitition.less}
+    - name: meta.property-name.less
+      begin: \bfilter\b
+      beginCaptures:
+        '0': {name: support.type.property-name.less}
+      end: \s*(;)|(?=[})])
+      endCaptures:
+        '1': {name: punctuation.terminator.rule.less}
+      patterns:
+      - match: (:)([ \t]*)
+        captures:
+          '1': {name: punctuation.separator.key-value.less}
+          '2': {name: meta.property-value.less}
+      - include: '#filter-functions'
+    - name: meta.property-name.less
+      begin: \bwill-change\b
+      beginCaptures:
+        '0': {name: support.type.property-name.less}
+      end: \s*(;)|(?=[})])
+      endCaptures:
+        '1': {name: punctuation.terminator.rule.less}
+      patterns:
+      - match: (:)([ \t]*)
+        captures:
+          '1': {name: punctuation.separator.key-value.less}
+          '2': {name: meta.property-value.less}
+      - name: support.constant.property-value.less
+        match: (-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*)
+      - name: invalid.illegal.property-value.less
+        match: unset|initial|inherit|will-change|auto|scroll-position|contents
+      - match: \s*(?:(,))
+        captures:
+          '1': {name: punctuation.definition.arbitrary-repitition.less}
+    - name: meta.property-name.less
+      begin: \bcounter-(increment|(re)?set)\b
+      beginCaptures:
+        '0': {name: support.type.property-name.less}
+      end: \s*(;)|(?=[})])
+      endCaptures:
+        '1': {name: punctuation.terminator.rule.less}
+      patterns:
+      - match: (:)([ \t]*)
+        captures:
+          '1': {name: punctuation.separator.key-value.less}
+          '2': {name: meta.property-value.less}
+      - name: entity.other.counter-name.less
+        match: (-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*)
+      - include: '#integer-type'
+      - name: invalid.illegal.property-value.less
+        match: unset|initial|inherit|auto
+    - name: meta.property-name.less support.type.property-name.less
+      match: |-
+        \b(?x)(
+            additive-symbols|align-(content|items|self)|alignment-baseline|all|animation(-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function))?|appearance|azimuth|backface-visibility|background(-(attachment|blend-mode|clip|color|image|origin|(position|repeat)(-(x|y))?|size))?|baseline-shift|blend-mode|border-(bottom|top)(-(color|left-radius|right-radius|style|width))?|border-(left|right)(-(color|style|width))?|border-(collapse|color|image(-(outset|repeat|slice|source|width))?|radius|spacing|style|width)|border
+            |bottom|box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)|break-(after|before|inside)|caption-side|clear|clip(-(path|rule))?|color(-(interpolation(-filters)?|rendering))?|column-(break-before|count|fill|gap|rule(-(color|style|width))?|span|width)|columns|content|counter-(increment|reset)|cue(-(after|before))?|cursor|direction|display|dominant-baseline
+            |elevation|empty-cells|fallback|fill(-(opacity|rule))?|filter|flex(-(align|basis|direction|flow|grow|item-align|line(-pack)?|pack|negative|order|positive|preferred-size|shrink|wrap))?|float|flood-(color|opacity)|font(-(display|family|feature-settings|kerning|language-override|size(-adjust)?|smoothing|stretch|style|synthesis|variant(-(alternates|caps|east-asian|ligatures|numeric|position))?|weight))?|grid-(area|gap|auto-(columns|flow|rows)|(column|row)(-(end|gap|start))?|template(-(areas|columns|rows))?)
+            |height|hyphens|image-(orientation|rendering|resolution)|isolation|justify-content|kerning|left|letter-spacing|lighting-color|line-(box-contain|break|clamp|height)|list-style(-(image|position|type))?|(margin|padding)(-(bottom|left|top|right))?|marker(-(end|mid|start))?|mask(-(clip|composite|image|origin|position|repeat|size|type))?|((max|min)-)?(height|width)
+            |mix-blend-mode|nbsp-mode|negative|object-(fit|position)|opacity|order|orphans|outline(-(color|offset|style|width))?|overflow(-(scrolling|wrap|x|y))?|pad|page(-(break-(after|before|inside)))?|paint-order|pause(-(after|before))?|perspective(-(origin(-(x|y))?))?|pitch(-range)?|play-during|pointer-events|position|prefix|quotes|range|resize|richness|right|rotate
+            |scale|scroll-behavior|shape-(image-threshold|margin|outside|rendering)|size|speak(-(as|header|numeral|punctuation))?|speech-rate|src|stop-color|stress|stroke(-(dasharray|dashoffset|linecap|linejoin|miterlimit|opacity|width))?|suffix|symbols|system|tab-size|table-layout|tap-highlight-color
+            |text-(align(-last)?|anchor|decoration(-(color|line|style))?|emphasis(-(color|position|style))?|fill-color|height|indent|justify|orientation|overflow|rendering|shadow|transform|underline-position)|top|touch-action
+            |transform(-(origin(-(x|y))?))?|transform-style|transition(-(delay|duration|property|timing-function))?|translate|unicode-(bidi|range)|user-(drag|select)|vertical-align|visibility|voice-family|volume|white-space|widows|width|will-change|word-(break|spacing|wrap)|writing-mode|z-index|zoom
+        )\b
+    - include: $self
+    - contentName: meta.property-value.less
+      begin: (:)([ \t]*)
+      end: \s*(;)|(?=[})])
+      endCaptures:
+        '1': {name: punctuation.terminator.rule.less}
+      captures:
+        '1': {name: punctuation.separator.key-value.less}
+        '2': {name: meta.property-value.less}
+      patterns:
+      - include: '#property-values'
+    - include: '#rule-list'
+    - include: '#less-variable-interpolation'
+
+  selector:
+    name: meta.selector.less
+    patterns:
+    - name: meta.function.less meta.property-list.less
+      begin: (?=\s*(when)\s*\(.*?)
+      beginCaptures:
+        '1': {name: keyword.control.conditional.less}
+      end: \}
+      endCaptures:
+        '0': {name: punctuation.section.property-list.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: \)
+        endCaptures:
+          '0': {name: punctuation.definition.group.end.less}
+        patterns:
+        - include: '#less-variable-comparison'
+        - include: '#less-type-functions'
+      - match: \s*(when)(?=.*?)
+        captures:
+          '1': {name: keyword.control.conditional.less}
+      - name: keyword.operator.logic.less
+        match: \band\b
+      - match: \s*(?:(,))
+        captures:
+          '1': {name: punctuation.definition.arbitrary-repitition.less}
+      - begin: \s*(\{)
+        beginCaptures:
+          '1': {name: punctuation.section.property-list.begin.less}
+        end: (?=\})
+        patterns:
+        - include: '#rule-list-body'
+    - name: entity.name.tag.less
+      match: \b(a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdi|bdo|big|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|content|data|datalist|dd|del|details|dfn|dir|dialog|div|dl|dt|element|em|embed|eventsource|fieldset|figure|figcaption|footer|form|frame|frameset|h[1-6]|head|header|hgroup|hr|html|i|iframe|img|input|ins|isindex|kbd|keygen|label|legend|li|link|main|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|picture|pre|progress|q|rp|rt|rtc|s|samp|script|section|select|shadow|small|source|span|strike|strong|style|sub|summary|sup|svg|table|tbody|td|template|textarea|tfoot|th|thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp|circle|clipPath|defs|ellipse|filter|foreignObject|g|glyph|glyphRef|image|line|linearGradient|marker|mask|path|pattern|polygon|polyline|radialGradient|rect|stop|switch|symbol|text|textPath|tref|tspan|use)\b
+    - name: meta.function-call.less
+      begin: (\.)-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
+        \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
+        \t\n\f]?)|\\[^\n\f\h]))*(?=\()
+      beginCaptures:
+        '0': {name: entity.other.attribute-name.class.less}
+        '1': {name: punctuation.definition.entity.less}
+      end: (?:(;|\}))
+      endCaptures:
+        '1': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: \)
+        endCaptures:
+          '0': {name: punctuation.definition.group.end.less}
+        patterns:
+        - name: variable.language.arguments.less
+          match: \.{3}
+        - include: '#property-list'
+        - include: '#less-variable-assignment'
+        - include: '#property-values'
+      - name: punctuation.terminator.rule.less
+        match: ;
+      - include: '#rule-list'
+      - name: entity.other.attribute-name.class.less
+        match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
+          \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
+          \t\n\f]?)|\\[^\n\f\h]))*
+    - name: meta.selector.less
+      begin: (\.)
+      beginCaptures:
+        '1': {name: punctuation.definition.entity.less}
+      end: (?!(\w|@\{))
+      patterns:
+      - include: '#less-variable-interpolation'
+      - name: entity.other.attribute-name.class.less
+        match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
+          \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
+          \t\n\f]?)|\\[^\n\f\h]))*
+    - name: meta.selector.less
+      begin: (\#)
+      beginCaptures:
+        '1': {name: punctuation.definition.entity.less}
+      end: (?!(\w|@\{))
+      patterns:
+      - include: '#less-variable-interpolation'
+      - name: entity.other.attribute-name.id.less
+        match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
+          \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
+          \t\n\f]?)|\\[^\n\f\h]))*
+    - name: entity.name.tag.wildcard.less
+      match: \*
+    - name: punctuation.separator.combinator.less
+      match: ((?:>{1,3}|[~+]))(?![>~+])
+    - name: invalid.illegal.combinator.less
+      match: ((?:>{1,3}|[~+])){2,}
+    - include: '#pseudo-elements'
+    - include: '#pseudo-classes'
+    - name: meta.attribute-selector.less
+      begin: \[
+      end: \]
+      captures:
+        '0': {name: punctuation.definition.entity.less}
+      patterns:
+      - include: '#less-variable-interpolation'
+      - include: '#qualified-name'
+      - name: entity.other.attribute-name.less
+        match: (-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*)
+      - begin: \s*([~*|^$]?=)\s*
+        end: (?=(\s|\]))
+        captures:
+          '1': {name: keyword.operator.attribute-selector.less}
+        patterns:
+        - include: '#less-variable-interpolation'
+        - name: string.unquoted.less
+          match: '[^\s\]\[''"]'
+        - include: '#literal-string'
+        - match: (?:\s+([iI]))?
+          captures:
+            '1': {name: keyword.other.less}
+        - name: punctuation.definition.entity.less
+          match: \]
+    - match: \s*(?:(,))
+      captures:
+        '1': {name: punctuation.definition.arbitrary-repitition.less}
+    - name: entity.other.attribute-name.parent.less
+      match: (&)-?[a-zA-Z0-9_-]*
+      captures:
+        '1': {name: punctuation.definition.entity.less}
+
+  shape-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(rect)(?=\()
+      beginCaptures:
+        '0': {name: support.function.shape.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - name: support.constant.property-value.less
+          match: \bauto\b
+        - include: '#length-type'
+    - name: meta.function-call.less
+      begin: \b(inset)(?=\()
+      beginCaptures:
+        '0': {name: support.function.shape.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - name: keyword.other.less
+          match: \bround\b
+        - include: '#length-type'
+        - include: '#percentage-type'
+    - name: meta.function-call.less
+      begin: \b(circle|ellipse)(?=\()
+      beginCaptures:
+        '0': {name: support.function.shape.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - name: keyword.other.less
+          match: \bat\b
+        - name: support.constant.property-value.less
+          match: \b(top|right|bottom|left|center|closest-side|farthest-side)\b
+        - include: '#length-type'
+        - include: '#percentage-type'
+    - name: meta.function-call.less
+      begin: \b(polygon)(?=\()
+      beginCaptures:
+        '0': {name: support.function.shape.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - name: support.constant.property-value.less
+          match: \b(nonzero|evenodd)\b
+        - include: '#length-type'
+        - include: '#percentage-type'
+
+  steps-function:
+    name: meta.function-call.less
+    begin: \b(steps)(?=\()
+    beginCaptures:
+      '0': {name: support.function.timing.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#comma-delimiter'
+      - include: '#integer-type'
+      - name: support.keyword.timing-direction.less
+        match: (end|middle|start)
+
+  string-content:
+    patterns:
+    - name: constant.character.escape.newline.less
+      match: \\\s*\n
+    - name: constant.character.escape.less
+      match: \\(\h{1,6}|.)
+    - include: '#less-variable-interpolation'
+
+  symbols-function:
+    name: meta.function-call.less
+    begin: \b(symbols)(?=\()
+    beginCaptures:
+      '1': {name: support.function.filter.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - name: support.constant.symbol-type.less
+        match: \b(cyclic|numeric|alphabetic|symbolic|fixed)\b
+      - include: '#comma-delimiter'
+      - include: '#literal-string'
+      - include: '#image-type'
+
+  time-type:
+    name: constant.numeric.less
+    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(s|ms))\b
+    captures:
+      '1': {name: keyword.other.unit.less}
+
+  transform-functions:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(matrix3d|scale3d|matrix|scale)(?=\()
+      beginCaptures:
+        '0': {name: support.function.transform.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#comma-delimiter'
+        - include: '#number-type'
+    - name: meta.function-call.less
+      begin: \b(translate(3d)?)(?=\()
+      beginCaptures:
+        '0': {name: support.function.transform.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#comma-delimiter'
+        - include: '#percentage-type'
+        - include: '#length-type'
+        - include: '#number-type'
+    - name: meta.function-call.less
+      begin: \b(translate[XY])(?=\()
+      beginCaptures:
+        '0': {name: support.function.transform.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#percentage-type'
+        - include: '#length-type'
+        - include: '#number-type'
+    - name: meta.function-call.less
+      begin: \b(rotate[XYZ]?|skew[XY])(?=\()
+      beginCaptures:
+        '0': {name: support.function.transform.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#angle-type'
+    - name: meta.function-call.less
+      begin: \b(skew)(?=\()
+      beginCaptures:
+        '0': {name: support.function.transform.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#comma-delimiter'
+        - include: '#angle-type'
+    - name: meta.function-call.less
+      begin: \b(translateZ|perspective)(?=\()
+      beginCaptures:
+        '0': {name: support.function.transform.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#length-type'
+    - name: meta.function-call.less
+      begin: \b(rotate3d)(?=\()
+      beginCaptures:
+        '0': {name: support.function.transform.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#comma-delimiter'
+        - include: '#angle-type'
+        - include: '#number-type'
+    - name: meta.function-call.less
+      begin: \b(scale[XYZ])(?=\()
+      beginCaptures:
+        '0': {name: support.function.transform.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#comma-delimiter'
+        - include: '#number-type'
+
+  unicode-range:
+    name: support.unicode-range.less
+    match: (?i)(u\+)([0-9a-f?]{1,6}(?:(-)[0-9a-f]{1,6})?)
+    captures:
+      '1': {name: support.constant.unicode-range.prefix.less}
+      '2': {name: constant.codepoint-range.less}
+      '3': {name: punctuation.section.range.less}
+
+  unquoted-string:
+    name: string.unquoted.less
+    match: '[^\s''"]'
+
+  url-function:
+    name: meta.function-call.less
+    begin: \b(url)(?=\()
+    beginCaptures:
+      '1': {name: support.function.url.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#literal-string'
+      - include: '#unquoted-string'
+
+  var-function:
+    patterns:
+    - name: meta.function-call.less
+      begin: \b(var)(?=\()
+      beginCaptures:
+        '1': {name: support.function.var.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#comma-delimiter'
+        - include: '#custom-property-name'
+
+  vendor-prefix:
+    name: support.type.vendor-prefix.less
+    match: -(?:webkit|moz|ms|o)-
+foldingStartMarker: /\*\*(?!\*)|\{\s*($|/\*(?!.*?\*/.*\S))
+foldingStopMarker: (?<!\*)\*\*/|^\s*\}
+keyEquivalent: ^~L
