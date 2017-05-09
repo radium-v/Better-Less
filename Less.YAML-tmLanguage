@@ -1959,7 +1959,7 @@ repository:
     name: meta.function-call.less
     begin: \b(symbols)(?=\()
     beginCaptures:
-      '1': {name: support.function.filter.less}
+      '1': {name: support.function.counter.less}
     end: \)
     endCaptures:
       '0': {name: punctuation.definition.group.end.less}

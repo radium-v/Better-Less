@@ -108,35 +108,6 @@
 /*      ^^ keyword.keyframe-selector.less */
 }
 
-    @document url(http://) { }
-/*  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.document.less */
-/*  ^ punctuation.definition.keyword.less */
-/*  ^^^^^^^^^ keyword.control.at-rule.document.less */
-/*                         ^^^ meta.block.less */
-/*                         ^ punctuation.definition.block.begin.less */
-/*                           ^ punctuation.definition.block.end.less */
-
-@document url(http://www),
-/*        ^^^ support.function.url.less */
-/*            ^^^^^^^^^^ string.unquoted.less */
-/*                       ^ punctuation.separator.less */
-          url-prefix("http://www"),
-/*        ^^^^^^^^^^ support.function.url-prefix.less */
-/*                   ^^^^^^^^^^^^ string.quoted.double.less */
-          domain(mozilla.org),
-/*        ^^^^^^ support.function.domain.less */
-/*               ^^^^^^^^^^^ string.unquoted.less */
-          regexp("https:.*")
-/*        ^^^^^^ support.function.regexp.less */
-/*               ^^^^^^^^^^ string.quoted.double.less */
-{
-    .class {
-/*  ^^^^^^ meta.at-rule.document.less entity.other.attribute-name.class.less */
-        display: none;
-/*      ^^^^^^^ meta.at-rule.document.less meta.property-name.less */
-    }
-}
-
     @font-face {
 /*  ^^^^^^^^^^^ meta.at-rule.font-face.less */
 /*  ^          punctuation.definition.keyword.less    */
@@ -183,37 +154,6 @@
         display: none;
 /*      ^^^^^^^ meta.at-rule.supports.less meta.property-name.less */
     }
-}
-
-@counter-style none {}
-/*             ^^^^ invalid.illegal.counter-style-name.less */
-
-@counter-style decimal {}
-/*             ^^^^^^^ invalid.illegal.counter-style-name.less */
-
-    @counter-style name {
-/*  ^          punctuation.definition.keyword.less  */
-/*  ^^^^^^^^^^^^^^ keyword.control.at-rule.counter-style.less */
-/*                 ^^^^ entity.other.counter-style-name.less */
-    symbols: "‣";
-/*  ^^^^^^^ meta.at-rule.counter-style.less support.type.property-name.less */
-    suffix: " ";
-/*  ^^^^^^ meta.at-rule.counter-style.less support.type.property-name.less */
-/*          ^^^ string.quoted.double.less */
-}
-
-    @counter-style blacknwhite
-/*  ^^^^^^^^^^^^^^ meta.at-rule.counter-style.less keyword.control.at-rule.counter-style.less */
-/*                 ^^^^^^^^^^^ entity.other.counter-style-name.less */
-{
-  system: cyclic;
-  negative: "(" ")";
-  prefix: "/";
-  symbols: ◆ ◇;
-  suffix: "/ ";
-  range: 2 4;
-  speak-as: "bullets";
-/*^^^^^^^^ support.type.property-name.less */
 }
 
 .test-var { --test-var: arial; }
@@ -474,50 +414,9 @@
     top: hwb();
 /*       ^^^ support.function.color.less */
 
-
-    top: gray(1, 4.5%);
-/*       ^^^^         support.function.color.less */
-/*            ^       constant.numeric.less       */
-/*             ^      punctuation.separator.less  */
-/*               ^^^^ constant.numeric.less       */
-
-    top: device-cmyk(0.5, 1%, red());
-/*       ^^^^^^^^^^^              support.function.color.less */
-/*                   ^^^          constant.numeric.less       */
-/*                      ^         punctuation.separator.less  */
-/*                        ^^      constant.numeric.less       */
-/*                            ^^^ support.function.color.less */
-
-    top: color(w() s());
-/*       ^^^^^       support.function.color.less */
-/*             ^     support.function.color.less */
-/*                 ^ support.function.color.less */
-
-    top: alpha(- 1.5%);
-/*       ^^^^^        support.function.color.less */
-/*             ^      keyword.operator.less       */
-/*               ^^^^ constant.numeric.less       */
-
-    top: h(+ 1.5deg);
-/*       ^          support.function.color.less */
-/*         ^        keyword.operator.less       */
-/*           ^^^^^^ constant.numeric.less       */
-
-    top: w(* 1.5%);
-/*       ^        support.function.color.less */
-/*         ^      keyword.operator.less       */
-/*           ^^^^ constant.numeric.less       */
-
     top: shade(1.5%);
 /*       ^^^^^      support.function.color.less */
 /*             ^^^^ constant.numeric.less       */
-
-    top: blenda(red 50% hsl);
-/*       ^^^^^^             support.function.color.less                         */
-/*              ^^^         support.constant.color.w3c-standard-color-name.less */
-/*                  ^^^     constant.numeric.less                               */
-/*                      ^^^ keyword.other.color-space.less                      */
-}
 
 .test-transform-functions {
     top: rotate3d(-1, 2deg);
@@ -629,14 +528,6 @@
 /*                     ^^^^ support.function.calc.less         */
 }
 
-.test-toggle-function {
-    top: toggle(5px red preserve-3d);
-/*       ^^^^^^                     support.function.toggle.less                        */
-/*              ^^^                 constant.numeric.less                               */
-/*                  ^^^             support.constant.color.w3c-standard-color-name.less */
-/*                      ^^^^^^^^^^^ support.constant.property-value.less                */
-}
-
 .test-attr-function {
     top: attr(*|c);
 /*       ^^^^      support.function.attr.less           */
@@ -678,14 +569,6 @@
     top: image("a", rgb(0, 0, 0));
 /*                ^       punctuation.separator.less */
 /*                      ^ constant.numeric.less      */
-
-    top: image-set("a" 1x, a 4dpi);
-/*                 ^^^            string.quoted.double.less  */
-/*                     ^^         constant.numeric.less      */
-/*                      ^         keyword.other.unit.less    */
-/*                       ^        punctuation.separator.less */
-/*                         ^      string.unquoted.less       */
-/*                           ^^^^ constant.numeric.less      */
 
     top: cross-fade(50% "a", b);
 /*       ^^^^^^^^^^            support.function.image.less */
@@ -780,22 +663,22 @@
 /*              ^^^         support.function.url.less    */
 /*                     ^^^^ support.function.filter.less */
 
-    top: blur(1px);
-/*       ^^^^     support.function.filter.less */
+    filter: blur(1px);
+/*          ^^^^     support.function.filter.less */
 
-    top: sepia(1% 1);
-/*       ^^^^^      support.function.filter.less */
-/*             ^^   constant.numeric.less        */
-/*                ^ constant.numeric.less        */
+    filter: sepia(1% 1);
+/*          ^^^^^      support.function.filter.less */
+/*                ^^   constant.numeric.less        */
+/*                   ^ constant.numeric.less        */
 
-    top: drop-shadow(1px rgb());
-/*       ^^^^^^^^^^^         support.function.filter.less */
-/*                   ^^^     constant.numeric.less        */
-/*                       ^^^ support.function.color.less  */
+    filter: drop-shadow(1px rgb());
+/*          ^^^^^^^^^^^         support.function.filter.less */
+/*                      ^^^     constant.numeric.less        */
+/*                          ^^^ support.function.color.less  */
 
-    top: hue-rotate(1turn);
-/*       ^^^^^^^^^^       support.function.filter.less */
-/*                  ^^^^^ constant.numeric.less        */
+    filter: hue-rotate(1turn);
+/*          ^^^^^^^^^^       support.function.filter.less */
+/*                     ^^^^^ constant.numeric.less        */
 }
 
 /* Test Font Functions: format() & local() */

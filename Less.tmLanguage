@@ -5873,7 +5873,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>support.function.filter.less</string>
+					<string>support.function.counter.less</string>
 				</dict>
 			</dict>
 			<key>end</key>
