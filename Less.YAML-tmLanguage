@@ -130,7 +130,7 @@ repository:
 
   at-media:
     begin: (?=\s*@media\s*.*?)
-    end: (?=\})
+    end: \s*(\})
     endCaptures:
       '1': {name: punctuation.section.property-list.end.less}
     patterns:
@@ -146,12 +146,10 @@ repository:
     - begin: \s*(\{)
       beginCaptures:
         '1': {name: punctuation.section.property-list.begin.less}
-      end: \s*(\})
-      endCaptures:
-        '1': {name: punctuation.section.property-list.end.less}
+      end: (?=\})
       patterns:
       - include: '#rule-list-body'
-      - include: $self
+      - include: '$self'
 
   at-namespace:
     name: meta.at-rule.namespace.less
