@@ -303,7 +303,7 @@ repository:
       patterns:
       - include: '#calc-function'
       - include: '#var-function'
-      - name: keyword.operator.less
+      - name: keyword.operator.arithmetic.less
         match: '[-/*+]'
       - include: '#numeric-values'
       - include: '#attr-function'
@@ -904,6 +904,21 @@ repository:
       - include: '#less-variables'
       - include: '#numeric-values'
 
+  less-math:
+    patterns:
+    - name: meta.group.less
+      begin: '\('
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: '\)'
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - include: '#numeric-values'
+      - include: '#less-math'
+    - match: '[-\+\*\/]'
+      name: keyword.operator.arithmetic.less
+
   less-misc-functions:
     patterns:
     - name: meta.function-call.less
@@ -1207,6 +1222,7 @@ repository:
           '2': {name: keyword.operator.arithmetic.less}
           '3': {name: constant.numeric.less}
       - include: '#numeric-values'
+      - include: '#less-math'
 
   media-query-list:
     begin: \s*(?=[^{;])
@@ -1428,6 +1444,7 @@ repository:
     - include: '#builtin-functions'
     - include: '#color-functions'
     - include: '#less-functions'
+    - include: '#less-math'
     - include: '#less-variables'
     - include: '#unicode-range'
     - include: '#numeric-values'

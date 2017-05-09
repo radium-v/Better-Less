@@ -971,7 +971,7 @@
 							<key>match</key>
 							<string>[-/*+]</string>
 							<key>name</key>
-							<string>keyword.operator.less</string>
+							<string>keyword.operator.arithmetic.less</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -2830,6 +2830,53 @@
 				</dict>
 			</array>
 		</dict>
+		<key>less-math</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.begin.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.end.less</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.group.less</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#numeric-values</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#less-math</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[-\+\*\/]</string>
+					<key>name</key>
+					<string>keyword.operator.arithmetic.less</string>
+				</dict>
+			</array>
+		</dict>
 		<key>less-math-functions</key>
 		<dict>
 			<key>begin</key>
@@ -3866,6 +3913,10 @@
 							<key>include</key>
 							<string>#numeric-values</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#less-math</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
@@ -4206,6 +4257,10 @@
 				<dict>
 					<key>include</key>
 					<string>#less-functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#less-math</string>
 				</dict>
 				<dict>
 					<key>include</key>
