@@ -149,7 +149,7 @@ repository:
       end: (?=\})
       patterns:
       - include: '#rule-list-body'
-      - include: '$self'
+      - include: $self
 
   at-namespace:
     name: meta.at-rule.namespace.less
@@ -887,6 +887,21 @@ repository:
         - include: '#comma-delimiter'
         - include: '#integer-type'
 
+  less-math:
+    patterns:
+    - name: meta.group.less
+      begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - include: '#numeric-values'
+      - include: '#less-math'
+    - name: keyword.operator.arithmetic.less
+      match: '[-\+\*\/]'
+
   less-math-functions:
     name: meta.function-call.less
     begin: \b(ceil|floor|percentage|round|sqrt|abs|a?(sin|cos|tan))(?=\()
@@ -903,21 +918,6 @@ repository:
       patterns:
       - include: '#less-variables'
       - include: '#numeric-values'
-
-  less-math:
-    patterns:
-    - name: meta.group.less
-      begin: '\('
-      beginCaptures:
-        '0': {name: punctuation.definition.group.begin.less}
-      end: '\)'
-      endCaptures:
-        '0': {name: punctuation.definition.group.end.less}
-      patterns:
-      - include: '#numeric-values'
-      - include: '#less-math'
-    - match: '[-\+\*\/]'
-      name: keyword.operator.arithmetic.less
 
   less-misc-functions:
     patterns:
@@ -1761,7 +1761,7 @@ repository:
         patterns:
         - include: '#rule-list-body'
     - name: entity.name.tag.custom.css
-      match: '\b([a-z](?:(?x:[-_a-z0-9\xB7]|\\\.|[\xC0-\xD6]|[\xD8-\xF6]|[\x{000000F8}-\x{000002FF}]|[\x{00000300}-\x{0000037D}]|[\x{0000037F}-\x{00001FFF}]|[\x{0000200C}-\x{0000200D}]|[\x{0000203F}-\x{00002040}]|[\x{00002070}-\x{0000218F}]|[\x{00002C00}-\x{00002FEF}]|[\x{00003001}-\x{0000D7FF}]|[\x{0000F900}-\x{0000FDCF}]|[\x{0000FDF0}-\x{0000FFFD}]|[\x{00010000}-\x{000EFFFF}]))*(?:-(?x:[-_a-z0-9\xB7]|\\\.|[\xC0-\xD6]|[\xD8-\xF6]|[\x{000000F8}-\x{000002FF}]|[\x{00000300}-\x{0000037D}]|[\x{0000037F}-\x{00001FFF}]|[\x{0000200C}-\x{0000200D}]|[\x{0000203F}-\x{00002040}]|[\x{00002070}-\x{0000218F}]|[\x{00002C00}-\x{00002FEF}]|[\x{00003001}-\x{0000D7FF}]|[\x{0000F900}-\x{0000FDCF}]|[\x{0000FDF0}-\x{0000FFFD}]|[\x{00010000}-\x{000EFFFF}]))*)\b'
+      match: \b([a-z](?:(?x:[-_a-z0-9\xB7]|\\\.|[\xC0-\xD6]|[\xD8-\xF6]|[\x{000000F8}-\x{000002FF}]|[\x{00000300}-\x{0000037D}]|[\x{0000037F}-\x{00001FFF}]|[\x{0000200C}-\x{0000200D}]|[\x{0000203F}-\x{00002040}]|[\x{00002070}-\x{0000218F}]|[\x{00002C00}-\x{00002FEF}]|[\x{00003001}-\x{0000D7FF}]|[\x{0000F900}-\x{0000FDCF}]|[\x{0000FDF0}-\x{0000FFFD}]|[\x{00010000}-\x{000EFFFF}]))*(?:-(?x:[-_a-z0-9\xB7]|\\\.|[\xC0-\xD6]|[\xD8-\xF6]|[\x{000000F8}-\x{000002FF}]|[\x{00000300}-\x{0000037D}]|[\x{0000037F}-\x{00001FFF}]|[\x{0000200C}-\x{0000200D}]|[\x{0000203F}-\x{00002040}]|[\x{00002070}-\x{0000218F}]|[\x{00002C00}-\x{00002FEF}]|[\x{00003001}-\x{0000D7FF}]|[\x{0000F900}-\x{0000FDCF}]|[\x{0000FDF0}-\x{0000FFFD}]|[\x{00010000}-\x{000EFFFF}]))*)\b
     - name: entity.name.tag.less
       match: \b(a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdi|bdo|big|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|content|data|datalist|dd|del|details|dfn|dir|dialog|div|dl|dt|element|em|embed|eventsource|fieldset|figure|figcaption|footer|form|frame|frameset|h[1-6]|head|header|hgroup|hr|html|i|iframe|img|input|ins|isindex|kbd|keygen|label|legend|li|link|main|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|picture|pre|progress|q|rp|rt|rtc|s|samp|script|section|select|shadow|small|source|span|strike|strong|style|sub|summary|sup|svg|table|tbody|td|template|textarea|tfoot|th|thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp|circle|clipPath|defs|ellipse|filter|foreignObject|g|glyph|glyphRef|image|line|linearGradient|marker|mask|path|pattern|polygon|polyline|radialGradient|rect|stop|switch|symbol|text|textPath|tref|tspan|use)\b
     - name: meta.function-call.less
