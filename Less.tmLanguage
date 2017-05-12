@@ -13,7 +13,7 @@
 	<key>keyEquivalent</key>
 	<string>^~L</string>
 	<key>name</key>
-	<string>Less</string>
+	<string>Better Less</string>
 	<key>patterns</key>
 	<array>
 		<dict>
@@ -22,7 +22,11 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#selector</string>
+			<string>#less-namespace-accessors</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#less-extend</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -30,11 +34,15 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#property-list</string>
+			<string>#less-variable-assignment</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#less-variable-assignment</string>
+			<string>#selector</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#property-list</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -202,7 +210,15 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(?!\G)</string>
+			<string>\s*(\})</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.property-list.end.less</string>
+				</dict>
+			</dict>
 			<key>name</key>
 			<string>meta.at-rule.font-face.less</string>
 			<key>patterns</key>
@@ -250,55 +266,15 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#literal-string</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>\s*(url)\s*(\()\s*</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>support.function.url.less</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.section.function.less</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>\s*(\))\s*</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.section.function.less</string>
-						</dict>
-					</dict>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>match</key>
-							<string>[^'") \t]+</string>
-							<key>name</key>
-							<string>variable.parameter.url.less</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#string-single</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#string-double</string>
-						</dict>
-					</array>
+					<string>#url-function</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#media-query-list</string>
+					<string>#literal-string</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#less-import-directive</string>
 				</dict>
 			</array>
 		</dict>
@@ -578,11 +554,11 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#at-document</string>
+					<string>#at-font-face</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#at-font-face</string>
+					<string>#at-media</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -591,10 +567,6 @@
 				<dict>
 					<key>include</key>
 					<string>#at-keyframes</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#at-media</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -830,10 +802,6 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#color-adjuster-functions</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#color-functions</string>
 				</dict>
 				<dict>
@@ -870,10 +838,6 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#image-set-function</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#less-functions</string>
 				</dict>
 				<dict>
@@ -899,10 +863,6 @@
 				<dict>
 					<key>include</key>
 					<string>#symbols-function</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#timing-functions</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -980,6 +940,10 @@
 						<dict>
 							<key>include</key>
 							<string>#attr-function</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#less-math</string>
 						</dict>
 					</array>
 				</dict>
@@ -1129,6 +1093,10 @@
 				<dict>
 					<key>include</key>
 					<string>#less-functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#less-variables</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -2200,10 +2168,6 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#image-set-function</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#url-function</string>
 				</dict>
 			</array>
@@ -2249,7 +2213,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b</string>
+			<string>0|(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b</string>
 			<key>name</key>
 			<string>constant.numeric.less</string>
 		</dict>
@@ -2633,6 +2597,70 @@
 						</dict>
 					</array>
 				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\b(mix)(?=\()</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>support.function.color-operation.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.end.less</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.function-call.less</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>\(</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.group.begin.less</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=\))</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#comma-delimiter</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#less-variables</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#less-math</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#color-values</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#percentage-type</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
 			</array>
 		</dict>
 		<key>less-extend</key>
@@ -2658,7 +2686,7 @@
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>entity.other.attribute-name.extends.less</string>
+			<string>entity.other.attribute-name.pseudo-class.extend.less</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -2717,6 +2745,44 @@
 				<dict>
 					<key>include</key>
 					<string>#less-type-functions</string>
+				</dict>
+			</array>
+		</dict>
+		<key>less-import-directive</key>
+		<dict>
+			<key>begin</key>
+			<string>\s*(\()\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.group.begin.less</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.group.end.less</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.group.less</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>reference|inline|less|css|once|multiple|optional</string>
+					<key>name</key>
+					<string>constant.language.import-directive.less</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comma-delimiter</string>
 				</dict>
 			</array>
 		</dict>
@@ -2860,20 +2926,24 @@
 					<key>patterns</key>
 					<array>
 						<dict>
+							<key>match</key>
+							<string>[-\+\*\/]</string>
+							<key>name</key>
+							<string>keyword.operator.arithmetic.less</string>
+						</dict>
+						<dict>
 							<key>include</key>
 							<string>#numeric-values</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#less-variables</string>
 						</dict>
 						<dict>
 							<key>include</key>
 							<string>#less-math</string>
 						</dict>
 					</array>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>[-\+\*\/]</string>
-					<key>name</key>
-					<string>keyword.operator.arithmetic.less</string>
 				</dict>
 			</array>
 		</dict>
@@ -3134,6 +3204,177 @@
 					<string>\b(default(\()(\)))\b</string>
 					<key>name</key>
 					<string>support.function.default.less</string>
+				</dict>
+			</array>
+		</dict>
+		<key>less-mixin-guards</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\s*(and|not)?\s*(?=\()</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.logical.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.end.less</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>\(</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.group.begin.less</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=\))</string>
+							<key>name</key>
+							<string>meta.group.less</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#less-variable-comparison</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
+								</dict>
+								<dict>
+									<key>captures</key>
+									<dict>
+										<key>1</key>
+										<dict>
+											<key>name</key>
+											<string>meta.group.less</string>
+										</dict>
+										<key>2</key>
+										<dict>
+											<key>name</key>
+											<string>punctuation.definition.group.begin.less</string>
+										</dict>
+										<key>3</key>
+										<dict>
+											<key>name</key>
+											<string>punctuation.definition.group.end.less</string>
+										</dict>
+									</dict>
+									<key>match</key>
+									<string>default((\()(\)))</string>
+									<key>name</key>
+									<string>constant.language.default.less</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#property-values</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#less-mixin-guards</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>less-namespace-accessors</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?=(when)\s*(?=\())</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.control.conditional.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\s*(\})</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.property-list.end.less</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.conditional.guarded-namespace.less</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>(?=\()</string>
+							<key>end</key>
+							<string>(?=\{)</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#comma-delimiter</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#less-mixin-guards</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>\s*(\{)</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.section.property-list.begin.less</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=\})</string>
+							<key>name</key>
+							<string>meta.block.less</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#rule-list-body</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#selector</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
@@ -3457,7 +3698,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(@)([-]?([_a-z]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
+					<string>(@)(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
@@ -3496,30 +3737,30 @@
 									<key>name</key>
 									<string>punctuation.separator.key-value.less</string>
 								</dict>
-								<key>2</key>
+								<key>4</key>
 								<dict>
 									<key>name</key>
 									<string>meta.property-value.less</string>
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>(:)([ \t]*)</string>
+							<string>(((\+_?)?):)([ \t]*)</string>
 						</dict>
 						<dict>
 							<key>include</key>
 							<string>#property-values</string>
 						</dict>
 						<dict>
-							<key>match</key>
-							<string>-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)*</string>
-							<key>name</key>
-							<string>string.unquoted.less</string>
+							<key>include</key>
+							<string>#comma-delimiter</string>
 						</dict>
 						<dict>
-							<key>match</key>
-							<string>,</string>
-							<key>name</key>
-							<string>punctuation.separator.less</string>
+							<key>include</key>
+							<string>#property-list</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#unquoted-string</string>
 						</dict>
 					</array>
 				</dict>
@@ -3573,6 +3814,12 @@
 							</dict>
 							<key>match</key>
 							<string>\s*((&lt;|&gt;)?(=)?)\s*</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\btrue\b</string>
+							<key>name</key>
+							<string>constant.language.less</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -3631,7 +3878,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>[-]?([_a-z]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*</string>
+					<string>-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*</string>
 					<key>name</key>
 					<string>support.other.variable.less</string>
 				</dict>
@@ -3653,7 +3900,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(@{1,2})([-]?([_a-z]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
+			<string>(@{1,2})(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
 			<key>name</key>
 			<string>variable.other.less</string>
 		</dict>
@@ -3791,7 +4038,7 @@
 		<key>media-query</key>
 		<dict>
 			<key>begin</key>
-			<string>(?i)\s*(only|not)?\s*(all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)?</string>
+			<string>\s*(only|not)?\s*(all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)?</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -3815,6 +4062,8 @@
 					<string>punctuation.definition.arbitrary-repitition.less</string>
 				</dict>
 			</dict>
+			<key>name</key>
+			<string>derp</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -3871,7 +4120,7 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(:)|(?=\))</string>
+							<string>(((\+_?)?):)|(?=\))</string>
 							<key>endCaptures</key>
 							<dict>
 								<key>1</key>
@@ -4525,39 +4774,44 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(:)(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
+					<string>(:)(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
 					<key>name</key>
-					<string>entity.other.attribute-name.pseudo-class.less</string>
+					<string>entity.other.pseudo-class.less</string>
 				</dict>
 			</array>
 		</dict>
 		<key>pseudo-elements</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
+			<key>patterns</key>
+			<array>
 				<dict>
-					<key>name</key>
-					<string>punctuation.definition.entity.less</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.entity.less</string>
-				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>support.type.vendor-prefix.less</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>(?x:
-    (:{1,2})(?:before|after|first-line|first-letter) # CSS1 &amp; CSS2 require : or ::
-  | (::)(-(?:moz|ms|webkit)-)?(?:-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*) # CSS3 requires ::
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.entity.less</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.entity.less</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>support.type.vendor-prefix.less</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?x:
+    (:{1,2})(?:before|after|first-line|first-letter)
+  | (::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*))
 )\b</string>
-			<key>name</key>
-			<string>entity.other.pseudo-element.less</string>
+					<key>name</key>
+					<string>entity.other.pseudo-element.less</string>
+				</dict>
+			</array>
 		</dict>
 		<key>qualified-name</key>
 		<dict>
@@ -4580,7 +4834,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?:(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)|(\*))?([|])(?!=)</string>
+			<string>(?:(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)|(\*))?([|])(?!=)</string>
 		</dict>
 		<key>regexp-function</key>
 		<dict>
@@ -4656,11 +4910,23 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?=\s*\})</string>
+					<string>\s*(?=\})</string>
 					<key>name</key>
 					<string>meta.property-list.less</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.terminator.rule.less</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>\s*(;)|(?=[})])</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#less-extend</string>
@@ -4683,6 +4949,14 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#at-import</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#less-variable-assignment</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#vendor-prefix</string>
 				</dict>
 				<dict>
@@ -4700,7 +4974,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\b(var-)(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)(?=\s)</string>
+					<string>\b(var-)(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)(?=\s)</string>
 					<key>name</key>
 					<string>invalid.deprecated.custom-property.less</string>
 				</dict>
@@ -4745,14 +5019,14 @@
 									<key>name</key>
 									<string>punctuation.separator.key-value.less</string>
 								</dict>
-								<key>2</key>
+								<key>4</key>
 								<dict>
 									<key>name</key>
 									<string>meta.property-value.less</string>
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>(:)([ \t]*)</string>
+							<string>(((\+_?)?):)([ \t]*)</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -4805,14 +5079,14 @@
 									<key>name</key>
 									<string>punctuation.separator.key-value.less</string>
 								</dict>
-								<key>2</key>
+								<key>4</key>
 								<dict>
 									<key>name</key>
 									<string>meta.property-value.less</string>
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>(:)([ \t]*)</string>
+							<string>(((\+_?)?):)([ \t]*)</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -4820,7 +5094,7 @@
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>(-?(?:[_a-z]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?</string>
+							<string>(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)?</string>
 							<key>name</key>
 							<string>entity.other.animation-name.less</string>
 						</dict>
@@ -4859,14 +5133,14 @@
 									<key>name</key>
 									<string>punctuation.separator.key-value.less</string>
 								</dict>
-								<key>2</key>
+								<key>4</key>
 								<dict>
 									<key>name</key>
 									<string>meta.property-value.less</string>
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>(:)([ \t]*)</string>
+							<string>(((\+_?)?):)([ \t]*)</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -4878,7 +5152,11 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#timing-functions</string>
+							<string>#cubic-bezier-function</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#steps-function</string>
 						</dict>
 						<dict>
 							<key>captures</key>
@@ -4927,14 +5205,14 @@
 									<key>name</key>
 									<string>punctuation.separator.key-value.less</string>
 								</dict>
-								<key>2</key>
+								<key>4</key>
 								<dict>
 									<key>name</key>
 									<string>meta.property-value.less</string>
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>(:)([ \t]*)</string>
+							<string>(((\+_?)?):)([ \t]*)</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -4975,26 +5253,26 @@
 									<key>name</key>
 									<string>punctuation.separator.key-value.less</string>
 								</dict>
-								<key>2</key>
+								<key>4</key>
 								<dict>
 									<key>name</key>
 									<string>meta.property-value.less</string>
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>(:)([ \t]*)</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
-							<key>name</key>
-							<string>support.constant.property-value.less</string>
+							<string>(((\+_?)?):)([ \t]*)</string>
 						</dict>
 						<dict>
 							<key>match</key>
 							<string>unset|initial|inherit|will-change|auto|scroll-position|contents</string>
 							<key>name</key>
 							<string>invalid.illegal.property-value.less</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*</string>
+							<key>name</key>
+							<string>support.constant.property-value.less</string>
 						</dict>
 						<dict>
 							<key>captures</key>
@@ -5043,18 +5321,18 @@
 									<key>name</key>
 									<string>punctuation.separator.key-value.less</string>
 								</dict>
-								<key>2</key>
+								<key>4</key>
 								<dict>
 									<key>name</key>
 									<string>meta.property-value.less</string>
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>(:)([ \t]*)</string>
+							<string>(((\+_?)?):)([ \t]*)</string>
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
+							<string>-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*</string>
 							<key>name</key>
 							<string>entity.other.counter-name.less</string>
 						</dict>
@@ -5091,7 +5369,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(:)([ \t]*)</string>
+					<string>(((\+_?)?):)([ \t]*)</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -5099,7 +5377,7 @@
 							<key>name</key>
 							<string>punctuation.separator.key-value.less</string>
 						</dict>
-						<key>2</key>
+						<key>4</key>
 						<dict>
 							<key>name</key>
 							<string>meta.property-value.less</string>
@@ -5127,126 +5405,162 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#rule-list</string>
+					<string>#less-variable-interpolation</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#less-variable-interpolation</string>
+					<string>#property-list</string>
 				</dict>
 			</array>
 		</dict>
 		<key>selector</key>
 		<dict>
-			<key>name</key>
-			<string>meta.selector.less</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?=\s*(when)\s*\(.*?)</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.control.conditional.less</string>
-						</dict>
-					</dict>
+					<string>\s*(?=[\.&amp;#](-?(?:([_a-zA-Z]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]|(?:(\\\h{1,6}[ \t\n\f]?)|(\\[^\n\f\h]))))))</string>
 					<key>end</key>
-					<string>\}</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.section.property-list.end.less</string>
-						</dict>
-					</dict>
+					<string>\s*(?=[^\w]|\s*[/\{\); ])</string>
 					<key>name</key>
-					<string>meta.function.less meta.property-list.less</string>
+					<string>meta.selector.less</string>
 					<key>patterns</key>
 					<array>
 						<dict>
+							<key>include</key>
+							<string>#comment-line</string>
+						</dict>
+						<dict>
 							<key>begin</key>
-							<string>\(</string>
+							<string>(?![^(]*\{)(?=(\.|#|\@)-?(?:([_a-zA-Z]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]|(?:(\\\h{1,6}[ \t\n\f]?)|(\\[^\n\f\h]))))(?:([-a-zA-Z0-9]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]])|(?:(\\\h{1,6}[ \t\n\f]?)|(\\[^\n\f\h])))*(?=[\(]))</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>0</key>
 								<dict>
 									<key>name</key>
-									<string>punctuation.definition.group.begin.less</string>
+									<string>entity.other.attribute-name.mixin.less</string>
+								</dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.entity.less</string>
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>\)</string>
-							<key>endCaptures</key>
-							<dict>
-								<key>0</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.definition.group.end.less</string>
-								</dict>
-							</dict>
+							<string>\s*(?=[)\};]|$)</string>
+							<key>name</key>
+							<string>meta.function-call.less</string>
 							<key>patterns</key>
 							<array>
 								<dict>
-									<key>include</key>
-									<string>#less-variable-comparison</string>
+									<key>begin</key>
+									<string>\s*(\()\s*</string>
+									<key>beginCaptures</key>
+									<dict>
+										<key>1</key>
+										<dict>
+											<key>name</key>
+											<string>keyword.operator.logic.media.less</string>
+										</dict>
+										<key>2</key>
+										<dict>
+											<key>name</key>
+											<string>punctuation.definition.group.begin.less</string>
+										</dict>
+									</dict>
+									<key>end</key>
+									<string>\)</string>
+									<key>endCaptures</key>
+									<dict>
+										<key>0</key>
+										<dict>
+											<key>name</key>
+											<string>punctuation.definition.group.end.less</string>
+										</dict>
+									</dict>
+									<key>name</key>
+									<string>meta.group.less</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>#less-variable-assignment</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#property-values</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#property-list</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#comma-delimiter</string>
+										</dict>
+										<dict>
+											<key>captures</key>
+											<dict>
+												<key>1</key>
+												<dict>
+													<key>name</key>
+													<string>punctuation.terminator.rule.less</string>
+												</dict>
+											</dict>
+											<key>match</key>
+											<string>\s*(;)|(?=[})])</string>
+										</dict>
+									</array>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#less-type-functions</string>
+									<string>$self</string>
 								</dict>
 							</array>
 						</dict>
 						<dict>
-							<key>captures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>keyword.control.conditional.less</string>
-								</dict>
-							</dict>
-							<key>match</key>
-							<string>\s*(when)(?=.*?)</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>\band\b</string>
-							<key>name</key>
-							<string>keyword.operator.logic.less</string>
-						</dict>
-						<dict>
-							<key>captures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.definition.arbitrary-repitition.less</string>
-								</dict>
-							</dict>
-							<key>match</key>
-							<string>\s*(?:(,))</string>
-						</dict>
-						<dict>
 							<key>begin</key>
-							<string>\s*(\{)</string>
+							<string>(\.)((-?(?:([_a-zA-Z]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]|(?:(\\\h{1,6}[ \t\n\f]?)|(\\[^\n\f\h])))))|@\{)</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>1</key>
 								<dict>
 									<key>name</key>
-									<string>punctuation.section.property-list.begin.less</string>
+									<string>punctuation.definition.entity.less</string>
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?=\})</string>
+							<string>(?!((?:([-a-zA-Z0-9]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]])|(?:(\\\h{1,6}[ \t\n\f]?)|(\\[^\n\f\h])))|\w|@\{))</string>
+							<key>name</key>
+							<string>entity.other.attribute-name.class.less</string>
 							<key>patterns</key>
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#rule-list-body</string>
+									<string>#less-variable-interpolation</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>(#)((-?(?:([_a-zA-Z]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]|(?:(\\\h{1,6}[ \t\n\f]?)|(\\[^\n\f\h])))))|@\{)</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.entity.less</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?!((?:([-a-zA-Z0-9]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]])|(?:(\\\h{1,6}[ \t\n\f]?)|(\\[^\n\f\h])))|\w|@\{))</string>
+							<key>name</key>
+							<string>entity.other.attribute-name.id.less</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#less-variable-interpolation</string>
 								</dict>
 							</array>
 						</dict>
@@ -5254,9 +5568,41 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b([a-z](?:(?x:[-_a-z0-9\xB7]|\\\.|[\xC0-\xD6]|[\xD8-\xF6]|[\x{000000F8}-\x{000002FF}]|[\x{00000300}-\x{0000037D}]|[\x{0000037F}-\x{00001FFF}]|[\x{0000200C}-\x{0000200D}]|[\x{0000203F}-\x{00002040}]|[\x{00002070}-\x{0000218F}]|[\x{00002C00}-\x{00002FEF}]|[\x{00003001}-\x{0000D7FF}]|[\x{0000F900}-\x{0000FDCF}]|[\x{0000FDF0}-\x{0000FFFD}]|[\x{00010000}-\x{000EFFFF}]))*(?:-(?x:[-_a-z0-9\xB7]|\\\.|[\xC0-\xD6]|[\xD8-\xF6]|[\x{000000F8}-\x{000002FF}]|[\x{00000300}-\x{0000037D}]|[\x{0000037F}-\x{00001FFF}]|[\x{0000200C}-\x{0000200D}]|[\x{0000203F}-\x{00002040}]|[\x{00002070}-\x{0000218F}]|[\x{00002C00}-\x{00002FEF}]|[\x{00003001}-\x{0000D7FF}]|[\x{0000F900}-\x{0000FDCF}]|[\x{0000FDF0}-\x{0000FFFD}]|[\x{00010000}-\x{000EFFFF}]))*)\b</string>
+					<string>(?x)\b([a-z](?:
+    [-_a-z0-9\xB7]
+  | \\\.
+  | [\xC0-\xD6]
+  | [\xD8-\xF6]
+  | [\x{000000F8}-\x{000002FF}]
+  | [\x{00000300}-\x{0000037D}]
+  | [\x{0000037F}-\x{00001FFF}]
+  | [\x{0000200C}-\x{0000200D}]
+  | [\x{0000203F}-\x{00002040}]
+  | [\x{00002070}-\x{0000218F}]
+  | [\x{00002C00}-\x{00002FEF}]
+  | [\x{00003001}-\x{0000D7FF}]
+  | [\x{0000F900}-\x{0000FDCF}]
+  | [\x{0000FDF0}-\x{0000FFFD}]
+  | [\x{00010000}-\x{000EFFFF}]
+)*-(?:
+    [-_a-z0-9\xB7]
+  | \\\.
+  | [\xC0-\xD6]
+  | [\xD8-\xF6]
+  | [\x{000000F8}-\x{000002FF}]
+  | [\x{00000300}-\x{0000037D}]
+  | [\x{0000037F}-\x{00001FFF}]
+  | [\x{0000200C}-\x{0000200D}]
+  | [\x{0000203F}-\x{00002040}]
+  | [\x{00002070}-\x{0000218F}]
+  | [\x{00002C00}-\x{00002FEF}]
+  | [\x{00003001}-\x{0000D7FF}]
+  | [\x{0000F900}-\x{0000FDCF}]
+  | [\x{0000FDF0}-\x{0000FFFD}]
+  | [\x{00010000}-\x{000EFFFF}]
+)*)\b</string>
 					<key>name</key>
-					<string>entity.name.tag.custom.css</string>
+					<string>entity.name.tag.custom.less</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -5265,163 +5611,8 @@
 					<string>entity.name.tag.less</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>(\.)-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:(\\\h{1,6}[ \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:(\\\h{1,6}[ \t\n\f]?)|\\[^\n\f\h]))*(?=\()</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>entity.other.attribute-name.class.less</string>
-						</dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.entity.less</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(?:(;|\}))</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.group.end.less</string>
-						</dict>
-					</dict>
-					<key>name</key>
-					<string>meta.function-call.less</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>begin</key>
-							<string>\(</string>
-							<key>beginCaptures</key>
-							<dict>
-								<key>0</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.definition.group.begin.less</string>
-								</dict>
-							</dict>
-							<key>end</key>
-							<string>\)</string>
-							<key>endCaptures</key>
-							<dict>
-								<key>0</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.definition.group.end.less</string>
-								</dict>
-							</dict>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>match</key>
-									<string>\.{3}</string>
-									<key>name</key>
-									<string>variable.language.arguments.less</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#property-list</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#less-variable-assignment</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#property-values</string>
-								</dict>
-							</array>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>;</string>
-							<key>name</key>
-							<string>punctuation.terminator.rule.less</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#rule-list</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:(\\\h{1,6}[ \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:(\\\h{1,6}[ \t\n\f]?)|\\[^\n\f\h]))*</string>
-							<key>name</key>
-							<string>entity.other.attribute-name.class.less</string>
-						</dict>
-					</array>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>(\.)</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.entity.less</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(?!(\w|@\{))</string>
-					<key>name</key>
-					<string>meta.selector.less</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#less-variable-interpolation</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:(\\\h{1,6}[ \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:(\\\h{1,6}[ \t\n\f]?)|\\[^\n\f\h]))*</string>
-							<key>name</key>
-							<string>entity.other.attribute-name.class.less</string>
-						</dict>
-					</array>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>(\#)</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.entity.less</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(?!(\w|@\{))</string>
-					<key>name</key>
-					<string>meta.selector.less</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#less-variable-interpolation</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:(\\\h{1,6}[ \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:(\\\h{1,6}[ \t\n\f]?)|\\[^\n\f\h]))*</string>
-							<key>name</key>
-							<string>entity.other.attribute-name.id.less</string>
-						</dict>
-					</array>
-				</dict>
-				<dict>
 					<key>match</key>
-					<string>\*</string>
-					<key>name</key>
-					<string>entity.name.tag.wildcard.less</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>((?:&gt;{1,3}|[~+]))(?![&gt;~+])</string>
+					<string>(?!\+_:)((?:&gt;{1,3}|[~+]))(?![&gt;~+])</string>
 					<key>name</key>
 					<string>punctuation.separator.combinator.less</string>
 				</dict>
@@ -5534,8 +5725,19 @@
 					<string>\s*(?:(,))</string>
 				</dict>
 				<dict>
+					<key>match</key>
+					<string>\*</string>
+					<key>name</key>
+					<string>entity.name.tag.wildcard.less</string>
+				</dict>
+				<dict>
 					<key>captures</key>
 					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>entity.other.attribute-name.parent.less</string>
+						</dict>
 						<key>1</key>
 						<dict>
 							<key>name</key>
@@ -5545,7 +5747,7 @@
 					<key>match</key>
 					<string>(&amp;)-?[a-zA-Z0-9_-]*</string>
 					<key>name</key>
-					<string>entity.other.attribute-name.parent.less</string>
+					<string>meta.selector.less</string>
 				</dict>
 			</array>
 		</dict>
@@ -5853,6 +6055,10 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>include</key>
+					<string>#less-variable-interpolation</string>
+				</dict>
+				<dict>
 					<key>match</key>
 					<string>\\\s*\n</string>
 					<key>name</key>
@@ -5863,10 +6069,6 @@
 					<string>\\(\h{1,6}|.)</string>
 					<key>name</key>
 					<string>constant.character.escape.less</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#less-variable-interpolation</string>
 				</dict>
 			</array>
 		</dict>

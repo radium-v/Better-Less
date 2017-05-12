@@ -1,5 +1,5 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
-name: Less
+name: Better Less
 scopeName: source.less
 fileTypes: [less]
 uuid: 4a0e9344-fe59-4ebd-bc1c-3f93c55150b6
@@ -7,13 +7,17 @@ uuid: 4a0e9344-fe59-4ebd-bc1c-3f93c55150b6
 patterns:
 - include: '#comment-block'
 
-- include: '#selector'
+- include: '#less-namespace-accessors'
+
+- include: '#less-extend'
 
 - include: '#at-rules'
 
-- include: '#property-list'
-
 - include: '#less-variable-assignment'
+
+- include: '#selector'
+
+- include: '#property-list'
 
 repository:
   angle-type:
@@ -67,7 +71,9 @@ repository:
   at-font-face:
     name: meta.at-rule.font-face.less
     begin: \s*((@)font-face)\s*(?=\{|$)
-    end: (?!\G)
+    end: \s*(\})
+    endCaptures:
+      '1': {name: punctuation.section.property-list.end.less}
     captures:
       '1': {name: keyword.control.at-rule.font-face.less}
       '2': {name: punctuation.definition.keyword.less}
@@ -85,20 +91,9 @@ repository:
       '1': {name: keyword.control.at-rule.import.less}
       '2': {name: punctuation.definition.keyword.less}
     patterns:
+    - include: '#url-function'
     - include: '#literal-string'
-    - begin: \s*(url)\s*(\()\s*
-      beginCaptures:
-        '1': {name: support.function.url.less}
-        '2': {name: punctuation.section.function.less}
-      end: \s*(\))\s*
-      endCaptures:
-        '1': {name: punctuation.section.function.less}
-      patterns:
-      - name: variable.parameter.url.less
-        match: '[^''") \t]+'
-      - include: '#string-single'
-      - include: '#string-double'
-    - include: '#media-query-list'
+    - include: '#less-import-directive'
 
   at-keyframes:
     begin: \s*((@)(-webkit-|-moz-|-o-)?keyframes)(?=.*?\{)
@@ -183,11 +178,10 @@ repository:
     - include: '#at-charset'
     - include: '#at-counter-style'
     - include: '#at-custom-media'
-    - include: '#at-document'
     - include: '#at-font-face'
+    - include: '#at-media'
     - include: '#at-import'
     - include: '#at-keyframes'
-    - include: '#at-media'
     - include: '#at-namespace'
     - include: '#at-page'
     - include: '#at-supports'
@@ -264,7 +258,6 @@ repository:
     patterns:
     - include: '#attr-function'
     - include: '#calc-function'
-    - include: '#color-adjuster-functions'
     - include: '#color-functions'
     - include: '#counter-functions'
     - include: '#cross-fade-function'
@@ -274,7 +267,6 @@ repository:
     - include: '#gradient-functions'
     - include: '#grid-repeat-function'
     - include: '#image-function'
-    - include: '#image-set-function'
     - include: '#less-functions'
     - include: '#local-function'
     - include: '#minmax-function'
@@ -282,7 +274,6 @@ repository:
     - include: '#shape-functions'
     - include: '#steps-function'
     - include: '#symbols-function'
-    - include: '#timing-functions'
     - include: '#transform-functions'
     - include: '#url-function'
     - include: '#var-function'
@@ -307,6 +298,7 @@ repository:
         match: '[-/*+]'
       - include: '#numeric-values'
       - include: '#attr-function'
+      - include: '#less-math'
 
   color-adjuster-operators:
     name: keyword.operator.less
@@ -353,6 +345,7 @@ repository:
     patterns:
     - include: '#color-functions'
     - include: '#less-functions'
+    - include: '#less-variables'
     - name: support.constant.color.w3c-standard-color-name.less
       match: \b(aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow)\b
     - name: support.constant.color.w3c-extended-color-keywords.less
@@ -692,7 +685,6 @@ repository:
     - include: '#cross-fade-function'
     - include: '#gradient-functions'
     - include: '#image-function'
-    - include: '#image-set-function'
     - include: '#url-function'
 
   integer-type:
@@ -709,7 +701,7 @@ repository:
 
   length-type:
     name: constant.numeric.less
-    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b
+    match: 0|(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b
     captures:
       '1': {name: keyword.other.unit.less}
 
@@ -826,9 +818,27 @@ repository:
         patterns:
         - include: '#less-variables'
         - include: '#color-values'
+    - name: meta.function-call.less
+      begin: \b(mix)(?=\()
+      beginCaptures:
+        '1': {name: support.function.color-operation.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#comma-delimiter'
+        - include: '#less-variables'
+        - include: '#less-math'
+        - include: '#color-values'
+        - include: '#percentage-type'
 
   less-extend:
-    name: entity.other.attribute-name.extends.less
+    name: entity.other.attribute-name.pseudo-class.extend.less
     begin: (:)(extend)(?=\()
     end: \)
     endCaptures:
@@ -853,6 +863,19 @@ repository:
     - include: '#less-misc-functions'
     - include: '#less-string-functions'
     - include: '#less-type-functions'
+
+  less-import-directive:
+    name: meta.group.less
+    begin: \s*(\()\s*
+    beginCaptures:
+      '0': {name: punctuation.definition.group.begin.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - name: constant.language.import-directive.less
+      match: reference|inline|less|css|once|multiple|optional
+    - include: '#comma-delimiter'
 
   less-list-functions:
     patterns:
@@ -897,10 +920,11 @@ repository:
       endCaptures:
         '0': {name: punctuation.definition.group.end.less}
       patterns:
+      - name: keyword.operator.arithmetic.less
+        match: '[-\+\*\/]'
       - include: '#numeric-values'
+      - include: '#less-variables'
       - include: '#less-math'
-    - name: keyword.operator.arithmetic.less
-      match: '[-\+\*\/]'
 
   less-math-functions:
     name: meta.function-call.less
@@ -978,6 +1002,57 @@ repository:
       captures:
         '2': {name: punctuation.definition.group.begin.less}
         '3': {name: punctuation.definition.group.end.less}
+
+  less-mixin-guards:
+    patterns:
+    - begin: \s*(and|not)?\s*(?=\()
+      beginCaptures:
+        '1': {name: keyword.operator.logical.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - name: meta.group.less
+        begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variable-comparison'
+        - include: $self
+        - name: constant.language.default.less
+          match: default((\()(\)))
+          captures:
+            '1': {name: meta.group.less}
+            '2': {name: punctuation.definition.group.begin.less}
+            '3': {name: punctuation.definition.group.end.less}
+        - include: '#property-values'
+        - include: '#less-mixin-guards'
+
+  less-namespace-accessors:
+    patterns:
+    - name: meta.conditional.guarded-namespace.less
+      begin: (?=(when)\s*(?=\())
+      beginCaptures:
+        '1': {name: keyword.control.conditional.less}
+      end: \s*(\})
+      endCaptures:
+        '1': {name: punctuation.section.property-list.end.less}
+      patterns:
+      - begin: (?=\()
+        end: (?=\{)
+        patterns:
+        - include: '#comma-delimiter'
+        - include: '#less-mixin-guards'
+      - name: meta.block.less
+        begin: \s*(\{)
+        beginCaptures:
+          '1': {name: punctuation.section.property-list.begin.less}
+        end: (?=\})
+        patterns:
+        - include: '#rule-list-body'
+        - include: $self
+      - include: '#selector'
 
   less-number-units:
     patterns:
@@ -1075,7 +1150,7 @@ repository:
 
   less-variable-assignment:
     patterns:
-    - begin: (@)([-]?([_a-z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+    - begin: (@)(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
         \t\n\f]?|\\[^\n\f\h]))*)
       beginCaptures:
         '0': {name: variable.other.less}
@@ -1085,19 +1160,14 @@ repository:
       endCaptures:
         '1': {name: punctuation.terminator.rule.less}
       patterns:
-      - match: (:)([ \t]*)
+      - match: (((\+_?)?):)([ \t]*)
         captures:
           '1': {name: punctuation.separator.key-value.less}
-          '2': {name: meta.property-value.less}
+          '4': {name: meta.property-value.less}
       - include: '#property-values'
-      - name: string.unquoted.less
-        match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-          \t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-          \t\n\f]?|\\[^\n\f\h]))*)*
-      - name: punctuation.separator.less
-        match: ','
+      - include: '#comma-delimiter'
+      - include: '#property-list'
+      - include: '#unquoted-string'
 
   less-variable-comparison:
     patterns:
@@ -1114,6 +1184,8 @@ repository:
       - match: \s*((<|>)?(=)?)\s*
         captures:
           '1': {name: keyword.operator.logical.less}
+      - name: constant.language.less
+        match: \btrue\b
       - include: '#property-values'
       - include: '#selector'
       - name: string.unquoted.less
@@ -1136,12 +1208,12 @@ repository:
       '0': {name: punctuation.definition.expression.less}
     patterns:
     - name: support.other.variable.less
-      match: '[-]?([_a-z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-        \t\n\f]?|\\[^\n\f\h]))*'
+      match: -?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+        \t\n\f]?|\\[^\n\f\h]))*
 
   less-variables:
     name: variable.other.less
-    match: (@{1,2})([-]?([_a-z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:\\\h{1,6}[
+    match: (@{1,2})(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
       \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
       \t\n\f]?|\\[^\n\f\h]))*)
     captures:
@@ -1189,7 +1261,8 @@ repository:
       - include: '#unquoted-string'
 
   media-query:
-    begin: (?i)\s*(only|not)?\s*(all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)?
+    name: derp
+    begin: \s*(only|not)?\s*(all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)?
     beginCaptures:
       '1': {name: keyword.operator.logic.media.less}
       '2': {name: support.constant.media.less}
@@ -1211,7 +1284,7 @@ repository:
           '0': {name: support.type.property-name.media.less}
           '2': {name: support.type.vendor-prefix.less}
           '5': {name: support.type.vendor-prefix.less}
-        end: (:)|(?=\))
+        end: (((\+_?)?):)|(?=\))
         endCaptures:
           '1': {name: punctuation.separator.key-value.less}
       - name: support.constant.property-value.less
@@ -1520,28 +1593,27 @@ repository:
           match: (?:[-+]?(?:\d+)?(n)(\s*[-+]\s*\d+)?|[-+]?\s*\d+)
           captures:
             '1': {name: keyword.other.unit.less}
-    - name: entity.other.attribute-name.pseudo-class.less
-      match: (:)(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-        \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+    - name: entity.other.pseudo-class.less
+      match: (:)(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
         \t\n\f]?|\\[^\n\f\h]))*)
       captures:
         '1': {name: punctuation.definition.entity.less}
 
   pseudo-elements:
-    name: entity.other.pseudo-element.less
-    match: |-
-      (?x:
-          (:{1,2})(?:before|after|first-line|first-letter) # CSS1 & CSS2 require : or ::
-        | (::)(-(?:moz|ms|webkit)-)?(?:-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*) # CSS3 requires ::
-      )\b
-    captures:
-      '1': {name: punctuation.definition.entity.less}
-      '2': {name: punctuation.definition.entity.less}
-      '3': {name: support.type.vendor-prefix.less}
+    patterns:
+    - name: entity.other.pseudo-element.less
+      match: |-
+        (?x:
+            (:{1,2})(?:before|after|first-line|first-letter)
+          | (::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*))
+        )\b
+      captures:
+        '1': {name: punctuation.definition.entity.less}
+        '2': {name: punctuation.definition.entity.less}
+        '3': {name: support.type.vendor-prefix.less}
 
   qualified-name:
-    match: (?:(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-      \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+    match: (?:(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
       \t\n\f]?|\\[^\n\f\h]))*)|(\*))?([|])(?!=)
     captures:
       '1': {name: entity.other.namespace-prefix.less}
@@ -1575,18 +1647,23 @@ repository:
       begin: \{
       beginCaptures:
         '0': {name: punctuation.definition.block.begin.less}
-      end: (?=\s*\})
+      end: \s*(?=\})
       patterns:
+      - match: \s*(;)|(?=[})])
+        captures:
+          '1': {name: punctuation.terminator.rule.less}
       - include: '#less-extend'
       - include: '#rule-list-body'
 
   rule-list-body:
     patterns:
     - include: '#comment-block'
+    - include: '#at-import'
+    - include: '#less-variable-assignment'
     - include: '#vendor-prefix'
     - name: invalid.deprecated.custom-property.less
-      match: \b(var-)(-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-        \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+      match: \b(var-)(-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+        \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
         \t\n\f]?|\\[^\n\f\h]))*)(?=\s)
       captures:
         '1': {name: keyword.other.custom-property.prefix.less}
@@ -1601,19 +1678,19 @@ repository:
       endCaptures:
         '1': {name: punctuation.terminator.rule.less}
       patterns:
-      - captures:
+      - match: (((\+_?)?):)([ \t]*)
+        captures:
           '1': {name: punctuation.separator.key-value.less}
-          '2': {name: meta.property-value.less}
-        match: (:)([ \t]*)
+          '4': {name: meta.property-value.less}
       - include: '#property-values'
-      - match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+      - name: string.unquoted.less
+        match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
           \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
           \t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
           \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
           \t\n\f]?|\\[^\n\f\h]))*)*
-        name: string.unquoted.less
-      - match: ','
-        name: punctuation.separator.less
+      - name: punctuation.separator.less
+        match: ','
     - name: meta.property-name.less
       begin: \banimation(-name)?\b
       beginCaptures:
@@ -1622,13 +1699,14 @@ repository:
       endCaptures:
         '1': {name: punctuation.terminator.rule.less}
       patterns:
-      - match: (:)([ \t]*)
+      - match: (((\+_?)?):)([ \t]*)
         captures:
           '1': {name: punctuation.separator.key-value.less}
-          '2': {name: meta.property-value.less}
+          '4': {name: meta.property-value.less}
       - include: '#property-values'
       - name: entity.other.animation-name.less
-        match: (-?(?:[_a-z]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?
+        match: (-?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*)?
     - name: meta.property-name.less
       begin: \btransition(-(property|duration|delay|timing-function))?\b
       beginCaptures:
@@ -1637,13 +1715,14 @@ repository:
       endCaptures:
         '1': {name: punctuation.terminator.rule.less}
       patterns:
-      - match: (:)([ \t]*)
+      - match: (((\+_?)?):)([ \t]*)
         captures:
           '1': {name: punctuation.separator.key-value.less}
-          '2': {name: meta.property-value.less}
+          '4': {name: meta.property-value.less}
       - include: '#time-type'
       - include: '#property-values'
-      - include: '#timing-functions'
+      - include: '#cubic-bezier-function'
+      - include: '#steps-function'
       - match: \s*(?:(,))
         captures:
           '1': {name: punctuation.definition.arbitrary-repitition.less}
@@ -1655,10 +1734,10 @@ repository:
       endCaptures:
         '1': {name: punctuation.terminator.rule.less}
       patterns:
-      - match: (:)([ \t]*)
+      - match: (((\+_?)?):)([ \t]*)
         captures:
           '1': {name: punctuation.separator.key-value.less}
-          '2': {name: meta.property-value.less}
+          '4': {name: meta.property-value.less}
       - include: '#filter-functions'
     - name: meta.property-name.less
       begin: \bwill-change\b
@@ -1668,16 +1747,15 @@ repository:
       endCaptures:
         '1': {name: punctuation.terminator.rule.less}
       patterns:
-      - match: (:)([ \t]*)
+      - match: (((\+_?)?):)([ \t]*)
         captures:
           '1': {name: punctuation.separator.key-value.less}
-          '2': {name: meta.property-value.less}
-      - name: support.constant.property-value.less
-        match: (-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-          \t\n\f]?|\\[^\n\f\h]))*)
+          '4': {name: meta.property-value.less}
       - name: invalid.illegal.property-value.less
         match: unset|initial|inherit|will-change|auto|scroll-position|contents
+      - name: support.constant.property-value.less
+        match: -?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*
       - match: \s*(?:(,))
         captures:
           '1': {name: punctuation.definition.arbitrary-repitition.less}
@@ -1689,14 +1767,13 @@ repository:
       endCaptures:
         '1': {name: punctuation.terminator.rule.less}
       patterns:
-      - match: (:)([ \t]*)
+      - match: (((\+_?)?):)([ \t]*)
         captures:
           '1': {name: punctuation.separator.key-value.less}
-          '2': {name: meta.property-value.less}
+          '4': {name: meta.property-value.less}
       - name: entity.other.counter-name.less
-        match: (-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-          \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
-          \t\n\f]?|\\[^\n\f\h]))*)
+        match: -?(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:\\\h{1,6}[
+          \t\n\f]?|\\[^\n\f\h]))*
       - include: '#integer-type'
       - name: invalid.illegal.property-value.less
         match: unset|initial|inherit|auto
@@ -1714,112 +1791,109 @@ repository:
         )\b
     - include: $self
     - contentName: meta.property-value.less
-      begin: (:)([ \t]*)
+      begin: (((\+_?)?):)([ \t]*)
       end: \s*(;)|(?=[})])
       endCaptures:
         '1': {name: punctuation.terminator.rule.less}
       captures:
         '1': {name: punctuation.separator.key-value.less}
-        '2': {name: meta.property-value.less}
+        '4': {name: meta.property-value.less}
       patterns:
       - include: '#property-values'
-    - include: '#rule-list'
     - include: '#less-variable-interpolation'
+    - include: '#property-list'
 
   selector:
-    name: meta.selector.less
     patterns:
-    - name: meta.function.less meta.property-list.less
-      begin: (?=\s*(when)\s*\(.*?)
-      beginCaptures:
-        '1': {name: keyword.control.conditional.less}
-      end: \}
-      endCaptures:
-        '0': {name: punctuation.section.property-list.end.less}
+    - name: meta.selector.less
+      begin: \s*(?=[\.&#](-?(?:([_a-zA-Z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:(\\\h{1,6}[
+        \t\n\f]?)|(\\[^\n\f\h]))))))
+      end: \s*(?=[^\w]|\s*[/\{\); ])
       patterns:
-      - begin: \(
+      - include: '#comment-line'
+      - name: meta.function-call.less
+        begin: (?![^(]*\{)(?=(\.|#|\@)-?(?:([_a-zA-Z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:(\\\h{1,6}[
+          \t\n\f]?)|(\\[^\n\f\h]))))(?:([-a-zA-Z0-9]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]])|(?:(\\\h{1,6}[
+          \t\n\f]?)|(\\[^\n\f\h])))*(?=[\(]))
         beginCaptures:
-          '0': {name: punctuation.definition.group.begin.less}
-        end: \)
-        endCaptures:
-          '0': {name: punctuation.definition.group.end.less}
+          '0': {name: entity.other.attribute-name.mixin.less}
+          '1': {name: punctuation.definition.entity.less}
+        end: \s*(?=[)\};]|$)
         patterns:
-        - include: '#less-variable-comparison'
-        - include: '#less-type-functions'
-      - match: \s*(when)(?=.*?)
-        captures:
-          '1': {name: keyword.control.conditional.less}
-      - name: keyword.operator.logic.less
-        match: \band\b
-      - match: \s*(?:(,))
-        captures:
-          '1': {name: punctuation.definition.arbitrary-repitition.less}
-      - begin: \s*(\{)
+        - name: meta.group.less
+          begin: \s*(\()\s*
+          beginCaptures:
+            '1': {name: keyword.operator.logic.media.less}
+            '2': {name: punctuation.definition.group.begin.less}
+          end: \)
+          endCaptures:
+            '0': {name: punctuation.definition.group.end.less}
+          patterns:
+          - include: '#less-variable-assignment'
+          - include: '#property-values'
+          - include: '#property-list'
+          - include: '#comma-delimiter'
+          - match: \s*(;)|(?=[})])
+            captures:
+              '1': {name: punctuation.terminator.rule.less}
+        - include: $self
+      - name: entity.other.attribute-name.class.less
+        begin: (\.)((-?(?:([_a-zA-Z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:(\\\h{1,6}[
+          \t\n\f]?)|(\\[^\n\f\h])))))|@\{)
         beginCaptures:
-          '1': {name: punctuation.section.property-list.begin.less}
-        end: (?=\})
+          '1': {name: punctuation.definition.entity.less}
+        end: (?!((?:([-a-zA-Z0-9]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]])|(?:(\\\h{1,6}[
+          \t\n\f]?)|(\\[^\n\f\h])))|\w|@\{))
         patterns:
-        - include: '#rule-list-body'
-    - name: entity.name.tag.custom.css
-      match: \b([a-z](?:(?x:[-_a-z0-9\xB7]|\\\.|[\xC0-\xD6]|[\xD8-\xF6]|[\x{000000F8}-\x{000002FF}]|[\x{00000300}-\x{0000037D}]|[\x{0000037F}-\x{00001FFF}]|[\x{0000200C}-\x{0000200D}]|[\x{0000203F}-\x{00002040}]|[\x{00002070}-\x{0000218F}]|[\x{00002C00}-\x{00002FEF}]|[\x{00003001}-\x{0000D7FF}]|[\x{0000F900}-\x{0000FDCF}]|[\x{0000FDF0}-\x{0000FFFD}]|[\x{00010000}-\x{000EFFFF}]))*(?:-(?x:[-_a-z0-9\xB7]|\\\.|[\xC0-\xD6]|[\xD8-\xF6]|[\x{000000F8}-\x{000002FF}]|[\x{00000300}-\x{0000037D}]|[\x{0000037F}-\x{00001FFF}]|[\x{0000200C}-\x{0000200D}]|[\x{0000203F}-\x{00002040}]|[\x{00002070}-\x{0000218F}]|[\x{00002C00}-\x{00002FEF}]|[\x{00003001}-\x{0000D7FF}]|[\x{0000F900}-\x{0000FDCF}]|[\x{0000FDF0}-\x{0000FFFD}]|[\x{00010000}-\x{000EFFFF}]))*)\b
+        - include: '#less-variable-interpolation'
+      - name: entity.other.attribute-name.id.less
+        begin: (#)((-?(?:([_a-zA-Z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:(\\\h{1,6}[
+          \t\n\f]?)|(\\[^\n\f\h])))))|@\{)
+        beginCaptures:
+          '1': {name: punctuation.definition.entity.less}
+        end: (?!((?:([-a-zA-Z0-9]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]])|(?:(\\\h{1,6}[
+          \t\n\f]?)|(\\[^\n\f\h])))|\w|@\{))
+        patterns:
+        - include: '#less-variable-interpolation'
+    - name: entity.name.tag.custom.less
+      match: |-
+        (?x)\b([a-z](?:
+            [-_a-z0-9\xB7]
+          | \\\.
+          | [\xC0-\xD6]
+          | [\xD8-\xF6]
+          | [\x{000000F8}-\x{000002FF}]
+          | [\x{00000300}-\x{0000037D}]
+          | [\x{0000037F}-\x{00001FFF}]
+          | [\x{0000200C}-\x{0000200D}]
+          | [\x{0000203F}-\x{00002040}]
+          | [\x{00002070}-\x{0000218F}]
+          | [\x{00002C00}-\x{00002FEF}]
+          | [\x{00003001}-\x{0000D7FF}]
+          | [\x{0000F900}-\x{0000FDCF}]
+          | [\x{0000FDF0}-\x{0000FFFD}]
+          | [\x{00010000}-\x{000EFFFF}]
+        )*-(?:
+            [-_a-z0-9\xB7]
+          | \\\.
+          | [\xC0-\xD6]
+          | [\xD8-\xF6]
+          | [\x{000000F8}-\x{000002FF}]
+          | [\x{00000300}-\x{0000037D}]
+          | [\x{0000037F}-\x{00001FFF}]
+          | [\x{0000200C}-\x{0000200D}]
+          | [\x{0000203F}-\x{00002040}]
+          | [\x{00002070}-\x{0000218F}]
+          | [\x{00002C00}-\x{00002FEF}]
+          | [\x{00003001}-\x{0000D7FF}]
+          | [\x{0000F900}-\x{0000FDCF}]
+          | [\x{0000FDF0}-\x{0000FFFD}]
+          | [\x{00010000}-\x{000EFFFF}]
+        )*)\b
     - name: entity.name.tag.less
       match: \b(a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdi|bdo|big|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|content|data|datalist|dd|del|details|dfn|dir|dialog|div|dl|dt|element|em|embed|eventsource|fieldset|figure|figcaption|footer|form|frame|frameset|h[1-6]|head|header|hgroup|hr|html|i|iframe|img|input|ins|isindex|kbd|keygen|label|legend|li|link|main|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|picture|pre|progress|q|rp|rt|rtc|s|samp|script|section|select|shadow|small|source|span|strike|strong|style|sub|summary|sup|svg|table|tbody|td|template|textarea|tfoot|th|thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp|circle|clipPath|defs|ellipse|filter|foreignObject|g|glyph|glyphRef|image|line|linearGradient|marker|mask|path|pattern|polygon|polyline|radialGradient|rect|stop|switch|symbol|text|textPath|tref|tspan|use)\b
-    - name: meta.function-call.less
-      begin: (\.)-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
-        \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
-        \t\n\f]?)|\\[^\n\f\h]))*(?=\()
-      beginCaptures:
-        '0': {name: entity.other.attribute-name.class.less}
-        '1': {name: punctuation.definition.entity.less}
-      end: (?:(;|\}))
-      endCaptures:
-        '1': {name: punctuation.definition.group.end.less}
-      patterns:
-      - begin: \(
-        beginCaptures:
-          '0': {name: punctuation.definition.group.begin.less}
-        end: \)
-        endCaptures:
-          '0': {name: punctuation.definition.group.end.less}
-        patterns:
-        - name: variable.language.arguments.less
-          match: \.{3}
-        - include: '#property-list'
-        - include: '#less-variable-assignment'
-        - include: '#property-values'
-      - name: punctuation.terminator.rule.less
-        match: ;
-      - include: '#rule-list'
-      - name: entity.other.attribute-name.class.less
-        match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
-          \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
-          \t\n\f]?)|\\[^\n\f\h]))*
-    - name: meta.selector.less
-      begin: (\.)
-      beginCaptures:
-        '1': {name: punctuation.definition.entity.less}
-      end: (?!(\w|@\{))
-      patterns:
-      - include: '#less-variable-interpolation'
-      - name: entity.other.attribute-name.class.less
-        match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
-          \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
-          \t\n\f]?)|\\[^\n\f\h]))*
-    - name: meta.selector.less
-      begin: (\#)
-      beginCaptures:
-        '1': {name: punctuation.definition.entity.less}
-      end: (?!(\w|@\{))
-      patterns:
-      - include: '#less-variable-interpolation'
-      - name: entity.other.attribute-name.id.less
-        match: -?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
-          \t\n\f]?)|\\[^\n\f\h]))(?:[[-\w][\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]]|(?:(\\\h{1,6}[
-          \t\n\f]?)|\\[^\n\f\h]))*
-    - name: entity.name.tag.wildcard.less
-      match: \*
     - name: punctuation.separator.combinator.less
-      match: ((?:>{1,3}|[~+]))(?![>~+])
+      match: (?!\+_:)((?:>{1,3}|[~+]))(?![>~+])
     - name: invalid.illegal.combinator.less
       match: ((?:>{1,3}|[~+])){2,}
     - include: '#pseudo-elements'
@@ -1853,9 +1927,12 @@ repository:
     - match: \s*(?:(,))
       captures:
         '1': {name: punctuation.definition.arbitrary-repitition.less}
-    - name: entity.other.attribute-name.parent.less
+    - name: entity.name.tag.wildcard.less
+      match: \*
+    - name: meta.selector.less
       match: (&)-?[a-zA-Z0-9_-]*
       captures:
+        '0': {name: entity.other.attribute-name.parent.less}
         '1': {name: punctuation.definition.entity.less}
 
   shape-functions:
@@ -1951,11 +2028,11 @@ repository:
 
   string-content:
     patterns:
+    - include: '#less-variable-interpolation'
     - name: constant.character.escape.newline.less
       match: \\\s*\n
     - name: constant.character.escape.less
       match: \\(\h{1,6}|.)
-    - include: '#less-variable-interpolation'
 
   symbols-function:
     name: meta.function-call.less
