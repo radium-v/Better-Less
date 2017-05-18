@@ -1,0 +1,780 @@
+// SYNTAX TEST "Packages/Better-Less/Syntaxes/Better Less.tmLanguage"
+
+// oh hey, I'm a comment
+// <- punctuation.definition.comment.less
+// ^^^^^^^^^^^^^^^^^^^^^^ comment.line.double-slash.less
+
+   /* block comment */
+// ^^^^^^^^^^^^^^^^^^^ comment.block.less
+// ^^                  punctuation.definition.comment.less
+//                  ^^ punctuation.definition.comment.less
+
+/* Variables */
+   @nice-blue: #5B83AD;
+// ^^^^^^^^^^           variable.other.less
+// ^                    punctuation.definition.variable.less
+//  ^^^^^^^^^           support.other.variable.less
+
+@light-blue: @nice-blue + #111;
+//         ^                    punctuation.separator.key-value.less
+//          ^^^^^^^^^^^^^^^^^^  meta.property-value.less
+//                            ^ punctuation.terminator.rule.less
+
+@link-color-hover:  darken(@link-color, 10%);
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                  ^^^^^^ support.function.color-operation.less
+
+@{my-selector} { }
+// <- variable.other.readwrite.less
+.@{my-selector} { }
+// <- entity.other.attribute-name.class.less
+#@{my-selector} { }
+// <- entity.other.attribute-name.id.less
+
+.variable {
+    content: @@var;
+//           ^^    punctuation.definition.variable.less
+//           ^^^^^ variable.other.readwrite.less
+}
+
+ .widget {
+   @{property}: #0ee;
+   background-@{property}: #999;
+// ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+ }
+
+#header {
+// <- entity.other.attribute-name.id.less punctuation.definition.entity.less
+// ^                   punctuation.definition.entity.less
+//         ^           punctuation.definition.block.begin.less
+
+// <-                  meta.property-list.less
+   color: @light-blue;
+//        ^^^^^^^^^^^  variable.other.less
+}
+// <-                  punctuation.definition.block.end.less
+
+
+/* Extend */
+  .a:extend(.b all, .c), .d {}
+//   ^^^^^^^^^^^^^^ meta.function-call.less
+//  ^ punctuation.definition.entity.less
+//   ^^^^^^ entity.other.attribute-name.pseudo-class.extend.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^ entity.other.attribute-name.class.less
+//             ^^^ constant.language.all.less
+//                ^ punctuation.definition.arbitrary-repitition.less
+//                    ^ punctuation.definition.group.end.less
+
+/* Mixins */
+#menu a {
+   color: #111;
+   .bordered;
+// ^^^^^^^^^  entity.other.attribute-name.class.less
+// ^          punctuation.definition.entity.less
+//          ^ punctuation.terminator.rule.less
+
+   #bordered();
+// ^^^^^^^^^^^  meta.function-call.less
+// ^            punctuation.definition.entity.less
+// ^^^^^^^^^    entity.other.attribute-name.mixin.less
+//          ^^  meta.group.less
+//          ^   punctuation.definition.group.begin.less
+//           ^ punctuation.definition.group.end.less
+}
+
+/* Guarded Namespaces */
+#namespace when (@mode=huge) { }
+//         ^^^^^^^^^^^^^^^^^^^^^ meta.conditional.guarded-namespace.less
+//         ^^^^ keyword.control.conditional.less
+//              ^ punctuation.definition.group.begin.less
+//                    ^ keyword.operator.logical.less
+//                         ^ punctuation.definition.group.end.less
+//                            ^ meta.block.less
+
+.mixin() when not () and (default()), () { }
+// <- meta.function-call.less
+//            ^^^ keyword.operator.logical.less
+//                   ^^^ keyword.operator.logical.less
+//                        ^^^^^^^^^ constant.language.default.less
+//                                  ^ punctuation.separator.less
+
+.a + .b ~ .c > .d {
+// ^ punctuation.separator.combinator.less
+//      ^ punctuation.separator.combinator.less
+//           ^ punctuation.separator.combinator.less
+
+/* property merge */
+    color: #FFF;
+//       ^ punctuation.separator.key-value.less
+    box-shadow+: inset 0 0 10px #555;
+//            ^^ punctuation.separator.key-value.less
+    transform+_: rotate(15deg);
+//           ^^^ punctuation.separator.key-value.less
+}
+
+/* Nested Rules */
+#header {
+  .navigation {
+    &.class::after { }
+//  ^ entity.other.attribute-name.parent.less punctuation.definition.entity.less
+//   ^^^^^^ entity.other.attribute-name.class.less
+//         ^^ punctuation.definition.entity.less
+//                  ^ meta.property-list.less meta.property-list.less meta.property-list.less
+
+  }
+// <- meta.property-list.less meta.property-list.less
+}
+
+@{variable} {
+
+}
+
+   .nested-media-query {
+     @media screen and (min-width: 768px) { }
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.media.less
+//   ^ punctuation.definition.keyword.less
+//   ^^^^^^ keyword.control.at-rule.media.less
+//          ^^^^^^ support.constant.media.less
+//                 ^^^ keyword.operator.logic.media.less
+//                     ^^^^^^^^^^^^^^^^^^ meta.group.less
+//                     ^                  punctuation.definition.group.begin.less
+//                                      ^ meta.property-list.less meta.at-rule.media.less meta.group.less punctuation.definition.group.end.less
+   }
+
+/* Numbers and units */
+@number: 1 + 1;
+//         ^ keyword.operator.arithmetic.less
+@number: 1 - 1;
+//         ^ keyword.operator.arithmetic.less
+@number: 1 * 1;
+//         ^ keyword.operator.arithmetic.less
+@number: 1 / 1;
+//         ^ keyword.operator.arithmetic.less
+@number: (1 / 1);
+//       ^^^^^^^ meta.group.less
+//       ^       punctuation.definition.group.begin.less
+//             ^ punctuation.definition.group.end.less
+
+@var: 1em 1ex 1ch 1rem;
+//    ^^^ constant.numeric.less
+//        ^^^ constant.numeric.less
+//            ^^^ constant.numeric.less
+//                ^^^^ constant.numeric.less
+
+@var: 1vw 1vh 1vmin 1vmax;
+//    ^^^ constant.numeric.less
+//        ^^^ constant.numeric.less
+//            ^^^^^ constant.numeric.less
+//                  ^^^^^ constant.numeric.less
+
+@var: 1cm, 1mm, 1m, 1q, 1in, 1pt, 1pc, 1px, 1fr;
+//    ^^^ constant.numeric.less
+//         ^^^ constant.numeric.less
+//              ^^ constant.numeric.less
+//                  ^^ constant.numeric.less
+//                      ^^^ constant.numeric.less
+//                           ^^^ constant.numeric.less
+//                                ^^^ constant.numeric.less
+//                                     ^^^ constant.numeric.less
+//                                          ^^^ constant.numeric.less
+
+@var: 1deg, 1grad, 1rad, 1turn;
+//    ^^^^ constant.numeric.less
+//          ^^^^^ constant.numeric.less
+//                 ^^^^ constant.numeric.less
+//                       ^^^^^ constant.numeric.less
+
+@var: 1s, 1ms;
+//    ^^ constant.numeric.less
+//        ^^^ constant.numeric.less
+
+@var: 1Hz, 1kHz;
+//    ^^^ constant.numeric.less
+//         ^^^^ constant.numeric.less
+
+@var: 1dpi, 1dpcm, 1dppx;
+//    ^^^^ constant.numeric.less
+//          ^^^^^ constant.numeric.less
+//                 ^^^^^ constant.numeric.less
+
+/* Escaping */
+.weird-element {
+  content: ~"^//* some horrible but needed css hack";
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ markup.raw.inline.less string.quoted.other.less
+//         ^ constant.character.escape.less
+//          ^ punctuation.definition.string.begin.less
+//                                                 ^ punctuation.definition.string.end.less
+}
+
+/* Misc Functions */
+.a {
+    color: color('#aaa');
+//         ^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^ support.function.color.less
+//              ^ punctuation.definition.group.begin.less
+//               ^^^^^^ string.quoted
+//                     ^ punctuation.definition.group.end.less
+
+    background-size: image-size("i.png");
+//                   ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                   ^^^^^^^^^^ support.function.image.less
+//                             ^ punctuation.definition.group.begin.less
+//                              ^^^^^^^ string.quoted
+//                                     ^ punctuation.definition.group.end.less
+    width: image-width("i.png");
+//         ^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^^^^ support.function.image.less
+//                    ^ punctuation.definition.group.begin.less
+//                     ^^^^^^^ string.quoted
+//                            ^ punctuation.definition.group.end.less
+
+    height: image-height("i.png");
+//          ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//          ^^^^^^^^^^^^ support.function.image.less
+//                      ^ punctuation.definition.group.begin.less
+//                       ^^^^^^^ string.quoted
+//                              ^ punctuation.definition.group.end.less
+
+    width: convert(9s, "ms");
+//         ^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^ support.function.convert.less
+//                ^ punctuation.definition.group.begin.less
+//                 ^^ constant.numeric.less
+//                   ^ punctuation.separator.less
+//                     ^^^^ string.quoted
+//                         ^ punctuation.definition.group.end.less
+
+width:convert(9s, ms);
+//                ^^ keyword.other.unit.less
+
+background-image:
+    data-uri('image/svg+xml;charset=UTF-8', 'image.svg');
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//  ^^^^^^^^ support.function.data-uri.less
+//          ^ punctuation.definition.group.begin.less
+//           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted
+//                                        ^ punctuation.separator.less
+//                                          ^^^^^^^^^^^ string.quoted
+//                                                     ^ punctuation.definition.group.end.less
+
+width: unit(5, px);
+//     ^^^^^^^^^^^ meta.function-call.less
+//     ^^^^ support.function.convert.less
+//         ^ punctuation.definition.group.begin.less
+//          ^ constant.numeric.less
+//           ^ punctuation.separator.less
+//             ^^ keyword.other.unit.less
+//               ^ punctuation.definition.group.end.less
+
+width: get-unit(5px);
+//     ^^^^^^^^^^^^^ meta.function-call.less
+//     ^^^^^^^^ support.function.convert.less
+//             ^ punctuation.definition.group.begin.less
+//              ^^^ constant.numeric.less
+//               ^^ keyword.other.unit.less
+//                 ^ punctuation.definition.group.end.less
+
+background-image: svg-gradient(to right, red, green 30%, blue);
+//                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                ^^^^^^^^^^^^ support.function.svg-gradient.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^^ keyword.other.less
+//                                ^^^^^ support.constant.property-value.less
+//                                     ^ punctuation.separator.less
+//                                       ^^^ support.constant.color.w3c-standard-color-name.less
+//                                            ^^^^^ support.constant.color.w3c-standard-color-name.less
+//                                                  ^^^ constant.numeric.less
+//                                                    ^ keyword.other.unit.less
+//                                                           ^ punctuation.definition.group.end.less
+
+@var: escape('a=1');
+//    ^^^^^^^^^^^^^ meta.function-call.less
+//    ^^^^^^ support.function.escape.less
+//          ^ punctuation.definition.group.begin.less
+//           ^^^^^ string.quoted
+//                ^ punctuation.definition.group.end.less
+
+filter: e("ms:alwaysHasItsOwnSyntax.For.Stuff()");
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//      ^ support.function.escape.less
+//       ^ punctuation.definition.group.begin.less
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted
+//                                              ^ punctuation.definition.group.end.less
+
+    width: %("repetitions: %a file: %d", 1 + 2, "directory/file.less");
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^ support.function.format.less
+//          ^ punctuation.definition.group.begin.less
+//           ^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted
+//                                     ^ punctuation.separator.less
+//                                                                   ^ punctuation.definition.group.end.less
+
+    content: replace("Hello, Mars?", "Mars\?", "Earth!");
+//           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//           ^^^^^^^ support.function.replace.less
+//                  ^ punctuation.definition.group.begin.less
+//                   ^^^^^^^^^^^^^^ string.quoted
+//                                 ^ punctuation.separator.less
+//                                                     ^ punctuation.definition.group.end.less
+
+    n: length(1px solid #0080ff);
+//     ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//     ^^^^^^ support.function.length.less
+//           ^ punctuation.definition.group.begin.less
+//                             ^ punctuation.definition.group.end.less
+
+    n: length("banana", "tomato", "potato", "peach");
+//                    ^ punctuation.separator.less
+
+    value: extract(@list, 3);
+//         ^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^ support.function.extract.less
+//                ^ punctuation.definition.group.begin.less
+//                      ^ punctuation.separator.less
+//                        ^ constant.numeric.less
+//                         ^ punctuation.definition.group.end.less
+}
+#math-functions {
+    n: ceil(1.1);
+//     ^^^^^^^^^ meta.function-call.less
+//     ^^^^ support.function.math.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^ constant.numeric.less
+//              ^ punctuation.definition.group.end.less
+    n: floor(1.1);
+//     ^^^^^^^^^^ meta.function-call.less
+//     ^^^^^ support.function.math.less
+//          ^ punctuation.definition.group.begin.less
+//           ^^^  constant.numeric.less
+//              ^ punctuation.definition.group.end.less
+    n: percentage(1.1);
+//     ^^^^^^^^^^^^^^^ meta.function-call.less
+//     ^^^^^^^^^^ support.function.math.less
+//               ^ punctuation.definition.group.begin.less
+//                ^^^  constant.numeric.less
+//                   ^ punctuation.definition.group.end.less
+    n: round(1.1);
+//     ^^^^^^^^^^ meta.function-call.less
+//     ^^^^^ support.function.math.less
+//          ^ punctuation.definition.group.begin.less
+//           ^^^  constant.numeric.less
+//              ^ punctuation.definition.group.end.less
+    n: sqrt(1.1);
+//     ^^^^^^^^^ meta.function-call.less
+//     ^^^^ support.function.math.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^  constant.numeric.less
+//             ^ punctuation.definition.group.end.less
+    n: abs(1.1);
+//     ^^^^^^^^ meta.function-call.less
+//     ^^^ support.function.math.less
+//        ^ punctuation.definition.group.begin.less
+//         ^^^  constant.numeric.less
+//            ^ punctuation.definition.group.end.less
+    n: sin(1.1);
+//     ^^^^^^^^ meta.function-call.less
+//     ^^^ support.function.math.less
+//        ^ punctuation.definition.group.begin.less
+//         ^^^  constant.numeric.less
+//            ^ punctuation.definition.group.end.less
+    n: asin(1.1);
+//     ^^^^^^^^^ meta.function-call.less
+//     ^^^^ support.function.math.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^  constant.numeric.less
+//             ^ punctuation.definition.group.end.less
+    n: cos(1.1);
+//     ^^^^^^^^ meta.function-call.less
+//     ^^^ support.function.math.less
+//        ^ punctuation.definition.group.begin.less
+//         ^^^  constant.numeric.less
+//            ^ punctuation.definition.group.end.less
+    n: acos(1.1);
+//     ^^^^^^^^^ meta.function-call.less
+//     ^^^^ support.function.math.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^  constant.numeric.less
+//             ^ punctuation.definition.group.end.less
+    n: tan(1.1);
+//     ^^^^^^^^ meta.function-call.less
+//     ^^^ support.function.math.less
+//        ^ punctuation.definition.group.begin.less
+//         ^^^  constant.numeric.less
+//            ^ punctuation.definition.group.end.less
+    n: atan(1.1);
+//     ^^^^^^^^^ meta.function-call.less
+//     ^^^^ support.function.math.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^  constant.numeric.less
+//             ^ punctuation.definition.group.end.less
+    n: pi();
+//     ^^^^ meta.function-call.less
+//     ^^ support.function.math.less
+//       ^ punctuation.definition.group.begin.less
+//        ^ punctuation.definition.group.end.less
+    n: pow(1.1px, 1.1cm);
+//     ^^^^^^^^^^^^^^^^^ meta.function-call.less
+//     ^^^ support.function.math.less
+//        ^ punctuation.definition.group.begin.less
+//         ^^^^^ constant.numeric.less
+//              ^ punctuation.separator.less
+//                     ^ punctuation.definition.group.end.less
+    n: mod(1.1%, 1);
+//     ^^^^^^^^^^^^ meta.function-call.less
+//     ^^^ support.function.math.less
+//        ^ punctuation.definition.group.begin.less
+//         ^^^^ constant.numeric.less
+//             ^ punctuation.separator.less
+//                ^ punctuation.definition.group.end.less
+    n: min(1, 2);
+//     ^^^^^^^^^ meta.function-call.less
+//     ^^^ support.function.math.less
+//        ^ punctuation.definition.group.begin.less
+//         ^ constant.numeric.less
+//          ^ punctuation.separator.less
+//             ^ punctuation.definition.group.end.less
+    n: max(1, 2);
+//     ^^^^^^^^^ meta.function-call.less
+//     ^^^ support.function.math.less
+//        ^ punctuation.definition.group.begin.less
+//         ^ constant.numeric.less
+//          ^ punctuation.separator.less
+//             ^ punctuation.definition.group.end.less
+}
+
+/* Type functions */
+#type-functions {
+    @val: isnumber(1);
+//        ^^^^^^^^^^^ meta.function-call.less
+//        ^^^^^^^^ support.function.type.less
+//                ^ punctuation.definition.group.begin.less
+//                 ^ constant.numeric.less
+//                  ^ punctuation.definition.group.end.less
+
+    @val: isstring("string");
+//        ^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//        ^^^^^^^^ support.function.type.less
+//                ^ punctuation.definition.group.begin.less
+//                 ^^^^^^^^ string.quoted
+//                         ^ punctuation.definition.group.end.less
+
+    @val: iscolor(blue);
+//        ^^^^^^^^^^^^^ meta.function-call.less
+//        ^^^^^^^ support.function.type.less
+//               ^ punctuation.definition.group.begin.less
+//                ^^^^ support.constant.color.w3c-standard-color-name.less
+//                    ^ punctuation.definition.group.end.less
+
+    @val: iskeyword(color);
+//        ^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//        ^^^^^^^^^ support.function.type.less
+//                 ^ punctuation.definition.group.begin.less
+//                  ^^^^^ support.constant.property-value.less
+//                         ^ punctuation.definition.group.end.less
+
+    @val: isurl(url("asdf"));
+//        ^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//        ^^^^^ support.function.type.less
+//             ^ punctuation.definition.group.begin.less
+//              ^^^^^^^^^^^ meta.function-call.less
+//                         ^ punctuation.definition.group.end.less
+
+    @val: ispixel(1px);
+//        ^^^^^^^^^^^^^ meta.function-call.less
+//        ^^^^^^^ support.function.type.less
+//               ^ punctuation.definition.group.begin.less
+//                ^^^ variable.other.readwrite.less
+//                   ^ punctuation.definition.group.end.less
+
+    @val: isem(1em);
+//        ^^^^^^^^^ meta.function-call.less
+//        ^^^^ support.function.type.less
+//            ^ punctuation.definition.group.begin.less
+//             ^^^ constant.numeric.less
+//                 ^ punctuation.definition.group.end.less
+
+    @val: ispercentage(1%);
+//        ^^^^^^^^^^^^^^^^^ meta.function-call.less
+//        ^^^^^^^^^^^^ support.function.type.less
+//                    ^ punctuation.definition.group.begin.less
+//                     ^^ constant.numeric.less
+//                       ^ punctuation.definition.group.end.less
+
+    @val: isunit(1%, mm);
+//        ^^^^^^^^^^^^^^ meta.function-call.less
+//        ^^^^^^ support.function.type.less
+//              ^ punctuation.definition.group.begin.less
+//               ^^ constant.numeric.less
+//                   ^^ keyword.other.unit.less
+//                     ^ punctuation.definition.group.end.less
+
+    @val: isruleset(@var);
+//        ^^^^^^^^^^^^^^^ meta.function-call.less
+//        ^^^^^^^^^ support.function.type.less
+//                 ^ punctuation.definition.group.begin.less
+//                  ^^^^ variable.other.readwrite.less
+//                      ^ punctuation.definition.group.end.less
+}
+
+/* Color definition functions */
+#color-functions {
+    color: rgb(10, 10, 10);
+
+    color: rgba(10, 10, 10, 10%);
+
+    color: argb(red);
+//         ^^^^^^^^^ meta.function-call.less
+//         ^^^^ support.function.color-definition.less
+//             ^ punctuation.definition.group.begin.less
+//              ^^^ support.constant.color.w3c-standard-color-name.less
+//                 ^ punctuation.definition.group.end.less
+
+    color: hsl(90, 100%, 50%);
+//         ^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^ support.function.color.less
+//            ^ punctuation.definition.group.begin.less
+//             ^^ constant.numeric.less
+//               ^ punctuation.separator.less
+//                          ^ punctuation.definition.group.end.less
+
+    color: hsla(90, 100%, 50%, 0.5);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^ support.function.color.less
+//             ^ punctuation.definition.group.begin.less
+//              ^^ constant.numeric.less
+//                ^ punctuation.separator.less
+//                                ^ punctuation.definition.group.end.less
+
+    color: hsv(90, 100%, 50%);
+//         ^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^ support.function.color.less
+//            ^ punctuation.definition.group.begin.less
+//             ^^ constant.numeric.less
+//               ^ punctuation.separator.less
+//                          ^ punctuation.definition.group.end.less
+
+    color: hsva(90, 100%, 50%, 0.5);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^ support.function.color.less
+//             ^ punctuation.definition.group.begin.less
+//              ^^ constant.numeric.less
+//                ^ punctuation.separator.less
+//                                ^ punctuation.definition.group.end.less
+}
+
+/* Color channel functions */
+#color-channel-functions {
+    color: hue(hsl(90, 100%, 50%));
+//         ^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^ support.function.color-definition.less
+//            ^ punctuation.definition.group.begin.less
+    color: saturation(hsl(90, 100%, 50%));
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^^^ support.function.color-definition.less
+//                   ^ punctuation.definition.group.begin.less
+//                                      ^ punctuation.definition.group.end.less
+    color: lightness(hsl(90, 100%, 50%));
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^^ support.function.color-definition.less
+//                  ^ punctuation.definition.group.begin.less
+//                                     ^ punctuation.definition.group.end.less
+    color: hsvhue(hsv(90, 100%, 50%));
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^ support.function.color-definition.less
+//               ^ punctuation.definition.group.begin.less
+//                                  ^ punctuation.definition.group.end.less
+    color: hsvsaturation(hsv(90, 100%, 50%));
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^^^^^^ support.function.color-definition.less
+//                      ^ punctuation.definition.group.begin.less
+//                                         ^ punctuation.definition.group.end.less
+    color: hsvvalue(hsv(90, 100%, 50%));
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^ support.function.color-definition.less
+//                 ^ punctuation.definition.group.begin.less
+//                                    ^ punctuation.definition.group.end.less
+    color: red(rgb(10, 20, 30));
+//         ^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^ support.function.color-definition.less
+//            ^ punctuation.definition.group.begin.less
+//                            ^ punctuation.definition.group.end.less
+    color: green(rgb(10, 20, 30));
+//         ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^ support.function.color-definition.less
+//              ^ punctuation.definition.group.begin.less
+//                              ^ punctuation.definition.group.end.less
+    color: blue(rgb(10, 20, 30));
+//         ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^ support.function.color-definition.less
+//             ^ punctuation.definition.group.begin.less
+//                             ^ punctuation.definition.group.end.less
+    color: alpha(rgba(10, 20, 30, 0.5));
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^ support.function.color-definition.less
+//              ^ punctuation.definition.group.begin.less
+//                                    ^ punctuation.definition.group.end.less
+    color: luma(rgb(100, 200, 30));
+//         ^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^ support.function.color-definition.less
+//             ^ punctuation.definition.group.begin.less
+//                               ^ punctuation.definition.group.end.less
+    color: luminance(rgb(100, 200, 30));
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^^ support.function.color-definition.less
+//                  ^ punctuation.definition.group.begin.less
+//                                    ^ punctuation.definition.group.end.less
+}
+
+/* Color Operation Functions */
+#color-operation-functions {
+    color: saturate(hsl(90, 80%, 50%), 20%);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.les
+//         ^^^^^^^^ support.function.color-operation.less
+//                 ^ punctuation.definition.group.begin.less
+//                                        ^ punctuation.definition.group.end.less
+    color: desaturate(hsl(90, 80%, 50%), 20%);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.les
+//         ^^^^^^^^^^ support.function.color-operation.less
+//                   ^ punctuation.definition.group.begin.less
+//                                          ^ punctuation.definition.group.end.less
+    color: lighten(hsl(90, 80%, 50%), 20%);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.les
+//         ^^^^^^^ support.function.color-operation.less
+//                ^ punctuation.definition.group.begin.less
+//                                       ^ punctuation.definition.group.end.less
+    color: darken(hsl(90, 80%, 50%), 20%);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.les
+//         ^^^^^^ support.function.color-operation.less
+//               ^ punctuation.definition.group.begin.less
+//                                      ^ punctuation.definition.group.end.less
+    color: fadein(hsl(90, 80%, 50%), 20%);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.les
+//         ^^^^^^ support.function.color-operation.less
+//               ^ punctuation.definition.group.begin.less
+//                                      ^ punctuation.definition.group.end.less
+    color: fadeout(hsl(90, 80%, 50%), 20%, relative);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.les
+//         ^^^^^^^ support.function.color-operation.less
+//                ^ punctuation.definition.group.begin.less
+//                                                 ^ punctuation.definition.group.end.less
+    color: fade(hsl(90, 80%, 50%), 20%);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.les
+//         ^^^^ support.function.color-operation.less
+//             ^ punctuation.definition.group.begin.less
+//                                    ^ punctuation.definition.group.end.less
+    color: spin(hsl(10, 90%, 50%), 30);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.les
+//         ^^^^ support.function.color-operation.less
+//             ^ punctuation.definition.group.begin.less
+//                                   ^ punctuation.definition.group.end.less
+    color: mix(#ff0000, #0000ff, 50%);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^ support.function.color-operation.less
+//            ^ punctuation.definition.group.begin.less
+//             ^^^^^^^ constant.other.color.rgb-value.less
+//                    ^ punctuation.separator.less
+//                               ^^^ constant.numeric.less
+//                                  ^ punctuation.definition.group.end.less
+    color: tint(#007fff, 50%);
+//         ^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^ support.function.color-operation.less
+//             ^ punctuation.definition.group.begin.less
+//              ^^^^^^^ constant.other.color.rgb-value.less
+//                          ^ punctuation.definition.group.end.less
+    color: shade(#007fff, 50%);
+//         ^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^ support.function.color-operation.less
+//              ^ punctuation.definition.group.begin.less
+//               ^^^^^^^ constant.other.color.rgb-value.less
+//                           ^ punctuation.definition.group.end.less
+    color: greyscale(hsl(90, 90%, 50%));
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.les
+//         ^^^^^^^^^ support.function.color-operation.less
+//                  ^ punctuation.definition.group.begin.less
+//                                    ^ punctuation.definition.group.end.less
+    color: contrast(hsl(90, 100%, 50%), #000000, #ffffff, 80%);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.les
+//         ^^^^^^^^ support.function.color-operation.less
+//                 ^ punctuation.definition.group.begin.less
+//                  ^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^ constant.other.color.rgb-value.less
+//                                                        ^^^ constant.numeric.less
+//                                                           ^ punctuation.definition.group.end.less
+}
+
+/* Color Blending Functions */
+#color-blend-functions {
+    color: multiply(#ff6600, #000000);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^ support.function.color-blend.less
+//                 ^ punctuation.definition.group.begin.less
+//                  ^^^^^^^ constant.other.color.rgb-value.less
+//                         ^ punctuation.separator.less
+//                                  ^ punctuation.definition.group.end.less
+
+    color: screen(#ff6600, #000000);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^ support.function.color-blend.less
+//               ^ punctuation.definition.group.begin.less
+//                ^^^^^^^ constant.other.color.rgb-value.less
+//                       ^ punctuation.separator.less
+//                                ^ punctuation.definition.group.end.less
+
+    color: overlay(#ff6600, #000000);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^ support.function.color-blend.less
+//                ^ punctuation.definition.group.begin.less
+//                 ^^^^^^^ constant.other.color.rgb-value.less
+//                        ^ punctuation.separator.less
+//                                 ^ punctuation.definition.group.end.less
+
+    color: softlight(#ff6600, #000000);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^^ support.function.color-blend.less
+//                  ^ punctuation.definition.group.begin.less
+//                   ^^^^^^^ constant.other.color.rgb-value.less
+//                          ^ punctuation.separator.less
+//                                   ^ punctuation.definition.group.end.less
+
+    color: hardlight(#ff6600, #000000);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^^ support.function.color-blend.less
+//                  ^ punctuation.definition.group.begin.less
+//                   ^^^^^^^ constant.other.color.rgb-value.less
+//                          ^ punctuation.separator.less
+//                                   ^ punctuation.definition.group.end.less
+
+    color: difference(#ff6600, #000000);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^^^ support.function.color-blend.less
+//                   ^ punctuation.definition.group.begin.less
+//                    ^^^^^^^ constant.other.color.rgb-value.less
+//                           ^ punctuation.separator.less
+//                                    ^ punctuation.definition.group.end.less
+
+    color: exclusion(#ff6600, #000000);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^^ support.function.color-blend.less
+//                  ^ punctuation.definition.group.begin.less
+//                   ^^^^^^^ constant.other.color.rgb-value.less
+//                          ^ punctuation.separator.less
+//                                   ^ punctuation.definition.group.end.less
+
+    color: average(#ff6600, #000000);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^ support.function.color-blend.less
+//                ^ punctuation.definition.group.begin.less
+//                 ^^^^^^^ constant.other.color.rgb-value.less
+//                        ^ punctuation.separator.less
+//                                 ^ punctuation.definition.group.end.less
+
+    color: negation(#ff6600, #000000);
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^^^^ support.function.color-blend.less
+//                 ^ punctuation.definition.group.begin.less
+//                  ^^^^^^^ constant.other.color.rgb-value.less
+//                         ^ punctuation.separator.less
+//                                  ^ punctuation.definition.group.end.less
+}
