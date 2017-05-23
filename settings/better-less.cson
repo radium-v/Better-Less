@@ -1,0 +1,4 @@
+".source.less":
+  editor:
+    commentStart: "// "
+    foldEndPattern: '(?<!\\*)\\*\\*/|^\\s*\\}'

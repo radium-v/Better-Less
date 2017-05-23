@@ -1,5 +1,9 @@
 // SYNTAX TEST "Packages/Better-Less/Syntaxes/Better Less.tmLanguage"
 
+.a {
+    text-decoration: none;
+}
+
 // oh hey, I'm a comment
 // <- punctuation.definition.comment.less
 // ^^^^^^^^^^^^^^^^^^^^^^ comment.line.double-slash.less
@@ -41,6 +45,13 @@
    @{property}: #0ee;
    background-@{property}: #999;
 // ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//            ^^^^^^^^^^^ variable.other.readwrite.less
+//            ^ punctuation.definition.variable.less
+//             ^ punctuation.definition.expression.less
+//              ^^^^^^^^ support.other.variable.less
+//                      ^ punctuation.definition.expression.less
+//                       ^ punctuation.separator.key-value.less
+
  }
 
 #header {
@@ -75,7 +86,6 @@
 //          ^ punctuation.terminator.rule.less
 
    #bordered();
-// ^^^^^^^^^^^  meta.function-call.less
 // ^            punctuation.definition.entity.less
 // ^^^^^^^^^    entity.other.attribute-name.mixin.less
 //          ^^  meta.group.less
@@ -84,7 +94,7 @@
 }
 
 /* Guarded Namespaces */
-#namespace when (@mode=huge) { }
+#namespace when (@mode=huge) not (default()) { }
 //         ^^^^^^^^^^^^^^^^^^^^^ meta.conditional.guarded-namespace.less
 //         ^^^^ keyword.control.conditional.less
 //              ^ punctuation.definition.group.begin.less
@@ -778,3 +788,8 @@ filter: e("ms:alwaysHasItsOwnSyntax.For.Stuff()");
 //                         ^ punctuation.separator.less
 //                                  ^ punctuation.definition.group.end.less
 }
+
+input::-webkit-slider-runnable-track { }
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.pseudo-element.less
+//   ^^ punctuation.definition.entity.less
+//     ^^^^^^^^ support.type.vendor-prefix.less

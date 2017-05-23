@@ -1,0 +1,15 @@
+{
+  "name": "better-less",
+  "version": "0.1.0",
+  "description": "Cross-compatible syntax highlighting for Less",
+  "keywords": [
+    "less",
+    "css",
+    "syntax"
+  ],
+  "repository": "https://github.com/radium-v/better-less",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}
