@@ -1967,9 +1967,10 @@ repository:
       begin: \(
       beginCaptures:
         '0': {name: punctuation.definition.group.begin.less}
-      end: \s*(\))
+      end: \s*(\))(;)?
       endCaptures:
-        '0': {name: punctuation.definition.group.end.less}
+        '1': {name: punctuation.definition.group.end.less}
+        '2': {name: punctuation.terminator.rule.less}
       patterns:
       - include: '#less-variable-assignment'
       - include: '#property-values'
