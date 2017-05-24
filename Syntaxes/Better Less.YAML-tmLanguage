@@ -693,7 +693,7 @@ repository:
     match: (?:[-+]?\d+)
 
   keyframe-name:
-    begin: \s*(-?(?:[_a-z]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?
+    begin: \s*(-?(?:[_a-z]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[\p{L}\p{M}\p{S}\p{N}&&[^[:ascii:]]]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?
     beginCaptures:
       '1': {name: entity.other.animation-name.less}
     end: \s*(?:(,)|(?=[{;]))
@@ -1908,15 +1908,17 @@ repository:
     - name: entity.name.tag.less
       match: \b(a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdi|bdo|big|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|content|data|datalist|dd|del|details|dfn|dir|dialog|div|dl|dt|element|em|embed|eventsource|fieldset|figure|figcaption|footer|form|frame|frameset|h[1-6]|head|header|hgroup|hr|html|i|iframe|img|input|ins|isindex|kbd|keygen|label|legend|li|link|main|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|picture|pre|progress|q|rp|rt|rtc|s|samp|script|section|select|shadow|small|source|span|strike|strong|style|sub|summary|sup|svg|table|tbody|td|template|textarea|tfoot|th|thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp|circle|clipPath|defs|ellipse|filter|foreignObject|g|glyph|glyphRef|image|line|linearGradient|marker|mask|path|pattern|polygon|polyline|radialGradient|rect|stop|switch|symbol|text|textPath|tref|tspan|use)\b
     - name: entity.other.attribute-name.class.less
-      begin: (\.)(?:[\w-]|[^\x00-\x9f]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*
+      begin: (\.)(?:[-\w]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*
       beginCaptures:
         '1': {name: punctuation.definition.entity.less}
-      end: (?![\w-]|[^\x00-\x9f]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))
+      end: (?![-\w]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))
+      patterns:
+      - include: '#less-variable-interpolation'
     - name: entity.other.attribute-name.id.less
-      begin: (\#)(?:[\w-]|[^\x00-\x9f]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*
+      begin: (\#)(?:[-\w]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*
       beginCaptures:
         '1': {name: punctuation.definition.entity.less}
-      end: (?![\w-]|[^\x00-\x9f]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))
+      end: (?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))
       patterns:
       - include: '#less-variable-interpolation'
     - name: meta.selector.less

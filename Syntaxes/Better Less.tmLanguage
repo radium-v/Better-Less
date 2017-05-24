@@ -2189,7 +2189,7 @@
 		<key>keyframe-name</key>
 		<dict>
 			<key>begin</key>
-			<string>\s*(-?(?:[_a-z]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[\240-\377]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?</string>
+			<string>\s*(-?(?:[_a-z]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -5824,7 +5824,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(\.)(?:[\w-]|[^\x00-\x9f]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*</string>
+					<string>(\.)(?:[-\w]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -5834,13 +5834,20 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?![\w-]|[^\x00-\x9f]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))</string>
+					<string>(?![-\w]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))</string>
 					<key>name</key>
 					<string>entity.other.attribute-name.class.less</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#less-variable-interpolation</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(\#)(?:[\w-]|[^\x00-\x9f]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*</string>
+					<string>(\#)(?:[-\w]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -5850,7 +5857,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?![\w-]|[^\x00-\x9f]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))</string>
+					<string>(?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))</string>
 					<key>name</key>
 					<string>entity.other.attribute-name.id.less</string>
 					<key>patterns</key>
