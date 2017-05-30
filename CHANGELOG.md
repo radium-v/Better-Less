@@ -1,4 +1,4 @@
-## 0.1.2 - Imported Goods
+## 0.2.1 - Imported Goods
 * Fix `@import` statements with media queries
 
 ## 0.1.1 - This is Happening
