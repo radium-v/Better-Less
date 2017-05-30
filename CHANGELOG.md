@@ -1,3 +1,6 @@
+## 0.3.0 - Visualize it
+* Add preliminary support for VS Code
+
 ## 0.2.1 - Imported Goods
 * Fix `@import` statements with media queries
 
