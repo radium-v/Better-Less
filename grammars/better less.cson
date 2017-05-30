@@ -4,7 +4,7 @@ fileTypes: [
 foldingStartMarker: '/\\*\\*(?!\\*)|\\{\\s*($|/\\*(?!.*?\\*/.*\\S))'
 foldingStopMarker: '(?<!\\*)\\*\\*/|^\\s*\\}'
 keyEquivalent: '^~L'
-name: 'Less'
+name: 'Better Less'
 patterns: [
   {
     include: '#comment-block'
@@ -50,7 +50,7 @@ repository:
       }
     ]
   'at-counter-style':
-    begin: '\\s*((@)counter-style\\b)\\s+(?:(?i:\\b(decimal|none)\\b)|(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*))\\s*(?=\\{|$)'
+    begin: '\\s*((@)counter-style\\b)\\s+(?:(?i:\\b(decimal|none)\\b)|(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*))\\s*(?=\\{|$)'
     captures:
       '1':
         name: 'keyword.control.at-rule.counter-style.less'
@@ -59,7 +59,7 @@ repository:
       '3':
         name: 'invalid.illegal.counter-style-name.less'
       '4':
-        name: 'entity.other.counter-style-name.less'
+        name: 'variable.other.constant.counter-style-name.less'
     end: '\\s*(\\})'
     endCaptures:
       '1':
@@ -120,7 +120,7 @@ repository:
     ]
   'at-import':
     begin: '\\s*((@)import\\b)\\s*'
-    captures:
+    beginCaptures:
       '1':
         name: 'keyword.control.at-rule.import.less'
       '2':
@@ -135,10 +135,39 @@ repository:
         include: '#url-function'
       }
       {
-        include: '#literal-string'
+        include: '#less-variables'
       }
       {
-        include: '#less-import-directive'
+        begin: '(?<=([\"\'])|([\"\']\\)))\\s*'
+        end: '\\s*(?=\\;)'
+        patterns: [
+          {
+            include: '#media-query'
+          }
+        ]
+      }
+      {
+        begin: '\\('
+        beginCaptures:
+          '0':
+            name: 'punctuation.definition.group.begin.less'
+        end: '\\)'
+        endCaptures:
+          '0':
+            name: 'punctuation.definition.group.end.less'
+        name: 'meta.group.less'
+        patterns: [
+          {
+            match: 'reference|inline|less|css|once|multiple|optional'
+            name: 'constant.language.import-directive.less'
+          }
+          {
+            include: '#comma-delimiter'
+          }
+        ]
+      }
+      {
+        include: '#literal-string'
       }
     ]
   'at-keyframes':
@@ -167,7 +196,7 @@ repository:
           {
             captures:
               '1':
-                name: 'keyword.keyframe-selector.less'
+                name: 'keyword.other.keyframe-selector.less'
               '2':
                 name: 'constant.numeric.less'
               '3':
@@ -231,14 +260,12 @@ repository:
       }
     ]
   'at-namespace':
-    begin: '\\s*((@)namespace)\\s+(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)?'
-    captures:
+    begin: '\\s*((@)namespace)\\s+'
+    beginCaptures:
       '1':
         name: 'keyword.control.at-rule.namespace.less'
       '2':
         name: 'punctuation.definition.keyword.less'
-      '3':
-        name: 'entity.other.namespace-prefix.less'
     end: '\\;'
     endCaptures:
       '0':
@@ -246,7 +273,14 @@ repository:
     name: 'meta.at-rule.namespace.less'
     patterns: [
       {
+        include: '#url-function'
+      }
+      {
         include: '#literal-string'
+      }
+      {
+        match: '(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+        name: 'entity.name.constant.namespace-prefix.less'
       }
     ]
   'at-page':
@@ -258,7 +292,7 @@ repository:
       '3':
         name: 'punctuation.definition.entity.less'
       '4':
-        name: 'entity.other.pseudo-class.less'
+        name: 'entity.other.attribute-name.pseudo-class.less'
     match: '\\s*((@)page)\\s*(?:(:)(first|left|right))?\\s*(?=\\{|$)'
     name: 'meta.at-rule.page.less'
     patterns: [
@@ -300,6 +334,9 @@ repository:
       }
       {
         include: '#at-supports'
+      }
+      {
+        include: '#at-viewport'
       }
     ]
   'at-supports':
@@ -366,6 +403,35 @@ repository:
         include: '#rule-list-body'
       }
     ]
+  'at-viewport':
+    begin: '((@(-ms-)?)viewport)'
+    beginCaptures:
+      '1':
+        name: 'keyword.control.at-rule.viewport.less'
+      '2':
+        name: 'punctuation.definition.keyword.less'
+      '3':
+        name: 'support.type.vendor-prefix.less'
+    end: '\\}'
+    endCaptures:
+      '0':
+        name: 'punctuation.definition.block.end.less'
+    name: 'meta.at-rule.viewport.less'
+    patterns: [
+      {
+        begin: '\\{'
+        captures:
+          '0':
+            name: 'punctuation.definition.block.begin.less'
+        end: '(?=\\})'
+        name: 'meta.block.less'
+        patterns: [
+          {
+            include: '#rule-list-body'
+          }
+        ]
+      }
+    ]
   'attr-function':
     begin: '\\b(attr)(?=\\()'
     beginCaptures:
@@ -391,7 +457,7 @@ repository:
             include: '#literal-string'
           }
           {
-            begin: '(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+            begin: '(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
             end: '(?=\\))'
             name: 'entity.other.attribute-name.less'
             patterns: [
@@ -673,7 +739,7 @@ repository:
             end: '(?=\\))'
             patterns: [
               {
-                match: '(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+                match: '(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
                 name: 'entity.other.counter-name.less'
               }
               {
@@ -712,7 +778,7 @@ repository:
             end: '(?=\\))'
             patterns: [
               {
-                match: '(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+                match: '(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
                 name: 'entity.other.counter-name.less string.unquoted.less'
               }
               {
@@ -812,7 +878,7 @@ repository:
         name: 'punctuation.definition.custom-property.less'
       '2':
         name: 'support.type.custom-property.name.less'
-    match: '(--)(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+    match: '(--)(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
     name: 'support.type.custom-property.less'
   'filter-function':
     begin: '\\b(filter)(?=\\()'
@@ -1195,7 +1261,7 @@ repository:
     begin: '\\s*(-?(?:[_a-z]|[\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]|(?:(:?\\\\[0-9a-f]{1,6}(\\r\\n|[ \\t\\r\\n\\f])?)|\\\\[^\\r\\n\\f0-9a-f]))(?:[_a-z0-9-]|[\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]|(?:(:?\\\\[0-9a-f]{1,6}(\\r\\n|[\\t\\r\\n\\f])?)|\\\\[^\\r\\n\\f0-9a-f]))*)?'
     beginCaptures:
       '1':
-        name: 'entity.other.animation-name.less'
+        name: 'variable.other.constant.animation-name.less'
     end: '\\s*(?:(,)|(?=[{;]))'
     endCaptures:
       '1':
@@ -1568,25 +1634,6 @@ repository:
       }
       {
         include: '#less-type-functions'
-      }
-    ]
-  'less-import-directive':
-    begin: '\\s*(\\()\\s*'
-    beginCaptures:
-      '0':
-        name: 'punctuation.definition.group.begin.less'
-    end: '\\)'
-    endCaptures:
-      '0':
-        name: 'punctuation.definition.group.end.less'
-    name: 'meta.group.less'
-    patterns: [
-      {
-        match: 'reference|inline|less|css|once|multiple|optional'
-        name: 'constant.language.import-directive.less'
-      }
-      {
-        include: '#comma-delimiter'
       }
     ]
   'less-list-functions':
@@ -2266,7 +2313,7 @@ repository:
   'less-variable-assignment':
     patterns: [
       {
-        begin: '(@)(-?(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+        begin: '(@)(-?(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
         beginCaptures:
           '0':
             name: 'variable.other.readwrite.less'
@@ -2306,7 +2353,7 @@ repository:
   'less-variable-comparison':
     patterns: [
       {
-        begin: '(@{1,2})([-]?([_a-z]|[\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+        begin: '(@{1,2})([-]?([_a-z]|[\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
         beginCaptures:
           '0':
             name: 'variable.other.readwrite.less'
@@ -2336,7 +2383,7 @@ repository:
             include: '#selector'
           }
           {
-            match: '-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*(\\s+-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)*'
+            match: '-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*(\\s+-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)*'
             name: 'string.unquoted.less'
           }
           {
@@ -2461,7 +2508,7 @@ repository:
         name: 'meta.group.less'
         patterns: [
           {
-            begin: '(?x)((-webkit-|-o-)?((min|max)-)?(-moz-)?(((device-)?(height|width|aspect-ratio|pixel-ratio))|(color(-index)?)|monochrome|resolution))|grid|scan|orientation\\s*(?=[:)])'
+            begin: '((-webkit-|-o-)?((min|max)-)?(-moz-)?(((device-)?(height|width|aspect-ratio|pixel-ratio))|(color(-index)?)|monochrome|resolution))|grid|scan|orientation\\s*(?=[:)])'
             beginCaptures:
               '0':
                 name: 'support.type.property-name.media.less'
@@ -2498,6 +2545,9 @@ repository:
             include: '#less-variables'
           }
         ]
+      }
+      {
+        include: '#media-query'
       }
     ]
   'media-query-list':
@@ -2578,7 +2628,7 @@ repository:
   'property-value-constants':
     patterns: [
       {
-        match: '(?x)\\b(\n    absolute|active|add\n  | all(-(petite|small)-caps|-scroll)?\n  | alpha(betic)?\n  | alternate(-reverse)?\n  | always|annotation|antialiased|at\n  | auto(hiding-scrollbar)?\n  | avoid(-column|-page|-region)?\n  | background(-color|-image|-position|-size)?\n  | backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink\n  | block(-line-height)?\n  | blur\n  | bold(er)?\n  | border(-bottom|-left|-right|-top)?-(color|radius|width|style)\n  | border-(bottom|top)-(left|right)-radius\n  | border-image(-outset|-repeat|-slice|-source|-width)?\n  | border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?\n  | both|bottom\n  | box(-shadow)?\n  | break-(all|word)\n  | brightness\n  | butt(on)?\n  | capitalize\n  | cent(er|ral)\n  | char(acter-variant)?\n  | cjk-ideographic|clip|clone|close-quote\n  | closest-(corner|side)\n  | col-resize|collapse\n  | color(-stop|-burn|-dodge)?\n  | column((-count|-gap|-reverse|-rule(-color|-width)?|-width)|s)?\n  | common-ligatures|condensed|consider-shifts|contain\n  | content(-box|s)?\n  | contextual|contrast|cover\n  | crisp(-e|E)dges\n  | crop\n  | cross(hair)?\n  | da(rken|shed)\n  | default|dense|diagonal-fractions|difference|disabled\n  | discretionary-ligatures|disregard-shifts\n  | distribute(-all-lines|-letter|-space)?\n  | dotted|double|drop-shadow\n  | (nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize\n  | ease(-in-out|-in|-out)?\n  | element|ellipsis|embed|end|EndColorStr|evenodd\n  | exclu(de(-ruby)?|sion)\n  | expanded\n  | (extra|semi|ultra)-(condensed|expanded)\n  | farthest-(corner|side)?\n  | fill(-box|-opacity)?\n  | filter|fixed|flat\n  | flex((-basis|-end|-grow|-shrink|-start)|box)?\n  | flip|flood-color\n  | font(-size(-adjust)?|-stretch|-weight)?\n  | forwards\n  | from(-image)?\n  | full-width|geometricPrecision|glyphs|gradient|grayscale\n  | grid(-height)?\n  | groove|hand|hanging|hard-light|height|help|hidden|hide\n  | historical-(forms|ligatures)\n  | horizontal(-tb)?\n  | hue\n  | ideograph(-alpha|-numeric|-parenthesis|-space|ic)\n  | inactive|include-ruby|infinite|inherit|initial\n  | inline(-block|-box|-flex(box)?|-line-height|-table)?\n  | inset|inside\n  | inter(-ideograph|-word|sect)\n  | invert|isolat(e|ion)|italic\n  | jis(04|78|83|90)\n  | justify(-all)?\n  | keep-all\n  | large[r]?\n  | last|left|letter-spacing\n  | light(e[nr]|ing-color)\n  | line(-edge|-height|-through)?\n  | linear(-gradient|RGB)?\n  | lining-nums|list-item|local|loose|lowercase|lr-tb|ltr\n  | lumin(osity|ance)|manual\n  | margin(-bottom|-box|-left|-right|-top)?\n  | marker(-offset|s)?\n  | mathematical\n  | max-(content|height|lines|size|width)\n  | medium|middle\n  | min-(content|height|width)\n  | miter|mixed|move|multiply|newspaper\n  | no-(change|clip|(close|open)-quote|(common|discretionary|historical)-ligatures|contextual|drop|repeat)\n  | none|nonzero|normal|not-allowed|nowrap|oblique\n  | offset(-after|-before|-end|-start)?\n  | oldstyle-nums|opacity|open-quote\n  | optimize(Legibility|Precision|Quality|Speed)\n  | order|ordinal|ornaments\n  | outline(-color|-offset|-width)?\n  | outset|outside|over(line|-edge|lay)\n  | padding(-bottom|-box|-left|-right|-top|-box)?\n  | page|painted|paused\n  | perspective-origin\n  | petite-caps|pixelated|pointer\n  | pre(-line|-wrap)?\n  | preserve-3d\n  | progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)\n  | progress\n  | proportional-(nums|width)\n  | radial-gradient|recto|region|relative\n  | repeat(-[xy])?\n  | repeating-(linear|radial)-gradient\n  | replaced|reset-size|reverse|ridge|right\n  | round\n  | row(-resize|-reverse)?\n  | rtl|ruby|running|saturat(e|ion)|screen\n  | scroll(-position|bar)?\n  | separate|sepia\n  | scale-down\n  | shape-(image-threshold|margin|outside)\n  | show\n  | sideways(-lr|-rl)?\n  | simplified\n  | slashed-zero|slice\n  | small(-caps|er)?\n  | smooth|snap|solid|soft-light\n  | space(-around|-between)?\n  | span|sRGB\n  | stack(ed-fractions)?\n  | start(ColorStr)?\n  | static\n  | step-(end|start)\n  | sticky\n  | stop-(color|opacity)\n  | stretch|strict\n  | stroke(-box|-dash(array|offset)|-miterlimit|-opacity|-width)?\n  | style(set)?\n  | stylistic\n  | sub(grid|pixel-antialiased|tract)?\n  | super|swash\n  | table(-caption|-cell|(-column|-footer|-header|-row)-group|-column|-row)?\n  | tabular-nums|tb-rl\n  | text((-bottom|-(decoration|emphasis)-color|-indent|-(over|under)-edge|-shadow|-size(-adjust)?|-top)|field)?\n  | thi(ck|n)\n  | titling-ca(ps|se)\n  | to[p]?\n  | touch|traditional\n  | transform(-origin)?\n  | under(-edge|line)?\n  | unicase|unset|uppercase|upright\n  | use-(glyph-orientation|script)\n  | verso\n  | vertical(-align|-ideographic|-lr|-rl|-text)?\n  | view-box\n  | viewport-fill(-opacity)?\n  | visibility\n  | visible(Fill|Painted|Stroke)?\n  | wait|wavy|weight|whitespace|width|word-spacing\n  | wrap(-reverse)?\n  | x{1,2}-(large|small)\n  | z-index|zero\n  | zoom(-in|-out)?\n  | ((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman))\n)\\b'
+        match: '(?x)\\b(\n    absolute|active|add\n  | all(-(petite|small)-caps|-scroll)?\n  | alpha(betic)?\n  | alternate(-reverse)?\n  | always|annotation|antialiased|at\n  | auto(hiding-scrollbar)?\n  | avoid(-column|-page|-region)?\n  | background(-color|-image|-position|-size)?\n  | backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink\n  | block(-line-height)?\n  | blur\n  | bold(er)?\n  | border(-bottom|-left|-right|-top)?-(color|radius|width|style)\n  | border-(bottom|top)-(left|right)-radius\n  | border-image(-outset|-repeat|-slice|-source|-width)?\n  | border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?\n  | both|bottom\n  | box(-shadow)?\n  | break-(all|word)\n  | brightness\n  | butt(on)?\n  | capitalize\n  | cent(er|ral)\n  | char(acter-variant)?\n  | cjk-ideographic|clip|clone|close-quote\n  | closest-(corner|side)\n  | col-resize|collapse\n  | color(-stop|-burn|-dodge)?\n  | column((-count|-gap|-reverse|-rule(-color|-width)?|-width)|s)?\n  | common-ligatures|condensed|consider-shifts|contain\n  | content(-box|s)?\n  | contextual|contrast|cover\n  | crisp(-e|E)dges\n  | crop\n  | cross(hair)?\n  | da(rken|shed)\n  | default|dense|diagonal-fractions|difference|disabled\n  | discretionary-ligatures|disregard-shifts\n  | distribute(-all-lines|-letter|-space)?\n  | dotted|double|drop-shadow\n  | (nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize\n  | ease(-in-out|-in|-out)?\n  | element|ellipsis|embed|end|EndColorStr|evenodd\n  | exclu(de(-ruby)?|sion)\n  | expanded\n  | (extra|semi|ultra)-(condensed|expanded)\n  | farthest-(corner|side)?\n  | fill(-box|-opacity)?\n  | filter|fixed|flat\n  | flex((-basis|-end|-grow|-shrink|-start)|box)?\n  | flip|flood-color\n  | font(-size(-adjust)?|-stretch|-weight)?\n  | forwards\n  | from(-image)?\n  | full-width|geometricPrecision|glyphs|gradient|grayscale\n  | grid(-height)?\n  | groove|hand|hanging|hard-light|height|help|hidden|hide\n  | historical-(forms|ligatures)\n  | horizontal(-tb)?\n  | hue\n  | ideograph(-alpha|-numeric|-parenthesis|-space|ic)\n  | inactive|include-ruby|infinite|inherit|initial\n  | inline(-block|-box|-flex(box)?|-line-height|-table)?\n  | inset|inside\n  | inter(-ideograph|-word|sect)\n  | invert|isolat(e|ion)|italic\n  | jis(04|78|83|90)\n  | justify(-all)?\n  | keep-all\n  | large[r]?\n  | last|left|letter-spacing\n  | light(e[nr]|ing-color)\n  | line(-edge|-height|-through)?\n  | linear(-gradient|RGB)?\n  | lining-nums|list-item|local|loose|lowercase|lr-tb|ltr\n  | lumin(osity|ance)|manual\n  | manipulation\n  | margin(-bottom|-box|-left|-right|-top)?\n  | marker(-offset|s)?\n  | mathematical\n  | max-(content|height|lines|size|width)\n  | medium|middle\n  | min-(content|height|width)\n  | miter|mixed|move|multiply|newspaper\n  | no-(change|clip|(close|open)-quote|(common|discretionary|historical)-ligatures|contextual|drop|repeat)\n  | none|nonzero|normal|not-allowed|nowrap|oblique\n  | offset(-after|-before|-end|-start)?\n  | oldstyle-nums|opacity|open-quote\n  | optimize(Legibility|Precision|Quality|Speed)\n  | order|ordinal|ornaments\n  | outline(-color|-offset|-width)?\n  | outset|outside|over(line|-edge|lay)\n  | padding(-bottom|-box|-left|-right|-top|-box)?\n  | page|painted|paused\n  | pan-(x|left|right|y|up|down)\n  | perspective-origin\n  | petite-caps|pixelated|pointer\n  | pinch-zoom\n  | pre(-line|-wrap)?\n  | preserve-3d\n  | progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)\n  | progress\n  | proportional-(nums|width)\n  | radial-gradient|recto|region|relative\n  | repeat(-[xy])?\n  | repeating-(linear|radial)-gradient\n  | replaced|reset-size|reverse|ridge|right\n  | round\n  | row(-resize|-reverse)?\n  | rtl|ruby|running|saturat(e|ion)|screen\n  | scroll(-position|bar)?\n  | separate|sepia\n  | scale-down\n  | shape-(image-threshold|margin|outside)\n  | show\n  | sideways(-lr|-rl)?\n  | simplified\n  | slashed-zero|slice\n  | small(-caps|er)?\n  | smooth|snap|solid|soft-light\n  | space(-around|-between)?\n  | span|sRGB\n  | stack(ed-fractions)?\n  | start(ColorStr)?\n  | static\n  | step-(end|start)\n  | sticky\n  | stop-(color|opacity)\n  | stretch|strict\n  | stroke(-box|-dash(array|offset)|-miterlimit|-opacity|-width)?\n  | style(set)?\n  | stylistic\n  | sub(grid|pixel-antialiased|tract)?\n  | super|swash\n  | table(-caption|-cell|(-column|-footer|-header|-row)-group|-column|-row)?\n  | tabular-nums|tb-rl\n  | text((-bottom|-(decoration|emphasis)-color|-indent|-(over|under)-edge|-shadow|-size(-adjust)?|-top)|field)?\n  | thi(ck|n)\n  | titling-ca(ps|se)\n  | to[p]?\n  | touch|traditional\n  | transform(-origin)?\n  | under(-edge|line)?\n  | unicase|unset|uppercase|upright\n  | use-(glyph-orientation|script)\n  | verso\n  | vertical(-align|-ideographic|-lr|-rl|-text)?\n  | view-box\n  | viewport-fill(-opacity)?\n  | visibility\n  | visible(Fill|Painted|Stroke)?\n  | wait|wavy|weight|whitespace|(device-)?width|word-spacing\n  | wrap(-reverse)?\n  | x{1,2}-(large|small)\n  | z-index|zero\n  | zoom(-in|-out)?\n  | ((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman))\n)\\b'
         name: 'support.constant.property-value.less'
       }
       {
@@ -2625,7 +2675,10 @@ repository:
         include: '#literal-string'
       }
       {
-        match: '\\!\\s*important'
+        captures:
+          '1':
+            name: 'punctuation.separator.less'
+        match: '(\\!)\\s*important'
         name: 'keyword.other.important.less'
       }
     ]
@@ -2682,7 +2735,7 @@ repository:
         ]
       }
       {
-        begin: '(:)(nth-last-child|nth-child|nth-last-of-type|nth-of-type)(?=\\()'
+        begin: '(:)(nth(-last)?-(child|of-type))(?=\\()'
         captures:
           '1':
             name: 'punctuation.definition.entity.less'
@@ -2734,20 +2787,22 @@ repository:
           '1':
             name: 'punctuation.definition.entity.less'
           '2':
+            name: 'punctuation.definition.entity.less'
+          '3':
             name: 'support.type.vendor-prefix.less'
-        match: '(?:(::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)))\\b'
+        match: '(?:(:{1,2})(?:before|after|first-line|first-letter)|(::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)))\\b'
         name: 'entity.other.attribute-name.pseudo-element.less'
       }
     ]
   'qualified-name':
     captures:
       '1':
-        name: 'entity.other.namespace-prefix.less'
+        name: 'entity.name.constant.less'
       '2':
         name: 'entity.name.namespace.wildcard.less'
       '3':
         name: 'punctuation.separator.namespace.less'
-    match: '(?:(-?(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)|(\\*))?([|])(?!=)'
+    match: '(?:(-?(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)|(\\*))?([|])(?!=)'
   'regexp-function':
     begin: '\\b(regexp)(?=\\()'
     end: '\\)'
@@ -2830,7 +2885,7 @@ repository:
             name: 'keyword.other.custom-property.prefix.less'
           '2':
             name: 'support.type.custom-property.name.less'
-        match: '\\b(var-)(-?(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)(?=\\s)'
+        match: '\\b(var-)(-?(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)(?=\\s)'
         name: 'invalid.deprecated.custom-property.less'
       }
       {
@@ -2856,7 +2911,7 @@ repository:
             include: '#property-values'
           }
           {
-            match: '-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*(\\s+-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)*'
+            match: '-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*(\\s+-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)*'
             name: 'string.unquoted.less'
           }
           {
@@ -2866,7 +2921,7 @@ repository:
         ]
       }
       {
-        begin: '\\banimation(-name)?\\b'
+        begin: '\\banimation(-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function))?\\b'
         beginCaptures:
           '0':
             name: 'support.type.property-name.less'
@@ -2888,21 +2943,22 @@ repository:
             include: '#property-values'
           }
           {
-            match: '(-?(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)?'
-            name: 'entity.other.animation-name.less'
+            match: '(-?(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+            name: 'variable.other.constant.animation-name.less'
           }
         ]
       }
       {
-        begin: '\\btransition(-(property|duration|delay|timing-function))?\\b'
+        begin: '\\b(transition(-(property|duration|delay|timing-function))?)\\b'
         beginCaptures:
           '0':
+            name: 'meta.property-name.less'
+          '1':
             name: 'support.type.property-name.less'
         end: '\\s*(;)|(?=[})])'
         endCaptures:
           '1':
             name: 'punctuation.terminator.rule.less'
-        name: 'meta.property-name.less'
         patterns: [
           {
             captures:
@@ -2984,7 +3040,7 @@ repository:
             name: 'invalid.illegal.property-value.less'
           }
           {
-            match: '-?(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*'
+            match: '-?(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*'
             name: 'support.constant.property-value.less'
           }
           {
@@ -3015,8 +3071,8 @@ repository:
             match: '(((\\+_?)?):)([ \\t]*)'
           }
           {
-            match: '-?(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*'
-            name: 'entity.other.counter-name.less'
+            match: '-?(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*'
+            name: 'entity.name.constant.counter-name.less'
           }
           {
             include: '#integer-type'
@@ -3028,7 +3084,7 @@ repository:
         ]
       }
       {
-        match: '\\b(additive-symbols|align-(content|items|self)|alignment-baseline|all|animation(-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function))?|appearance|azimuth|backface-visibility|background(-(attachment|blend-mode|clip|color|image|origin|(position|repeat)(-(x|y))?|size))?|baseline-shift|blend-mode|border-(bottom|top)(-(color|left-radius|right-radius|style|width))?|border-(left|right)(-(color|style|width))?|border-(collapse|color|image(-(outset|repeat|slice|source|width))?|radius|spacing|style|width)|border|bottom|box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)|break-(after|before|inside)|caption-side|clear|clip(-(path|rule))?|color(-(interpolation(-filters)?|rendering))?|column-(break-before|count|fill|gap|rule(-(color|style|width))?|span|width)|columns|content|counter-(increment|reset)|cue(-(after|before))?|cursor|direction|display|dominant-baseline|elevation|empty-cells|fallback|fill(-(opacity|rule))?|filter|flex(-(align|basis|direction|flow|grow|item-align|line(-pack)?|pack|negative|order|positive|preferred-size|shrink|wrap))?|float|flood-(color|opacity)|font(-(display|family|feature-settings|kerning|language-override|size(-adjust)?|smoothing|stretch|style|synthesis|variant(-(alternates|caps|east-asian|ligatures|numeric|position))?|weight))?|grid-(area|gap|auto-(columns|flow|rows)|(column|row)(-(end|gap|start))?|template(-(areas|columns|rows))?)|height|hyphens|image-(orientation|rendering|resolution)|isolation|justify-content|kerning|left|letter-spacing|lighting-color|line-(box-contain|break|clamp|height)|list-style(-(image|position|type))?|(margin|padding)(-(bottom|left|top|right))?|marker(-(end|mid|start))?|mask(-(clip|composite|image|origin|position|repeat|size|type))?|((max|min)-)?(height|width)|mix-blend-mode|nbsp-mode|negative|object-(fit|position)|opacity|order|orphans|outline(-(color|offset|style|width))?|overflow(-(scrolling|wrap|x|y))?|pad|page(-(break-(after|before|inside)))?|paint-order|pause(-(after|before))?|perspective(-(origin(-(x|y))?))?|pitch(-range)?|play-during|pointer-events|position|prefix|quotes|range|resize|richness|right|rotate|scale|scroll-behavior|shape-(image-threshold|margin|outside|rendering)|size|speak(-(as|header|numeral|punctuation))?|speech-rate|src|stop-color|stress|stroke(-(dasharray|dashoffset|linecap|linejoin|miterlimit|opacity|width))?|suffix|symbols|system|tab-size|table-layout|tap-highlight-color|text-(align(-last)?|anchor|decoration(-(color|line|style))?|emphasis(-(color|position|style))?|fill-color|height|indent|justify|orientation|overflow|rendering|shadow|transform|underline-position)|top|touch-action|transform(-(origin(-(x|y))?))?|transform-style|transition(-(delay|duration|property|timing-function))?|translate|unicode-(bidi|range)|user-(drag|select)|vertical-align|visibility|voice-family|volume|white-space|widows|width|will-change|word-(break|spacing|wrap)|writing-mode|z-index|zoom)\\b'
+        match: '\\b(additive-symbols|align-(content|items|self)|alignment-baseline|all|animation(-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function))?|appearance|azimuth|backface-visibility|background(-(attachment|blend-mode|clip|color|image|origin|(position|repeat)(-(x|y))?|size))?|baseline-shift|blend-mode|border-(bottom|top)(-(color|left-radius|right-radius|style|width))?|border-(left|right)(-(color|style|width))?|border-(collapse|color|image(-(outset|repeat|slice|source|width))?|radius|spacing|style|width)|border|bottom|box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)|break-(after|before|inside)|caption-side|clear|clip(-(path|rule))?|color(-(interpolation(-filters)?|rendering))?|column-(break-before|count|fill|gap|rule(-(color|style|width))?|span|width)|columns|content|counter-(increment|reset)|cue(-(after|before))?|cursor|direction|display|dominant-baseline|elevation|empty-cells|fallback|fill(-(opacity|rule))?|filter|flex(-(align|basis|direction|flow|grow|item-align|line(-pack)?|pack|negative|order|positive|preferred-size|shrink|wrap))?|float|flood-(color|opacity)|font(-(display|family|feature-settings|kerning|language-override|size(-adjust)?|smoothing|stretch|style|synthesis|variant(-(alternates|caps|east-asian|ligatures|numeric|position))?|weight))?|grid-(area|gap|auto-(columns|flow|rows)|(column|row)(-(end|gap|start))?|template(-(areas|columns|rows))?)|height|hyphens|image-(orientation|rendering|resolution)|isolation|justify-content|kerning|left|letter-spacing|lighting-color|line-(box-contain|break|clamp|height)|list-style(-(image|position|type))?|(margin|padding)(-(bottom|left|top|right))?|marker(-(end|mid|start))?|mask(-(clip|composite|image|origin|position|repeat|size|type))?|((max|min)-)?(height|width)|mix-blend-mode|nbsp-mode|negative|object-(fit|position)|opacity|order|orphans|outline(-(color|offset|style|width))?|overflow(-(scrolling|wrap|x|y))?|pad|page(-(break-(after|before|inside)))?|paint-order|pause(-(after|before))?|perspective(-(origin(-(x|y))?))?|pitch(-range)?|play-during|pointer-events|position|prefix|quotes|range|resize|richness|right|rotate|scale|scroll-behavior|shape-(image-threshold|margin|outside|rendering)|size|speak(-(as|header|numeral|punctuation))?|speech-rate|src|stop-color|stress|stroke(-(dasharray|dashoffset|linecap|linejoin|miterlimit|opacity|width))?|suffix|symbols|system|tab-size|table-layout|tap-highlight-color|text-(align(-last)?|anchor|decoration(-(color|line|style))?|emphasis(-(color|position|style))?|fill-color|height|indent|justify|orientation|overflow|rendering|shadow|size(-adjust)?|transform|underline-position)|top|touch-action|transform(-(origin(-(x|y))?))?|transform-style|transition(-(delay|duration|property|timing-function))?|translate|unicode-(bidi|range)|user-(drag|select)|vertical-align|visibility|voice-family|volume|white-space|widows|width|will-change|word-(break|spacing|wrap)|writing-mode|z-index|zoom)\\b'
         name: 'support.type.property-name.less'
       }
       {
@@ -3082,6 +3138,9 @@ repository:
               }
               {
                 include: '#length-type'
+              }
+              {
+                include: '#comma-delimiter'
               }
             ]
           }
@@ -3299,6 +3358,9 @@ repository:
               {
                 include: '#number-type'
               }
+              {
+                include: '#less-variables'
+              }
             ]
           }
         ]
@@ -3333,6 +3395,9 @@ repository:
               {
                 include: '#number-type'
               }
+              {
+                include: '#less-variables'
+              }
             ]
           }
         ]
@@ -3364,6 +3429,9 @@ repository:
               {
                 include: '#number-type'
               }
+              {
+                include: '#less-variables'
+              }
             ]
           }
         ]
@@ -3388,6 +3456,9 @@ repository:
             patterns: [
               {
                 include: '#angle-type'
+              }
+              {
+                include: '#less-variables'
               }
             ]
           }
@@ -3442,6 +3513,9 @@ repository:
               {
                 include: '#length-type'
               }
+              {
+                include: '#less-variables'
+              }
             ]
           }
         ]
@@ -3473,6 +3547,9 @@ repository:
               {
                 include: '#number-type'
               }
+              {
+                include: '#less-variables'
+              }
             ]
           }
         ]
@@ -3500,6 +3577,9 @@ repository:
               }
               {
                 include: '#number-type'
+              }
+              {
+                include: '#less-variables'
               }
             ]
           }
@@ -3537,6 +3617,9 @@ repository:
             name: 'punctuation.definition.group.begin.less'
         end: '(?=\\))'
         patterns: [
+          {
+            include: '#less-variables'
+          }
           {
             include: '#literal-string'
           }
@@ -3578,7 +3661,7 @@ repository:
       }
     ]
   'vendor-prefix':
-    match: '-(?:webkit|moz|ms|o)-'
+    match: '-(?:webkit|moz(-osx)?|ms|o)-'
     name: 'support.type.vendor-prefix.less'
   dimensions:
     patterns: [
@@ -3607,15 +3690,15 @@ repository:
         include: '#less-variable-interpolation'
       }
       {
-        match: '\\b(a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdi|bdo|big|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|content|data|datalist|dd|del|details|dfn|dir|dialog|div|dl|dt|element|em|embed|eventsource|fieldset|figure|figcaption|footer|form|frame|frameset|h[1-6]|head|header|hgroup|hr|html|i|iframe|img|input|ins|isindex|kbd|keygen|label|legend|li|link|main|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|picture|pre|progress|q|rp|rt|rtc|s|samp|script|section|select|shadow|small|source|span|strike|strong|style|sub|summary|sup|svg|table|tbody|td|template|textarea|tfoot|th|thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp|circle|clipPath|defs|ellipse|filter|foreignObject|g|glyph|glyphRef|image|line|linearGradient|marker|mask|path|pattern|polygon|polyline|radialGradient|rect|stop|switch|symbol|text|textPath|tref|tspan|use)\\b'
+        match: '\\b(a|abbr|acronym|address|applet|area|article|aside|audio|b|base(font)?|bd(i|o)|big|blockquote|body|br|button|canvas|caption|circle|cite|clipPath|code|col(group)?|content|data(List)?|dd|defs|del|details|dfn|dialog|dir|div|dl|dt|element|ellipse|em(bed)?|eventsource|fieldset|figcaption|figure|filter|footer|foreignObject|form|frame(set)?|g|glyph(Ref)?|h[1-6]|head(er)?|hgroup|hr|html|i|iframe|image|img|input|ins|isindex|kbd|keygen|label|legend|li|line|linearGradient|link|main|map|mark(er)?|mask|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|path|pattern|picture|poly(gon|line)|pre|progress|q|radialGradient|rect|rp|rtc?|s|samp|script|section|select|shadow|small|source|span|stop|strike|strong|style|sub|summary|sup|svg|switch|symbol|table|tbody|td|template|text(Path)?|textarea|tfoot|th(ead)?|time|title|tr(ack|ef)?|tspan|tt|ul?|use|var|video|wbr|xmp)\\b'
         name: 'entity.name.tag.less'
       }
       {
-        begin: '(\\.)(?:[-\\w]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*'
+        begin: '(\\.)(?:[\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*'
         beginCaptures:
           '1':
             name: 'punctuation.definition.entity.less'
-        end: '(?![-\\w]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))'
+        end: '(?![\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))'
         name: 'entity.other.attribute-name.class.less'
         patterns: [
           {
@@ -3624,7 +3707,7 @@ repository:
         ]
       }
       {
-        begin: '(\\#)(?:[-\\w]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*'
+        begin: '(\\#)(?:[\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*'
         beginCaptures:
           '1':
             name: 'punctuation.definition.entity.less'
@@ -3674,7 +3757,7 @@ repository:
             include: '#qualified-name'
           }
           {
-            match: '(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+            match: '(-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
             name: 'entity.other.attribute-name.less'
           }
           {
@@ -3742,6 +3825,12 @@ repository:
           }
           {
             include: '#property-list'
+          }
+          {
+            captures:
+              '1':
+                name: 'punctuation.separator.less'
+            match: '\\s*(;)\\s*'
           }
         ]
       }
