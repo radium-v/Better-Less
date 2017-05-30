@@ -35,6 +35,33 @@
 #@{my-selector} { }
 // <- entity.other.attribute-name.id.less
 
+/* Import */
+   @import (less, optional) url("style.css") screen and (min-width: 800px);
+// <- meta.at-rule.import.less
+// ^^^^^^^ keyword.control.at-rule.import.less
+// ^ punctuation.definition.keyword.less
+//         ^^^^^^^^^^^^^^^^ meta.group.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^ constant.language.import-directive.less
+//              ^ punctuation.separator.less
+//                ^^^^^^^^ constant.language.import-directive.less
+//                        ^ punctuation.definition.group.end.less
+//                          ^^^^^^^^^^^^^^^^ meta.function-call.less
+//                          ^^^ support.function.url.less
+//                             ^ punctuation.definition.group.begin.less
+//                              ^^^^^^^^^^^ string.quoted.double.less
+//                                         ^ punctuation.definition.group.end.less
+//                                           ^^^^^^ support.constant.media.less
+//                                                  ^^^ keyword.operator.logic.media.less
+//                                                      ^^^^^^^^^^^^^^^^^^ meta.group.less
+//                                                      ^ punctuation.definition.group.begin.less
+//                                                       ^^^^^^^^^ support.type.property-name.media.less
+//                                                                ^ punctuation.separator.key-value.less
+//                                                                  ^^^^^ constant.numeric.less
+//                                                                       ^ punctuation.definition.group.end.less
+//                                                                        ^ punctuation.terminator.rule.less
+
+
 .variable {
     content: @@var;
 //           ^^    punctuation.definition.variable.less
@@ -795,3 +822,29 @@ input::-webkit-slider-runnable-track { }
 //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.pseudo-element.less
 //   ^^ punctuation.definition.entity.less
 //     ^^^^^^^^ support.type.vendor-prefix.less
+
+a {
+	animation: anim 1s ease-in-out;
+}
+
+@keyframes anim {
+	from {}
+	50% {}
+	to {}
+}
+
+   @namespace prefix url(XML-namespace-URL);
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.namespace.less
+// ^^^^^^^^^^ keyword.control.at-rule.namespace.less
+// ^ punctuation.definition.keyword.less
+//            ^^^^^^ entity.name.constant.namespace-prefix.less
+//                   ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                         ^ punctuation.terminator.rule.less
+
+   @namespace prefix "XML-namespace-URL";
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.namespace.less
+// ^^^^^^^^^^ keyword.control.at-rule.namespace.less
+// ^ punctuation.definition.keyword.less
+//            ^^^^^^ entity.name.constant.namespace-prefix.less
+//                   ^^^^^^^^^^^^^^^^^^^ string.quoted.double.less
+//                                      ^ punctuation.terminator.rule.less
