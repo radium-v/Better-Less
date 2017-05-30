@@ -4265,7 +4265,7 @@
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>\s*((&lt;|&gt;)?(=)?)\s*</string>
+							<string>\s*(=|((&lt;|&gt;)=?))\s*</string>
 						</dict>
 						<dict>
 							<key>match</key>

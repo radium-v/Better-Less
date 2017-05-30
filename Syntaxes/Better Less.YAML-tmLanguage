@@ -1311,7 +1311,7 @@ repository:
       endCaptures:
         '1': {name: punctuation.terminator.rule.less}
       patterns:
-      - match: \s*((<|>)?(=)?)\s*
+      - match: \s*(=|((<|>)=?))\s*
         captures:
           '1': {name: keyword.operator.logical.less}
       - name: constant.language.less
