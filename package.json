@@ -1,11 +1,11 @@
 {
   "name": "better-less",
   "displayName": "better-less",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Cross-compatible syntax highlighting for Less",
   "publisher": "radium-v",
   "categories": [
-      "Languages"
+    "Languages"
   ],
   "keywords": [
     "less",
@@ -19,16 +19,25 @@
     "vscode": "^1.12.0"
   },
   "contributes": {
-    "languages": [{
-          "id": "less",
-          "aliases": ["Better Less", "less"],
-          "extensions": [".less"],
-          "configuration": "./language-configuration.json"
-      }],
-      "grammars": [{
-          "language": "less",
-          "scopeName": "source.less",
-          "path": "./syntaxes/Better Less.tmLanguage"
-      }]
+    "languages": [
+      {
+        "id": "less",
+        "aliases": [
+          "Better Less",
+          "less"
+        ],
+        "extensions": [
+          ".less"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "less",
+        "scopeName": "source.less",
+        "path": "./syntaxes/Better Less.tmLanguage"
+      }
+    ]
   }
 }
