@@ -5929,7 +5929,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(\.)(?:[\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*</string>
+					<string>(\.)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -5939,7 +5939,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))</string>
+					<string>(?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\@(?=\{)))</string>
 					<key>name</key>
 					<string>entity.other.attribute-name.class.less</string>
 					<key>patterns</key>
@@ -5952,7 +5952,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(\#)(?:[\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*</string>
+					<string>(\#)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -5962,7 +5962,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))</string>
+					<string>(?&lt;!\@)(?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))(?=[\{,\s\:&amp;#\.\(\)])</string>
 					<key>name</key>
 					<string>entity.other.attribute-name.id.less</string>
 					<key>patterns</key>
@@ -5974,7 +5974,9 @@
 					</array>
 				</dict>
 				<dict>
-					<key>captures</key>
+					<key>begin</key>
+					<string>(&amp;)</string>
+					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
 						<dict>
@@ -5987,10 +5989,19 @@
 							<string>punctuation.definition.entity.less</string>
 						</dict>
 					</dict>
-					<key>match</key>
-					<string>(&amp;)</string>
+					<key>contentName</key>
+					<string>entity.other.attribute-name.less</string>
+					<key>end</key>
+					<string>(?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\@(?=\{)))</string>
 					<key>name</key>
 					<string>meta.selector.less</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#less-variable-interpolation</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
 					<key>match</key>

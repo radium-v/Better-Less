@@ -35,6 +35,16 @@
 #@{my-selector} { }
 // <- entity.other.attribute-name.id.less
 
+   #my-@{interpolated}-selector { }
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.id.less
+// ^ punctuation.definition.entity.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.id.less
+//     ^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//     ^ punctuation.definition.variable.less
+//      ^ punctuation.definition.expression.less
+//       ^^^^^^^^^^^^ support.other.variable.less
+//                   ^ punctuation.definition.expression.less
+
 /* Import */
    @import (less, optional) url("style.css") screen and (min-width: 800px);
 // <- meta.at-rule.import.less
@@ -161,12 +171,18 @@
 //         ^^ punctuation.definition.entity.less
 //                  ^ meta.property-list.less meta.property-list.less meta.property-list.less
 
+    &-class { }
+//  ^^^^^^^ meta.selector.less
+//  ^ entity.other.attribute-name.parent.less punctuation.definition.entity.less
+//   ^^^^^^ entity.other.attribute-name.less
+
+    &-@{interpolated}-selector { }
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.selector.less
+//  ^ entity.other.attribute-name.parent.less punctuation.definition.entity.less
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^ entity.other.attribute-name.less
+//    ^^^^^^^^^^^^^^^ variable.other.readwrite.less
   }
 // <- meta.property-list.less meta.property-list.less
-}
-
-@{variable} {
-
 }
 
    .nested-media-query {

@@ -1913,24 +1913,28 @@ repository:
     - name: entity.name.tag.less
       match: \b(a|abbr|acronym|address|applet|area|article|aside|audio|b|base(font)?|bd(i|o)|big|blockquote|body|br|button|canvas|caption|circle|cite|clipPath|code|col(group)?|content|data(List)?|dd|defs|del|details|dfn|dialog|dir|div|dl|dt|element|ellipse|em(bed)?|eventsource|fieldset|figcaption|figure|filter|footer|foreignObject|form|frame(set)?|g|glyph(Ref)?|h[1-6]|head(er)?|hgroup|hr|html|i|iframe|image|img|input|ins|isindex|kbd|keygen|label|legend|li|line|linearGradient|link|main|map|mark(er)?|mask|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|path|pattern|picture|poly(gon|line)|pre|progress|q|radialGradient|rect|rp|rtc?|s|samp|script|section|select|shadow|small|source|span|stop|strike|strong|style|sub|summary|sup|svg|switch|symbol|table|tbody|td|template|text(Path)?|textarea|tfoot|th(ead)?|time|title|tr(ack|ef)?|tspan|tt|ul?|use|var|video|wbr|xmp)\b
     - name: entity.other.attribute-name.class.less
-      begin: (\.)(?:[\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*
+      begin: (\.)
       beginCaptures:
         '1': {name: punctuation.definition.entity.less}
-      end: (?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))
+      end: (?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\@(?=\{)))
       patterns:
       - include: '#less-variable-interpolation'
     - name: entity.other.attribute-name.id.less
-      begin: (\#)(?:[\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*
+      begin: (\#)
       beginCaptures:
         '1': {name: punctuation.definition.entity.less}
-      end: (?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))
+      end: (?<!\@)(?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))(?=[\{,\s\:&#\.\(\)])
       patterns:
       - include: '#less-variable-interpolation'
     - name: meta.selector.less
-      match: (&)
-      captures:
+      begin: (&)
+      beginCaptures:
         '0': {name: entity.other.attribute-name.parent.less}
         '1': {name: punctuation.definition.entity.less}
+      end: (?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\@(?=\{)))
+      contentName: entity.other.attribute-name.less
+      patterns:
+      - include: '#less-variable-interpolation'
     - name: punctuation.separator.combinator.less
       match: (?!(\+_?:))((?:>{1,3}|[~+]))(?![>~+;}])
     - name: invalid.illegal.combinator.less

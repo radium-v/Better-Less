@@ -3694,11 +3694,11 @@ repository:
         name: 'entity.name.tag.less'
       }
       {
-        begin: '(\\.)(?:[\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*'
+        begin: '(\\.)'
         beginCaptures:
           '1':
             name: 'punctuation.definition.entity.less'
-        end: '(?![\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))'
+        end: '(?![\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\\@(?=\\{)))'
         name: 'entity.other.attribute-name.class.less'
         patterns: [
           {
@@ -3707,11 +3707,11 @@ repository:
         ]
       }
       {
-        begin: '(\\#)(?:[\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))*'
+        begin: '(\\#)'
         beginCaptures:
           '1':
             name: 'punctuation.definition.entity.less'
-        end: '(?![\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))'
+        end: '(?<!\\@)(?![\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))(?=[\\{,\\s\\:&#\\.\\(\\)])'
         name: 'entity.other.attribute-name.id.less'
         patterns: [
           {
@@ -3720,13 +3720,20 @@ repository:
         ]
       }
       {
-        captures:
+        begin: '(&)'
+        beginCaptures:
           '0':
             name: 'entity.other.attribute-name.parent.less'
           '1':
             name: 'punctuation.definition.entity.less'
-        match: '(&)'
+        contentName: 'entity.other.attribute-name.less'
+        end: '(?![\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\\@(?=\\{)))'
         name: 'meta.selector.less'
+        patterns: [
+          {
+            include: '#less-variable-interpolation'
+          }
+        ]
       }
       {
         match: '(?!(\\+_?:))((?:>{1,3}|[~+]))(?![>~+;}])'
