@@ -2052,7 +2052,7 @@ repository:
                   '3':
                     name: 'punctuation.definition.group.end.less'
                 match: 'default((\\()(\\)))'
-                name: 'constant.language.default.less'
+                name: 'support.function.default.less'
               }
               {
                 include: '#property-values'

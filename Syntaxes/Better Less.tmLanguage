@@ -3764,7 +3764,7 @@
 									<key>match</key>
 									<string>default((\()(\)))</string>
 									<key>name</key>
-									<string>constant.language.default.less</string>
+									<string>support.function.default.less</string>
 								</dict>
 								<dict>
 									<key>include</key>

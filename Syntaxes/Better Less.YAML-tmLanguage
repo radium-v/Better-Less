@@ -1151,7 +1151,7 @@ repository:
         patterns:
         - include: '#less-variable-comparison'
         - include: $self
-        - name: constant.language.default.less
+        - name: support.function.default.less
           match: default((\()(\)))
           captures:
             '1': {name: meta.group.less}
