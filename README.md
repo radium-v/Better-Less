@@ -1,8 +1,8 @@
-# Better-Less
+# Better Less
 Cross-compatible syntax highlighting for Less
 
 ## Project Mission
- * Works with Atom, Sublime Text, Textmate 2, and Visual Studio Code.
+ * Works with [Atom](https://atom.io/packages/better-less), [Sublime Text](https://packagecontrol.io/packages/Better%20Less), Textmate 2, and [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=radium-v.better-less).
  * Aligns with current CSS features without being overbearing or too relaxed
 
 ## Installation

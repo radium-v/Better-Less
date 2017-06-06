@@ -1,3 +1,10 @@
+## 0.3.2 - Choose Your Parents
+* Improve interpolation for classes, ids, and parent selectors
+* Fix `default()` scope
+
+## 0.3.1 - I'm still learning here
+* Published to VS Code Marketplace
+
 ## 0.3.0 - Visualize it
 * Add preliminary support for VS Code
 
