@@ -325,11 +325,8 @@ repository:
         '0': {name: punctuation.definition.group.begin.less}
       end: (?=\))
       patterns:
-      - include: '#calc-function'
       - include: '#var-function'
-      - name: keyword.operator.arithmetic.less
-        match: '[-/*+]'
-      - include: '#numeric-values'
+      - include: '#calc-function'
       - include: '#attr-function'
       - include: '#less-math'
 
@@ -976,9 +973,9 @@ repository:
       endCaptures:
         '0': {name: punctuation.definition.group.end.less}
       patterns:
-      - include: '#numeric-values'
-      - include: '#less-variables'
       - include: '#less-math'
+    - include: '#numeric-values'
+    - include: '#less-variables'
 
   less-math-functions:
     patterns:

@@ -1041,21 +1041,11 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#calc-function</string>
-						</dict>
-						<dict>
-							<key>include</key>
 							<string>#var-function</string>
 						</dict>
 						<dict>
-							<key>match</key>
-							<string>[-/*+]</string>
-							<key>name</key>
-							<string>keyword.operator.arithmetic.less</string>
-						</dict>
-						<dict>
 							<key>include</key>
-							<string>#numeric-values</string>
+							<string>#calc-function</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -3145,17 +3135,17 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#numeric-values</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#less-variables</string>
-						</dict>
-						<dict>
-							<key>include</key>
 							<string>#less-math</string>
 						</dict>
 					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#numeric-values</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#less-variables</string>
 				</dict>
 			</array>
 		</dict>

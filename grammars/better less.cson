@@ -567,17 +567,10 @@ repository:
         end: '(?=\\))'
         patterns: [
           {
-            include: '#calc-function'
-          }
-          {
             include: '#var-function'
           }
           {
-            match: '[-/*+]'
-            name: 'keyword.operator.arithmetic.less'
-          }
-          {
-            include: '#numeric-values'
+            include: '#calc-function'
           }
           {
             include: '#attr-function'
@@ -1716,15 +1709,15 @@ repository:
         name: 'meta.group.less'
         patterns: [
           {
-            include: '#numeric-values'
-          }
-          {
-            include: '#less-variables'
-          }
-          {
             include: '#less-math'
           }
         ]
+      }
+      {
+        include: '#numeric-values'
+      }
+      {
+        include: '#less-variables'
       }
     ]
   'less-math-functions':
