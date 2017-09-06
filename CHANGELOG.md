@@ -1,3 +1,7 @@
+## 0.4.0 - Selector Detector
+* Improve meta scopes for selectors
+* Fix variables and nesting in calc
+
 ## 0.3.2 - Choose Your Parents
 * Improve interpolation for classes, ids, and parent selectors
 * Fix `default()` scope

@@ -386,22 +386,22 @@ filter: e("ms:alwaysHasItsOwnSyntax.For.Stuff()");
 //                                 ^ punctuation.separator.less
 //                                                     ^ punctuation.definition.group.end.less
 
-    n: length(1px solid #0080ff);
-//     ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
-//     ^^^^^^ support.function.length.less
-//           ^ punctuation.definition.group.begin.less
-//                             ^ punctuation.definition.group.end.less
+    @n: length(1px solid #0080ff);
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//      ^^^^^^ support.function.length.less
+//            ^ punctuation.definition.group.begin.less
+//                              ^ punctuation.definition.group.end.less
 
-    n: length("banana", "tomato", "potato", "peach");
-//                    ^ punctuation.separator.less
+    @n: length("banana", "tomato", "potato", "peach");
+//                     ^ punctuation.separator.less
 
-    value: extract(@list, 3);
-//         ^^^^^^^^^^^^^^^^^ meta.function-call.less
-//         ^^^^^^^ support.function.extract.less
-//                ^ punctuation.definition.group.begin.less
-//                      ^ punctuation.separator.less
-//                        ^ constant.numeric.less
-//                         ^ punctuation.definition.group.end.less
+    @value: extract(@list, 3);
+//          ^^^^^^^^^^^^^^^^^ meta.function-call.less
+//          ^^^^^^^ support.function.extract.less
+//                 ^ punctuation.definition.group.begin.less
+//                       ^ punctuation.separator.less
+//                         ^ constant.numeric.less
+//                          ^ punctuation.definition.group.end.less
 }
 
 /* Math Functions */
