@@ -340,36 +340,24 @@ repository:
       }
     ]
   'at-supports':
+    begin: '(?=\\s*@supports\\b)'
+    end: '(?=\\s*)(\\})'
+    endCaptures:
+      '1':
+        name: 'punctuation.section.property-list.end.less'
     patterns: [
       {
-        begin: '((@)supports)'
+        begin: '\\s*((@)supports)'
         beginCaptures:
           '1':
             name: 'keyword.control.at-rule.supports.less'
           '2':
             name: 'punctuation.definition.keyword.less'
-        end: '\\}'
-        endCaptures:
-          '0':
-            name: 'punctuation.definition.block.end.less'
+          '3':
+            name: 'support.constant.supports.less'
+        end: '\\s*(?=\\{)'
         name: 'meta.at-rule.supports.less'
         patterns: [
-          {
-            begin: '\\{'
-            captures:
-              '0':
-                name: 'punctuation.definition.block.begin.less'
-            end: '(?=\\})'
-            name: 'meta.block.less'
-            patterns: [
-              {
-                include: '#rule-list-body'
-              }
-              {
-                include: '$self'
-              }
-            ]
-          }
           {
             include: '#at-supports-operators'
           }
@@ -378,9 +366,24 @@ repository:
           }
         ]
       }
+      {
+        begin: '\\s*(\\{)'
+        beginCaptures:
+          '1':
+            name: 'punctuation.section.property-list.begin.less'
+        end: '(?=\\})'
+        patterns: [
+          {
+            include: '#rule-list-body'
+          }
+          {
+            include: '$self'
+          }
+        ]
+      }
     ]
   'at-supports-operators':
-    match: '\\b(?i:and|or|not)\\b'
+    match: '\\b(?:and|or|not)\\b'
     name: 'keyword.operator.logic.less'
   'at-supports-parens':
     begin: '\\('
@@ -2444,7 +2447,7 @@ repository:
         name: 'punctuation.definition.variable.less'
       '2':
         name: 'support.other.variable.less'
-    match: '(@@?)([\\w-]+)'
+    match: '\\s*(@@?)([-\\w]+)'
     name: 'variable.other.readwrite.less'
   'literal-string':
     patterns: [
@@ -2898,7 +2901,7 @@ repository:
         include: '#comment-line'
       }
       {
-        include: '#at-import'
+        include: '#at-rules'
       }
       {
         include: '#less-variable-assignment'

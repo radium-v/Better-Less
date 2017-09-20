@@ -643,11 +643,23 @@
 		</dict>
 		<key>at-supports</key>
 		<dict>
+			<key>begin</key>
+			<string>(?=\s*@supports\b)</string>
+			<key>end</key>
+			<string>(?=\s*)(\})</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.property-list.end.less</string>
+				</dict>
+			</dict>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>((@)supports)</string>
+					<string>\s*((@)supports)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -660,48 +672,18 @@
 							<key>name</key>
 							<string>punctuation.definition.keyword.less</string>
 						</dict>
-					</dict>
-					<key>end</key>
-					<string>\}</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>0</key>
+						<key>3</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.block.end.less</string>
+							<string>support.constant.supports.less</string>
 						</dict>
 					</dict>
+					<key>end</key>
+					<string>\s*(?=\{)</string>
 					<key>name</key>
 					<string>meta.at-rule.supports.less</string>
 					<key>patterns</key>
 					<array>
-						<dict>
-							<key>begin</key>
-							<string>\{</string>
-							<key>captures</key>
-							<dict>
-								<key>0</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.definition.block.begin.less</string>
-								</dict>
-							</dict>
-							<key>end</key>
-							<string>(?=\})</string>
-							<key>name</key>
-							<string>meta.block.less</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>#rule-list-body</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>$self</string>
-								</dict>
-							</array>
-						</dict>
 						<dict>
 							<key>include</key>
 							<string>#at-supports-operators</string>
@@ -712,12 +694,37 @@
 						</dict>
 					</array>
 				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\s*(\{)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.property-list.begin.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=\})</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#rule-list-body</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>$self</string>
+						</dict>
+					</array>
+				</dict>
 			</array>
 		</dict>
 		<key>at-supports-operators</key>
 		<dict>
 			<key>match</key>
-			<string>\b(?i:and|or|not)\b</string>
+			<string>\b(?:and|or|not)\b</string>
 			<key>name</key>
 			<string>keyword.operator.logic.less</string>
 		</dict>
@@ -4486,7 +4493,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(@@?)([\w-]+)</string>
+			<string>\s*(@@?)([-\w]+)</string>
 			<key>name</key>
 			<string>variable.other.readwrite.less</string>
 		</dict>
@@ -5511,7 +5518,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#at-import</string>
+					<string>#at-rules</string>
 				</dict>
 				<dict>
 					<key>include</key>

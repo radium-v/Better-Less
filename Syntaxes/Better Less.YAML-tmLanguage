@@ -201,30 +201,32 @@ repository:
     - include: '#at-viewport'
 
   at-supports:
+    begin: (?=\s*@supports\b)
+    end: (?=\s*)(\})
+    endCaptures:
+      '1': {name: punctuation.section.property-list.end.less}
     patterns:
     - name: meta.at-rule.supports.less
-      begin: ((@)supports)
+      begin: \s*((@)supports)
       beginCaptures:
         '1': {name: keyword.control.at-rule.supports.less}
         '2': {name: punctuation.definition.keyword.less}
-      end: \}
-      endCaptures:
-        '0': {name: punctuation.definition.block.end.less}
+        '3': {name: support.constant.supports.less}
+      end: \s*(?=\{)
       patterns:
-      - name: meta.block.less
-        begin: \{
-        end: (?=\})
-        captures:
-          '0': {name: punctuation.definition.block.begin.less}
-        patterns:
-        - include: '#rule-list-body'
-        - include: $self
       - include: '#at-supports-operators'
       - include: '#at-supports-parens'
+    - begin: \s*(\{)
+      beginCaptures:
+        '1': {name: punctuation.section.property-list.begin.less}
+      end: (?=\})
+      patterns:
+      - include: '#rule-list-body'
+      - include: $self
 
   at-supports-operators:
     name: keyword.operator.logic.less
-    match: \b(?i:and|or|not)\b
+    match: \b(?:and|or|not)\b
 
   at-supports-parens:
     name: meta.group.less
@@ -1359,7 +1361,7 @@ repository:
 
   less-variables:
     name: variable.other.readwrite.less
-    match: (@@?)([\w-]+)
+    match: \s*(@@?)([-\w]+)
     captures:
       '1': {name: punctuation.definition.variable.less}
       '2': {name: support.other.variable.less}
@@ -1791,7 +1793,7 @@ repository:
     patterns:
     - include: '#comment-block'
     - include: '#comment-line'
-    - include: '#at-import'
+    - include: '#at-rules'
     - include: '#less-variable-assignment'
     - include: '#less-variable-interpolation'
     - begin: (?=[-a-z])
