@@ -71,6 +71,37 @@
 //                                                                       ^ punctuation.definition.group.end.less
 //                                                                        ^ punctuation.terminator.rule.less
 
+.header {
+  @supports (position: sticky) {
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.supports.less
+//^^^^^^^^^ keyword.control.at-rule.supports.less
+//^ punctuation.definition.keyword.less
+// ^^^^^^^^ keyword.control.at-rule.supports.less
+//          ^^^^^^^^^^^^^^^^^^ meta.group.less
+//          ^ punctuation.definition.group.begin.less
+//           ^^^^^^^^ support.type.property-name.less
+//                   ^ punctuation.separator.key-value.less
+//                     ^^^^^^ support.constant.property-value.less
+//                           ^ punctuation.definition.group.end.less
+    position: sticky;
+    top: 0;
+  }
+}
+
+@supports not (not (transform-origin: 2px) and (display: flex)) {
+//        ^^^ keyword.operator.logic.less
+//             ^^^ keyword.operator.logic.less
+//                                         ^^^ keyword.operator.logic.less
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.group.less
+//                                             ^^^^^^^^^^^^^^^ meta.group.less
+//                 ^^^^^^^^^^^^^^^^^^^^^^^ meta.group.less
+//            ^ punctuation.definition.group.begin.less
+//                                                            ^ punctuation.definition.group.end.less
+  .nested {
+    display: inline-block;
+//<- meta.property-list.less
+  }
+}
 
 .variable {
     content: @@var;

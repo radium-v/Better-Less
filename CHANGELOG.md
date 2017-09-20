@@ -1,3 +1,6 @@
+## 0.4.1 - Supports Report
+* Fix `@supports` highlighting
+
 ## 0.4.0 - Selector Detector
 * Improve meta scopes for selectors
 * Fix variables and nesting in calc
