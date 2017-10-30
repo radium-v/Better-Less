@@ -36,6 +36,7 @@ $ ln -s Better-Less/ ~/Library/Application\ Support/Textmate/Bundles/better-less
 
 ### Visual Studio Code
 Launch VS Code Quick Open (⌘+P), paste the following command, and press enter.
+
 ```
 ext install better-less
 ```

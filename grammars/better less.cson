@@ -50,7 +50,7 @@ repository:
       }
     ]
   'at-counter-style':
-    begin: '\\s*((@)counter-style\\b)\\s+(?:(?i:\\b(decimal|none)\\b)|(-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*))\\s*(?=\\{|$)'
+    begin: '\\s*((@)counter-style\\b)\\s+(?:(?i:\\b(decimal|none)\\b)|(-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*))\\s*(?=\\{|$)'
     captures:
       '1':
         name: 'keyword.control.at-rule.counter-style.less'
@@ -63,7 +63,7 @@ repository:
     end: '\\s*(\\})'
     endCaptures:
       '1':
-        name: 'punctuation.section.property-list.less'
+        name: 'punctuation.definition.block.begin.less'
     name: 'meta.at-rule.counter-style.less'
     patterns: [
       {
@@ -108,7 +108,7 @@ repository:
     end: '\\s*(\\})'
     endCaptures:
       '1':
-        name: 'punctuation.section.property-list.end.less'
+        name: 'punctuation.definition.block.end.less'
     name: 'meta.at-rule.font-face.less'
     patterns: [
       {
@@ -184,13 +184,13 @@ repository:
     end: '\\s*(\\})'
     endCaptures:
       '1':
-        name: 'punctuation.section.property-list.end.less'
+        name: 'punctuation.definition.block.end.less'
     patterns: [
       {
         begin: '\\s*(\\{)'
         beginCaptures:
           '1':
-            name: 'punctuation.section.property-list.less'
+            name: 'punctuation.definition.block.begin.less'
         end: '(?=\\})'
         patterns: [
           {
@@ -224,7 +224,7 @@ repository:
     end: '\\s*(\\})'
     endCaptures:
       '1':
-        name: 'punctuation.section.property-list.end.less'
+        name: 'punctuation.definition.block.end.less'
     patterns: [
       {
         begin: '\\s*((@)media)'
@@ -247,7 +247,7 @@ repository:
         begin: '\\s*(\\{)'
         beginCaptures:
           '1':
-            name: 'punctuation.section.property-list.begin.less'
+            name: 'punctuation.definition.block.begin.less'
         end: '(?=\\})'
         patterns: [
           {
@@ -279,7 +279,7 @@ repository:
         include: '#literal-string'
       }
       {
-        match: '(-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+        match: '(-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
         name: 'entity.name.constant.namespace-prefix.less'
       }
     ]
@@ -344,7 +344,7 @@ repository:
     end: '(?=\\s*)(\\})'
     endCaptures:
       '1':
-        name: 'punctuation.section.property-list.end.less'
+        name: 'punctuation.definition.block.end.less'
     patterns: [
       {
         begin: '\\s*((@)supports)'
@@ -460,7 +460,7 @@ repository:
             include: '#literal-string'
           }
           {
-            begin: '(-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+            begin: '(-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
             end: '(?=\\))'
             name: 'entity.other.attribute-name.less'
             patterns: [
@@ -756,7 +756,7 @@ repository:
                 include: '#less-variables'
               }
               {
-                match: '(?:--(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))+|-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+                match: '(?:--(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))+|-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
                 name: 'entity.other.counter-name.less'
               }
               {
@@ -795,7 +795,7 @@ repository:
             end: '(?=\\))'
             patterns: [
               {
-                match: '(-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+                match: '(-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
                 name: 'entity.other.counter-name.less string.unquoted.less'
               }
               {
@@ -901,7 +901,7 @@ repository:
         name: 'punctuation.definition.custom-property.less'
       '2':
         name: 'support.type.custom-property.name.less'
-    match: '\\s*(--)((?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))+)'
+    match: '\\s*(--)((?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))+)'
     name: 'support.type.custom-property.less'
   'filter-function':
     begin: '\\b(filter)(?=\\()'
@@ -1284,7 +1284,7 @@ repository:
     match: '(?:[-+]?\\d+)'
     name: 'constant.numeric.less'
   'keyframe-name':
-    begin: '\\s*(-?(?:[_a-z]|[^\\x{00}-\\x{7F}]|(?:(:?\\\\[0-9a-f]{1,6}(\\r\\n|[ \\t\\r\\n\\f])?)|\\\\[^\\r\\n\\f0-9a-f]))(?:[_a-z0-9-]|[^\\x{00}-\\x{7F}]|(?:(:?\\\\[0-9a-f]{1,6}(\\r\\n|[\\t\\r\\n\\f])?)|\\\\[^\\r\\n\\f0-9a-f]))*)?'
+    begin: '\\s*(-?(?:[_a-z]|[^\\x{00}-\\x{7F}]|(?:(:?\\\\[0-9a-f]{1,6}(\\r\\n|[\\s\\t\\r\\n\\f])?)|\\\\[^\\r\\n\\f0-9a-f]))(?:[_a-z0-9-]|[^\\x{00}-\\x{7F}]|(?:(:?\\\\[0-9a-f]{1,6}(\\r\\n|[\\t\\r\\n\\f])?)|\\\\[^\\r\\n\\f0-9a-f]))*)?'
     beginCaptures:
       '1':
         name: 'variable.other.constant.animation-name.less'
@@ -2074,10 +2074,10 @@ repository:
     patterns: [
       {
         begin: '(?=\\s*when\\b)'
-        end: '\\s*(\\})'
+        end: '\\s*(?:(,)|(?=[{;]))'
         endCaptures:
           '1':
-            name: 'punctuation.section.property-list.end.less'
+            name: 'punctuation.definition.block.end.less'
         name: 'meta.conditional.guarded-namespace.less'
         patterns: [
           {
@@ -2348,7 +2348,7 @@ repository:
   'less-variable-assignment':
     patterns: [
       {
-        begin: '(@)(-?(?:[[\\w-][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+        begin: '(@)(-?(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
         beginCaptures:
           '0':
             name: 'variable.other.readwrite.less'
@@ -2370,7 +2370,7 @@ repository:
                 name: 'punctuation.separator.key-value.less'
               '4':
                 name: 'meta.property-value.less'
-            match: '(((\\+_?)?):)([ \\t]*)'
+            match: '(((\\+_?)?):)([\\s\\t]*)'
           }
           {
             include: '#property-values'
@@ -2390,7 +2390,7 @@ repository:
   'less-variable-comparison':
     patterns: [
       {
-        begin: '(@{1,2})([-]?([_a-z]|[^\\x{00}-\\x{7F}]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+        begin: '(@{1,2})([-]?([_a-z]|[^\\x{00}-\\x{7F}]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
         beginCaptures:
           '0':
             name: 'variable.other.readwrite.less'
@@ -2439,7 +2439,7 @@ repository:
         name: 'support.other.variable.less'
       '4':
         name: 'punctuation.definition.expression.less'
-    match: '(@)(\\{)([\\w-]+)(\\})'
+    match: '(@)(\\{)([-\\w]+)(\\})'
     name: 'variable.other.readwrite.less'
   'less-variables':
     captures:
@@ -2664,7 +2664,7 @@ repository:
   'property-value-constants':
     patterns: [
       {
-        match: '(?x)\\b(\n    absolute|active|add\n  | all(-(petite|small)-caps|-scroll)?\n  | alpha(betic)?\n  | alternate(-reverse)?\n  | always|annotation|antialiased|at\n  | auto(hiding-scrollbar)?\n  | avoid(-column|-page|-region)?\n  | background(-color|-image|-position|-size)?\n  | backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink\n  | block(-line-height)?\n  | blur\n  | bold(er)?\n  | border(-bottom|-left|-right|-top)?-(color|radius|width|style)\n  | border-(bottom|top)-(left|right)-radius\n  | border-image(-outset|-repeat|-slice|-source|-width)?\n  | border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?\n  | both|bottom\n  | box(-shadow)?\n  | break-(all|word)\n  | brightness\n  | butt(on)?\n  | capitalize\n  | cent(er|ral)\n  | char(acter-variant)?\n  | cjk-ideographic|clip|clone|close-quote\n  | closest-(corner|side)\n  | col-resize|collapse\n  | color(-stop|-burn|-dodge)?\n  | column((-count|-gap|-reverse|-rule(-color|-width)?|-width)|s)?\n  | common-ligatures|condensed|consider-shifts|contain\n  | content(-box|s)?\n  | contextual|contrast|cover\n  | crisp(-e|E)dges\n  | crop\n  | cross(hair)?\n  | da(rken|shed)\n  | default|dense|diagonal-fractions|difference|disabled\n  | discretionary-ligatures|disregard-shifts\n  | distribute(-all-lines|-letter|-space)?\n  | dotted|double|drop-shadow\n  | (nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize\n  | ease(-in-out|-in|-out)?\n  | element|ellipsis|embed|end|EndColorStr|evenodd\n  | exclu(de(-ruby)?|sion)\n  | expanded\n  | (extra|semi|ultra)-(condensed|expanded)\n  | farthest-(corner|side)?\n  | fill(-box|-opacity)?\n  | filter|fixed|flat\n  | flex((-basis|-end|-grow|-shrink|-start)|box)?\n  | flip|flood-color\n  | font(-size(-adjust)?|-stretch|-weight)?\n  | forwards\n  | from(-image)?\n  | full-width|geometricPrecision|glyphs|gradient|grayscale\n  | grid(-height)?\n  | groove|hand|hanging|hard-light|height|help|hidden|hide\n  | historical-(forms|ligatures)\n  | horizontal(-tb)?\n  | hue\n  | ideograph(-alpha|-numeric|-parenthesis|-space|ic)\n  | inactive|include-ruby|infinite|inherit|initial\n  | inline(-block|-box|-flex(box)?|-line-height|-table)?\n  | inset|inside\n  | inter(-ideograph|-word|sect)\n  | invert|isolat(e|ion)|italic\n  | jis(04|78|83|90)\n  | justify(-all)?\n  | keep-all\n  | large[r]?\n  | last|layout|left|letter-spacing\n  | light(e[nr]|ing-color)\n  | line(-edge|-height|-through)?\n  | linear(-gradient|RGB)?\n  | lining-nums|list-item|local|loose|lowercase|lr-tb|ltr\n  | lumin(osity|ance)|manual\n  | manipulation\n  | margin(-bottom|-box|-left|-right|-top)?\n  | marker(-offset|s)?\n  | mathematical\n  | max-(content|height|lines|size|width)\n  | medium|middle\n  | min-(content|height|width)\n  | miter|mixed|move|multiply|newspaper\n  | no-(change|clip|(close|open)-quote|(common|discretionary|historical)-ligatures|contextual|drop|repeat)\n  | none|nonzero|normal|not-allowed|nowrap|oblique\n  | offset(-after|-before|-end|-start)?\n  | oldstyle-nums|opacity|open-quote\n  | optimize(Legibility|Precision|Quality|Speed)\n  | order|ordinal|ornaments\n  | outline(-color|-offset|-width)?\n  | outset|outside|over(line|-edge|lay)\n  | padding(-bottom|-box|-left|-right|-top|-box)?\n  | page|painted|paused\n  | pan-(x|left|right|y|up|down)\n  | perspective-origin\n  | petite-caps|pixelated|pointer\n  | pinch-zoom\n  | pre(-line|-wrap)?\n  | preserve-3d\n  | progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)\n  | progress\n  | proportional-(nums|width)\n  | radial-gradient|recto|region|relative\n  | repeat(-[xy])?\n  | repeating-(linear|radial)-gradient\n  | replaced|reset-size|reverse|ridge|right\n  | round\n  | row(-resize|-reverse)?\n  | rtl|ruby|running|saturat(e|ion)|screen\n  | scroll(-position|bar)?\n  | separate|sepia\n  | scale-down\n  | shape-(image-threshold|margin|outside)\n  | show\n  | sideways(-lr|-rl)?\n  | simplified\n  | size\n  | slashed-zero|slice\n  | small(-caps|er)?\n  | smooth|snap|solid|soft-light\n  | space(-around|-between)?\n  | span|sRGB\n  | stack(ed-fractions)?\n  | start(ColorStr)?\n  | static\n  | step-(end|start)\n  | sticky\n  | stop-(color|opacity)\n  | stretch|strict\n  | stroke(-box|-dash(array|offset)|-miterlimit|-opacity|-width)?\n  | style(set)?\n  | stylistic\n  | sub(grid|pixel-antialiased|tract)?\n  | super|swash\n  | table(-caption|-cell|(-column|-footer|-header|-row)-group|-column|-row)?\n  | tabular-nums|tb-rl\n  | text((-bottom|-(decoration|emphasis)-color|-indent|-(over|under)-edge|-shadow|-size(-adjust)?|-top)|field)?\n  | thi(ck|n)\n  | titling-ca(ps|se)\n  | to[p]?\n  | touch|traditional\n  | transform(-origin)?\n  | under(-edge|line)?\n  | unicase|unset|uppercase|upright\n  | use-(glyph-orientation|script)\n  | verso\n  | vertical(-align|-ideographic|-lr|-rl|-text)?\n  | view-box\n  | viewport-fill(-opacity)?\n  | visibility\n  | visible(Fill|Painted|Stroke)?\n  | wait|wavy|weight|whitespace|(device-)?width|word-spacing\n  | wrap(-reverse)?\n  | x{1,2}-(large|small)\n  | z-index|zero\n  | zoom(-in|-out)?\n  | ((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman))\n)\\b'
+        match: '(?x)\\b(\n    absolute|active|add\n  |all(-(petite|small)-caps|-scroll)?\n  |alpha(betic)?\n  |alternate(-reverse)?\n  |always|annotation|antialiased|at\n  |auto(hiding-scrollbar)?\n  |avoid(-column|-page|-region)?\n  |background(-color|-image|-position|-size)?\n  |backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink\n  |block(-line-height)?\n  |blur\n  |bold(er)?\n  |border(-bottom|-left|-right|-top)?-(color|radius|width|style)\n  |border-(bottom|top)-(left|right)-radius\n  |border-image(-outset|-repeat|-slice|-source|-width)?\n  |border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?\n  |both|bottom\n  |box(-shadow)?\n  |break-(all|word)\n  |brightness\n  |butt(on)?\n  |capitalize\n  |cent(er|ral)\n  |char(acter-variant)?\n  |cjk-ideographic|clip|clone|close-quote\n  |closest-(corner|side)\n  |col-resize|collapse\n  |color(-stop|-burn|-dodge)?\n  |column((-count|-gap|-reverse|-rule(-color|-width)?|-width)|s)?\n  |common-ligatures|condensed|consider-shifts|contain\n  |content(-box|s)?\n  |contextual|contrast|cover\n  |crisp(-e|E)dges\n  |crop\n  |cross(hair)?\n  |da(rken|shed)\n  |default|dense|diagonal-fractions|difference|disabled\n  |discretionary-ligatures|disregard-shifts\n  |distribute(-all-lines|-letter|-space)?\n  |dotted|double|drop-shadow\n  |(nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize\n  |ease(-in-out|-in|-out)?\n  |element|ellipsis|embed|end|EndColorStr|evenodd\n  |exclu(de(-ruby)?|sion)\n  |expanded\n  |(extra|semi|ultra)-(condensed|expanded)\n  |farthest-(corner|side)?\n  |fill(-box|-opacity)?\n  |filter|fixed|flat\n  |flex((-basis|-end|-grow|-shrink|-start)|box)?\n  |flip|flood-color\n  |font(-size(-adjust)?|-stretch|-weight)?\n  |forwards\n  |from(-image)?\n  |full-width|geometricPrecision|glyphs|gradient|grayscale\n  |grid(-height)?\n  |groove|hand|hanging|hard-light|height|help|hidden|hide\n  |historical-(forms|ligatures)\n  |horizontal(-tb)?\n  |hue\n  |ideograph(-alpha|-numeric|-parenthesis|-space|ic)\n  |inactive|include-ruby|infinite|inherit|initial\n  |inline(-block|-box|-flex(box)?|-line-height|-table)?\n  |inset|inside\n  |inter(-ideograph|-word|sect)\n  |invert|isolat(e|ion)|italic\n  |jis(04|78|83|90)\n  |justify(-all)?\n  |keep-all\n  |large[r]?\n  |last|layout|left|letter-spacing\n  |light(e[nr]|ing-color)\n  |line(-edge|-height|-through)?\n  |linear(-gradient|RGB)?\n  |lining-nums|list-item|local|loose|lowercase|lr-tb|ltr\n  |lumin(osity|ance)|manual\n  |manipulation\n  |margin(-bottom|-box|-left|-right|-top)?\n  |marker(-offset|s)?\n  |mathematical\n  |max-(content|height|lines|size|width)\n  |medium|middle\n  |min-(content|height|width)\n  |miter|mixed|move|multiply|newspaper\n  |no-(change|clip|(close|open)-quote|(common|discretionary|historical)-ligatures|contextual|drop|repeat)\n  |none|nonzero|normal|not-allowed|nowrap|oblique\n  |offset(-after|-before|-end|-start)?\n  |oldstyle-nums|opacity|open-quote\n  |optimize(Legibility|Precision|Quality|Speed)\n  |order|ordinal|ornaments\n  |outline(-color|-offset|-width)?\n  |outset|outside|over(line|-edge|lay)\n  |padding(-bottom|-box|-left|-right|-top|-box)?\n  |page|painted|paused\n  |pan-(x|left|right|y|up|down)\n  |perspective-origin\n  |petite-caps|pixelated|pointer\n  |pinch-zoom\n  |pre(-line|-wrap)?\n  |preserve-3d\n  |progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)\n  |progress\n  |proportional-(nums|width)\n  |radial-gradient|recto|region|relative\n  |repeat(-[xy])?\n  |repeating-(linear|radial)-gradient\n  |replaced|reset-size|reverse|ridge|right\n  |round\n  |row(-resize|-reverse)?\n  |rtl|ruby|running|saturat(e|ion)|screen\n  |scroll(-position|bar)?\n  |separate|sepia\n  |scale-down\n  |shape-(image-threshold|margin|outside)\n  |show\n  |sideways(-lr|-rl)?\n  |simplified\n  |size\n  |slashed-zero|slice\n  |small(-caps|er)?\n  |smooth|snap|solid|soft-light\n  |space(-around|-between)?\n  |span|sRGB\n  |stack(ed-fractions)?\n  |start(ColorStr)?\n  |static\n  |step-(end|start)\n  |sticky\n  |stop-(color|opacity)\n  |stretch|strict\n  |stroke(-box|-dash(array|offset)|-miterlimit|-opacity|-width)?\n  |style(set)?\n  |stylistic\n  |sub(grid|pixel-antialiased|tract)?\n  |super|swash\n  |table(-caption|-cell|(-column|-footer|-header|-row)-group|-column|-row)?\n  |tabular-nums|tb-rl\n  |text((-bottom|-(decoration|emphasis)-color|-indent|-(over|under)-edge|-shadow|-size(-adjust)?|-top)|field)?\n  |thi(ck|n)\n  |titling-ca(ps|se)\n  |to[p]?\n  |touch|traditional\n  |transform(-origin)?\n  |under(-edge|line)?\n  |unicase|unset|uppercase|upright\n  |use-(glyph-orientation|script)\n  |verso\n  |vertical(-align|-ideographic|-lr|-rl|-text)?\n  |view-box\n  |viewport-fill(-opacity)?\n  |visibility\n  |visible(Fill|Painted|Stroke)?\n  |wait|wavy|weight|whitespace|(device-)?width|word-spacing\n  |wrap(-reverse)?\n  |x{1,2}-(large|small)\n  |z-index|zero\n  |zoom(-in|-out)?\n  |((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman))\n)\\b'
         name: 'support.constant.property-value.less'
       }
       {
@@ -2802,6 +2802,40 @@ repository:
                 match: '(?:[-+]?(?:\\d+)?(n)(\\s*[-+]\\s*\\d+)?|[-+]?\\s*\\d+)'
                 name: 'constant.numeric.less'
               }
+              {
+                include: '#less-math'
+              }
+              {
+                include: '#less-strings'
+              }
+              {
+                include: '#less-variable-interpolation'
+              }
+            ]
+          }
+        ]
+      }
+      {
+        begin: '(:)(host-context)(?=\\()'
+        captures:
+          '1':
+            name: 'punctuation.definition.entity.less'
+        end: '\\)'
+        endCaptures:
+          '0':
+            name: 'punctuation.definition.group.end.less'
+        name: 'entity.other.attribute-name.pseudo-class.less'
+        patterns: [
+          {
+            begin: '\\('
+            beginCaptures:
+              '0':
+                name: 'punctuation.definition.group.begin.less'
+            end: '(?=\\))'
+            patterns: [
+              {
+                include: '#selectors'
+              }
             ]
           }
         ]
@@ -2812,12 +2846,37 @@ repository:
             name: 'punctuation.definition.entity.less'
           '2':
             name: 'entity.other.attribute-name.pseudo-class.less'
-        match: '(:)(active|any|checked|default|disabled|empty|enabled|first(-(child|of-type))?|fullscreen|focus|hover|indeterminate|in-range|invalid|last-(child|of-type)|left|link|only-(child|of-type)|optional|out-of-range|read-(only|write)|required|right|root|scope|target|valid|visited)'
+        match: '(:)(active|any|checked|default|disabled|empty|enabled|first(-(child|of-type))?|fullscreen|focus|host|hover|indeterminate|in-range|invalid|last-(child|of-type)|left|link|only-(child|of-type)|optional|out-of-range|read-(only|write)|required|right|root|scope|target|valid|visited)'
         name: 'meta.function-call.less'
       }
     ]
   'pseudo-elements':
     patterns: [
+      {
+        begin: '(::)(slotted)(?=\\()'
+        captures:
+          '1':
+            name: 'punctuation.definition.entity.less'
+        end: '\\)'
+        endCaptures:
+          '0':
+            name: 'punctuation.definition.group.end.less'
+        name: 'entity.other.attribute-name.pseudo-class.less'
+        patterns: [
+          {
+            begin: '\\('
+            beginCaptures:
+              '0':
+                name: 'punctuation.definition.group.begin.less'
+            end: '(?=\\))'
+            patterns: [
+              {
+                include: '#selectors'
+              }
+            ]
+          }
+        ]
+      }
       {
         captures:
           '1':
@@ -2826,7 +2885,7 @@ repository:
             name: 'punctuation.definition.entity.less'
           '3':
             name: 'support.type.vendor-prefix.less'
-        match: '(?:(:{1,2})(?:before|after|first-line|first-letter)|(::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[\\w-][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)))\\b'
+        match: '(?:(:{1,2})(?:before|after|first-line|first-letter)|(::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)))\\b'
         name: 'entity.other.attribute-name.pseudo-element.less'
       }
     ]
@@ -2838,7 +2897,7 @@ repository:
         name: 'entity.name.namespace.wildcard.less'
       '3':
         name: 'punctuation.separator.namespace.less'
-    match: '(?:(-?(?:[[\\w-][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)|(\\*))?([|])(?!=)'
+    match: '(?:(-?(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)|(\\*))?([|])(?!=)'
   'regexp-function':
     begin: '\\b(regexp)(?=\\()'
     end: '\\)'
@@ -2928,7 +2987,7 @@ repository:
                 name: 'keyword.other.custom-property.prefix.less'
               '2':
                 name: 'support.type.custom-property.name.less'
-            match: '\\b(var-)(-?(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)(?=\\s)'
+            match: '\\b(var-)(-?(?:[[-\\w][^\\x{00}-\\x{9f}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][^\\x{00}-\\x{9f}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)(?=\\s)'
             name: 'invalid.deprecated.custom-property.less'
           }
           {
@@ -2948,13 +3007,13 @@ repository:
                     name: 'punctuation.separator.key-value.less'
                   '4':
                     name: 'meta.property-value.less'
-                match: '(((\\+_?)?):)([ \\t]*)'
+                match: '(((\\+_?)?):)([\\s\\t]*)'
               }
               {
                 include: '#property-values'
               }
               {
-                match: '-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*(\\s+-?(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)*'
+                match: '-?(?:[[_a-zA-Z][^\\x{00}-\\x{9f}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{9f}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*(\\s+-?(?:[[_a-zA-Z][^\\x{00}-\\x{9f}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{9f}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)*'
                 name: 'string.unquoted.less'
               }
               {
@@ -2972,22 +3031,48 @@ repository:
             endCaptures:
               '1':
                 name: 'punctuation.terminator.rule.less'
-            name: 'meta.property-name.less'
             patterns: [
               {
-                captures:
+                begin: '(((\\+_?)?):)(?=[\\s\\t]*)'
+                beginCaptures:
                   '1':
                     name: 'punctuation.separator.key-value.less'
-                  '4':
-                    name: 'meta.property-value.less'
-                match: '(((\\+_?)?):)([ \\t]*)'
-              }
-              {
-                include: '#property-values'
-              }
-              {
-                match: '(-?(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
-                name: 'variable.other.constant.animation-name.less'
+                captures:
+                  '1':
+                    name: 'punctuation.definition.arbitrary-repitition.less'
+                contentName: 'meta.property-value.less'
+                end: '(?=\\s*(;)|(?=[})]))'
+                patterns: [
+                  {
+                    match: '\\b(linear|ease(-in)?(-out)?|step-(start|end)|none|forwards|backwards|both|normal|alternate(-reverse)?|reverse|running|paused)\\b'
+                    name: 'support.constant.property-value.less'
+                  }
+                  {
+                    include: '#cubic-bezier-function'
+                  }
+                  {
+                    include: '#steps-function'
+                  }
+                  {
+                    include: '#time-type'
+                  }
+                  {
+                    include: '#number-type'
+                  }
+                  {
+                    match: '-?(?:[_a-zA-Z]|[^\\x00-\\x7F]|(?:(:?\\\\[0-9a-f]{1,6}(\\r\\n|[\\s\\t\\r\\n\\f])?)|\\\\[^\\r\\n\\f0-9a-f]))(?:[-_a-zA-Z0-9]|[^\\x00-\\x7F]|(?:(:?\\\\[0-9a-f]{1,6}(\\r\\n|[\\t\\r\\n\\f])?)|\\\\[^\\r\\n\\f0-9a-f]))*'
+                    name: 'variable.other.constant.animation-name.less'
+                  }
+                  {
+                    include: '#literal-string'
+                  }
+                  {
+                    include: '#property-values'
+                  }
+                  {
+                    match: '\\s*(?:(,))'
+                  }
+                ]
               }
             ]
           }
@@ -3009,7 +3094,7 @@ repository:
                     name: 'punctuation.separator.key-value.less'
                   '4':
                     name: 'meta.property-value.less'
-                match: '(((\\+_?)?):)([ \\t]*)'
+                match: '(((\\+_?)?):)([\\s\\t]*)'
               }
               {
                 include: '#time-type'
@@ -3048,7 +3133,7 @@ repository:
                     name: 'punctuation.separator.key-value.less'
                   '4':
                     name: 'meta.property-value.less'
-                match: '(((\\+_?)?):)([ \\t]*)'
+                match: '(((\\+_?)?):)([\\s\\t]*)'
               }
               {
                 match: '\\b(inherit|initial|unset|none)\\b'
@@ -3076,14 +3161,14 @@ repository:
                     name: 'punctuation.separator.key-value.less'
                   '4':
                     name: 'meta.property-value.less'
-                match: '(((\\+_?)?):)([ \\t]*)'
+                match: '(((\\+_?)?):)([\\s\\t]*)'
               }
               {
                 match: 'unset|initial|inherit|will-change|auto|scroll-position|contents'
                 name: 'invalid.illegal.property-value.less'
               }
               {
-                match: '-?(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*'
+                match: '-?(?:[[-\\w][^\\x{00}-\\x{9f}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][^\\x{00}-\\x{9f}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*'
                 name: 'support.constant.property-value.less'
               }
               {
@@ -3111,10 +3196,10 @@ repository:
                     name: 'punctuation.separator.key-value.less'
                   '4':
                     name: 'meta.property-value.less'
-                match: '(((\\+_?)?):)([ \\t]*)'
+                match: '(((\\+_?)?):)([\\s\\t]*)'
               }
               {
-                match: '-?(?:[[\\w-][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][\\p{L}\\p{M}\\p{S}\\p{N}&&[^[:ascii:]]]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*'
+                match: '-?(?:[[-\\w][^\\x{00}-\\x{9f}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[_a-zA-Z][^\\x{00}-\\x{9f}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*'
                 name: 'entity.name.constant.counter-name.less'
               }
               {
@@ -3127,7 +3212,7 @@ repository:
             ]
           }
           {
-            match: '\\b(?x)(\n    display|width|background-color|height|position|font-family|font-weight\n  | top|opacity|cursor|background-image|right|visibility|box-sizing\n  | user-select|left|float|margin-left|margin-top|line-height\n  | padding-left|z-index|margin-bottom|margin-right|margin\n  | vertical-align|padding-top|white-space|border-radius|padding-bottom\n  | padding-right|padding|bottom|clear|max-width|box-shadow|content\n  | border-color|min-height|min-width|font-style|border-width\n  | border-collapse|background-size|text-overflow|max-height|text-transform\n  | text-shadow|text-indent|border-style|overflow-y|list-style-type\n  | word-wrap|border-spacing|appearance|zoom|overflow-x|border-top-left-radius\n  | border-bottom-left-radius|border-top-color|pointer-events\n  | border-bottom-color|align-items|justify-content|letter-spacing\n  | border-top-right-radius|border-bottom-right-radius|border-right-width\n  | font-smoothing|border-bottom-width|border-right-color|direction\n  | border-top-width|src|border-left-color|border-left-width\n  | tap-highlight-color|table-layout|background-clip|word-break\n  | transform-origin|resize|filter|backface-visibility|text-rendering\n  | box-orient|transition-property|transition-duration|word-spacing\n  | quotes|outline-offset|animation-timing-function|animation-duration\n  | animation-name|transition-timing-function|border-bottom-style\n  | border-bottom|transition-delay|transition|unicode-bidi|border-top-style\n  | border-top|unicode-range|list-style-position|orphans|outline-width\n  | line-clamp|order|flex-direction|box-pack|animation-fill-mode\n  | outline-color|list-style-image|list-style|touch-action|flex-grow\n  | border-left-style|border-left|animation-iteration-count\n  | page-break-inside|box-flex|box-align|page-break-after|animation-delay\n  | widows|border-right-style|border-right|flex-align|outline-style\n  | outline|background-origin|animation-direction|fill-opacity\n  | background-attachment|flex-wrap|transform-style|counter-increment\n  | overflow-wrap|counter-reset|animation-play-state|animation\n  | will-change|box-ordinal-group|image-rendering|mask-image|flex-flow\n  | background-position-y|stroke-width|background-position-x|background-position\n  | background-blend-mode|flex-shrink|flex-basis|flex-order|flex-item-align\n  | flex-line-pack|flex-negative|flex-pack|flex-positive|flex-preferred-size\n  | flex|user-drag|font-stretch|column-count|empty-cells|align-self\n  | caption-side|mask-size|column-gap|mask-repeat|box-direction\n  | font-feature-settings|mask-position|align-content|object-fit\n  | columns|text-fill-color|clip-path|stop-color|font-kerning\n  | page-break-before|stroke-dasharray|size|fill-rule|border-image-slice\n  | column-width|break-inside|column-break-before|border-image-width\n  | stroke-dashoffset|border-image-repeat|border-image-outset|line-break\n  | stroke-linejoin|stroke-linecap|stroke-miterlimit|stroke-opacity\n  | stroke|shape-rendering|border-image-source|border-image|border\n  | tab-size|writing-mode|perspective-origin-y|perspective-origin-x\n  | perspective-origin|perspective|text-align-last|text-align|clip-rule\n  | clip|text-anchor|column-rule-color|box-decoration-break|column-fill\n  | fill|column-rule-style|mix-blend-mode|text-emphasis-color\n  | baseline-shift|dominant-baseline|page|alignment-baseline\n  | column-rule-width|column-rule|break-after|font-variant-ligatures\n  | transform-origin-y|transform-origin-x|transform|object-position\n  | break-before|column-span|isolation|shape-outside|all\n  | color-interpolation-filters|marker|marker-end|marker-start\n  | marker-mid|color-rendering|color-interpolation|background-repeat-x\n  | background-repeat-y|background-repeat|background|mask-type\n  | flood-color|flood-opacity|text-orientation|mask-composite\n  | text-emphasis-style|paint-order|lighting-color|shape-margin\n  | text-emphasis-position|text-emphasis|shape-image-threshold\n  | mask-clip|mask-origin|mask|font-variant-caps|font-variant-alternates\n  | font-variant-east-asian|font-variant-numeric|font-variant-position\n  | font-variant|font-size-adjust|font-size|font-language-override\n  | font-display|font-synthesis|font|line-box-contain|text-justify\n  | text-decoration-color|text-decoration-style|text-decoration-line\n  | text-decoration|text-underline-position|grid-template-rows\n  | grid-template-columns|grid-template-areas|grid-template|rotate|scale\n  | translate|scroll-behavior|grid-column-start|grid-column-end\n  | grid-column-gap|grid-row-start|grid-row-end|grid-auto-rows\n  | grid-area|grid-auto-flow|grid-auto-columns|image-orientation\n  | hyphens|overflow-scrolling|overflow|color-profile|kerning\n  | nbsp-mode|color|image-resolution|grid-row-gap|grid-row|grid-column\n  | blend-mode|azimuth|pause-after|pause-before|pause|pitch-range|pitch\n  | text-height|system|negative|prefix|suffix|range|pad|fallback\n  | additive-symbols|symbols|speak-as|speak|grid-gap|contain\n)\\b'
+            match: '(?x)\\b( accent-height | align-content | align-items | align-self | alignment-baseline | all | animation-timing-function | animation-play-state | animation-name | animation-iteration-count | animation-fill-mode | animation-duration | animation-direction | animation-delay | animation | appearance | ascent | azimuth | backface-visibility | background-size | background-repeat-y | background-repeat-x | background-repeat | background-position-y | background-position-x | background-position | background-origin | background-image | background-color | background-clip | background-blend-mode | background-attachment | background | baseline-shift | begin | bias | blend-mode | border-bottom-width | border-bottom-style | border-bottom-right-radius | border-bottom-left-radius | border-bottom-color | border-bottom | border-collapse | border-color | border-image-width | border-image-source | border-image-slice | border-image-repeat | border-image-outset | border-image | border-left-width | border-left-style | border-left-color | border-left | border-right-width | border-right-style | border-right-color | border-radius | border-right | border-spacing | border-style | border-top | border-top-width | border-top-style | border-top-right-radius | border-top-left-radius | border-top-color | border-width | border | bottom | box-align | box-decoration-break | box-direction | box-flex | box-ordinal-group | box-orient | box-pack | box-shadow | box-sizing | break-after | break-before | break-inside | caption-side | clear | clip-path | clip-rule | clip | color-interpolation-filters | color-interpolation | color-profile | color-rendering | color | columns | column-break-before | column-rule-color | column-rule-style | column-rule-width | column-rule | column-count | column-fill | column-gap | column-span | column-width | contain | content | counter-increment | counter-reset | cursor | cx | cy | direction | display | divisor | dominant-baseline | dur | dx | dy | elevation | empty-cells | enable-background | end | fallback | fill-opacity | fill-rule | fill | filter | flex-align | flex-basis | flex-direction | flex-flow | flex-grow | flex-item-align | flex-line-pack | flex-negative | flex-order | flex-pack | flex-positive | flex-preferred-size | flex-shrink | flex-wrap | flex | float | flood-color | flood-opacity | font-display | font-family | font-feature-settings | font-kerning | font-language-override | font-size-adjust | font-size | font-smoothing | font-stretch | font-style | font-synthesis | font-variant-alternates | font-variant-caps | font-variant-east-asian | font-variant-ligatures | font-variant-numeric | font-variant-position | font-variant | font-weight | font | fr | fx | fy | glyph-orientation-horizontal | glyph-orientation-vertical | grid-area | grid-auto-columns | grid-auto-flow | grid-auto-rows | grid-column-end | grid-column-gap | grid-column-start | grid-column | grid-gap | grid-row-end | grid-row-gap | grid-row-start | grid-row | grid-template-areas | grid-template-columns | grid-template-rows | grid-template | height | hyphens | image-orientation | image-rendering | image-resolution | isolation | justify-content | kerning | left | letter-spacing | lighting-color | line-box-contain | line-break | line-clamp | line-height | list-style-image | list-style-position | list-style-type | list-style | margin-bottom | margin-left | margin-right | margin-top | margin | marker-end | marker-mid | marker-start | marker | mask-clip | mask-composite | mask-image | mask-origin | mask-position | mask-repeat | mask-size | mask-type | mask | max-height | max-width | min-height | min-width | mix-blend-mode | nbsp-mode | negative | object-fit | object-position | opacity | operator | order | orphans | outline-color | outline-offset | outline-style | outline-width | outline | overflow-scrolling | overflow-wrap | overflow-x | overflow-y | overflow | padding-bottom | padding-left | padding-right | padding-top | padding | pad | page-break-after | page-break-before | page-break-inside | page | paint-order | pause-after | pause-before | pause | perspective-origin-x | perspective-origin-y | perspective-origin | perspective | pitch-range | pitch | pointer-events | position | prefix | quotes | range | resize | right | rotate | scale | scroll-behavior | shape-image-threshold | shape-margin | shape-outside | shape-rendering | size | speak-as | speak | src | stop-color | stop-opacity | stroke-dasharray | stroke-dashoffset | stroke-linecap | stroke-linejoin | stroke-miterlimit | stroke-opacity | stroke-width | stroke | suffix | symbols | system | tab-size | table-layout | tap-highlight-color | text-align-last | text-align | text-anchor | text-decoration-color | text-decoration-line | text-decoration-style | text-decoration | text-emphasis-color | text-emphasis-position | text-emphasis-style | text-emphasis | text-fill-color | text-height | text-indent | text-justify | text-orientation | text-overflow | text-rendering | text-shadow | text-transform | text-underline-position | top | touch-action | transform-origin-x | transform-origin-y | transform-origin | transform-style | transform | transition-delay | transition-duration | transition-property | transition-timing-function | transition | translate | unicode-bidi | unicode-range | user-drag | user-select | vertical-align | visibility | white-space | widows | width | will-change | word-break | word-spacing | word-wrap | writing-mode | z-index | zoom )\\b'
             name: 'support.type.property-name.less'
           }
           {
@@ -3136,7 +3221,7 @@ repository:
         ]
       }
       {
-        begin: '(((\\+_?)?):)([ \\t]*)'
+        begin: '\\b(((\\+_?)?):)([\\s\\t]*)'
         captures:
           '1':
             name: 'punctuation.separator.key-value.less'
@@ -3729,9 +3814,9 @@ repository:
   selector:
     patterns: [
       {
-        begin: '(?=[\\.*#a-zA-Z\\[&]|(\\:[^\\s])|@\\{)'
+        begin: '(?=[/\\.*#a-zA-Z\\[&]|(\\:{1,2}[^\\s])|@\\{)'
         contentName: 'meta.selector.less'
-        end: '(?=@(?!\\{)|[/{;])'
+        end: '(?=@(?!\\{)|[{;])'
         patterns: [
           {
             include: '#comment-line'
@@ -3745,6 +3830,13 @@ repository:
           {
             include: '#less-variable-interpolation'
           }
+          {
+            captures:
+              '1':
+                name: 'punctuation.separator.less'
+            match: '(\\!)\\s*important'
+            name: 'keyword.other.important.less'
+          }
         ]
       }
     ]
@@ -3755,7 +3847,7 @@ repository:
         name: 'entity.name.tag.custom.less'
       }
       {
-        match: '\\b(a(bbr|cronym|ddress|pplet|r(ea|ticle)|side|udio)?|b(ase(font)?|d(i|o)|ig|lockquote|ody|r|utton)?|c(a(nvas|ption)|i(rcl|t)e|lipPath|o(de|l(group)?|ntent))|d(ata(List)?|d|e(fs|l|tails)|fn|i(alog|r|v)|l|t)|e(l(ement|lipse)|m(bed)?|ventsource)|f(i(eldset|g(caption|ure)|lter)|o(oter|r(eignObject|m))|rame(set)?)|g(lyph(Ref)?)?|h([1-6]|ead(er)?|group|r|tml)|i(frame|m(age|g)|n(put|s)|sindex)?|k(bd|eygen)|l(abel|egend|i(n(e(arGradient)?)|k)?)|m(a(in|p|rk(er)?|sk)|e(nu|t(a|er)))|n(av|o(frames|script))|o(bject|l|pt(group|ion)|utput)|p(a(ram|t(h|tern))|icture|oly(gon|line)|r(e|ogress))?|q|r(adialGradient|ect|p|tc?)|s(amp|cript|elect(ion)?|hadow|mall|ource|pan|t(op|r(ike|ong)|yle)|u(b|mmary|p)|vg|witch|ymbol)?|t(able|body|d|e(mplate|xt(area|Path)?)|foot|th(ead)?|i(me|tle)|r(ack|ef)?|span|t)|u(l|se)?|v(ar|ideo)|wbr|xmp)\\b'
+        match: '(?x)\\b( a | abbr | acronym | address | applet | area | article | aside | audio | b | base | basefont | bdi | bdo | big | blockquote | body | br | button | canvas | caption | circle | cite | clipPath | code | col | colgroup | content | data | dataList | dd | defs | del | details | dfn | dialog | dir | div | dl | dt | element | ellipse | em | embed | eventsource | fieldset | figcaption | figure | filter | footer | foreignObject | form | frame | frameset | g | glyph | glyphRef | h1 | h2 | h3 | h4 | h5 | h6 | head | header | hgroup | hr | html | i | iframe | image | img | input | ins | isindex | kbd | keygen | label | legend | li | line | linearGradient | link | main | map | mark | marker | mask | menu | meta | meter | nav | noframes | noscript | object | ol | optgroup | option | output | p | param | path | pattern | picture | polygon | polyline | pre | progress | q | radialGradient | rect | rp | ruby | rt | rtc | s | samp | script | section | select | shadow | small | source | span | stop | strike | strong | style | sub | summary | sup | svg | switch | symbol | table | tbody | td | template | textarea | textPath | tfoot | th | thead | time | title | tr | track | tref | tspan | tt | u | ul | use | var | video | wbr | xmp )\\b'
         name: 'entity.name.tag.less'
       }
       {
@@ -3763,7 +3855,7 @@ repository:
         beginCaptures:
           '1':
             name: 'punctuation.definition.entity.less'
-        end: '(?![\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\\@(?=\\{)))'
+        end: '(?![-\\w]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\\@(?=\\{)))'
         name: 'entity.other.attribute-name.class.less'
         patterns: [
           {
@@ -3776,7 +3868,7 @@ repository:
         beginCaptures:
           '1':
             name: 'punctuation.definition.entity.less'
-        end: '(?![\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\\@(?=\\{)))'
+        end: '(?![-\\w]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\\@(?=\\{)))'
         name: 'entity.other.attribute-name.id.less'
         patterns: [
           {
@@ -3790,7 +3882,7 @@ repository:
           '1':
             name: 'punctuation.definition.entity.less'
         contentName: 'entity.other.attribute-name.parent.less'
-        end: '(?![\\w-]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\\@(?=\\{)))'
+        end: '(?![-\\w]|[^\\x{00}-\\x{9f}]|\\\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\\@(?=\\{)))'
         name: 'entity.other.attribute-name.parent.less'
         patterns: [
           {
@@ -3819,6 +3911,10 @@ repository:
         name: 'invalid.illegal.combinator.less'
       }
       {
+        match: '\\/deep\\/'
+        name: 'invalid.illegal.combinator.less'
+      }
+      {
         begin: '\\['
         captures:
           '0':
@@ -3833,7 +3929,7 @@ repository:
             include: '#qualified-name'
           }
           {
-            match: '(-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[\\w-][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[ \\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
+            match: '(-?(?:[[_a-zA-Z][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))(?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))*)'
             name: 'entity.other.attribute-name.less'
           }
           {

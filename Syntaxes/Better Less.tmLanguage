@@ -94,7 +94,7 @@
 		<key>at-counter-style</key>
 		<dict>
 			<key>begin</key>
-			<string>\s*((@)counter-style\b)\s+(?:(?i:\b(decimal|none)\b)|(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[\w-][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*))\s*(?=\{|$)</string>
+			<string>\s*((@)counter-style\b)\s+(?:(?i:\b(decimal|none)\b)|(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*))\s*(?=\{|$)</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -125,7 +125,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.property-list.less</string>
+					<string>punctuation.definition.block.begin.less</string>
 				</dict>
 			</dict>
 			<key>name</key>
@@ -216,7 +216,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.property-list.end.less</string>
+					<string>punctuation.definition.block.end.less</string>
 				</dict>
 			</dict>
 			<key>name</key>
@@ -362,7 +362,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.property-list.end.less</string>
+					<string>punctuation.definition.block.end.less</string>
 				</dict>
 			</dict>
 			<key>patterns</key>
@@ -375,7 +375,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.section.property-list.less</string>
+							<string>punctuation.definition.block.begin.less</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -438,7 +438,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.property-list.end.less</string>
+					<string>punctuation.definition.block.end.less</string>
 				</dict>
 			</dict>
 			<key>patterns</key>
@@ -484,7 +484,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.section.property-list.begin.less</string>
+							<string>punctuation.definition.block.begin.less</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -544,7 +544,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[\w-][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
+					<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
 					<key>name</key>
 					<string>entity.name.constant.namespace-prefix.less</string>
 				</dict>
@@ -652,7 +652,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.property-list.end.less</string>
+					<string>punctuation.definition.block.end.less</string>
 				</dict>
 			</dict>
 			<key>patterns</key>
@@ -880,7 +880,7 @@
 						</dict>
 						<dict>
 							<key>begin</key>
-							<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[\w-][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
+							<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
 							<key>end</key>
 							<string>(?=\))</string>
 							<key>name</key>
@@ -1377,7 +1377,7 @@
 								</dict>
 								<dict>
 									<key>match</key>
-									<string>(?:--(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))+|-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
+									<string>(?:--(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))+|-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
 									<key>name</key>
 									<string>entity.other.counter-name.less</string>
 								</dict>
@@ -1446,7 +1446,7 @@
 							<array>
 								<dict>
 									<key>match</key>
-									<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[\w-][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
+									<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
 									<key>name</key>
 									<string>entity.other.counter-name.less string.unquoted.less</string>
 								</dict>
@@ -1630,7 +1630,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\s*(--)((?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))+)</string>
+			<string>\s*(--)((?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))+)</string>
 			<key>name</key>
 			<string>support.type.custom-property.less</string>
 		</dict>
@@ -2346,7 +2346,7 @@
 		<key>keyframe-name</key>
 		<dict>
 			<key>begin</key>
-			<string>\s*(-?(?:[_a-z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?</string>
+			<string>\s*(-?(?:[_a-z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\s\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -3797,13 +3797,13 @@
 					<key>begin</key>
 					<string>(?=\s*when\b)</string>
 					<key>end</key>
-					<string>\s*(\})</string>
+					<string>\s*(?:(,)|(?=[{;]))</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.section.property-list.end.less</string>
+							<string>punctuation.definition.block.end.less</string>
 						</dict>
 					</dict>
 					<key>name</key>
@@ -4295,7 +4295,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(@)(-?(?:[[\w-][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[\w-][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
+					<string>(@)(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
@@ -4348,7 +4348,7 @@
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>(((\+_?)?):)([ \t]*)</string>
+							<string>(((\+_?)?):)([\s\t]*)</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -4376,7 +4376,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(@{1,2})([-]?([_a-z]|[^\x{00}-\x{7F}]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[\w-][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
+					<string>(@{1,2})([-]?([_a-z]|[^\x{00}-\x{7F}]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
@@ -4473,7 +4473,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(@)(\{)([\w-]+)(\})</string>
+			<string>(@)(\{)([-\w]+)(\})</string>
 			<key>name</key>
 			<string>variable.other.readwrite.less</string>
 		</dict>
@@ -4919,163 +4919,163 @@
 					<key>match</key>
 					<string>(?x)\b(
     absolute|active|add
-  | all(-(petite|small)-caps|-scroll)?
-  | alpha(betic)?
-  | alternate(-reverse)?
-  | always|annotation|antialiased|at
-  | auto(hiding-scrollbar)?
-  | avoid(-column|-page|-region)?
-  | background(-color|-image|-position|-size)?
-  | backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink
-  | block(-line-height)?
-  | blur
-  | bold(er)?
-  | border(-bottom|-left|-right|-top)?-(color|radius|width|style)
-  | border-(bottom|top)-(left|right)-radius
-  | border-image(-outset|-repeat|-slice|-source|-width)?
-  | border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?
-  | both|bottom
-  | box(-shadow)?
-  | break-(all|word)
-  | brightness
-  | butt(on)?
-  | capitalize
-  | cent(er|ral)
-  | char(acter-variant)?
-  | cjk-ideographic|clip|clone|close-quote
-  | closest-(corner|side)
-  | col-resize|collapse
-  | color(-stop|-burn|-dodge)?
-  | column((-count|-gap|-reverse|-rule(-color|-width)?|-width)|s)?
-  | common-ligatures|condensed|consider-shifts|contain
-  | content(-box|s)?
-  | contextual|contrast|cover
-  | crisp(-e|E)dges
-  | crop
-  | cross(hair)?
-  | da(rken|shed)
-  | default|dense|diagonal-fractions|difference|disabled
-  | discretionary-ligatures|disregard-shifts
-  | distribute(-all-lines|-letter|-space)?
-  | dotted|double|drop-shadow
-  | (nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize
-  | ease(-in-out|-in|-out)?
-  | element|ellipsis|embed|end|EndColorStr|evenodd
-  | exclu(de(-ruby)?|sion)
-  | expanded
-  | (extra|semi|ultra)-(condensed|expanded)
-  | farthest-(corner|side)?
-  | fill(-box|-opacity)?
-  | filter|fixed|flat
-  | flex((-basis|-end|-grow|-shrink|-start)|box)?
-  | flip|flood-color
-  | font(-size(-adjust)?|-stretch|-weight)?
-  | forwards
-  | from(-image)?
-  | full-width|geometricPrecision|glyphs|gradient|grayscale
-  | grid(-height)?
-  | groove|hand|hanging|hard-light|height|help|hidden|hide
-  | historical-(forms|ligatures)
-  | horizontal(-tb)?
-  | hue
-  | ideograph(-alpha|-numeric|-parenthesis|-space|ic)
-  | inactive|include-ruby|infinite|inherit|initial
-  | inline(-block|-box|-flex(box)?|-line-height|-table)?
-  | inset|inside
-  | inter(-ideograph|-word|sect)
-  | invert|isolat(e|ion)|italic
-  | jis(04|78|83|90)
-  | justify(-all)?
-  | keep-all
-  | large[r]?
-  | last|layout|left|letter-spacing
-  | light(e[nr]|ing-color)
-  | line(-edge|-height|-through)?
-  | linear(-gradient|RGB)?
-  | lining-nums|list-item|local|loose|lowercase|lr-tb|ltr
-  | lumin(osity|ance)|manual
-  | manipulation
-  | margin(-bottom|-box|-left|-right|-top)?
-  | marker(-offset|s)?
-  | mathematical
-  | max-(content|height|lines|size|width)
-  | medium|middle
-  | min-(content|height|width)
-  | miter|mixed|move|multiply|newspaper
-  | no-(change|clip|(close|open)-quote|(common|discretionary|historical)-ligatures|contextual|drop|repeat)
-  | none|nonzero|normal|not-allowed|nowrap|oblique
-  | offset(-after|-before|-end|-start)?
-  | oldstyle-nums|opacity|open-quote
-  | optimize(Legibility|Precision|Quality|Speed)
-  | order|ordinal|ornaments
-  | outline(-color|-offset|-width)?
-  | outset|outside|over(line|-edge|lay)
-  | padding(-bottom|-box|-left|-right|-top|-box)?
-  | page|painted|paused
-  | pan-(x|left|right|y|up|down)
-  | perspective-origin
-  | petite-caps|pixelated|pointer
-  | pinch-zoom
-  | pre(-line|-wrap)?
-  | preserve-3d
-  | progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)
-  | progress
-  | proportional-(nums|width)
-  | radial-gradient|recto|region|relative
-  | repeat(-[xy])?
-  | repeating-(linear|radial)-gradient
-  | replaced|reset-size|reverse|ridge|right
-  | round
-  | row(-resize|-reverse)?
-  | rtl|ruby|running|saturat(e|ion)|screen
-  | scroll(-position|bar)?
-  | separate|sepia
-  | scale-down
-  | shape-(image-threshold|margin|outside)
-  | show
-  | sideways(-lr|-rl)?
-  | simplified
-  | size
-  | slashed-zero|slice
-  | small(-caps|er)?
-  | smooth|snap|solid|soft-light
-  | space(-around|-between)?
-  | span|sRGB
-  | stack(ed-fractions)?
-  | start(ColorStr)?
-  | static
-  | step-(end|start)
-  | sticky
-  | stop-(color|opacity)
-  | stretch|strict
-  | stroke(-box|-dash(array|offset)|-miterlimit|-opacity|-width)?
-  | style(set)?
-  | stylistic
-  | sub(grid|pixel-antialiased|tract)?
-  | super|swash
-  | table(-caption|-cell|(-column|-footer|-header|-row)-group|-column|-row)?
-  | tabular-nums|tb-rl
-  | text((-bottom|-(decoration|emphasis)-color|-indent|-(over|under)-edge|-shadow|-size(-adjust)?|-top)|field)?
-  | thi(ck|n)
-  | titling-ca(ps|se)
-  | to[p]?
-  | touch|traditional
-  | transform(-origin)?
-  | under(-edge|line)?
-  | unicase|unset|uppercase|upright
-  | use-(glyph-orientation|script)
-  | verso
-  | vertical(-align|-ideographic|-lr|-rl|-text)?
-  | view-box
-  | viewport-fill(-opacity)?
-  | visibility
-  | visible(Fill|Painted|Stroke)?
-  | wait|wavy|weight|whitespace|(device-)?width|word-spacing
-  | wrap(-reverse)?
-  | x{1,2}-(large|small)
-  | z-index|zero
-  | zoom(-in|-out)?
-  | ((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman))
+  |all(-(petite|small)-caps|-scroll)?
+  |alpha(betic)?
+  |alternate(-reverse)?
+  |always|annotation|antialiased|at
+  |auto(hiding-scrollbar)?
+  |avoid(-column|-page|-region)?
+  |background(-color|-image|-position|-size)?
+  |backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink
+  |block(-line-height)?
+  |blur
+  |bold(er)?
+  |border(-bottom|-left|-right|-top)?-(color|radius|width|style)
+  |border-(bottom|top)-(left|right)-radius
+  |border-image(-outset|-repeat|-slice|-source|-width)?
+  |border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?
+  |both|bottom
+  |box(-shadow)?
+  |break-(all|word)
+  |brightness
+  |butt(on)?
+  |capitalize
+  |cent(er|ral)
+  |char(acter-variant)?
+  |cjk-ideographic|clip|clone|close-quote
+  |closest-(corner|side)
+  |col-resize|collapse
+  |color(-stop|-burn|-dodge)?
+  |column((-count|-gap|-reverse|-rule(-color|-width)?|-width)|s)?
+  |common-ligatures|condensed|consider-shifts|contain
+  |content(-box|s)?
+  |contextual|contrast|cover
+  |crisp(-e|E)dges
+  |crop
+  |cross(hair)?
+  |da(rken|shed)
+  |default|dense|diagonal-fractions|difference|disabled
+  |discretionary-ligatures|disregard-shifts
+  |distribute(-all-lines|-letter|-space)?
+  |dotted|double|drop-shadow
+  |(nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize
+  |ease(-in-out|-in|-out)?
+  |element|ellipsis|embed|end|EndColorStr|evenodd
+  |exclu(de(-ruby)?|sion)
+  |expanded
+  |(extra|semi|ultra)-(condensed|expanded)
+  |farthest-(corner|side)?
+  |fill(-box|-opacity)?
+  |filter|fixed|flat
+  |flex((-basis|-end|-grow|-shrink|-start)|box)?
+  |flip|flood-color
+  |font(-size(-adjust)?|-stretch|-weight)?
+  |forwards
+  |from(-image)?
+  |full-width|geometricPrecision|glyphs|gradient|grayscale
+  |grid(-height)?
+  |groove|hand|hanging|hard-light|height|help|hidden|hide
+  |historical-(forms|ligatures)
+  |horizontal(-tb)?
+  |hue
+  |ideograph(-alpha|-numeric|-parenthesis|-space|ic)
+  |inactive|include-ruby|infinite|inherit|initial
+  |inline(-block|-box|-flex(box)?|-line-height|-table)?
+  |inset|inside
+  |inter(-ideograph|-word|sect)
+  |invert|isolat(e|ion)|italic
+  |jis(04|78|83|90)
+  |justify(-all)?
+  |keep-all
+  |large[r]?
+  |last|layout|left|letter-spacing
+  |light(e[nr]|ing-color)
+  |line(-edge|-height|-through)?
+  |linear(-gradient|RGB)?
+  |lining-nums|list-item|local|loose|lowercase|lr-tb|ltr
+  |lumin(osity|ance)|manual
+  |manipulation
+  |margin(-bottom|-box|-left|-right|-top)?
+  |marker(-offset|s)?
+  |mathematical
+  |max-(content|height|lines|size|width)
+  |medium|middle
+  |min-(content|height|width)
+  |miter|mixed|move|multiply|newspaper
+  |no-(change|clip|(close|open)-quote|(common|discretionary|historical)-ligatures|contextual|drop|repeat)
+  |none|nonzero|normal|not-allowed|nowrap|oblique
+  |offset(-after|-before|-end|-start)?
+  |oldstyle-nums|opacity|open-quote
+  |optimize(Legibility|Precision|Quality|Speed)
+  |order|ordinal|ornaments
+  |outline(-color|-offset|-width)?
+  |outset|outside|over(line|-edge|lay)
+  |padding(-bottom|-box|-left|-right|-top|-box)?
+  |page|painted|paused
+  |pan-(x|left|right|y|up|down)
+  |perspective-origin
+  |petite-caps|pixelated|pointer
+  |pinch-zoom
+  |pre(-line|-wrap)?
+  |preserve-3d
+  |progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)
+  |progress
+  |proportional-(nums|width)
+  |radial-gradient|recto|region|relative
+  |repeat(-[xy])?
+  |repeating-(linear|radial)-gradient
+  |replaced|reset-size|reverse|ridge|right
+  |round
+  |row(-resize|-reverse)?
+  |rtl|ruby|running|saturat(e|ion)|screen
+  |scroll(-position|bar)?
+  |separate|sepia
+  |scale-down
+  |shape-(image-threshold|margin|outside)
+  |show
+  |sideways(-lr|-rl)?
+  |simplified
+  |size
+  |slashed-zero|slice
+  |small(-caps|er)?
+  |smooth|snap|solid|soft-light
+  |space(-around|-between)?
+  |span|sRGB
+  |stack(ed-fractions)?
+  |start(ColorStr)?
+  |static
+  |step-(end|start)
+  |sticky
+  |stop-(color|opacity)
+  |stretch|strict
+  |stroke(-box|-dash(array|offset)|-miterlimit|-opacity|-width)?
+  |style(set)?
+  |stylistic
+  |sub(grid|pixel-antialiased|tract)?
+  |super|swash
+  |table(-caption|-cell|(-column|-footer|-header|-row)-group|-column|-row)?
+  |tabular-nums|tb-rl
+  |text((-bottom|-(decoration|emphasis)-color|-indent|-(over|under)-edge|-shadow|-size(-adjust)?|-top)|field)?
+  |thi(ck|n)
+  |titling-ca(ps|se)
+  |to[p]?
+  |touch|traditional
+  |transform(-origin)?
+  |under(-edge|line)?
+  |unicase|unset|uppercase|upright
+  |use-(glyph-orientation|script)
+  |verso
+  |vertical(-align|-ideographic|-lr|-rl|-text)?
+  |view-box
+  |viewport-fill(-opacity)?
+  |visibility
+  |visible(Fill|Painted|Stroke)?
+  |wait|wavy|weight|whitespace|(device-)?width|word-spacing
+  |wrap(-reverse)?
+  |x{1,2}-(large|small)
+  |z-index|zero
+  |zoom(-in|-out)?
+  |((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman))
 )\b</string>
 					<key>name</key>
 					<string>support.constant.property-value.less</string>
@@ -5323,6 +5323,66 @@
 									<key>name</key>
 									<string>constant.numeric.less</string>
 								</dict>
+								<dict>
+									<key>include</key>
+									<string>#less-math</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#less-strings</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#less-variable-interpolation</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(:)(host-context)(?=\()</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.entity.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.end.less</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>entity.other.attribute-name.pseudo-class.less</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>\(</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.group.begin.less</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=\))</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#selectors</string>
+								</dict>
 							</array>
 						</dict>
 					</array>
@@ -5342,7 +5402,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(:)(active|any|checked|default|disabled|empty|enabled|first(-(child|of-type))?|fullscreen|focus|hover|indeterminate|in-range|invalid|last-(child|of-type)|left|link|only-(child|of-type)|optional|out-of-range|read-(only|write)|required|right|root|scope|target|valid|visited)</string>
+					<string>(:)(active|any|checked|default|disabled|empty|enabled|first(-(child|of-type))?|fullscreen|focus|host|hover|indeterminate|in-range|invalid|last-(child|of-type)|left|link|only-(child|of-type)|optional|out-of-range|read-(only|write)|required|right|root|scope|target|valid|visited)</string>
 					<key>name</key>
 					<string>meta.function-call.less</string>
 				</dict>
@@ -5352,6 +5412,54 @@
 		<dict>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>begin</key>
+					<string>(::)(slotted)(?=\()</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.entity.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.end.less</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>entity.other.attribute-name.pseudo-class.less</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>\(</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.group.begin.less</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=\))</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#selectors</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
 				<dict>
 					<key>captures</key>
 					<dict>
@@ -5372,7 +5480,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?:(:{1,2})(?:before|after|first-line|first-letter)|(::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[\w-][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[\w-][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)))\b</string>
+					<string>(?:(:{1,2})(?:before|after|first-line|first-letter)|(::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)))\b</string>
 					<key>name</key>
 					<string>entity.other.attribute-name.pseudo-element.less</string>
 				</dict>
@@ -5399,7 +5507,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?:(-?(?:[[\w-][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)|(\*))?([|])(?!=)</string>
+			<string>(?:(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)|(\*))?([|])(?!=)</string>
 		</dict>
 		<key>regexp-function</key>
 		<dict>
@@ -5562,7 +5670,7 @@
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>\b(var-)(-?(?:[[\w-][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)(?=\s)</string>
+							<string>\b(var-)(-?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)(?=\s)</string>
 							<key>name</key>
 							<string>invalid.deprecated.custom-property.less</string>
 						</dict>
@@ -5606,7 +5714,7 @@
 										</dict>
 									</dict>
 									<key>match</key>
-									<string>(((\+_?)?):)([ \t]*)</string>
+									<string>(((\+_?)?):)([\s\t]*)</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -5614,7 +5722,7 @@
 								</dict>
 								<dict>
 									<key>match</key>
-									<string>-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[\w-][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[\w-][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)*</string>
+									<string>-?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)*</string>
 									<key>name</key>
 									<string>string.unquoted.less</string>
 								</dict>
@@ -5647,36 +5755,74 @@
 									<string>punctuation.terminator.rule.less</string>
 								</dict>
 							</dict>
-							<key>name</key>
-							<string>meta.property-name.less</string>
 							<key>patterns</key>
 							<array>
 								<dict>
-									<key>captures</key>
+									<key>begin</key>
+									<string>(((\+_?)?):)(?=[\s\t]*)</string>
+									<key>beginCaptures</key>
 									<dict>
 										<key>1</key>
 										<dict>
 											<key>name</key>
 											<string>punctuation.separator.key-value.less</string>
 										</dict>
-										<key>4</key>
+									</dict>
+									<key>captures</key>
+									<dict>
+										<key>1</key>
 										<dict>
 											<key>name</key>
-											<string>meta.property-value.less</string>
+											<string>punctuation.definition.arbitrary-repitition.less</string>
 										</dict>
 									</dict>
-									<key>match</key>
-									<string>(((\+_?)?):)([ \t]*)</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#property-values</string>
-								</dict>
-								<dict>
-									<key>match</key>
-									<string>(-?(?:[[\w-][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
-									<key>name</key>
-									<string>variable.other.constant.animation-name.less</string>
+									<key>contentName</key>
+									<string>meta.property-value.less</string>
+									<key>end</key>
+									<string>(?=\s*(;)|(?=[})]))</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>match</key>
+											<string>\b(linear|ease(-in)?(-out)?|step-(start|end)|none|forwards|backwards|both|normal|alternate(-reverse)?|reverse|running|paused)\b</string>
+											<key>name</key>
+											<string>support.constant.property-value.less</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#cubic-bezier-function</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#steps-function</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#time-type</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#number-type</string>
+										</dict>
+										<dict>
+											<key>match</key>
+											<string>-?(?:[_a-zA-Z]|[^\x00-\x7F]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\s\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[-_a-zA-Z0-9]|[^\x00-\x7F]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*</string>
+											<key>name</key>
+											<string>variable.other.constant.animation-name.less</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#literal-string</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#property-values</string>
+										</dict>
+										<dict>
+											<key>match</key>
+											<string>\s*(?:(,))</string>
+										</dict>
+									</array>
 								</dict>
 							</array>
 						</dict>
@@ -5723,7 +5869,7 @@
 										</dict>
 									</dict>
 									<key>match</key>
-									<string>(((\+_?)?):)([ \t]*)</string>
+									<string>(((\+_?)?):)([\s\t]*)</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -5795,7 +5941,7 @@
 										</dict>
 									</dict>
 									<key>match</key>
-									<string>(((\+_?)?):)([ \t]*)</string>
+									<string>(((\+_?)?):)([\s\t]*)</string>
 								</dict>
 								<dict>
 									<key>match</key>
@@ -5849,7 +5995,7 @@
 										</dict>
 									</dict>
 									<key>match</key>
-									<string>(((\+_?)?):)([ \t]*)</string>
+									<string>(((\+_?)?):)([\s\t]*)</string>
 								</dict>
 								<dict>
 									<key>match</key>
@@ -5859,7 +6005,7 @@
 								</dict>
 								<dict>
 									<key>match</key>
-									<string>-?(?:[[\w-][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*</string>
+									<string>-?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*</string>
 									<key>name</key>
 									<string>support.constant.property-value.less</string>
 								</dict>
@@ -5917,11 +6063,11 @@
 										</dict>
 									</dict>
 									<key>match</key>
-									<string>(((\+_?)?):)([ \t]*)</string>
+									<string>(((\+_?)?):)([\s\t]*)</string>
 								</dict>
 								<dict>
 									<key>match</key>
-									<string>-?(?:[[\w-][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][\p{L}\p{M}\p{S}\p{N}&amp;&amp;[^[:ascii:]]]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*</string>
+									<string>-?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*</string>
 									<key>name</key>
 									<string>entity.name.constant.counter-name.less</string>
 								</dict>
@@ -5939,80 +6085,7 @@
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>\b(?x)(
-    display|width|background-color|height|position|font-family|font-weight
-  | top|opacity|cursor|background-image|right|visibility|box-sizing
-  | user-select|left|float|margin-left|margin-top|line-height
-  | padding-left|z-index|margin-bottom|margin-right|margin
-  | vertical-align|padding-top|white-space|border-radius|padding-bottom
-  | padding-right|padding|bottom|clear|max-width|box-shadow|content
-  | border-color|min-height|min-width|font-style|border-width
-  | border-collapse|background-size|text-overflow|max-height|text-transform
-  | text-shadow|text-indent|border-style|overflow-y|list-style-type
-  | word-wrap|border-spacing|appearance|zoom|overflow-x|border-top-left-radius
-  | border-bottom-left-radius|border-top-color|pointer-events
-  | border-bottom-color|align-items|justify-content|letter-spacing
-  | border-top-right-radius|border-bottom-right-radius|border-right-width
-  | font-smoothing|border-bottom-width|border-right-color|direction
-  | border-top-width|src|border-left-color|border-left-width
-  | tap-highlight-color|table-layout|background-clip|word-break
-  | transform-origin|resize|filter|backface-visibility|text-rendering
-  | box-orient|transition-property|transition-duration|word-spacing
-  | quotes|outline-offset|animation-timing-function|animation-duration
-  | animation-name|transition-timing-function|border-bottom-style
-  | border-bottom|transition-delay|transition|unicode-bidi|border-top-style
-  | border-top|unicode-range|list-style-position|orphans|outline-width
-  | line-clamp|order|flex-direction|box-pack|animation-fill-mode
-  | outline-color|list-style-image|list-style|touch-action|flex-grow
-  | border-left-style|border-left|animation-iteration-count
-  | page-break-inside|box-flex|box-align|page-break-after|animation-delay
-  | widows|border-right-style|border-right|flex-align|outline-style
-  | outline|background-origin|animation-direction|fill-opacity
-  | background-attachment|flex-wrap|transform-style|counter-increment
-  | overflow-wrap|counter-reset|animation-play-state|animation
-  | will-change|box-ordinal-group|image-rendering|mask-image|flex-flow
-  | background-position-y|stroke-width|background-position-x|background-position
-  | background-blend-mode|flex-shrink|flex-basis|flex-order|flex-item-align
-  | flex-line-pack|flex-negative|flex-pack|flex-positive|flex-preferred-size
-  | flex|user-drag|font-stretch|column-count|empty-cells|align-self
-  | caption-side|mask-size|column-gap|mask-repeat|box-direction
-  | font-feature-settings|mask-position|align-content|object-fit
-  | columns|text-fill-color|clip-path|stop-color|font-kerning
-  | page-break-before|stroke-dasharray|size|fill-rule|border-image-slice
-  | column-width|break-inside|column-break-before|border-image-width
-  | stroke-dashoffset|border-image-repeat|border-image-outset|line-break
-  | stroke-linejoin|stroke-linecap|stroke-miterlimit|stroke-opacity
-  | stroke|shape-rendering|border-image-source|border-image|border
-  | tab-size|writing-mode|perspective-origin-y|perspective-origin-x
-  | perspective-origin|perspective|text-align-last|text-align|clip-rule
-  | clip|text-anchor|column-rule-color|box-decoration-break|column-fill
-  | fill|column-rule-style|mix-blend-mode|text-emphasis-color
-  | baseline-shift|dominant-baseline|page|alignment-baseline
-  | column-rule-width|column-rule|break-after|font-variant-ligatures
-  | transform-origin-y|transform-origin-x|transform|object-position
-  | break-before|column-span|isolation|shape-outside|all
-  | color-interpolation-filters|marker|marker-end|marker-start
-  | marker-mid|color-rendering|color-interpolation|background-repeat-x
-  | background-repeat-y|background-repeat|background|mask-type
-  | flood-color|flood-opacity|text-orientation|mask-composite
-  | text-emphasis-style|paint-order|lighting-color|shape-margin
-  | text-emphasis-position|text-emphasis|shape-image-threshold
-  | mask-clip|mask-origin|mask|font-variant-caps|font-variant-alternates
-  | font-variant-east-asian|font-variant-numeric|font-variant-position
-  | font-variant|font-size-adjust|font-size|font-language-override
-  | font-display|font-synthesis|font|line-box-contain|text-justify
-  | text-decoration-color|text-decoration-style|text-decoration-line
-  | text-decoration|text-underline-position|grid-template-rows
-  | grid-template-columns|grid-template-areas|grid-template|rotate|scale
-  | translate|scroll-behavior|grid-column-start|grid-column-end
-  | grid-column-gap|grid-row-start|grid-row-end|grid-auto-rows
-  | grid-area|grid-auto-flow|grid-auto-columns|image-orientation
-  | hyphens|overflow-scrolling|overflow|color-profile|kerning
-  | nbsp-mode|color|image-resolution|grid-row-gap|grid-row|grid-column
-  | blend-mode|azimuth|pause-after|pause-before|pause|pitch-range|pitch
-  | text-height|system|negative|prefix|suffix|range|pad|fallback
-  | additive-symbols|symbols|speak-as|speak|grid-gap|contain
-)\b</string>
+							<string>(?x)\b( accent-height | align-content | align-items | align-self | alignment-baseline | all | animation-timing-function | animation-play-state | animation-name | animation-iteration-count | animation-fill-mode | animation-duration | animation-direction | animation-delay | animation | appearance | ascent | azimuth | backface-visibility | background-size | background-repeat-y | background-repeat-x | background-repeat | background-position-y | background-position-x | background-position | background-origin | background-image | background-color | background-clip | background-blend-mode | background-attachment | background | baseline-shift | begin | bias | blend-mode | border-bottom-width | border-bottom-style | border-bottom-right-radius | border-bottom-left-radius | border-bottom-color | border-bottom | border-collapse | border-color | border-image-width | border-image-source | border-image-slice | border-image-repeat | border-image-outset | border-image | border-left-width | border-left-style | border-left-color | border-left | border-right-width | border-right-style | border-right-color | border-radius | border-right | border-spacing | border-style | border-top | border-top-width | border-top-style | border-top-right-radius | border-top-left-radius | border-top-color | border-width | border | bottom | box-align | box-decoration-break | box-direction | box-flex | box-ordinal-group | box-orient | box-pack | box-shadow | box-sizing | break-after | break-before | break-inside | caption-side | clear | clip-path | clip-rule | clip | color-interpolation-filters | color-interpolation | color-profile | color-rendering | color | columns | column-break-before | column-rule-color | column-rule-style | column-rule-width | column-rule | column-count | column-fill | column-gap | column-span | column-width | contain | content | counter-increment | counter-reset | cursor | cx | cy | direction | display | divisor | dominant-baseline | dur | dx | dy | elevation | empty-cells | enable-background | end | fallback | fill-opacity | fill-rule | fill | filter | flex-align | flex-basis | flex-direction | flex-flow | flex-grow | flex-item-align | flex-line-pack | flex-negative | flex-order | flex-pack | flex-positive | flex-preferred-size | flex-shrink | flex-wrap | flex | float | flood-color | flood-opacity | font-display | font-family | font-feature-settings | font-kerning | font-language-override | font-size-adjust | font-size | font-smoothing | font-stretch | font-style | font-synthesis | font-variant-alternates | font-variant-caps | font-variant-east-asian | font-variant-ligatures | font-variant-numeric | font-variant-position | font-variant | font-weight | font | fr | fx | fy | glyph-orientation-horizontal | glyph-orientation-vertical | grid-area | grid-auto-columns | grid-auto-flow | grid-auto-rows | grid-column-end | grid-column-gap | grid-column-start | grid-column | grid-gap | grid-row-end | grid-row-gap | grid-row-start | grid-row | grid-template-areas | grid-template-columns | grid-template-rows | grid-template | height | hyphens | image-orientation | image-rendering | image-resolution | isolation | justify-content | kerning | left | letter-spacing | lighting-color | line-box-contain | line-break | line-clamp | line-height | list-style-image | list-style-position | list-style-type | list-style | margin-bottom | margin-left | margin-right | margin-top | margin | marker-end | marker-mid | marker-start | marker | mask-clip | mask-composite | mask-image | mask-origin | mask-position | mask-repeat | mask-size | mask-type | mask | max-height | max-width | min-height | min-width | mix-blend-mode | nbsp-mode | negative | object-fit | object-position | opacity | operator | order | orphans | outline-color | outline-offset | outline-style | outline-width | outline | overflow-scrolling | overflow-wrap | overflow-x | overflow-y | overflow | padding-bottom | padding-left | padding-right | padding-top | padding | pad | page-break-after | page-break-before | page-break-inside | page | paint-order | pause-after | pause-before | pause | perspective-origin-x | perspective-origin-y | perspective-origin | perspective | pitch-range | pitch | pointer-events | position | prefix | quotes | range | resize | right | rotate | scale | scroll-behavior | shape-image-threshold | shape-margin | shape-outside | shape-rendering | size | speak-as | speak | src | stop-color | stop-opacity | stroke-dasharray | stroke-dashoffset | stroke-linecap | stroke-linejoin | stroke-miterlimit | stroke-opacity | stroke-width | stroke | suffix | symbols | system | tab-size | table-layout | tap-highlight-color | text-align-last | text-align | text-anchor | text-decoration-color | text-decoration-line | text-decoration-style | text-decoration | text-emphasis-color | text-emphasis-position | text-emphasis-style | text-emphasis | text-fill-color | text-height | text-indent | text-justify | text-orientation | text-overflow | text-rendering | text-shadow | text-transform | text-underline-position | top | touch-action | transform-origin-x | transform-origin-y | transform-origin | transform-style | transform | transition-delay | transition-duration | transition-property | transition-timing-function | transition | translate | unicode-bidi | unicode-range | user-drag | user-select | vertical-align | visibility | white-space | widows | width | will-change | word-break | word-spacing | word-wrap | writing-mode | z-index | zoom )\b</string>
 							<key>name</key>
 							<string>support.type.property-name.less</string>
 						</dict>
@@ -6024,7 +6097,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(((\+_?)?):)([ \t]*)</string>
+					<string>\b(((\+_?)?):)([\s\t]*)</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -6070,11 +6143,11 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?=[\.*#a-zA-Z\[&amp;]|(\:[^\s])|@\{)</string>
+					<string>(?=[/\.*#a-zA-Z\[&amp;]|(\:{1,2}[^\s])|@\{)</string>
 					<key>contentName</key>
 					<string>meta.selector.less</string>
 					<key>end</key>
-					<string>(?=@(?!\{)|[/{;])</string>
+					<string>(?=@(?!\{)|[{;])</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -6093,6 +6166,20 @@
 							<key>include</key>
 							<string>#less-variable-interpolation</string>
 						</dict>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.separator.less</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>(\!)\s*important</string>
+							<key>name</key>
+							<string>keyword.other.important.less</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
@@ -6109,7 +6196,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(a(bbr|cronym|ddress|pplet|r(ea|ticle)|side|udio)?|b(ase(font)?|d(i|o)|ig|lockquote|ody|r|utton)?|c(a(nvas|ption)|i(rcl|t)e|lipPath|o(de|l(group)?|ntent))|d(ata(List)?|d|e(fs|l|tails)|fn|i(alog|r|v)|l|t)|e(l(ement|lipse)|m(bed)?|ventsource)|f(i(eldset|g(caption|ure)|lter)|o(oter|r(eignObject|m))|rame(set)?)|g(lyph(Ref)?)?|h([1-6]|ead(er)?|group|r|tml)|i(frame|m(age|g)|n(put|s)|sindex)?|k(bd|eygen)|l(abel|egend|i(n(e(arGradient)?)|k)?)|m(a(in|p|rk(er)?|sk)|e(nu|t(a|er)))|n(av|o(frames|script))|o(bject|l|pt(group|ion)|utput)|p(a(ram|t(h|tern))|icture|oly(gon|line)|r(e|ogress))?|q|r(adialGradient|ect|p|tc?)|s(amp|cript|elect(ion)?|hadow|mall|ource|pan|t(op|r(ike|ong)|yle)|u(b|mmary|p)|vg|witch|ymbol)?|t(able|body|d|e(mplate|xt(area|Path)?)|foot|th(ead)?|i(me|tle)|r(ack|ef)?|span|t)|u(l|se)?|v(ar|ideo)|wbr|xmp)\b</string>
+					<string>(?x)\b( a | abbr | acronym | address | applet | area | article | aside | audio | b | base | basefont | bdi | bdo | big | blockquote | body | br | button | canvas | caption | circle | cite | clipPath | code | col | colgroup | content | data | dataList | dd | defs | del | details | dfn | dialog | dir | div | dl | dt | element | ellipse | em | embed | eventsource | fieldset | figcaption | figure | filter | footer | foreignObject | form | frame | frameset | g | glyph | glyphRef | h1 | h2 | h3 | h4 | h5 | h6 | head | header | hgroup | hr | html | i | iframe | image | img | input | ins | isindex | kbd | keygen | label | legend | li | line | linearGradient | link | main | map | mark | marker | mask | menu | meta | meter | nav | noframes | noscript | object | ol | optgroup | option | output | p | param | path | pattern | picture | polygon | polyline | pre | progress | q | radialGradient | rect | rp | ruby | rt | rtc | s | samp | script | section | select | shadow | small | source | span | stop | strike | strong | style | sub | summary | sup | svg | switch | symbol | table | tbody | td | template | textarea | textPath | tfoot | th | thead | time | title | tr | track | tref | tspan | tt | u | ul | use | var | video | wbr | xmp )\b</string>
 					<key>name</key>
 					<string>entity.name.tag.less</string>
 				</dict>
@@ -6125,7 +6212,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\@(?=\{)))</string>
+					<string>(?![-\w]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\@(?=\{)))</string>
 					<key>name</key>
 					<string>entity.other.attribute-name.class.less</string>
 					<key>patterns</key>
@@ -6148,7 +6235,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\@(?=\{)))</string>
+					<string>(?![-\w]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\@(?=\{)))</string>
 					<key>name</key>
 					<string>entity.other.attribute-name.id.less</string>
 					<key>patterns</key>
@@ -6173,7 +6260,7 @@
 					<key>contentName</key>
 					<string>entity.other.attribute-name.parent.less</string>
 					<key>end</key>
-					<string>(?![\w-]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\@(?=\{)))</string>
+					<string>(?![-\w]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\@(?=\{)))</string>
 					<key>name</key>
 					<string>entity.other.attribute-name.parent.less</string>
 					<key>patterns</key>
@@ -6213,6 +6300,12 @@
 					<string>invalid.illegal.combinator.less</string>
 				</dict>
 				<dict>
+					<key>match</key>
+					<string>\/deep\/</string>
+					<key>name</key>
+					<string>invalid.illegal.combinator.less</string>
+				</dict>
+				<dict>
 					<key>begin</key>
 					<string>\[</string>
 					<key>captures</key>
@@ -6239,7 +6332,7 @@
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))(?:[[\w-][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[ \t\n\f]?|\\[^\n\f\h]))*)</string>
+							<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
 							<key>name</key>
 							<string>entity.other.attribute-name.less</string>
 						</dict>

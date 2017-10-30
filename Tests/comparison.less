@@ -1,0 +1,69 @@
+span.class {
+	color: #333;
+	background: url('@{path}/image.jpg');
+	opacity: 0.3;
+	animation: myAnimation 0.2s cubic-bezier(0, 0, 0, 1);
+	animation: opacity-change 0.2s linear;
+
+	&:before {
+		content: "asdf";
+		width: ~'calc(100% - 20px)';
+		width: calc(100% - 20px);
+	}
+
+	&:active {
+		color: blue;
+	}
+
+	&:hover {
+		color: @blue;
+	}
+
+	@keyframes opacity-change {
+		0% {}
+		100% {}
+	}
+
+	@media screen and (min-width: 200px) {
+		.something {}
+	}
+}
+
+// Complex selectors
+span[class*="asdf"]:not(.disabled):nth-child(2n) {
+
+}
+
+// Reserved HTML elements vs Class names
+footer, .footer,
+header, .header {}
+
+// Custom elements vs Classes
+container, .container,
+wrapper, .wrapper {}
+
+video,
+video-container,
+videoContainer,
+user-video {
+	display: block;
+}
+
+:host { }
+
+:host-context(.class) { }
+
+something /deep/ .asdf {
+
+}
+
+::selection,
+::-moz-selection {
+
+}
+
+.a {
+	::slotted(.asdf) {
+
+	}
+}
