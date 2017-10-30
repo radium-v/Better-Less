@@ -1,3 +1,9 @@
+## 0.4.2 - Feedback Loop
+* Simplify custom-ident patterns
+* Add completions for Sublime Text
+* Add deep, slotted, host, and host-context
+* Fix animation-name and others (thanks @zvuc)
+
 ## 0.4.1 - Supports Report
 * Fix `@supports` highlighting
 
