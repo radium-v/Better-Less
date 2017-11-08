@@ -2362,7 +2362,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.arbitrary-repitition.less</string>
+					<string>punctuation.definition.arbitrary-repetition.less</string>
 				</dict>
 			</dict>
 		</dict>
@@ -4652,7 +4652,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.arbitrary-repitition.less</string>
+					<string>punctuation.definition.arbitrary-repetition.less</string>
 				</dict>
 			</dict>
 			<key>patterns</key>
@@ -5773,7 +5773,7 @@
 										<key>1</key>
 										<dict>
 											<key>name</key>
-											<string>punctuation.definition.arbitrary-repitition.less</string>
+											<string>punctuation.definition.arbitrary-repetition.less</string>
 										</dict>
 									</dict>
 									<key>contentName</key>
@@ -5893,7 +5893,7 @@
 										<key>1</key>
 										<dict>
 											<key>name</key>
-											<string>punctuation.definition.arbitrary-repitition.less</string>
+											<string>punctuation.definition.arbitrary-repetition.less</string>
 										</dict>
 									</dict>
 									<key>match</key>
@@ -6015,7 +6015,7 @@
 										<key>1</key>
 										<dict>
 											<key>name</key>
-											<string>punctuation.definition.arbitrary-repitition.less</string>
+											<string>punctuation.definition.arbitrary-repetition.less</string>
 										</dict>
 									</dict>
 									<key>match</key>
@@ -6393,7 +6393,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.arbitrary-repitition.less</string>
+							<string>punctuation.definition.arbitrary-repetition.less</string>
 						</dict>
 					</dict>
 					<key>match</key>

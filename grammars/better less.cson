@@ -1291,7 +1291,7 @@ repository:
     end: '\\s*(?:(,)|(?=[{;]))'
     endCaptures:
       '1':
-        name: 'punctuation.definition.arbitrary-repitition.less'
+        name: 'punctuation.definition.arbitrary-repetition.less'
   'length-type':
     captures:
       '1':
@@ -2525,7 +2525,7 @@ repository:
     end: '\\s*(?:(,)|(?=[{;]))'
     endCaptures:
       '1':
-        name: 'punctuation.definition.arbitrary-repitition.less'
+        name: 'punctuation.definition.arbitrary-repetition.less'
     patterns: [
       {
         include: '#less-variables'
@@ -3039,7 +3039,7 @@ repository:
                     name: 'punctuation.separator.key-value.less'
                 captures:
                   '1':
-                    name: 'punctuation.definition.arbitrary-repitition.less'
+                    name: 'punctuation.definition.arbitrary-repetition.less'
                 contentName: 'meta.property-value.less'
                 end: '(?=\\s*(;)|(?=[})]))'
                 patterns: [
@@ -3111,7 +3111,7 @@ repository:
               {
                 captures:
                   '1':
-                    name: 'punctuation.definition.arbitrary-repitition.less'
+                    name: 'punctuation.definition.arbitrary-repetition.less'
                 match: '\\s*(?:(,))'
               }
             ]
@@ -3174,7 +3174,7 @@ repository:
               {
                 captures:
                   '1':
-                    name: 'punctuation.definition.arbitrary-repitition.less'
+                    name: 'punctuation.definition.arbitrary-repetition.less'
                 match: '\\s*(?:(,))'
               }
             ]
@@ -3966,7 +3966,7 @@ repository:
       {
         captures:
           '1':
-            name: 'punctuation.definition.arbitrary-repitition.less'
+            name: 'punctuation.definition.arbitrary-repetition.less'
         match: '\\s*(?:(,))'
       }
       {
