@@ -1,6 +1,6 @@
 {
   "name": "better-less",
-  "displayName": "better-less",
+  "displayName": "Better Less",
   "version": "0.4.3",
   "description": "Cross-compatible syntax highlighting for Less",
   "publisher": "radium-v",
@@ -8,7 +8,9 @@
     "Languages"
   ],
   "keywords": [
+    "language",
     "less",
+    "grammar",
     "css",
     "syntax"
   ],
