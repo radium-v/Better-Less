@@ -2579,9 +2579,6 @@ repository:
           }
         ]
       }
-      {
-        include: '#media-query'
-      }
     ]
   'media-query-list':
     begin: '\\s*(?=[^{;])'

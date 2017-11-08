@@ -4761,10 +4761,6 @@
 						</dict>
 					</array>
 				</dict>
-				<dict>
-					<key>include</key>
-					<string>#media-query</string>
-				</dict>
 			</array>
 		</dict>
 		<key>media-query-list</key>
