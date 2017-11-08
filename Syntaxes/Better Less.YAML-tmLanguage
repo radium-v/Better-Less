@@ -2009,7 +2009,7 @@ repository:
   selector:
     patterns:
     - contentName: meta.selector.less
-      begin: (?=[/\.*#a-zA-Z\[&]|(\:{1,2}[^\s])|@\{)
+      begin: (?=[>~+/\.*#a-zA-Z\[&]|(\:{1,2}[^\s])|@\{)
       end: (?=@(?!\{)|[{;])
       patterns:
       - include: '#comment-line'

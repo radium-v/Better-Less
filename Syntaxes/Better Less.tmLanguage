@@ -6138,7 +6138,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?=[/\.*#a-zA-Z\[&amp;]|(\:{1,2}[^\s])|@\{)</string>
+					<string>(?=[&gt;~+/\.*#a-zA-Z\[&amp;]|(\:{1,2}[^\s])|@\{)</string>
 					<key>contentName</key>
 					<string>meta.selector.less</string>
 					<key>end</key>
