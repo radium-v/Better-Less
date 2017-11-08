@@ -1,3 +1,9 @@
+## 0.4.3 - The Extra B
+* Fix typos
+* Fix infinite loop in media queries (thanks @samvtran)
+* Fix nested selectors that begin with a combinator
+* Rearrange property names to prevent premature matches
+
 ## 0.4.2 - Feedback Loop
 * Simplify custom-ident patterns
 * Add completions for Sublime Text
