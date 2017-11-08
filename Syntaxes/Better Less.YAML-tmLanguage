@@ -1655,8 +1655,7 @@ repository:
           |x{1,2}-(large|small)
           |z-index|zero
           |zoom(-in|-out)?
-          |((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman))
-        )\b
+          |((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman)))\b
     - name: support.constant.font-name.less
       match: \b(?i:sans-serif|serif|monospace|fantasy|cursive)\b(?=\s*[;,\n}])
 
@@ -1860,10 +1859,10 @@ repository:
         endCaptures:
           '1': {name: punctuation.terminator.rule.less}
         patterns:
-        - begin: (((\+_?)?):)(?=[\s\t]*)
+        - contentName: meta.property-value.less
+          begin: (((\+_?)?):)(?=[\s\t]*)
           beginCaptures:
             '1': {name: punctuation.separator.key-value.less}
-          contentName: meta.property-value.less
           end: (?=\s*(;)|(?=[})]))
           captures:
             '1': {name: punctuation.definition.arbitrary-repetition.less}
@@ -1950,359 +1949,50 @@ repository:
         - name: invalid.illegal.property-value.less
           match: unset|initial|inherit|auto
       - name: support.type.property-name.less
-        match: (?x)\b(
-            accent-height
-          | align-content
-          | align-items
-          | align-self
-          | alignment-baseline
-          | all
-          | animation-timing-function
-          | animation-play-state
-          | animation-name
-          | animation-iteration-count
-          | animation-fill-mode
-          | animation-duration
-          | animation-direction
-          | animation-delay
-          | animation
-          | appearance
-          | ascent
-          | azimuth
-          | backface-visibility
-          | background-size
-          | background-repeat-y
-          | background-repeat-x
-          | background-repeat
-          | background-position-y
-          | background-position-x
-          | background-position
-          | background-origin
-          | background-image
-          | background-color
-          | background-clip
-          | background-blend-mode
-          | background-attachment
-          | background
-          | baseline-shift
-          | begin
-          | bias
-          | blend-mode
-          | border-bottom-width
-          | border-bottom-style
-          | border-bottom-right-radius
-          | border-bottom-left-radius
-          | border-bottom-color
-          | border-bottom
-          | border-collapse
-          | border-color
-          | border-image-width
-          | border-image-source
-          | border-image-slice
-          | border-image-repeat
-          | border-image-outset
-          | border-image
-          | border-left-width
-          | border-left-style
-          | border-left-color
-          | border-left
-          | border-right-width
-          | border-right-style
-          | border-right-color
-          | border-radius
-          | border-right
-          | border-spacing
-          | border-style
-          | border-top
-          | border-top-width
-          | border-top-style
-          | border-top-right-radius
-          | border-top-left-radius
-          | border-top-color
-          | border-width
-          | border
-          | bottom
-          | box-align
-          | box-decoration-break
-          | box-direction
-          | box-flex
-          | box-ordinal-group
-          | box-orient
-          | box-pack
-          | box-shadow
-          | box-sizing
-          | break-after
-          | break-before
-          | break-inside
-          | caption-side
-          | clear
-          | clip-path
-          | clip-rule
-          | clip
-          | color-interpolation-filters
-          | color-interpolation
-          | color-profile
-          | color-rendering
-          | color
-          | columns
-          | column-break-before
-          | column-rule-color
-          | column-rule-style
-          | column-rule-width
-          | column-rule
-          | column-count
-          | column-fill
-          | column-gap
-          | column-span
-          | column-width
-          | contain
-          | content
-          | counter-increment
-          | counter-reset
-          | cursor
-          | cx
-          | cy
-          | direction
-          | display
-          | divisor
-          | dominant-baseline
-          | dur
-          | dx
-          | dy
-          | elevation
-          | empty-cells
-          | enable-background
-          | end
-          | fallback
-          | fill-opacity
-          | fill-rule
-          | fill
-          | filter
-          | flex-align
-          | flex-basis
-          | flex-direction
-          | flex-flow
-          | flex-grow
-          | flex-item-align
-          | flex-line-pack
-          | flex-negative
-          | flex-order
-          | flex-pack
-          | flex-positive
-          | flex-preferred-size
-          | flex-shrink
-          | flex-wrap
-          | flex
-          | float
-          | flood-color
-          | flood-opacity
-          | font-display
-          | font-family
-          | font-feature-settings
-          | font-kerning
-          | font-language-override
-          | font-size-adjust
-          | font-size
-          | font-smoothing
-          | font-stretch
-          | font-style
-          | font-synthesis
-          | font-variant-alternates
-          | font-variant-caps
-          | font-variant-east-asian
-          | font-variant-ligatures
-          | font-variant-numeric
-          | font-variant-position
-          | font-variant
-          | font-weight
-          | font
-          | fr
-          | fx
-          | fy
-          | glyph-orientation-horizontal
-          | glyph-orientation-vertical
-          | grid-area
-          | grid-auto-columns
-          | grid-auto-flow
-          | grid-auto-rows
-          | grid-column-end
-          | grid-column-gap
-          | grid-column-start
-          | grid-column
-          | grid-gap
-          | grid-row-end
-          | grid-row-gap
-          | grid-row-start
-          | grid-row
-          | grid-template-areas
-          | grid-template-columns
-          | grid-template-rows
-          | grid-template
-          | height
-          | hyphens
-          | image-orientation
-          | image-rendering
-          | image-resolution
-          | isolation
-          | justify-content
-          | kerning
-          | left
-          | letter-spacing
-          | lighting-color
-          | line-box-contain
-          | line-break
-          | line-clamp
-          | line-height
-          | list-style-image
-          | list-style-position
-          | list-style-type
-          | list-style
-          | margin-bottom
-          | margin-left
-          | margin-right
-          | margin-top
-          | margin
-          | marker-end
-          | marker-mid
-          | marker-start
-          | marker
-          | mask-clip
-          | mask-composite
-          | mask-image
-          | mask-origin
-          | mask-position
-          | mask-repeat
-          | mask-size
-          | mask-type
-          | mask
-          | max-height
-          | max-width
-          | min-height
-          | min-width
-          | mix-blend-mode
-          | nbsp-mode
-          | negative
-          | object-fit
-          | object-position
-          | opacity
-          | operator
-          | order
-          | orphans
-          | outline-color
-          | outline-offset
-          | outline-style
-          | outline-width
-          | outline
-          | overflow-scrolling
-          | overflow-wrap
-          | overflow-x
-          | overflow-y
-          | overflow
-          | padding-bottom
-          | padding-left
-          | padding-right
-          | padding-top
-          | padding
-          | pad
-          | page-break-after
-          | page-break-before
-          | page-break-inside
-          | page
-          | paint-order
-          | pause-after
-          | pause-before
-          | pause
-          | perspective-origin-x
-          | perspective-origin-y
-          | perspective-origin
-          | perspective
-          | pitch-range
-          | pitch
-          | pointer-events
-          | position
-          | prefix
-          | quotes
-          | range
-          | resize
-          | right
-          | rotate
-          | scale
-          | scroll-behavior
-          | shape-image-threshold
-          | shape-margin
-          | shape-outside
-          | shape-rendering
-          | size
-          | speak-as
-          | speak
-          | src
-          | stop-color
-          | stop-opacity
-          | stroke-dasharray
-          | stroke-dashoffset
-          | stroke-linecap
-          | stroke-linejoin
-          | stroke-miterlimit
-          | stroke-opacity
-          | stroke-width
-          | stroke
-          | suffix
-          | symbols
-          | system
-          | tab-size
-          | table-layout
-          | tap-highlight-color
-          | text-align-last
-          | text-align
-          | text-anchor
-          | text-decoration-color
-          | text-decoration-line
-          | text-decoration-style
-          | text-decoration
-          | text-emphasis-color
-          | text-emphasis-position
-          | text-emphasis-style
-          | text-emphasis
-          | text-fill-color
-          | text-height
-          | text-indent
-          | text-justify
-          | text-orientation
-          | text-overflow
-          | text-rendering
-          | text-shadow
-          | text-transform
-          | text-underline-position
-          | top
-          | touch-action
-          | transform-origin-x
-          | transform-origin-y
-          | transform-origin
-          | transform-style
-          | transform
-          | transition-delay
-          | transition-duration
-          | transition-property
-          | transition-timing-function
-          | transition
-          | translate
-          | unicode-bidi
-          | unicode-range
-          | user-drag
-          | user-select
-          | vertical-align
-          | visibility
-          | white-space
-          | widows
-          | width
-          | will-change
-          | word-break
-          | word-spacing
-          | word-wrap
-          | writing-mode
-          | z-index
-          | zoom
-          )\b
+        match: (?x)\b( accent-height | align-content | align-items | align-self |
+          alignment-baseline | all | animation-timing-function | animation-play-state
+          | animation-name | animation-iteration-count | animation-fill-mode | animation-duration
+          | animation-direction | animation-delay | animation | appearance | ascent
+          | azimuth | backface-visibility | background-size | background-repeat-y
+          | background-repeat-x | background-repeat | background-position-y | background-position-x
+          | background-position | background-origin | background-image | background-color
+          | background-clip | background-blend-mode | background-attachment | background
+          | baseline-shift | begin | bias | blend-mode | border-((top|right|bottom|left)-)?(width|style|color)
+          | border-(top|bottom)-(right|left)-radius | border-image-(width|source|slice|repeat|outset)
+          | border-(top|right|bottom|left|collapse|image|radius|spacing) | border
+          | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)
+          | break-(after|before|inside) | caption-side | clear | clip-path | clip-rule
+          | clip | color(-(interpolation(-filters)?|profile|rendering))? | columns
+          | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width)
+          | contain | content | counter-(increment|reset) | cursor | (c|d|f)(x|y)
+          | direction | display | divisor | dominant-baseline | dur | elevation |
+          empty-cells | enable-background | end | fallback | fill(-(opacity|rule))?
+          | filter | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))?
+          | float | flood-(color|opacity) | font-display | font-family | font-feature-settings
+          | font-kerning | font-language-override | font-size(-adjust)? | font-smoothing
+          | font-stretch | font-style | font-synthesis | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))?
+          | font-weight | font | fr | glyph-orientation-(horizontal|vertical) | grid-(area|gap)
+          | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))? |
+          grid-template(-(areas|columns|rows))? | height | hyphens | image-(orientation|rendering|resolution)
+          | isolation | justify-content | kerning | left | letter-spacing | lighting-color
+          | line-(box-contain|break|clamp|height) | list-style(-(image|position|type))?
+          | margin(-(bottom|left|right|top))? | marker(-(end|mid|start))? | mask(-(clip||composite|image|origin|position|repeat|size|type))?
+          | (max|min)-(height|width) | mix-blend-mode | nbsp-mode | negative | object-(fit|position)
+          | opacity | operator | order | orphans | outline(-(color|offset|style|width))?
+          | overflow(-(scrolling|wrap|x|y))? | pad(ding(-(bottom|left|right|top))?)?
+          | page(-break-(after|before|inside))? | paint-order | pause(-(after|before))?
+          | perspective(-origin(-(x|y))?)? | pitch(-range)? | pointer-events | position
+          | prefix | quotes | range | resize | right | rotate | scale | scroll-behavior
+          | shape-(image-threshold|margin|outside|rendering) | size | speak(-as)?
+          | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))?
+          | suffix | symbols | system | tab-size | table-layout | tap-highlight-color
+          | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))?
+          | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|shadow|transform|underline-position)
+          | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)?
+          | transition(-(delay|duration|property|timing-function))? | translate |
+          unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility
+          | white-space | widows | width | will-change | word-(break|spacing|wrap)
+          | writing-mode | z-index | zoom )\b
       - include: $self
     - contentName: meta.property-value.less
       begin: \b(((\+_?)?):)([\s\t]*)
@@ -2336,165 +2026,23 @@ repository:
     - name: entity.name.tag.custom.less
       match: \b([a-z](?:(?:[-_a-z0-9\x{00B7}]|\\\.|[[\x{00C0}-\x{00D6}][\x{00D8}-\x{00F6}][\x{00F8}-\x{02FF}][\x{0300}-\x{037D}][\x{037F}-\x{1FFF}][\x{200C}-\x{200D}][\x{203F}-\x{2040}][\x{2070}-\x{218F}][\x{2C00}-\x{2FEF}][\x{3001}-\x{D7FF}][\x{F900}-\x{FDCF}][\x{FDF0}-\x{FFFD}][\x{10000}-\x{EFFFF}]]))*-(?:(?:[-_a-z0-9\x{00B7}]|\\\.|[[\x{00C0}-\x{00D6}][\x{00D8}-\x{00F6}][\x{00F8}-\x{02FF}][\x{0300}-\x{037D}][\x{037F}-\x{1FFF}][\x{200C}-\x{200D}][\x{203F}-\x{2040}][\x{2070}-\x{218F}][\x{2C00}-\x{2FEF}][\x{3001}-\x{D7FF}][\x{F900}-\x{FDCF}][\x{FDF0}-\x{FFFD}][\x{10000}-\x{EFFFF}]]))*)\b
     - name: entity.name.tag.less
-      match: (?x)\b(
-          a
-        | abbr
-        | acronym
-        | address
-        | applet
-        | area
-        | article
-        | aside
-        | audio
-        | b
-        | base
-        | basefont
-        | bdi
-        | bdo
-        | big
-        | blockquote
-        | body
-        | br
-        | button
-        | canvas
-        | caption
-        | circle
-        | cite
-        | clipPath
-        | code
-        | col
-        | colgroup
-        | content
-        | data
-        | dataList
-        | dd
-        | defs
-        | del
-        | details
-        | dfn
-        | dialog
-        | dir
-        | div
-        | dl
-        | dt
-        | element
-        | ellipse
-        | em
-        | embed
-        | eventsource
-        | fieldset
-        | figcaption
-        | figure
-        | filter
-        | footer
-        | foreignObject
-        | form
-        | frame
-        | frameset
-        | g
-        | glyph
-        | glyphRef
-        | h1
-        | h2
-        | h3
-        | h4
-        | h5
-        | h6
-        | head
-        | header
-        | hgroup
-        | hr
-        | html
-        | i
-        | iframe
-        | image
-        | img
-        | input
-        | ins
-        | isindex
-        | kbd
-        | keygen
-        | label
-        | legend
-        | li
-        | line
-        | linearGradient
-        | link
-        | main
-        | map
-        | mark
-        | marker
-        | mask
-        | menu
-        | meta
-        | meter
-        | nav
-        | noframes
-        | noscript
-        | object
-        | ol
-        | optgroup
-        | option
-        | output
-        | p
-        | param
-        | path
-        | pattern
-        | picture
-        | polygon
-        | polyline
-        | pre
-        | progress
-        | q
-        | radialGradient
-        | rect
-        | rp
-        | ruby
-        | rt
-        | rtc
-        | s
-        | samp
-        | script
-        | section
-        | select
-        | shadow
-        | small
-        | source
-        | span
-        | stop
-        | strike
-        | strong
-        | style
-        | sub
-        | summary
-        | sup
-        | svg
-        | switch
-        | symbol
-        | table
-        | tbody
-        | td
-        | template
-        | textarea
-        | textPath
-        | tfoot
-        | th
-        | thead
-        | time
-        | title
-        | tr
-        | track
-        | tref
-        | tspan
-        | tt
-        | u
-        | ul
-        | use
-        | var
-        | video
-        | wbr
-        | xmp
-        )\b
+      match: (?x)\b( a | abbr | acronym | address | applet | area | article | aside
+        | audio | b | base | basefont | bdi | bdo | big | blockquote | body | br |
+        button | canvas | caption | circle | cite | clipPath | code | col | colgroup
+        | content | data | dataList | dd | defs | del | details | dfn | dialog | dir
+        | div | dl | dt | element | ellipse | em | embed | eventsource | fieldset
+        | figcaption | figure | filter | footer | foreignObject | form | frame | frameset
+        | g | glyph | glyphRef | h1 | h2 | h3 | h4 | h5 | h6 | head | header | hgroup
+        | hr | html | i | iframe | image | img | input | ins | isindex | kbd | keygen
+        | label | legend | li | line | linearGradient | link | main | map | mark |
+        marker | mask | menu | meta | meter | nav | noframes | noscript | object |
+        ol | optgroup | option | output | p | param | path | pattern | picture | polygon
+        | polyline | pre | progress | q | radialGradient | rect | rp | ruby | rt |
+        rtc | s | samp | script | section | select | shadow | small | source | span
+        | stop | strike | strong | style | sub | summary | sup | svg | switch | symbol
+        | table | tbody | td | template | textarea | textPath | tfoot | th | thead
+        | time | title | tr | track | tref | tspan | tt | u | ul | use | var | video
+        | wbr | xmp )\b
     - name: entity.other.attribute-name.class.less
       begin: (\.)
       beginCaptures:
