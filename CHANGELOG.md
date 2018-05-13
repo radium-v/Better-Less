@@ -1,3 +1,6 @@
+## 0.5.0 - Nesting
+* Fix `var` in transform functions
+
 ## 0.4.3 - The Extra B
 * Fix typos
 * Fix infinite loop in media queries (thanks @samvtran)
