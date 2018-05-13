@@ -2249,6 +2249,7 @@ repository:
         - include: '#comma-delimiter'
         - include: '#number-type'
         - include: '#less-variables'
+        - include: '#var-function'
     - name: meta.function-call.less
       begin: \b(translate(3d)?)(?=\()
       beginCaptures:
@@ -2267,6 +2268,7 @@ repository:
         - include: '#length-type'
         - include: '#number-type'
         - include: '#less-variables'
+        - include: '#var-function'
     - name: meta.function-call.less
       begin: \b(translate[XY])(?=\()
       beginCaptures:
@@ -2284,6 +2286,7 @@ repository:
         - include: '#length-type'
         - include: '#number-type'
         - include: '#less-variables'
+        - include: '#var-function'
     - name: meta.function-call.less
       begin: \b(rotate[XYZ]?|skew[XY])(?=\()
       beginCaptures:
@@ -2299,6 +2302,8 @@ repository:
         patterns:
         - include: '#angle-type'
         - include: '#less-variables'
+        - include: '#calc-function'
+        - include: '#var-function'
     - name: meta.function-call.less
       begin: \b(skew)(?=\()
       beginCaptures:
@@ -2314,6 +2319,9 @@ repository:
         patterns:
         - include: '#comma-delimiter'
         - include: '#angle-type'
+        - include: '#less-variables'
+        - include: '#calc-function'
+        - include: '#var-function'
     - name: meta.function-call.less
       begin: \b(translateZ|perspective)(?=\()
       beginCaptures:
@@ -2329,6 +2337,8 @@ repository:
         patterns:
         - include: '#length-type'
         - include: '#less-variables'
+        - include: '#calc-function'
+        - include: '#var-function'
     - name: meta.function-call.less
       begin: \b(rotate3d)(?=\()
       beginCaptures:
@@ -2346,6 +2356,8 @@ repository:
         - include: '#angle-type'
         - include: '#number-type'
         - include: '#less-variables'
+        - include: '#calc-function'
+        - include: '#var-function'
     - name: meta.function-call.less
       begin: \b(scale[XYZ])(?=\()
       beginCaptures:
@@ -2362,6 +2374,8 @@ repository:
         - include: '#comma-delimiter'
         - include: '#number-type'
         - include: '#less-variables'
+        - include: '#calc-function'
+        - include: '#var-function'
 
   unicode-range:
     name: support.unicode-range.less
@@ -2392,6 +2406,7 @@ repository:
       - include: '#less-variables'
       - include: '#literal-string'
       - include: '#unquoted-string'
+      - include: '#var-function'
 
   var-function:
     patterns:
@@ -2410,6 +2425,7 @@ repository:
         patterns:
         - include: '#comma-delimiter'
         - include: '#custom-property-name'
+        - include: '#less-variables'
 
   vendor-prefix:
     name: support.type.vendor-prefix.less

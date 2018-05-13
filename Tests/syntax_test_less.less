@@ -944,3 +944,8 @@ a {
 //            ^^^^^^ entity.name.constant.namespace-prefix.less
 //                   ^^^^^^^^^^^^^^^^^^^ string.quoted.double.less
 //                                      ^ punctuation.terminator.rule.less
+
+.a {
+    --asdf: 23px;
+    transform: translate(var(--asdf)) scale(var(--asdf)) skew(calc(var(--asdf)));
+}

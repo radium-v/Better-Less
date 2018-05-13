@@ -6861,6 +6861,10 @@
 									<key>include</key>
 									<string>#less-variables</string>
 								</dict>
+								<dict>
+									<key>include</key>
+									<string>#var-function</string>
+								</dict>
 							</array>
 						</dict>
 					</array>
@@ -6925,6 +6929,10 @@
 									<key>include</key>
 									<string>#less-variables</string>
 								</dict>
+								<dict>
+									<key>include</key>
+									<string>#var-function</string>
+								</dict>
 							</array>
 						</dict>
 					</array>
@@ -6985,6 +6993,10 @@
 									<key>include</key>
 									<string>#less-variables</string>
 								</dict>
+								<dict>
+									<key>include</key>
+									<string>#var-function</string>
+								</dict>
 							</array>
 						</dict>
 					</array>
@@ -7036,6 +7048,14 @@
 								<dict>
 									<key>include</key>
 									<string>#less-variables</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#calc-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#var-function</string>
 								</dict>
 							</array>
 						</dict>
@@ -7089,6 +7109,18 @@
 									<key>include</key>
 									<string>#angle-type</string>
 								</dict>
+								<dict>
+									<key>include</key>
+									<string>#less-variables</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#calc-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#var-function</string>
+								</dict>
 							</array>
 						</dict>
 					</array>
@@ -7140,6 +7172,14 @@
 								<dict>
 									<key>include</key>
 									<string>#less-variables</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#calc-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#var-function</string>
 								</dict>
 							</array>
 						</dict>
@@ -7201,6 +7241,14 @@
 									<key>include</key>
 									<string>#less-variables</string>
 								</dict>
+								<dict>
+									<key>include</key>
+									<string>#calc-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#var-function</string>
+								</dict>
 							</array>
 						</dict>
 					</array>
@@ -7256,6 +7304,14 @@
 								<dict>
 									<key>include</key>
 									<string>#less-variables</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#calc-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#var-function</string>
 								</dict>
 							</array>
 						</dict>
@@ -7348,6 +7404,10 @@
 							<key>include</key>
 							<string>#unquoted-string</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#var-function</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
@@ -7403,6 +7463,10 @@
 								<dict>
 									<key>include</key>
 									<string>#custom-property-name</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#less-variables</string>
 								</dict>
 							</array>
 						</dict>
