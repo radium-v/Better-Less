@@ -5,7 +5,7 @@
   "description": "Cross-compatible syntax highlighting for Less",
   "publisher": "radium-v",
   "categories": [
-    "Languages"
+    "Programming Languages"
   ],
   "keywords": [
     "language",
@@ -38,7 +38,7 @@
       {
         "language": "less",
         "scopeName": "source.less",
-        "path": "./syntaxes/Better Less.tmLanguage"
+        "path": "./Syntaxes/Better Less.tmLanguage"
       }
     ]
   }
