@@ -998,6 +998,22 @@ repository:
         - include: '#property-values'
         - include: '#comma-delimiter'
         - include: '#integer-type'
+    - name: meta.function-call.less
+      begin: \b(range)(?=\()\b
+      beginCaptures:
+        '1': {name: support.function.range.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#property-values'
+        - include: '#comma-delimiter'
+        - include: '#integer-type'
 
   less-logical-comparisons:
     patterns:
