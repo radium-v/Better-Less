@@ -2991,6 +2991,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#less-if-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#less-list-functions</string>
 				</dict>
 				<dict>
@@ -3008,6 +3012,63 @@
 				<dict>
 					<key>include</key>
 					<string>#less-type-functions</string>
+				</dict>
+			</array>
+		</dict>
+		<key>less-if-function</key>
+		<dict>
+			<key>begin</key>
+			<string>\b(if)(?=\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.if.less</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.group.end.less</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.function-call.less</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.begin.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=\))</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#less-mixin-guards</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comma-delimiter</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#property-values</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
@@ -3122,6 +3183,79 @@
 							</array>
 						</dict>
 					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>less-logical-comparisons</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.logical.less</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\s*(=|((&lt;|&gt;)=?))\s*</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\(</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.begin.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.end.less</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.group.less</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#less-logical-comparisons</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\btrue|false\b</string>
+					<key>name</key>
+					<string>constant.language.less</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>,</string>
+					<key>name</key>
+					<string>punctuation.separator.less</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#property-values</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#selectors</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#unquoted-string</string>
 				</dict>
 			</array>
 		</dict>
@@ -3781,7 +3915,11 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#less-mixin-guards</string>
+									<string>#less-logical-comparisons</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
 								</dict>
 							</array>
 						</dict>
