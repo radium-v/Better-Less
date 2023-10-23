@@ -3709,7 +3709,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\s*(and|not)?\s*(?=\()</string>
+					<string>\s*(and|not|or)?\s*(?=\()</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
