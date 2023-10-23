@@ -740,6 +740,22 @@ repository:
     captures:
       '1': {name: keyword.other.unit.less}
 
+  less-boolean-function:
+    name: meta.function-call.less
+    begin: \b(boolean)(?=\()
+    beginCaptures:
+      '1': {name: support.function.boolean.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#less-logical-comparisons'
+
   less-color-blend-functions:
     patterns:
     - name: meta.function-call.less
@@ -922,6 +938,7 @@ repository:
 
   less-functions:
     patterns:
+    - include: '#less-boolean-function'
     - include: '#less-color-functions'
     - include: '#less-if-function'
     - include: '#less-list-functions'
