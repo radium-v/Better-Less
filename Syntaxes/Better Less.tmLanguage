@@ -2381,6 +2381,55 @@
 			<key>name</key>
 			<string>constant.numeric.less</string>
 		</dict>
+		<key>less-boolean-function</key>
+		<dict>
+			<key>begin</key>
+			<string>\b(boolean)(?=\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.boolean.less</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.group.end.less</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.function-call.less</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.begin.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=\))</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#less-logical-comparisons</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
 		<key>less-color-blend-functions</key>
 		<dict>
 			<key>patterns</key>
@@ -2985,6 +3034,10 @@
 		<dict>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#less-boolean-function</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#less-color-functions</string>

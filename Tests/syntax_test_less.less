@@ -976,3 +976,11 @@ div {
 
     color:  if((iscolor(@some)), @some, black);
 }
+
+@bg: black;
+@bg-light: boolean(luma(@bg) > 50%);
+
+div {
+  background: @bg;
+  color: if(@bg-light, black, white);
+}
