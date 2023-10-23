@@ -1,7 +1,7 @@
 Please select any editor that you're experiencing this issue in.
-- [ ] Atom
 - [ ] Visual Studio Code
 - [ ] Sublime Text 2/3
+- [ ] TextMate 2
 
 Please provide the name/repo of the color scheme package you're using:
 - My super cool theme
