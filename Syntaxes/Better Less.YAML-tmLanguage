@@ -388,7 +388,7 @@ repository:
     - name: support.constant.color.w3c-special-color-keyword.less
       match: \b((?i)currentColor|transparent)\b
     - name: constant.other.color.rgb-value.less
-      match: (#)(\h{3}|\h{6})\b
+      match: (#)(\h{3}|\h{4}|\h{6}|\h{8})\b
       captures:
         '1': {name: punctuation.definition.constant.less}
 
