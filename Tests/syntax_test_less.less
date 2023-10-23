@@ -963,3 +963,16 @@ a {
 }
 
 .orderOfEvaluation(@a1, @a2, @a3) when ((@a1) and (@a2) or (@a3)) {}
+div {
+    margin: if((2 > 1), 0, 3px);
+//          ^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//          ^^ support.function.if.less
+//            ^ punctuation.definition.group.begin.less
+//             ^^^^^^^ meta.group.less
+//             ^ punctuation.definition.group.begin.less
+//                ^ keyword.operator.logical.less
+//                   ^ punctuation.definition.group.end.less
+//                    ^ punctuation.separator.less
+
+    color:  if((iscolor(@some)), @some, black);
+}
