@@ -1263,7 +1263,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(#)(\h{3}|\h{6})\b</string>
+					<string>(#)(\h{3}|\h{4}|\h{6}|\h{8})\b</string>
 					<key>name</key>
 					<string>constant.other.color.rgb-value.less</string>
 				</dict>
