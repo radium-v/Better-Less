@@ -1,7 +1,7 @@
 {
     "name": "better-less",
     "displayName": "Better Less",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "description": "Cross-compatible syntax highlighting for Less",
     "publisher": "radium-v",
     "categories": [
