@@ -1,3 +1,15 @@
+## 0.6.1 - Fast Follow
+* Fix regex compatibility error for animation names in Sublime Text 2
+* Update the Changelog (oops)
+
+## 0.6.0 - Hello Again
+* Remove Atom support
+* Add hex color alpha channel support
+* Add `or` to mixin guards
+* Add `if` function and logical comparisons
+* Add `boolean` function
+* Add `range` function
+
 ## 0.5.0 - Nesting
 * Fix `var` in transform functions
 
