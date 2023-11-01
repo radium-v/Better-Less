@@ -1379,6 +1379,20 @@ repository:
         - include: '#comma-delimiter'
         - name: keyword.other.unit.less
           match: (?x)\b((?i:em|ex|ch|rem)|(?i:vw|vh|vmin|vmax)|(?i:cm|mm|q|in|pt|pc|px|fr)|(?i:deg|grad|rad|turn)|(?i:s|ms)|(?i:Hz|kHz)|(?i:dpi|dpcm|dppx))\b
+    - name: meta.function-call.less
+      begin: \b(isdefined)(?=\()
+      beginCaptures:
+        '1': {name: support.function.type.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
 
   less-variable-assignment:
     patterns:
