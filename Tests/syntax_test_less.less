@@ -633,6 +633,14 @@ filter: e("ms:alwaysHasItsOwnSyntax.For.Stuff()");
 //                 ^ punctuation.definition.group.begin.less
 //                  ^^^^ variable.other.readwrite.less
 //                      ^ punctuation.definition.group.end.less
+
+    @val: isdefined(@var);
+//        ^^^^^^^^^^^^^^^ meta.function-call.less
+//        ^^^^^^^^^ support.function.type.less
+//                 ^ punctuation.definition.group.begin.less
+//                  ^^^^ variable.other.readwrite.less
+//                      ^ punctuation.definition.group.end.less
+
 }
 
 /* Color Definition Functions */
