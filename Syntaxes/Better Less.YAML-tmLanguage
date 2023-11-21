@@ -1987,7 +1987,7 @@ repository:
           captures:
             '1': {name: punctuation.definition.arbitrary-repetition.less}
       - name: meta.property-name.less
-        begin: \bfilter\b
+        begin: \b(?:backdrop-)?filter\b
         beginCaptures:
           '0': {name: support.type.property-name.less}
         end: \s*(;)|(?=[})])

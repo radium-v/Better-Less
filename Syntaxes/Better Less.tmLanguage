@@ -6193,7 +6193,7 @@
 						</dict>
 						<dict>
 							<key>begin</key>
-							<string>\bfilter\b</string>
+							<string>\b(?:backdrop-)?filter\b</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>0</key>
