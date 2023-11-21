@@ -1,3 +1,8 @@
+# Changelog
+
+## Unreleased
+* Add `backdrop-filter` support
+
 ## 0.6.1 - Fast Follow
 * Fix regex compatibility error for animation names in Sublime Text 2
 * Update the Changelog (oops)
