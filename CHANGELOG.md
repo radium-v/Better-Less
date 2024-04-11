@@ -3,6 +3,17 @@
 ## Unreleased
 * Add `backdrop-filter` support
 * Fix nested `var` values
+* Add support for logical properties:
+  * `block-size`, `inline-size`, `max-block-size`, `max-inline-size`, `min-block-size`, `min-inline-size`
+  * `margin-block`, `margin-block-end`, `margin-block-start`, `margin-inline`, `margin-inline-end`, `margin-inline-start`
+  * `padding-block`, `padding-block-end`, `padding-block-start`, `padding-inline`, `padding-inline-end`, `padding-inline-start`
+  * `border-block`, `border-block-color`, `border-block-end`, `border-block-end-color`, `border-block-end-style`, `border-block-end-width`, `border-block-start`, `border-block-start-color`, `border-block-start-style`, `border-block-start-width`, `border-block-style`, `border-block-width`, `border-inline`, `border-inline-color`, `border-inline-end`, `border-inline-end-color`, `border-inline-end-style`, `border-inline-end-width`, `border-inline-start`, `border-inline-start-color`, `border-inline-start-style`, `border-inline-start-width`, `border-inline-style`, `border-inline-width`, `border-style`, `border-width`
+  * `border-start-start-radius`, `border-start-end-radius`, `border-end-start-radius`, `border-end-end-radius`
+  * `inset`, `inset-block`, `inset-block-end`, `inset-block-start`, `inset-inline`, `inset-inline-end`, `inset-inline-start`
+  * `contain-intrinsic-block-size`, `contain-intrinsic-inline-size`
+  * `overflow-block`, `overflow-inline`, `overscroll-behavior-block`, `overscroll-behavior-inline`, `overscroll-behavior-x`, `overscroll-behavior-y`, `overscroll-behavior`
+  * `inline-start` and `inline-end` values for `clear`, `float`, and `caption-side`
+  * `fit-content()` function
 
 ## 0.6.1 - Fast Follow
 * Fix regex compatibility error for animation names in Sublime Text 2
