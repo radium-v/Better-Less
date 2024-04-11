@@ -296,6 +296,7 @@ repository:
     - include: '#cross-fade-function'
     - include: '#cubic-bezier-function'
     - include: '#filter-function'
+    - include: '#fit-content-function'
     - include: '#format-function'
     - include: '#gradient-functions'
     - include: '#grid-repeat-function'
@@ -604,6 +605,26 @@ repository:
         end: (?=\))
         patterns:
         - include: '#angle-type'
+
+  fit-content-function:
+    name: meta.function-call.less
+    begin: \b(fit-content)(?=\()
+    beginCaptures:
+      '1': {name: support.function.grid.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#less-variables'
+      - include: '#var-function'
+      - include: '#calc-function'
+      - include: '#length-type'
+      - include: '#percentage-type'
 
   format-function:
     patterns:
@@ -1607,7 +1628,7 @@ repository:
           |avoid(-column|-page|-region)?
           |background(-color|-image|-position|-size)?
           |backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink
-          |block(-line-height)?
+          |block(-(line-height|start|end))?
           |blur
           |bold(er)?
           |border(-bottom|-left|-right|-top)?-(color|radius|width|style)
@@ -1646,7 +1667,10 @@ repository:
           |(extra|semi|ultra)-(condensed|expanded)
           |farthest-(corner|side)?
           |fill(-box|-opacity)?
-          |filter|fixed|flat
+          |filter
+          |fit-content
+          |fixed
+          |flat
           |flex((-basis|-end|-grow|-shrink|-start)|box)?
           |flip|flood-color
           |font(-size(-adjust)?|-stretch|-weight)?
@@ -1660,7 +1684,7 @@ repository:
           |hue
           |ideograph(-alpha|-numeric|-parenthesis|-space|ic)
           |inactive|include-ruby|infinite|inherit|initial
-          |inline(-block|-box|-flex(box)?|-line-height|-table)?
+          |inline(-(block|box|flex(box)?|line-height|table|start|end))?
           |inset|inside
           |inter(-ideograph|-word|sect)
           |invert|isolat(e|ion)|italic
@@ -1677,6 +1701,7 @@ repository:
           |manipulation
           |margin(-bottom|-box|-left|-right|-top)?
           |marker(-offset|s)?
+          |match-parent
           |mathematical
           |max-(content|height|lines|size|width)
           |medium|middle
@@ -1691,7 +1716,7 @@ repository:
           |outline(-color|-offset|-width)?
           |outset|outside|over(line|-edge|lay)
           |padding(-bottom|-box|-left|-right|-top|-box)?
-          |page|painted|paused
+          |page|paint(ed)?|paused
           |pan-(x|left|right|y|up|down)
           |perspective-origin
           |petite-caps|pixelated|pointer
@@ -1704,7 +1729,7 @@ repository:
           |radial-gradient|recto|region|relative
           |repeat(-[xy])?
           |repeating-(linear|radial)-gradient
-          |replaced|reset-size|reverse|ridge|right
+          |replaced|reset-size|reverse|revert(-layer)?|ridge|right
           |round
           |row(-resize|-reverse)?
           |rtl|ruby|running|saturat(e|ion)|screen
@@ -1765,13 +1790,13 @@ repository:
     - include: '#vendor-prefix'
     - include: '#builtin-functions'
     - include: '#color-functions'
-    - include: '#less-math'
     - include: '#less-functions'
     - include: '#less-variables'
     - include: '#unicode-range'
     - include: '#numeric-values'
     - include: '#color-values'
     - include: '#property-value-constants'
+    - include: '#less-math'
     - include: '#literal-string'
     - include: '#comma-delimiter'
     - name: keyword.other.important.less
@@ -2058,14 +2083,18 @@ repository:
           | background-repeat-x | background-repeat | background-position-y | background-position-x
           | background-position | background-origin | background-image | background-color
           | background-clip | background-blend-mode | background-attachment | background
-          | baseline-shift | begin | bias | blend-mode | border-((top|right|bottom|left)-)?(width|style|color)
-          | border-(top|bottom)-(right|left)-radius | border-image-(width|source|slice|repeat|outset)
-          | border-(top|right|bottom|left|collapse|image|radius|spacing) | border
+          | baseline-shift | begin | bias | blend-mode
+          | border-((top|right|bottom|left|((block|inline)(-(start|end))?))-)?(width|style|color)
+          | border-((top|bottom)-(right|left)|((start|end)-?){1,2})-radius
+          | border-image-(width|source|slice|repeat|outset)
+          | border-(top|right|bottom|left|collapse|image|radius|spacing|((block|inline)(-(start|end))?))
+          | border
           | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)
           | break-(after|before|inside) | caption-side | clear | clip-path | clip-rule
           | clip | color(-(interpolation(-filters)?|profile|rendering))? | columns
           | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width)
-          | contain | content | counter-(increment|reset) | cursor | (c|d|f)(x|y)
+          | contain(-intrinsic-((((block|inline)-)?size)|height|width))?
+          | content | counter-(increment|reset) | cursor | (c|d|f)(x|y)
           | direction | display | divisor | dominant-baseline | dur | elevation |
           empty-cells | enable-background | end | fallback | fill(-(opacity|rule))?
           | filter | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))?
@@ -2074,13 +2103,18 @@ repository:
           | font-stretch | font-style | font-synthesis | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))?
           | font-weight | font | fr | glyph-orientation-(horizontal|vertical) | grid-(area|gap)
           | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))? |
-          grid-template(-(areas|columns|rows))? | height | hyphens | image-(orientation|rendering|resolution)
+          grid-template(-(areas|columns|rows))? | height | hyphens
+          | image-(orientation|rendering|resolution)
+          | inset(-(block|inline))?(-(start|end))?
           | isolation | justify-content | kerning | left | letter-spacing | lighting-color
           | line-(box-contain|break|clamp|height) | list-style(-(image|position|type))?
-          | margin(-(bottom|left|right|top))? | marker(-(end|mid|start))? | mask(-(clip||composite|image|origin|position|repeat|size|type))?
+          | (margin|padding)(-(bottom|left|right|top)|(-(block|inline)?(-(end|start))?))?
+          | marker(-(end|mid|start))? | mask(-(clip||composite|image|origin|position|repeat|size|type))?
           | (max|min)-(height|width) | mix-blend-mode | nbsp-mode | negative | object-(fit|position)
           | opacity | operator | order | orphans | outline(-(color|offset|style|width))?
-          | overflow(-(scrolling|wrap|x|y))? | pad(ding(-(bottom|left|right|top))?)?
+          | overflow(-((inline|block)|scrolling|wrap|x|y))?
+          | overscroll-behavior(-block|-(inline|x|y))?
+          | pad(ding(-(bottom|left|right|top))?)?
           | page(-break-(after|before|inside))? | paint-order | pause(-(after|before))?
           | perspective(-origin(-(x|y))?)? | pitch(-range)? | pointer-events | position
           | prefix | quotes | range | resize | right | rotate | scale | scroll-behavior
@@ -2094,6 +2128,8 @@ repository:
           unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility
           | white-space | widows | width | will-change | word-(break|spacing|wrap)
           | writing-mode | z-index | zoom )\b
+      - name: support.type.property-name.less
+        match: (?x)\b(((contain-intrinsic|max|min)-)?(block|inline)?-size)\b
       - include: $self
     - contentName: meta.property-value.less
       begin: \b(((\+_?)?):)([\s\t]*)
