@@ -2,6 +2,7 @@
 
 ## Unreleased
 * Add `backdrop-filter` support
+* Fix nested `var` values
 
 ## 0.6.1 - Fast Follow
 * Fix regex compatibility error for animation names in Sublime Text 2

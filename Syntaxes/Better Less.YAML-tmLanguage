@@ -352,6 +352,7 @@ repository:
         patterns:
         - include: '#less-strings'
         - include: '#less-variables'
+        - include: '#var-function'
         - include: '#comma-delimiter'
         - include: '#percentage-type'
         - include: '#number-type'
@@ -370,6 +371,7 @@ repository:
         patterns:
         - include: '#less-strings'
         - include: '#less-variables'
+        - include: '#var-function'
         - include: '#comma-delimiter'
         - include: '#angle-type'
         - include: '#percentage-type'
@@ -381,6 +383,7 @@ repository:
     - include: '#color-functions'
     - include: '#less-functions'
     - include: '#less-variables'
+    - include: '#var-function'
     - name: support.constant.color.w3c-standard-color-name.less
       match: \b(aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow)\b
     - name: support.constant.color.w3c-extended-color-keywords.less
@@ -429,6 +432,7 @@ repository:
         patterns:
         - include: '#less-strings'
         - include: '#less-variables'
+        - include: '#var-function'
         - name: entity.other.counter-name.less
           match: (?:--(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))+|-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)
         - begin: (?=,)
@@ -457,6 +461,7 @@ repository:
           patterns:
           - include: '#less-strings'
           - include: '#less-variables'
+          - include: '#var-function'
           - include: '#literal-string'
           - include: '#comma-delimiter'
           - name: support.constant.property-value.counter-style.less
@@ -498,6 +503,7 @@ repository:
         '0': {name: punctuation.definition.group.begin.less}
       end: (?=\))
       patterns:
+      - include: '#var-function'
       - include: '#comma-delimiter'
       - include: '#number-type'
 
@@ -638,6 +644,7 @@ repository:
         end: (?=\))
         patterns:
         - include: '#less-variables'
+        - include: '#var-function'
         - include: '#angle-type'
         - include: '#color-values'
         - include: '#percentage-type'
@@ -661,6 +668,7 @@ repository:
         end: (?=\))
         patterns:
         - include: '#less-variables'
+        - include: '#var-function'
         - include: '#color-values'
         - include: '#percentage-type'
         - include: '#length-type'
@@ -772,6 +780,7 @@ repository:
         end: (?=\))
         patterns:
         - include: '#less-variables'
+        - include: '#var-function'
         - include: '#comma-delimiter'
         - include: '#color-values'
 
@@ -808,6 +817,7 @@ repository:
         end: (?=\))
         patterns:
         - include: '#less-variables'
+        - include: '#var-function'
         - include: '#color-values'
 
   less-color-functions:
@@ -1552,6 +1562,7 @@ repository:
       end: (?=\))
       patterns:
       - include: '#less-variables'
+      - include: '#var-function'
       - include: '#length-type'
       - include: '#comma-delimiter'
       - name: support.constant.property-value.less
@@ -1762,6 +1773,7 @@ repository:
     - include: '#color-values'
     - include: '#property-value-constants'
     - include: '#literal-string'
+    - include: '#comma-delimiter'
     - name: keyword.other.important.less
       match: (\!)\s*important
       captures:
@@ -2515,6 +2527,7 @@ repository:
         - include: '#comma-delimiter'
         - include: '#custom-property-name'
         - include: '#less-variables'
+        - include: '#property-values'
 
   vendor-prefix:
     name: support.type.vendor-prefix.less
