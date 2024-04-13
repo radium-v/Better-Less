@@ -1131,6 +1131,10 @@
 								</dict>
 								<dict>
 									<key>include</key>
+									<string>#var-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
 									<string>#comma-delimiter</string>
 								</dict>
 								<dict>
@@ -1195,6 +1199,10 @@
 								</dict>
 								<dict>
 									<key>include</key>
+									<string>#var-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
 									<string>#comma-delimiter</string>
 								</dict>
 								<dict>
@@ -1234,6 +1242,10 @@
 				<dict>
 					<key>include</key>
 					<string>#less-variables</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#var-function</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -1376,6 +1388,10 @@
 									<string>#less-variables</string>
 								</dict>
 								<dict>
+									<key>include</key>
+									<string>#var-function</string>
+								</dict>
+								<dict>
 									<key>match</key>
 									<string>(?:--(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))+|-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
 									<key>name</key>
@@ -1464,6 +1480,10 @@
 										<dict>
 											<key>include</key>
 											<string>#less-variables</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#var-function</string>
 										</dict>
 										<dict>
 											<key>include</key>
@@ -1602,6 +1622,10 @@
 					<string>(?=\))</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#var-function</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#comma-delimiter</string>
@@ -2056,6 +2080,10 @@
 								</dict>
 								<dict>
 									<key>include</key>
+									<string>#var-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
 									<string>#angle-type</string>
 								</dict>
 								<dict>
@@ -2133,6 +2161,10 @@
 								<dict>
 									<key>include</key>
 									<string>#less-variables</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#var-function</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -2480,6 +2512,10 @@
 								</dict>
 								<dict>
 									<key>include</key>
+									<string>#var-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
 									<string>#comma-delimiter</string>
 								</dict>
 								<dict>
@@ -2593,6 +2629,10 @@
 								<dict>
 									<key>include</key>
 									<string>#less-variables</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#var-function</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -5119,6 +5159,10 @@
 						</dict>
 						<dict>
 							<key>include</key>
+							<string>#var-function</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#length-type</string>
 						</dict>
 						<dict>
@@ -5429,6 +5473,10 @@
 				<dict>
 					<key>include</key>
 					<string>#literal-string</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comma-delimiter</string>
 				</dict>
 				<dict>
 					<key>captures</key>
@@ -7762,6 +7810,10 @@
 								<dict>
 									<key>include</key>
 									<string>#less-variables</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#property-values</string>
 								</dict>
 							</array>
 						</dict>

@@ -999,3 +999,12 @@ div {
 .filter {
     backdrop-filter: blur(10px);
 }
+
+:root {
+    --off-black: 0, 10, 20;
+    --text-primary: rgba(var(--off-black), 0.8);
+    --text-secondary: rgba(var(--off-black), 0.7);
+    color: rgba(var(--off-black),0.8);
+    background: #fff;
+    background: var(--text-primary, rgba(255, 0, 255, 0));
+}
