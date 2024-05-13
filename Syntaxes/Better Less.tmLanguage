@@ -5209,6 +5209,20 @@
 				<dict>
 					<key>match</key>
 					<string>(?x)\b(
+  border-(block|inline)(-(start|end))?(-(color|style|width))?
+  | border-(left|right)(-(color|style|width))?
+  | border-(bottom|top)(-(color|style|width|(left|right)-radius))?
+  | border(-(collapse|color|radius|spacing|style|width))
+  | border-((end|start)-){2}radius
+  | border-image(-(outset|repeat|slice|source|width))?
+  | border
+)</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?x)\b(
   absolute|active|add
 |all(-(petite|small)-caps|-scroll)?
 |alpha(betic)?
@@ -5221,10 +5235,6 @@
 |block(-line-height)?
 |blur
 |bold(er)?
-|border(-bottom|-left|-right|-top)?-(color|radius|width|style)
-|border-(bottom|top)-(left|right)-radius
-|border-image(-outset|-repeat|-slice|-source|-width)?
-|border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?
 |both|bottom
 |box(-shadow)?
 |break-(all|word)
@@ -6375,7 +6385,21 @@
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>(?x)\b( accent-height | align-content | align-items | align-self | alignment-baseline | all | animation-timing-function | animation-play-state | animation-name | animation-iteration-count | animation-fill-mode | animation-duration | animation-direction | animation-delay | animation | appearance | ascent | azimuth | backface-visibility | background-size | background-repeat-y | background-repeat-x | background-repeat | background-position-y | background-position-x | background-position | background-origin | background-image | background-color | background-clip | background-blend-mode | background-attachment | background | baseline-shift | begin | bias | blend-mode | border-((top|right|bottom|left)-)?(width|style|color) | border-(top|bottom)-(right|left)-radius | border-image-(width|source|slice|repeat|outset) | border-(top|right|bottom|left|collapse|image|radius|spacing) | border | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing) | break-(after|before|inside) | caption-side | clear | clip-path | clip-rule | clip | color(-(interpolation(-filters)?|profile|rendering))? | columns | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width) | contain | content | counter-(increment|reset) | cursor | (c|d|f)(x|y) | direction | display | divisor | dominant-baseline | dur | elevation | empty-cells | enable-background | end | fallback | fill(-(opacity|rule))? | filter | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))? | float | flood-(color|opacity) | font-display | font-family | font-feature-settings | font-kerning | font-language-override | font-size(-adjust)? | font-smoothing | font-stretch | font-style | font-synthesis | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))? | font-weight | font | fr | glyph-orientation-(horizontal|vertical) | grid-(area|gap) | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))? | grid-template(-(areas|columns|rows))? | height | hyphens | image-(orientation|rendering|resolution) | isolation | justify-content | kerning | left | letter-spacing | lighting-color | line-(box-contain|break|clamp|height) | list-style(-(image|position|type))? | margin(-(bottom|left|right|top))? | marker(-(end|mid|start))? | mask(-(clip||composite|image|origin|position|repeat|size|type))? | (max|min)-(height|width) | mix-blend-mode | nbsp-mode | negative | object-(fit|position) | opacity | operator | order | orphans | outline(-(color|offset|style|width))? | overflow(-(scrolling|wrap|x|y))? | pad(ding(-(bottom|left|right|top))?)? | page(-break-(after|before|inside))? | paint-order | pause(-(after|before))? | perspective(-origin(-(x|y))?)? | pitch(-range)? | pointer-events | position | prefix | quotes | range | resize | right | rotate | scale | scroll-behavior | shape-(image-threshold|margin|outside|rendering) | size | speak(-as)? | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))? | suffix | symbols | system | tab-size | table-layout | tap-highlight-color | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))? | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|shadow|transform|underline-position) | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)? | transition(-(delay|duration|property|timing-function))? | translate | unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility | white-space | widows | width | will-change | word-(break|spacing|wrap) | writing-mode | z-index | zoom )\b</string>
+							<string>(?x)\b( accent-height | align-content | align-items | align-self | alignment-baseline | all | animation-timing-function | animation-play-state | animation-name | animation-iteration-count | animation-fill-mode | animation-duration | animation-direction | animation-delay | animation | appearance | ascent | azimuth | backface-visibility | background-size | background-repeat-y | background-repeat-x | background-repeat | background-position-y | background-position-x | background-position | background-origin | background-image | background-color | background-clip | background-blend-mode | background-attachment | background | baseline-shift | begin | bias | blend-mode | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing) | break-(after|before|inside) | caption-side | clear | clip-path | clip-rule | clip | color(-(interpolation(-filters)?|profile|rendering))? | columns | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width) | contain | content | counter-(increment|reset) | cursor | (c|d|f)(x|y) | direction | display | divisor | dominant-baseline | dur | elevation | empty-cells | enable-background | end | fallback | fill(-(opacity|rule))? | filter | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))? | float | flood-(color|opacity) | font-display | font-family | font-feature-settings | font-kerning | font-language-override | font-size(-adjust)? | font-smoothing | font-stretch | font-style | font-synthesis | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))? | font-weight | font | fr | glyph-orientation-(horizontal|vertical) | grid-(area|gap) | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))? | grid-template(-(areas|columns|rows))? | height | hyphens | image-(orientation|rendering|resolution) | isolation | justify-content | kerning | left | letter-spacing | lighting-color | line-(box-contain|break|clamp|height) | list-style(-(image|position|type))? | margin(-(bottom|left|right|top))? | marker(-(end|mid|start))? | mask(-(clip||composite|image|origin|position|repeat|size|type))? | (max|min)-(height|width) | mix-blend-mode | nbsp-mode | negative | object-(fit|position) | opacity | operator | order | orphans | outline(-(color|offset|style|width))? | overflow(-(scrolling|wrap|x|y))? | pad(ding(-(bottom|left|right|top))?)? | page(-break-(after|before|inside))? | paint-order | pause(-(after|before))? | perspective(-origin(-(x|y))?)? | pitch(-range)? | pointer-events | position | prefix | quotes | range | resize | right | rotate | scale | scroll-behavior | shape-(image-threshold|margin|outside|rendering) | size | speak(-as)? | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))? | suffix | symbols | system | tab-size | table-layout | tap-highlight-color | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))? | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|shadow|transform|underline-position) | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)? | transition(-(delay|duration|property|timing-function))? | translate | unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility | white-space | widows | width | will-change | word-(break|spacing|wrap) | writing-mode | z-index | zoom )\b</string>
+							<key>name</key>
+							<string>support.type.property-name.less</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>(?x)\b(
+  border-(block|inline)(-(start|end))?(-(color|style|width))?
+  | border-(left|right)(-(color|style|width))?
+  | border-(bottom|top)(-(color|style|width|(left|right)-radius))?
+  | border(-(collapse|color|radius|spacing|style|width))
+  | border-((end|start)-){2}radius
+  | border-image(-(outset|repeat|slice|source|width))?
+  | border
+)\b</string>
 							<key>name</key>
 							<string>support.type.property-name.less</string>
 						</dict>

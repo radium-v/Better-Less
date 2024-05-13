@@ -1588,6 +1588,17 @@ repository:
     - name: support.constant.property-value.less
       match: |-
         (?x)\b(
+          border-(block|inline)(-(start|end))?(-(color|style|width))?
+          | border-(left|right)(-(color|style|width))?
+          | border-(bottom|top)(-(color|style|width|(left|right)-radius))?
+          | border(-(collapse|color|radius|spacing|style|width))
+          | border-((end|start)-){2}radius
+          | border-image(-(outset|repeat|slice|source|width))?
+          | border
+        )
+    - name: support.constant.property-value.less
+      match: |-
+        (?x)\b(
           absolute|active|add
         |all(-(petite|small)-caps|-scroll)?
         |alpha(betic)?
@@ -1600,10 +1611,6 @@ repository:
         |block(-line-height)?
         |blur
         |bold(er)?
-        |border(-bottom|-left|-right|-top)?-(color|radius|width|style)
-        |border-(bottom|top)-(left|right)-radius
-        |border-image(-outset|-repeat|-slice|-source|-width)?
-        |border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?
         |both|bottom
         |box(-shadow)?
         |break-(all|word)
@@ -2047,10 +2054,7 @@ repository:
           | background-repeat-x | background-repeat | background-position-y | background-position-x
           | background-position | background-origin | background-image | background-color
           | background-clip | background-blend-mode | background-attachment | background
-          | baseline-shift | begin | bias | blend-mode | border-((top|right|bottom|left)-)?(width|style|color)
-          | border-(top|bottom)-(right|left)-radius | border-image-(width|source|slice|repeat|outset)
-          | border-(top|right|bottom|left|collapse|image|radius|spacing) | border
-          | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)
+          | baseline-shift | begin | bias | blend-mode | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)
           | break-(after|before|inside) | caption-side | clear | clip-path | clip-rule
           | clip | color(-(interpolation(-filters)?|profile|rendering))? | columns
           | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width)
@@ -2083,6 +2087,17 @@ repository:
           unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility
           | white-space | widows | width | will-change | word-(break|spacing|wrap)
           | writing-mode | z-index | zoom )\b
+      - name: support.type.property-name.less
+        match: |-
+          (?x)\b(
+            border-(block|inline)(-(start|end))?(-(color|style|width))?
+            | border-(left|right)(-(color|style|width))?
+            | border-(bottom|top)(-(color|style|width|(left|right)-radius))?
+            | border(-(collapse|color|radius|spacing|style|width))
+            | border-((end|start)-){2}radius
+            | border-image(-(outset|repeat|slice|source|width))?
+            | border
+          )\b
       - include: $self
     - contentName: meta.property-value.less
       begin: \b(((\+_?)?):)([\s\t]*)
