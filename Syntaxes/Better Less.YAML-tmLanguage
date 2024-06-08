@@ -21,12 +21,6 @@ patterns:
 - include: '#selector'
 
 repository:
-  angle-type:
-    name: constant.numeric.less
-    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(deg|grad|rad|turn))\b
-    captures:
-      '1': {name: keyword.other.unit.less}
-
   at-charset:
     name: meta.at-rule.charset.less
     begin: \s*((@)charset\b)\s*
@@ -39,7 +33,7 @@ repository:
 
   at-counter-style:
     name: meta.at-rule.counter-style.less
-    begin: \s*((@)counter-style\b)\s+(?:(?i:\b(decimal|none)\b)|(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*))\s*(?=\{|$)
+    begin: \s*((@)counter-style\b)\s+(?:(?i:\b(decimal|none)\b)|(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*))\s*(?=\{|$)
     end: \s*(\})
     endCaptures:
       '1': {name: punctuation.definition.block.begin.less}
@@ -173,7 +167,7 @@ repository:
     - include: '#url-function'
     - include: '#literal-string'
     - name: entity.name.constant.namespace-prefix.less
-      match: (-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)
+      match: (-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)
 
   at-page:
     name: meta.at-rule.page.less
@@ -239,8 +233,8 @@ repository:
       '0': {name: punctuation.definition.group.end.less}
     patterns:
     - include: '#at-supports-operators'
-    - include: '#at-supports-parens'
     - include: '#rule-list-body'
+    - include: $self
 
   at-viewport:
     name: meta.at-rule.viewport.less
@@ -278,7 +272,7 @@ repository:
       - include: '#qualified-name'
       - include: '#literal-string'
       - name: entity.other.attribute-name.less
-        begin: (-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)
+        begin: (-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)
         end: (?=\))
         patterns:
         - name: keyword.other.unit.less
@@ -317,14 +311,15 @@ repository:
     begin: \b(calc)(?=\()
     beginCaptures:
       '1': {name: support.function.calc.less}
-    end: \)
-    endCaptures:
-      '0': {name: punctuation.definition.group.end.less}
+    end: (?<=\))
     patterns:
-    - begin: \(
+    - name: meta.group.less
+      begin: \(
       beginCaptures:
         '0': {name: punctuation.definition.group.begin.less}
-      end: (?=\))
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
       patterns:
       - include: '#less-strings'
       - include: '#var-function'
@@ -354,8 +349,8 @@ repository:
         - include: '#less-strings'
         - include: '#less-variables'
         - include: '#comma-delimiter'
-        - include: '#percentage-type'
-        - include: '#number-type'
+        - include: '#type-percentage'
+        - include: '#type-number'
     - name: meta.function-call.less
       begin: \b(hs(l|v)a?|hwb)(?=\()
       beginCaptures:
@@ -372,9 +367,9 @@ repository:
         - include: '#less-strings'
         - include: '#less-variables'
         - include: '#comma-delimiter'
-        - include: '#angle-type'
-        - include: '#percentage-type'
-        - include: '#number-type'
+        - include: '#type-angle'
+        - include: '#type-percentage'
+        - include: '#type-number'
     - include: '#less-color-functions'
 
   color-values:
@@ -402,8 +397,10 @@ repository:
     patterns:
     - name: comment.block.less
       begin: /\*
+      beginCaptures:
+        '0': {name: punctuation.definition.comment.less}
       end: \*/
-      captures:
+      endCaptures:
         '0': {name: punctuation.definition.comment.less}
     - include: '#comment-line'
 
@@ -431,7 +428,7 @@ repository:
         - include: '#less-strings'
         - include: '#less-variables'
         - name: entity.other.counter-name.less
-          match: (?:--(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))+|-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)
+          match: (?:--(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))+|-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)
         - begin: (?=,)
           end: (?=\))
           patterns:
@@ -452,7 +449,7 @@ repository:
         end: (?=\))
         patterns:
         - name: entity.other.counter-name.less string.unquoted.less
-          match: (-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)
+          match: (-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)
         - begin: (?=,)
           end: (?=\))
           patterns:
@@ -479,9 +476,9 @@ repository:
         end: (?=\))
         patterns:
         - include: '#comma-delimiter'
-        - include: '#percentage-type'
+        - include: '#type-percentage'
         - include: '#color-values'
-        - include: '#image-type'
+        - include: '#type-image'
         - include: '#literal-string'
         - include: '#unquoted-string'
 
@@ -500,22 +497,24 @@ repository:
       end: (?=\))
       patterns:
       - include: '#comma-delimiter'
-      - include: '#number-type'
+      - include: '#type-number'
+      - include: '#less-variables'
+      - include: '#var-function'
 
   custom-property-name:
     name: support.type.custom-property.less
-    match: \s*(--)((?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))+)
+    match: \s*(--)((?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))+)
     captures:
       '1': {name: punctuation.definition.custom-property.less}
       '2': {name: support.type.custom-property.name.less}
 
   dimensions:
     patterns:
-    - include: '#angle-type'
-    - include: '#frequency-type'
-    - include: '#length-type'
-    - include: '#resolution-type'
-    - include: '#time-type'
+    - include: '#type-angle'
+    - include: '#type-frequency'
+    - include: '#type-length'
+    - include: '#type-resolution'
+    - include: '#type-time'
 
   filter-function:
     name: meta.function-call.less
@@ -533,7 +532,7 @@ repository:
       end: (?=\))
       patterns:
       - include: '#comma-delimiter'
-      - include: '#image-type'
+      - include: '#type-image'
       - include: '#literal-string'
       - include: '#filter-functions'
 
@@ -553,7 +552,7 @@ repository:
           '0': {name: punctuation.definition.group.begin.less}
         end: (?=\))
         patterns:
-        - include: '#length-type'
+        - include: '#type-length'
     - name: meta.function-call.less
       begin: \b(brightness|contrast|grayscale|invert|opacity|saturate|sepia)(?=\()
       beginCaptures:
@@ -567,8 +566,8 @@ repository:
           '0': {name: punctuation.definition.group.begin.less}
         end: (?=\))
         patterns:
-        - include: '#percentage-type'
-        - include: '#number-type'
+        - include: '#type-percentage'
+        - include: '#type-number'
         - include: '#less-functions'
     - name: meta.function-call.less
       begin: \b(drop-shadow)(?=\()
@@ -583,7 +582,7 @@ repository:
           '0': {name: punctuation.definition.group.begin.less}
         end: (?=\))
         patterns:
-        - include: '#length-type'
+        - include: '#type-length'
         - include: '#color-values'
     - name: meta.function-call.less
       begin: \b(hue-rotate)(?=\()
@@ -598,7 +597,7 @@ repository:
           '0': {name: punctuation.definition.group.begin.less}
         end: (?=\))
         patterns:
-        - include: '#angle-type'
+        - include: '#type-angle'
 
   format-function:
     patterns:
@@ -617,15 +616,10 @@ repository:
         patterns:
         - include: '#literal-string'
 
-  frequency-type:
-    name: constant.numeric.less
-    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(Hz|kHz))\b
-    captures:
-      '1': {name: keyword.other.unit.less}
-
   gradient-functions:
     patterns:
-    - name: meta.function-call.less
+    - comment: linear-gradient function
+      name: meta.function-call.less
       begin: \b((?:repeating-)?linear-gradient)(?=\()
       beginCaptures:
         '1': {name: support.function.gradient.less}
@@ -639,16 +633,18 @@ repository:
         end: (?=\))
         patterns:
         - include: '#less-variables'
-        - include: '#angle-type'
+        - include: '#var-function'
+        - include: '#type-angle'
         - include: '#color-values'
-        - include: '#percentage-type'
-        - include: '#length-type'
+        - include: '#type-percentage'
+        - include: '#type-length'
         - include: '#comma-delimiter'
         - name: keyword.other.less
           match: \bto\b
         - name: support.constant.property-value.less
           match: \b(top|right|bottom|left)\b
-    - name: meta.function-call.less
+    - comment: radial-gradient function
+      name: meta.function-call.less
       begin: \b((?:repeating-)?radial-gradient)(?=\()
       beginCaptures:
         '1': {name: support.function.gradient.less}
@@ -662,14 +658,40 @@ repository:
         end: (?=\))
         patterns:
         - include: '#less-variables'
+        - include: '#var-function'
         - include: '#color-values'
-        - include: '#percentage-type'
-        - include: '#length-type'
+        - include: '#type-percentage'
+        - include: '#type-length'
         - include: '#comma-delimiter'
         - name: keyword.other.less
           match: \b(at|circle|ellipse)\b
         - name: support.constant.property-value.less
           match: \b(top|right|bottom|left|center|(farthest|closest)-(corner|side))\b
+    - comment: conic-gradient function
+      name: meta.function-call.less
+      begin: \b((?:repeating-)?conic-gradient)(?=\()
+      beginCaptures:
+        '1': {name: support.function.gradient.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: \(
+        beginCaptures:
+          '0': {name: punctuation.definition.group.begin.less}
+        end: (?=\))
+        patterns:
+        - include: '#less-variables'
+        - include: '#var-function'
+        - include: '#color-values'
+        - include: '#type-length'
+        - include: '#type-percentage'
+        - include: '#type-angle'
+        - include: '#comma-delimiter'
+        - name: keyword.other.less
+          match: \b(at|from)\b
+        - name: support.constant.property-value.less
+          match: \b(top|right|bottom|left|center)\b
 
   grid-repeat-function:
     name: meta.function-call.less
@@ -687,10 +709,10 @@ repository:
       patterns:
       - include: '#comma-delimiter'
       - include: '#var-function'
-      - include: '#length-type'
-      - include: '#percentage-type'
+      - include: '#type-length'
+      - include: '#type-percentage'
       - include: '#minmax-function'
-      - include: '#integer-type'
+      - include: '#type-integer'
       - name: support.keyword.repetitions.less
         match: \b(auto-(fill|fit))\b
       - name: support.constant.property-value.less
@@ -710,36 +732,19 @@ repository:
         '0': {name: punctuation.definition.group.begin.less}
       end: (?=\))
       patterns:
-      - include: '#image-type'
+      - include: '#type-image'
       - include: '#literal-string'
       - include: '#color-values'
       - include: '#comma-delimiter'
       - include: '#unquoted-string'
 
-  image-type:
-    patterns:
-    - include: '#cross-fade-function'
-    - include: '#gradient-functions'
-    - include: '#image-function'
-    - include: '#url-function'
-
-  integer-type:
-    name: constant.numeric.less
-    match: (?:[-+]?\d+)
-
   keyframe-name:
-    begin: \s*(-?(?:[_a-z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\s\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?
+    begin: \s*(-?(?:[_a-z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|\s)?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|\s)?)|\\[^\r\n\f0-9a-f]))*)?
     beginCaptures:
       '1': {name: variable.other.constant.animation-name.less}
     end: \s*(?:(,)|(?=[{;]))
     endCaptures:
       '1': {name: punctuation.definition.arbitrary-repetition.less}
-
-  length-type:
-    name: constant.numeric.less
-    match: 0|(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b
-    captures:
-      '1': {name: keyword.other.unit.less}
 
   less-boolean-function:
     name: meta.function-call.less
@@ -835,7 +840,7 @@ repository:
         patterns:
         - include: '#color-values'
         - include: '#comma-delimiter'
-        - include: '#percentage-type'
+        - include: '#type-percentage'
     - name: meta.function-call.less
       begin: \b(spin)(?=\()
       beginCaptures:
@@ -851,7 +856,7 @@ repository:
         patterns:
         - include: '#color-values'
         - include: '#comma-delimiter'
-        - include: '#number-type'
+        - include: '#type-number'
     - name: meta.function-call.less
       begin: \b(((de)?saturate)|((light|dark)en)|(fade(in|out)))(?=\()
       beginCaptures:
@@ -867,7 +872,7 @@ repository:
         patterns:
         - include: '#color-values'
         - include: '#comma-delimiter'
-        - include: '#percentage-type'
+        - include: '#type-percentage'
         - name: constant.language.relative.less
           match: \brelative\b
     - name: meta.function-call.less
@@ -885,7 +890,7 @@ repository:
         patterns:
         - include: '#color-values'
         - include: '#comma-delimiter'
-        - include: '#percentage-type'
+        - include: '#type-percentage'
     - name: meta.function-call.less
       begin: \b(greyscale)(?=\()
       beginCaptures:
@@ -916,7 +921,7 @@ repository:
         - include: '#color-values'
         - include: '#comma-delimiter'
         - include: '#less-math'
-        - include: '#percentage-type'
+        - include: '#type-percentage'
 
   less-extend:
     name: meta.function-call.less
@@ -953,14 +958,15 @@ repository:
     begin: \b(if)(?=\()
     beginCaptures:
       '1': {name: support.function.if.less}
-    end: \)
-    endCaptures:
-      '0': {name: punctuation.definition.group.end.less}
+    end: (?<=\))
     patterns:
-    - begin: \(
+    - name: meta.group.less
+      begin: \(
       beginCaptures:
         '0': {name: punctuation.definition.group.begin.less}
-      end: (?=\))
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
       patterns:
       - include: '#less-mixin-guards'
       - include: '#comma-delimiter'
@@ -998,7 +1004,7 @@ repository:
         patterns:
         - include: '#property-values'
         - include: '#comma-delimiter'
-        - include: '#integer-type'
+        - include: '#type-integer'
     - name: meta.function-call.less
       begin: \b(range)(?=\()\b
       beginCaptures:
@@ -1014,14 +1020,14 @@ repository:
         patterns:
         - include: '#property-values'
         - include: '#comma-delimiter'
-        - include: '#integer-type'
+        - include: '#type-integer'
 
   less-logical-comparisons:
     patterns:
     - match: \s*(=|((<|>)=?))\s*
       captures:
         '1': {name: keyword.operator.logical.less}
-    - name: meta.group.less
+    - contentName: meta.group.less
       begin: \(
       beginCaptures:
         '0': {name: punctuation.definition.group.begin.less}
@@ -1060,14 +1066,15 @@ repository:
       begin: \b(ceil|floor|percentage|round|sqrt|abs|a?(sin|cos|tan))(?=\()
       beginCaptures:
         '1': {name: support.function.math.less}
-      end: \)
-      endCaptures:
-        '0': {name: punctuation.definition.group.end.less}
+      end: (?<=\))
       patterns:
-      - begin: \(
+      - name: meta.group.less
+        begin: \(
         beginCaptures:
           '0': {name: punctuation.definition.group.begin.less}
-        end: (?=\))
+        end: \)
+        endCaptures:
+          '0': {name: punctuation.definition.group.end.less}
         patterns:
         - include: '#less-variables'
         - include: '#numeric-values'
@@ -1172,14 +1179,15 @@ repository:
       begin: \b(get-unit)(?=\()
       beginCaptures:
         '1': {name: support.function.get-unit.less}
-      end: \)
-      endCaptures:
-        '0': {name: punctuation.definition.group.end.less}
+      end: (?<=\))
       patterns:
-      - begin: \(
+      - name: meta.group.less
+        begin: \(
         beginCaptures:
           '0': {name: punctuation.definition.group.begin.less}
-        end: (?=\))
+        end: \)
+        endCaptures:
+          '0': {name: punctuation.definition.group.end.less}
         patterns:
         - include: '#dimensions'
     - name: meta.function-call.less
@@ -1195,11 +1203,11 @@ repository:
           '0': {name: punctuation.definition.group.begin.less}
         end: (?=\))
         patterns:
-        - include: '#angle-type'
+        - include: '#type-angle'
         - include: '#comma-delimiter'
         - include: '#color-values'
-        - include: '#percentage-type'
-        - include: '#length-type'
+        - include: '#type-percentage'
+        - include: '#type-length'
         - name: keyword.other.less
           match: \bto\b
         - name: support.constant.property-value.less
@@ -1256,13 +1264,12 @@ repository:
         - include: '#rule-list-body'
       - include: '#selectors'
     - name: meta.group.less
-      begin: (\()
+      begin: \(
       beginCaptures:
-        '1': {name: punctuation.definition.group.begin.less}
-      end: (\))
+        '0': {name: punctuation.definition.group.begin.less}
+      end: \)
       endCaptures:
-        '1': {name: punctuation.definition.group.end.less}
-        '2': {name: punctuation.terminator.rule.less}
+        '0': {name: punctuation.definition.group.end.less}
       patterns:
       - include: '#less-variable-assignment'
       - include: '#comma-delimiter'
@@ -1350,17 +1357,18 @@ repository:
   less-type-functions:
     patterns:
     - name: meta.function-call.less
-      begin: \b(is(number|string|color|keyword|url|pixel|em|percentage|ruleset))(?=\()
+      begin: \bis(?:number|string|color|keyword|url|pixel|em|percentage|ruleset)(?=\()
       beginCaptures:
-        '1': {name: support.function.type.less}
-      end: \)
-      endCaptures:
-        '0': {name: punctuation.definition.group.end.less}
+        '0': {name: support.function.type.less}
+      end: (?<=\))
       patterns:
-      - begin: \(
+      - name: meta.group.less
+        begin: \(
         beginCaptures:
           '0': {name: punctuation.definition.group.begin.less}
-        end: (?=\))
+        end: \)
+        endCaptures:
+          '0': {name: punctuation.definition.group.end.less}
         patterns:
         - include: '#property-values'
     - name: meta.function-call.less
@@ -1398,7 +1406,7 @@ repository:
   less-variable-assignment:
     patterns:
     - name: meta.property-value.less
-      begin: (@)(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)
+      begin: (@)(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)
       beginCaptures:
         '0': {name: variable.other.readwrite.less}
         '1': {name: punctuation.definition.variable.less}
@@ -1419,7 +1427,7 @@ repository:
 
   less-variable-comparison:
     patterns:
-    - begin: (@{1,2})([-]?([_a-z]|[^\x{00}-\x{7F}]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)
+    - begin: (@{1,2})([-]?([_a-z]|[^\x{00}-\x{7F}]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)
       beginCaptures:
         '0': {name: variable.other.readwrite.less}
         '1': {name: punctuation.definition.variable.less}
@@ -1553,26 +1561,16 @@ repository:
       end: (?=\))
       patterns:
       - include: '#less-variables'
-      - include: '#length-type'
+      - include: '#type-length'
       - include: '#comma-delimiter'
       - name: support.constant.property-value.less
         match: \b(max-content|min-content)\b
 
-  number-type:
-    name: constant.numeric.less
-    match: '[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))'
-
   numeric-values:
     patterns:
     - include: '#dimensions'
-    - include: '#percentage-type'
-    - include: '#number-type'
-
-  percentage-type:
-    name: constant.numeric.less
-    match: '[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(%)'
-    captures:
-      '1': {name: keyword.other.unit.less}
+    - include: '#type-percentage'
+    - include: '#type-number'
 
   property-list:
     patterns:
@@ -1583,9 +1581,21 @@ repository:
       patterns:
       - include: '#rule-list'
 
+  property-value:
+    patterns:
+    - match: (((\+_?)?):)([\s\t]*)
+      captures:
+        '1': {name: punctuation.separator.key-value.less}
+        '4': {name: meta.property-value.less}
+    - include: '#less-variable-interpolation'
+
   property-value-constants:
     patterns:
-    - name: support.constant.property-value.less
+    - comment: Global Values
+      name: support.constant.property-value.less
+      match: \b(inherit|initial|revert(-layer)?|unset)\b
+    - comment: border properties
+      name: support.constant.property-value.less
       match: |-
         (?x)\b(
           border-(block|inline)(-(start|end))?(-(color|style|width))?
@@ -1594,165 +1604,529 @@ repository:
           | border(-(collapse|color|radius|spacing|style|width))
           | border-((end|start)-){2}radius
           | border-image(-(outset|repeat|slice|source|width))?
-          | border
-        )
+          | border(?!-)
+        )\b
+    - comment: position property values
+      name: support.constant.property-value.less
+      match: \b(absolute|relative|static|sticky)\b
+    - comment: inset/position property names (as values)
+      name: support.constant.property-value.less
+      match: \binset-(block|inline)(-(start|end))?\b
+    - comment: list-style-type values
+      name: support.constant.property-value.less
+      match: |
+        (?xi)\b(
+          arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal
+          |cjk-earthly-branch|cjk-heavenly-stem|cjk-ideographic
+          |decimal-leading-zero|decimal|devanagari|disc|disclosure-closed
+          |disclosure-open|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew
+          |hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada
+          |katakana-iroha|katakana|khmer|korean-hangul-formal
+          |korean-hanja-formal|korean-hanja-informal|lao|lower-alpha
+          |lower-armenian|lower-greek|lower-latin|lower-roman|malayalam
+          |mongolian|myanmar|oriya|persian|simp-chinese-formal
+          |simp-chinese-informal|square|tamil|telugu|thai|tibetan
+          |trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian
+          |upper-latin|upper-roman
+        )\b
+    - comment: font-variant-ligatures values
+      name: support.constant.property-value.less
+      match: (?i)\b(no-)?((common|discretionary|historical)-ligatures|contextual)\b
+    - comment: font-variant-caps values
+      name: support.constant.property-value.less
+      match: (?i)\b((all-)?(small|petite)-caps|unicase|titling-caps)\b
+    - comment: animation values
+      name: support.constant.property-value.less
+      match: \b(alternate(-reverse)?|backwards|both|forwards|infinite|paused|reverse|running|linear|ease(-in)?(-out)?|step-(start|end))\b
+    - comment: background values
+      name: support.constant.property-value.less
+      match: \b(scroll|local|text|(no-)?repeat(-(x|y))?|space|round|contain|cover)\b
+    - comment: shared values (values which are valid for multiple properties but have
+        different meanings)
+      name: support.constant.property-value.less
+      match: |-
+        (?x)\b(
+          fixed
+          |bottom|center|left|right|top
+          |border-box|content-box|padding-box|margin-box
+        )\b
     - name: support.constant.property-value.less
       match: |-
         (?x)\b(
-          absolute|active|add
-        |all(-(petite|small)-caps|-scroll)?
-        |alpha(betic)?
-        |alternate(-reverse)?
-        |always|annotation|antialiased|at
-        |auto(hiding-scrollbar)?
-        |avoid(-column|-page|-region)?
-        |background(-color|-image|-position|-size)?
-        |backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink
-        |block(-line-height)?
-        |blur
-        |bold(er)?
-        |both|bottom
-        |box(-shadow)?
-        |break-(all|word)
-        |brightness
-        |butt(on)?
-        |capitalize
-        |cent(er|ral)
-        |char(acter-variant)?
-        |cjk-ideographic|clip|clone|close-quote
-        |closest-(corner|side)
-        |col-resize|collapse
-        |color(-stop|-burn|-dodge)?
-        |column((-count|-gap|-reverse|-rule(-color|-width)?|-width)|s)?
-        |common-ligatures|condensed|consider-shifts|contain
-        |content(-box|s)?
-        |contextual|contrast|cover
-        |crisp(-e|E)dges
-        |crop
-        |cross(hair)?
-        |da(rken|shed)
-        |default|dense|diagonal-fractions|difference|disabled
-        |discretionary-ligatures|disregard-shifts
-        |distribute(-all-lines|-letter|-space)?
-        |dotted|double|drop-shadow
-        |(nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize
-        |ease(-in-out|-in|-out)?
-        |element|ellipsis|embed|end|EndColorStr|evenodd
-        |exclu(de(-ruby)?|sion)
-        |expanded
-        |(extra|semi|ultra)-(condensed|expanded)
-        |farthest-(corner|side)?
-        |fill(-box|-opacity)?
-        |filter|fixed|flat
-        |flex((-basis|-end|-grow|-shrink|-start)|box)?
-        |flip|flood-color
-        |font(-size(-adjust)?|-stretch|-weight)?
-        |forwards
-        |from(-image)?
-        |full-width|geometricPrecision|glyphs|gradient|grayscale
-        |grid(-height)?
-        |groove|hand|hanging|hard-light|height|help|hidden|hide
-        |historical-(forms|ligatures)
-        |horizontal(-tb)?
-        |hue
-        |ideograph(-alpha|-numeric|-parenthesis|-space|ic)
-        |inactive|include-ruby|infinite|inherit|initial
-        |inline(-block|-box|-flex(box)?|-line-height|-table)?
-        |inset|inside
-        |inter(-ideograph|-word|sect)
-        |invert|isolat(e|ion)|italic
-        |jis(04|78|83|90)
-        |justify(-all)?
-        |keep-all
-        |large[r]?
-        |last|layout|left|letter-spacing
-        |light(e[nr]|ing-color)
-        |line(-edge|-height|-through)?
-        |linear(-gradient|RGB)?
-        |lining-nums|list-item|local|loose|lowercase|lr-tb|ltr
-        |lumin(osity|ance)|manual
-        |manipulation
-        |margin(-bottom|-box|-left|-right|-top)?
-        |marker(-offset|s)?
-        |mathematical
-        |max-(content|height|lines|size|width)
-        |medium|middle
-        |min-(content|height|width)
-        |miter|mixed|move|multiply|newspaper
-        |no-(change|clip|(close|open)-quote|(common|discretionary|historical)-ligatures|contextual|drop|repeat)
-        |none|nonzero|normal|not-allowed|nowrap|oblique
-        |offset(-after|-before|-end|-start)?
-        |oldstyle-nums|opacity|open-quote
-        |optimize(Legibility|Precision|Quality|Speed)
-        |order|ordinal|ornaments
-        |outline(-color|-offset|-width)?
-        |outset|outside|over(line|-edge|lay)
-        |padding(-bottom|-box|-left|-right|-top|-box)?
-        |page|painted|paused
-        |pan-(x|left|right|y|up|down)
-        |perspective-origin
-        |petite-caps|pixelated|pointer
-        |pinch-zoom
-        |pre(-line|-wrap)?
-        |preserve-3d
-        |progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)
-        |progress
-        |proportional-(nums|width)
-        |radial-gradient|recto|region|relative
-        |repeat(-[xy])?
-        |repeating-(linear|radial)-gradient
-        |replaced|reset-size|reverse|ridge|right
-        |round
-        |row(-resize|-reverse)?
-        |rtl|ruby|running|saturat(e|ion)|screen
-        |scroll(-position|bar)?
-        |separate|sepia
-        |scale-down
-        |shape-(image-threshold|margin|outside)
-        |show
-        |sideways(-lr|-rl)?
-        |simplified
-        |size
-        |slashed-zero|slice
-        |small(-caps|er)?
-        |smooth|snap|solid|soft-light
-        |space(-around|-between)?
-        |span|sRGB
-        |stack(ed-fractions)?
-        |start(ColorStr)?
-        |static
-        |step-(end|start)
-        |sticky
-        |stop-(color|opacity)
-        |stretch|strict
-        |stroke(-box|-dash(array|offset)|-miterlimit|-opacity|-width)?
-        |style(set)?
-        |stylistic
-        |sub(grid|pixel-antialiased|tract)?
-        |super|swash
-        |table(-caption|-cell|(-column|-footer|-header|-row)-group|-column|-row)?
-        |tabular-nums|tb-rl
-        |text((-bottom|-(decoration|emphasis)-color|-indent|-(over|under)-edge|-shadow|-size(-adjust)?|-top)|field)?
-        |thi(ck|n)
-        |titling-ca(ps|se)
-        |to[p]?
-        |touch|traditional
-        |transform(-origin)?
-        |under(-edge|line)?
-        |unicase|unset|uppercase|upright
-        |use-(glyph-orientation|script)
-        |verso
-        |vertical(-align|-ideographic|-lr|-rl|-text)?
-        |view-box
-        |viewport-fill(-opacity)?
-        |visibility
-        |visible(Fill|Painted|Stroke)?
-        |wait|wavy|weight|whitespace|(device-)?width|word-spacing
-        |wrap(-reverse)?
-        |x{1,2}-(large|small)
-        |z-index|zero
-        |zoom(-in|-out)?
-        |((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman)))\b
+           active
+          |add
+          |all-scroll
+          |all
+          |alphabetic
+          |alpha
+          |always
+          |annotation
+          |antialiased
+          |at
+          |autohiding-scrollbar
+          |auto
+          |avoid-column
+          |avoid-page
+          |avoid-region
+          |avoid
+          |background-color
+          |background-image
+          |background-position
+          |background-size
+          |background
+          |balance
+          |baseline
+          |below
+          |bevel
+          |bicubic
+          |bidi-override
+          |blink
+          |block-lineh-height
+          |block
+          |blur
+          |bold
+          |bolder
+          |bottom
+          |box
+          |box-shadow
+          |break-all
+          |break-word
+          |brightness
+          |butt
+          |button
+          |capitalize
+          |center
+          |central
+          |char
+          |character-variant
+          |clip
+          |clone
+          |close-quote
+          |closest-corner
+          |closest-side
+          |col-resize
+          |collapse
+          |color
+          |color-stop
+          |color-burn
+          |color-dodge
+          |column-count
+          |column-gap
+          |column-reverse
+          |column-rule
+          |column-rule-color
+          |column-rule-width
+          |column-width
+          |columns
+          |column
+          |condensed
+          |consider-shifts
+          |contain
+          |content-box
+          |contents
+          |content
+          |contrast
+          |cover
+          |crisp-edges
+          |crispEdges
+          |crop
+          |crosshair
+          |cross
+          |darken
+          |dashed
+          |default
+          |dense
+          |diagonal-fractions
+          |difference
+          |disabled
+          |disregard-shifts
+          |distribute-all-lines
+          |distribute-letter
+          |distribute-space
+          |distribute
+          |dotted
+          |double
+          |drop-shadow
+          |nwse-resize
+          |nesw-resize
+          |ns-resize
+          |ew-resize
+          |sw-resize
+          |se-resize
+          |nw-resize
+          |ne-resize
+          |w-resize
+          |s-resize
+          |e-resize
+          |n-resize
+          |ease-in-out
+          |ease-in
+          |ease-out
+          |ease
+          |element
+          |ellipsis
+          |embed
+          |end
+          |EndColorStr
+          |evenodd
+          |exclude-ruby
+          |exclude
+          |exclusion
+          |expanded
+          |extra-condensed
+          |semi-condensed
+          |ultra-condensed
+          |extra-expanded
+          |semi-expanded
+          |ultra-expanded
+          |farthest-side
+          |farthest-corner
+          |fill-box
+          |fill-opacity
+          |fill
+          |filter
+          |flat
+          |flex-basis
+          |flexbox
+          |flex-end
+          |flex-grow
+          |flex-shrink
+          |flex-start
+          |flex
+          |flip
+          |flood-color
+          |font-size
+          |font-size-adjust
+          |font-stretch
+          |font-weight
+          |font
+          |from-image
+          |from
+          |full-width
+          |geometricPrecision
+          |glyphs
+          |gradient
+          |grayscale
+          |grid-height
+          |grid
+          |groove
+          |hand
+          |hanging
+          |hard-light
+          |height
+          |help
+          |hidden
+          |hide
+          |historical-forms
+          |horizontal-tb
+          |horizontal
+          |hue
+          |ideographic
+          |ideograph-alpha
+          |ideograph-numeric
+          |ideograph-parenthesis
+          |ideograph-space
+          |inactive
+          |include-ruby
+          |inherit
+          |initial
+          |inline-block
+          |inline-box
+          |inline-flexbox
+          |inline-flex
+          |inline-line-height
+          |inline-table
+          |inline
+          |inset
+          |inside
+          |intersect
+          |inter-ideograph
+          |inter-word
+          |invert
+          |isolate
+          |isolation
+          |italic
+          |jis04
+          |jis78
+          |jis83
+          |jis90
+          |justify-all
+          |justify-content
+          |justify-items
+          |justify-self
+          |justify
+          |keep-all
+          |larger
+          |large
+          |last
+          |layout
+          |left
+          |letter-spacing
+          |lighter
+          |lighten
+          |lighting-color
+          |line-edge
+          |line-height
+          |line-through
+          |line
+          |linear-gradient
+          |linearRGB
+          |linear
+          |lining-nums
+          |list-item
+          |local
+          |loose
+          |lowercase
+          |lr-tb
+          |ltr
+          |luminosity
+          |luminance
+          |manual
+          |manipulation
+          |margin-bottom
+          |margin-box
+          |margin-left
+          |margin-right
+          |margin-top
+          |margin
+          |marker-offset
+          |markers
+          |marker
+          |mathematical
+          |max-content
+          |max-height
+          |max-lines
+          |max-size
+          |max-width
+          |medium
+          |middle
+          |min-content
+          |min-height
+          |min-width
+          |miter
+          |mixed
+          |move
+          |multiply
+          |newspaper
+          |no-close-quote
+          |no-open-quote
+          |no-change
+          |no-clip
+          |no-drop
+          |no-repeat
+          |none
+          |nonzero
+          |normal
+          |not-allowed
+          |nowrap
+          |oblique
+          |offset-after
+          |offset-before
+          |offset-end
+          |offset-start
+          |offset
+          |oldstyle-nums
+          |opacity
+          |open-quote
+          |optimizeLegibility
+          |optimizeSpeed
+          |optimizeQuality
+          |optimizePrecision
+          |order
+          |ordinal
+          |ornaments
+          |outline-color
+          |outline-offset
+          |outline-width
+          |outline
+          |outset
+          |outside
+          |overline
+          |over-edge
+          |overlay
+          |padding-bottom
+          |padding-box
+          |padding-left
+          |padding-right
+          |padding-top
+          |padding
+          |page
+          |painted
+          |paused
+          |pan-x
+          |pan-y
+          |pan-left
+          |pan-right
+          |pan-up
+          |pan-down
+          |perspective-origin
+          |pixelated
+          |pointer
+          |pinch-zoom
+          |pre-line
+          |pre-wrap
+          |pre
+          |preserve-3d
+          |progid:DXImageTransform.Microsoft.Alpha
+          |progid:DXImageTransform.Microsoft.Blur
+          |progid:DXImageTransform.Microsoft.dropshadow
+          |progid:DXImageTransform.Microsoft.gradient
+          |progid:DXImageTransform.Microsoft.Shadow
+          |progress
+          |proportional-nums
+          |proportional-width
+          |radial-gradient
+          |recto
+          |region
+          |repeat-x
+          |repeat-y
+          |repeat
+          |repeating-linear-gradient
+          |repeating-radial-gradient
+          |repeating-conic-gradient
+          |replaced
+          |reset-size
+          |ridge
+          |right
+          |round
+          |row-resize
+          |row-reverse
+          |row
+          |rtl
+          |ruby
+          |running
+          |saturation
+          |saturate
+          |screen
+          |scroll-position
+          |scrollbar
+          |separate
+          |sepia
+          |scale-down
+          |shape-image-threshold
+          |shape-margin
+          |shape-outside
+          |show
+          |sideways-lr
+          |sideways-rl
+          |sideways
+          |simplified
+          |size
+          |slashed-zero
+          |slice
+          |smaller
+          |small
+          |smooth
+          |snap
+          |solid
+          |soft-light
+          |space-around
+          |space-between
+          |space-evenly
+          |space
+          |span
+          |sRGB
+          |stacked-fractions
+          |stack
+          |startColorStr
+          |start
+          |step-end
+          |step-start
+          |stop-color
+          |stop-opacity
+          |stretch
+          |strict
+          |stroke-box
+          |stroke-dasharray
+          |stroke-dashoffset
+          |stroke-miterlimit
+          |stroke-opacity
+          |stroke-width
+          |stroke
+          |styleset
+          |style
+          |stylistic
+          |subgrid
+          |subpixel-antialiased
+          |subtract
+          |sub
+          |super
+          |swash
+          |table-caption
+          |table-cell
+          |table-column-group
+          |table-footer-group
+          |table-header-group
+          |table-row-group
+          |table-column
+          |table-row
+          |table
+          |tabular-nums
+          |tb-rl
+          |text-bottom
+          |text-top
+          |text-decoration-color
+          |text-emphasis-color
+          |text-indent
+          |text-over-edge
+          |text-under-edge
+          |text-shadow
+          |text-size-adjust
+          |text-size
+          |text-top
+          |textfield
+          |text
+          |thick
+          |thin
+          |titling-case
+          |top
+          |to
+          |touch
+          |traditional
+          |transform-origin
+          |transform
+          |under-edge
+          |underline
+          |unicase
+          |unset
+          |uppercase
+          |upright
+          |use-glyph-orientation
+          |use-script
+          |verso
+          |vertical-align
+          |vertical-ideographic
+          |vertical-lr
+          |vertical-rl
+          |vertical-text
+          |vertical
+          |view-box
+          |viewport-fill-opacity
+          |viewport-fill
+          |visibility
+          |visibleFill
+          |visiblePainted
+          |visibleStroke
+          |visible
+          |wait
+          |wavy
+          |weight
+          |whitespace
+          |device-width
+          |width
+          |word-spacing
+          |wrap-reverse
+          |wrap
+          |xx-large
+          |xx-small
+          |x-large
+          |x-small
+          |z-index
+          |zero
+          |zoom
+          |zoom-in
+          |zoom-out
+        )\b
     - name: support.constant.font-name.less
       match: \b(?i:sans-serif|serif|monospace|fantasy|cursive)\b(?=\s*[;,\n}])
 
@@ -1866,14 +2240,14 @@ repository:
         patterns:
         - include: '#selectors'
     - name: entity.other.attribute-name.pseudo-element.less
-      match: (?:(:{1,2})(?:before|after|first-line|first-letter)|(::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)))\b
+      match: (?:(:{1,2})(?:before|after|first-line|first-letter)|(::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)))\b
       captures:
         '1': {name: punctuation.definition.entity.less}
         '2': {name: punctuation.definition.entity.less}
         '3': {name: support.type.vendor-prefix.less}
 
   qualified-name:
-    match: (?:(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)|(\*))?([|])(?!=)
+    match: (?:(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)|(\*))?([|])(?!=)
     captures:
       '1': {name: entity.name.constant.less}
       '2': {name: entity.name.namespace.wildcard.less}
@@ -1893,12 +2267,6 @@ repository:
       end: (?=\))
       patterns:
       - include: '#literal-string'
-
-  resolution-type:
-    name: constant.numeric.less
-    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(dpi|dpcm|dppx))\b
-    captures:
-      '1': {name: keyword.other.unit.less}
 
   rule-list:
     patterns:
@@ -1921,18 +2289,53 @@ repository:
     - include: '#at-rules'
     - include: '#less-variable-assignment'
     - include: '#less-variable-interpolation'
+    - begin: (?=\s*@\{)
+      end: \s*(;)
+      endCaptures:
+        '1': {name: punctuation.terminator.rule.less}
+      patterns:
+      - name: variable.other.readwrite.less
+        match: (@)(\{)([-\w]+)(\})
+        captures:
+          '1': {name: punctuation.definition.variable.less}
+          '2': {name: punctuation.definition.expression.less}
+          '3': {name: support.other.variable.less}
+          '4': {name: punctuation.definition.expression.less}
+      - include: '#property-value'
+      - include: '#property-values'
     - begin: (?=[-a-z])
       end: $|(?![-a-z])
       patterns:
       - include: '#vendor-prefix'
       - include: '#custom-property-name'
       - include: '#filter-function'
-      - name: invalid.deprecated.custom-property.less
-        match: \b(var-)(-?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)(?=\s)
+      - comment: border properties
+        begin: |-
+          (?x)\b(
+            border-(block|inline)(-(start|end))?(-(color|style|width))?
+            | border-(left|right)(-(color|style|width))?
+            | border-(bottom|top)(-(color|style|width|(left|right)-radius))?
+            | border(-(collapse|color|radius|spacing|style|width))
+            | border-((end|start)-){2}radius
+            | border-image(-(outset|repeat|slice|source|width))?
+            | border
+          )\b
+        beginCaptures:
+          '0': {name: support.type.property-name.less}
+        end: \s*(;)|(?=[})])
+        endCaptures:
+          '1': {name: punctuation.terminator.rule.less}
+        patterns:
+        - include: '#property-value'
+        - include: '#property-values'
+      - comment: invalid custom property (ex. var-property)
+        name: invalid.deprecated.custom-property.less
+        match: \b(var-)(-?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)(?=\s)
         captures:
           '1': {name: keyword.other.custom-property.prefix.less}
           '2': {name: support.type.custom-property.name.less}
-      - name: meta.property-name.less
+      - comment: font, font-family
+        name: meta.property-name.less
         begin: \bfont(-family)?(?!-)\b
         beginCaptures:
           '0': {name: support.type.property-name.less}
@@ -1946,10 +2349,13 @@ repository:
             '4': {name: meta.property-value.less}
         - include: '#property-values'
         - name: string.unquoted.less
-          match: -?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)*
+          match: -?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)*
         - name: punctuation.separator.less
           match: ','
-      - begin: \banimation(-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function))?\b
+      - comment: animation, animation-delay, animation-direction, animation-duration,
+          animation-fill-mode, animation-iteration-count, animation-name, animation-play-state,
+          animation-timing-function
+        begin: \banimation(-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function))?\b
         beginCaptures:
           '0': {name: support.type.property-name.less}
         end: \s*(;)|(?=[})])
@@ -1965,17 +2371,37 @@ repository:
             '1': {name: punctuation.definition.arbitrary-repetition.less}
           patterns:
           - name: support.constant.property-value.less
-            match: \b(linear|ease(-in)?(-out)?|step-(start|end)|none|forwards|backwards|both|normal|alternate(-reverse)?|reverse|running|paused)\b
+            match: |-
+              (?x)\b(
+                linear
+              | ease-in
+              | ease-out
+              | ease-in-out
+              | step-start
+              | step-end
+              | none
+              | forwards
+              | backwards
+              | both
+              | normal
+              | alternate-reverse
+              | alternate
+              | reverse
+              | running
+              | paused
+              )\b
           - include: '#cubic-bezier-function'
           - include: '#steps-function'
-          - include: '#time-type'
-          - include: '#number-type'
+          - include: '#type-time'
+          - include: '#type-number'
           - name: variable.other.constant.animation-name.less
-            match: -?(?:[_a-zA-Z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\s\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[-_a-zA-Z0-9]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*
+            match: -?(?:[_a-zA-Z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|\s)?)|\\[^\r\n\f0-9a-f]))(?:[-_a-zA-Z0-9]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|\s)?)|\\[^\r\n\f0-9a-f]))*
           - include: '#literal-string'
           - include: '#property-values'
           - match: \s*(?:(,))
-      - begin: \b(transition(-(property|duration|delay|timing-function))?)\b
+      - comment: transition, transition-property, transition-duration, transition-delay,
+          transition-timing-function
+        begin: \b(transition(-(property|duration|delay|timing-function))?)\b
         beginCaptures:
           '0': {name: meta.property-name.less}
           '1': {name: support.type.property-name.less}
@@ -1987,14 +2413,15 @@ repository:
           captures:
             '1': {name: punctuation.separator.key-value.less}
             '4': {name: meta.property-value.less}
-        - include: '#time-type'
+        - include: '#type-time'
         - include: '#property-values'
         - include: '#cubic-bezier-function'
         - include: '#steps-function'
         - match: \s*(?:(,))
           captures:
             '1': {name: punctuation.definition.arbitrary-repetition.less}
-      - name: meta.property-name.less
+      - comment: backdrop-filter, filter
+        name: meta.property-name.less
         begin: \b(?:backdrop-)?filter\b
         beginCaptures:
           '0': {name: support.type.property-name.less}
@@ -2009,7 +2436,8 @@ repository:
         - name: meta.property-value.less
           match: \b(inherit|initial|unset|none)\b
         - include: '#filter-functions'
-      - name: meta.property-name.less
+      - comment: will-change
+        name: meta.property-name.less
         begin: \bwill-change\b
         beginCaptures:
           '0': {name: support.type.property-name.less}
@@ -2024,11 +2452,12 @@ repository:
         - name: invalid.illegal.property-value.less
           match: unset|initial|inherit|will-change|auto|scroll-position|contents
         - name: support.constant.property-value.less
-          match: -?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*
+          match: -?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*
         - match: \s*(?:(,))
           captures:
             '1': {name: punctuation.definition.arbitrary-repetition.less}
-      - name: meta.property-name.less
+      - comment: counter-increment
+        name: meta.property-name.less
         begin: \bcounter-(increment|(re)?set)\b
         beginCaptures:
           '0': {name: support.type.property-name.less}
@@ -2041,72 +2470,188 @@ repository:
             '1': {name: punctuation.separator.key-value.less}
             '4': {name: meta.property-value.less}
         - name: entity.name.constant.counter-name.less
-          match: -?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*
-        - include: '#integer-type'
+          match: -?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*
+        - include: '#type-integer'
         - name: invalid.illegal.property-value.less
           match: unset|initial|inherit|auto
-      - name: support.type.property-name.less
-        match: (?x)\b( accent-height | align-content | align-items | align-self |
-          alignment-baseline | all | animation-timing-function | animation-play-state
-          | animation-name | animation-iteration-count | animation-fill-mode | animation-duration
-          | animation-direction | animation-delay | animation | appearance | ascent
-          | azimuth | backface-visibility | background-size | background-repeat-y
-          | background-repeat-x | background-repeat | background-position-y | background-position-x
-          | background-position | background-origin | background-image | background-color
-          | background-clip | background-blend-mode | background-attachment | background
-          | baseline-shift | begin | bias | blend-mode | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)
-          | break-(after|before|inside) | caption-side | clear | clip-path | clip-rule
-          | clip | color(-(interpolation(-filters)?|profile|rendering))? | columns
-          | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width)
-          | contain | content | counter-(increment|reset) | cursor | (c|d|f)(x|y)
-          | direction | display | divisor | dominant-baseline | dur | elevation |
-          empty-cells | enable-background | end | fallback | fill(-(opacity|rule))?
-          | filter | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))?
-          | float | flood-(color|opacity) | font-display | font-family | font-feature-settings
-          | font-kerning | font-language-override | font-size(-adjust)? | font-smoothing
-          | font-stretch | font-style | font-synthesis | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))?
-          | font-weight | font | fr | glyph-orientation-(horizontal|vertical) | grid-(area|gap)
-          | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))? |
-          grid-template(-(areas|columns|rows))? | height | hyphens | image-(orientation|rendering|resolution)
-          | isolation | justify-content | kerning | left | letter-spacing | lighting-color
-          | line-(box-contain|break|clamp|height) | list-style(-(image|position|type))?
-          | margin(-(bottom|left|right|top))? | marker(-(end|mid|start))? | mask(-(clip||composite|image|origin|position|repeat|size|type))?
-          | (max|min)-(height|width) | mix-blend-mode | nbsp-mode | negative | object-(fit|position)
-          | opacity | operator | order | orphans | outline(-(color|offset|style|width))?
-          | overflow(-(scrolling|wrap|x|y))? | pad(ding(-(bottom|left|right|top))?)?
-          | page(-break-(after|before|inside))? | paint-order | pause(-(after|before))?
-          | perspective(-origin(-(x|y))?)? | pitch(-range)? | pointer-events | position
-          | prefix | quotes | range | resize | right | rotate | scale | scroll-behavior
-          | shape-(image-threshold|margin|outside|rendering) | size | speak(-as)?
-          | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))?
-          | suffix | symbols | system | tab-size | table-layout | tap-highlight-color
-          | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))?
-          | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|shadow|transform|underline-position)
-          | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)?
-          | transition(-(delay|duration|property|timing-function))? | translate |
-          unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility
-          | white-space | widows | width | will-change | word-(break|spacing|wrap)
-          | writing-mode | z-index | zoom )\b
-      - name: support.type.property-name.less
-        match: |-
+      - comment: background
+        name: meta.property-name.less
+        begin: |-
+          (?xi)\b(
+              background-size
+            | background-repeat-y
+            | background-repeat-x
+            | background-repeat
+            | background-position-y
+            | background-position-x
+            | background-position
+            | background-origin
+            | background-image
+            | background-color
+            | background-clip
+            | background-blend-mode
+            | background-attachment
+            | background
+            )\b
+        beginCaptures:
+          '0': {name: support.type.property-name.less}
+        end: \s*(;)|(?=[})])
+        endCaptures:
+          '1': {name: punctuation.terminator.rule.less}
+        patterns:
+        - include: '#property-value'
+        - include: '#property-values'
+      - comment: all other properties
+        begin: |-
           (?x)\b(
-            border-(block|inline)(-(start|end))?(-(color|style|width))?
-            | border-(left|right)(-(color|style|width))?
-            | border-(bottom|top)(-(color|style|width|(left|right)-radius))?
-            | border(-(collapse|color|radius|spacing|style|width))
-            | border-((end|start)-){2}radius
-            | border-image(-(outset|repeat|slice|source|width))?
-            | border
+            accent-height
+            | align-content
+            | align-items
+            | align-self
+            | all
+            | animation-timing-function
+            | animation-play-state
+            | animation-name
+            | animation-iteration-count
+            | animation-fill-mode
+            | animation-duration
+            | animation-direction
+            | animation-delay
+            | animation
+            | appearance
+            | ascent
+            | azimuth
+            | backface-visibility
+            | begin
+            | bias
+            | blend-mode
+            | bottom
+            | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)
+            | break-(after|before|inside)
+            | caption-side
+            | clear
+            | color
+            | columns
+            | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width)
+            | contain
+            | content
+            | counter-(increment|reset)
+            | cursor
+            | direction
+            | display
+            | divisor
+            | dur
+            | elevation
+            | empty-cells
+            | end
+            | fallback
+            | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))?
+            | float
+            | font-display
+            | font-family
+            | font-feature-settings
+            | font-kerning
+            | font-language-override
+            | font-size(-adjust)?
+            | font-smoothing
+            | font-stretch
+            | font-style
+            | font-synthesis
+            | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))?
+            | font-weight
+            | font
+            | fr
+            | grid-(area|gap)
+            | grid-auto-(columns|flow|rows)
+            | grid-(column|row)(-(end|gap|start))?
+            | grid-template(-(areas|columns|rows))?
+            | height
+            | hyphens
+            | image-(orientation|resolution)
+            | isolation
+            | justify-content
+            | left
+            | letter-spacing
+            | line-(box-contain|break|clamp|height)
+            | list-style(-(image|position|type))?
+            | margin(-(bottom|left|right|top))?
+            | mask(-(clip||composite|image|origin|position|repeat|size|type))?
+            | (max|min)-(height|width)
+            | mix-blend-mode
+            | nbsp-mode
+            | negative
+            | object-(fit|position)
+            | opacity
+            | operator
+            | order
+            | orphans
+            | outline(-(color|offset|style|width))?
+            | overflow(-(scrolling|wrap|x|y))?
+            | pad(ding(-(bottom|left|right|top))?)?
+            | page(-break-(after|before|inside))?
+            | paint-order
+            | pause(-(after|before))?
+            | perspective(-origin(-(x|y))?)?
+            | pitch(-range)?
+            | position
+            | prefix
+            | quotes
+            | range
+            | resize
+            | right
+            | rotate
+            | scale
+            | scroll-behavior
+            | shape-(image-threshold|margin|outside)
+            | size
+            | speak(-as)?
+            | src
+            | suffix
+            | symbols
+            | system
+            | tab-size
+            | table-layout
+            | tap-highlight-color
+            | text-align(-last)?
+            | text-decoration(-(color|line|style))?
+            | text-emphasis(-(color|position|style))?
+            | text-(fill-color|height|indent|justify|orientation|overflow|shadow|transform|underline-position)
+            | top
+            | touch-action
+            | transform(-origin(-(x|y))?)
+            | transform(-style)?
+            | transition(-(delay|duration|property|timing-function))?
+            | translate
+            | unicode-(bidi|range)
+            | user-(drag|select)
+            | vertical-align
+            | visibility
+            | white-space
+            | widows
+            | width
+            | will-change
+            | word-(break|spacing|wrap)
+            | writing-mode
+            | z-index
+            | zoom
           )\b
+        beginCaptures:
+          '0': {name: support.type.property-name.less}
+        end: \s*(;)|(?=[})])
+        endCaptures:
+          '1': {name: punctuation.terminator.rule.less}
+        patterns:
+        - include: '#property-value'
+        - include: '#property-values'
       - include: $self
     - contentName: meta.property-value.less
       begin: \b(((\+_?)?):)([\s\t]*)
-      end: \s*(;)|(?=[})])
-      endCaptures:
-        '1': {name: punctuation.terminator.rule.less}
-      captures:
+      beginCaptures:
         '1': {name: punctuation.separator.key-value.less}
         '4': {name: meta.property-value.less}
+      end: (\;)|(?=[})])
+      endCaptures:
+        '1': {name: punctuation.terminator.rule.less}
       patterns:
       - include: '#property-values'
     - include: $self
@@ -2131,23 +2676,140 @@ repository:
     - name: entity.name.tag.custom.less
       match: \b([a-z](?:(?:[-_a-z0-9\x{00B7}]|\\\.|[[\x{00C0}-\x{00D6}][\x{00D8}-\x{00F6}][\x{00F8}-\x{02FF}][\x{0300}-\x{037D}][\x{037F}-\x{1FFF}][\x{200C}-\x{200D}][\x{203F}-\x{2040}][\x{2070}-\x{218F}][\x{2C00}-\x{2FEF}][\x{3001}-\x{D7FF}][\x{F900}-\x{FDCF}][\x{FDF0}-\x{FFFD}][\x{10000}-\x{EFFFF}]]))*-(?:(?:[-_a-z0-9\x{00B7}]|\\\.|[[\x{00C0}-\x{00D6}][\x{00D8}-\x{00F6}][\x{00F8}-\x{02FF}][\x{0300}-\x{037D}][\x{037F}-\x{1FFF}][\x{200C}-\x{200D}][\x{203F}-\x{2040}][\x{2070}-\x{218F}][\x{2C00}-\x{2FEF}][\x{3001}-\x{D7FF}][\x{F900}-\x{FDCF}][\x{FDF0}-\x{FFFD}][\x{10000}-\x{EFFFF}]]))*)\b
     - name: entity.name.tag.less
-      match: (?x)\b( a | abbr | acronym | address | applet | area | article | aside
-        | audio | b | base | basefont | bdi | bdo | big | blockquote | body | br |
-        button | canvas | caption | circle | cite | clipPath | code | col | colgroup
-        | content | data | dataList | dd | defs | del | details | dfn | dialog | dir
-        | div | dl | dt | element | ellipse | em | embed | eventsource | fieldset
-        | figcaption | figure | filter | footer | foreignObject | form | frame | frameset
-        | g | glyph | glyphRef | h1 | h2 | h3 | h4 | h5 | h6 | head | header | hgroup
-        | hr | html | i | iframe | image | img | input | ins | isindex | kbd | keygen
-        | label | legend | li | line | linearGradient | link | main | map | mark |
-        marker | mask | menu | meta | meter | nav | noframes | noscript | object |
-        ol | optgroup | option | output | p | param | path | pattern | picture | polygon
-        | polyline | pre | progress | q | radialGradient | rect | rp | ruby | rt |
-        rtc | s | samp | script | section | select | shadow | small | source | span
-        | stop | strike | strong | style | sub | summary | sup | svg | switch | symbol
-        | table | tbody | td | template | textarea | textPath | tfoot | th | thead
-        | time | title | tr | track | tref | tspan | tt | u | ul | use | var | video
-        | wbr | xmp )\b
+      match: |-
+        (?x)\b(
+          a
+        | abbr
+        | acronym
+        | address
+        | area
+        | article
+        | aside
+        | audio
+        | b
+        | base
+        | bdi
+        | bdo
+        | big
+        | blockquote
+        | body
+        | br
+        | button
+        | canvas
+        | caption
+        | center
+        | cite
+        | code
+        | col
+        | colgroup
+        | data
+        | datalist
+        | dd
+        | del
+        | details
+        | dfn
+        | dialog
+        | dir
+        | div
+        | dl
+        | dt
+        | em
+        | embed
+        | fencedframe
+        | fieldset
+        | figcaption
+        | figure
+        | font
+        | footer
+        | form
+        | frame
+        | frameset
+        | h1
+        | h2
+        | h3
+        | h4
+        | h5
+        | h6
+        | head
+        | header
+        | hgroup
+        | hr
+        | html
+        | i
+        | iframe
+        | img
+        | input
+        | ins
+        | kbd
+        | label
+        | legend
+        | li
+        | link
+        | main
+        | map
+        | mark
+        | marquee
+        | menu
+        | menuitem
+        | meta
+        | meter
+        | nav
+        | nobr
+        | noframes
+        | noscript
+        | object
+        | ol
+        | optgroup
+        | option
+        | output
+        | p
+        | param
+        | picture
+        | plaintext
+        | portal
+        | pre
+        | progress
+        | q
+        | rp
+        | rt
+        | rtc
+        | ruby
+        | s
+        | samp
+        | script
+        | search
+        | section
+        | select
+        | slot
+        | small
+        | source
+        | span
+        | strike
+        | strong
+        | style
+        | sub
+        | summary
+        | sup
+        | table
+        | tbody
+        | td
+        | template
+        | textarea
+        | tfoot
+        | th
+        | thead
+        | time
+        | title
+        | tr
+        | track
+        | tt
+        | u
+        | ul
+        | var
+        | video
+        | wbr
+        | xmp
+        )\b
     - name: entity.other.attribute-name.class.less
       begin: (\.)
       beginCaptures:
@@ -2156,9 +2818,9 @@ repository:
       patterns:
       - include: '#less-variable-interpolation'
     - name: entity.other.attribute-name.id.less
-      begin: (#)
+      begin: \#
       beginCaptures:
-        '1': {name: punctuation.definition.entity.less}
+        '0': {name: punctuation.definition.entity.less}
       end: (?![-\w]|[^\x{00}-\x{9f}]|\\([A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9])|(\@(?=\{)))
       patterns:
       - include: '#less-variable-interpolation'
@@ -2189,7 +2851,7 @@ repository:
       - include: '#less-variable-interpolation'
       - include: '#qualified-name'
       - name: entity.other.attribute-name.less
-        match: (-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)
+        match: (-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)
       - begin: \s*([~*|^$]?=)\s*
         end: (?=(\s|\]))
         captures:
@@ -2227,7 +2889,7 @@ repository:
         patterns:
         - name: support.constant.property-value.less
           match: \bauto\b
-        - include: '#length-type'
+        - include: '#type-length'
         - include: '#comma-delimiter'
     - name: meta.function-call.less
       begin: \b(inset)(?=\()
@@ -2244,8 +2906,8 @@ repository:
         patterns:
         - name: keyword.other.less
           match: \bround\b
-        - include: '#length-type'
-        - include: '#percentage-type'
+        - include: '#type-length'
+        - include: '#type-percentage'
     - name: meta.function-call.less
       begin: \b(circle|ellipse)(?=\()
       beginCaptures:
@@ -2263,8 +2925,8 @@ repository:
           match: \bat\b
         - name: support.constant.property-value.less
           match: \b(top|right|bottom|left|center|closest-side|farthest-side)\b
-        - include: '#length-type'
-        - include: '#percentage-type'
+        - include: '#type-length'
+        - include: '#type-percentage'
     - name: meta.function-call.less
       begin: \b(polygon)(?=\()
       beginCaptures:
@@ -2280,8 +2942,8 @@ repository:
         patterns:
         - name: support.constant.property-value.less
           match: \b(nonzero|evenodd)\b
-        - include: '#length-type'
-        - include: '#percentage-type'
+        - include: '#type-length'
+        - include: '#type-percentage'
 
   steps-function:
     name: meta.function-call.less
@@ -2298,7 +2960,7 @@ repository:
       end: (?=\))
       patterns:
       - include: '#comma-delimiter'
-      - include: '#integer-type'
+      - include: '#type-integer'
       - name: support.keyword.timing-direction.less
         match: (end|middle|start)
 
@@ -2328,13 +2990,7 @@ repository:
         match: \b(cyclic|numeric|alphabetic|symbolic|fixed)\b
       - include: '#comma-delimiter'
       - include: '#literal-string'
-      - include: '#image-type'
-
-  time-type:
-    name: constant.numeric.less
-    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(s|ms))\b
-    captures:
-      '1': {name: keyword.other.unit.less}
+      - include: '#type-image'
 
   transform-functions:
     patterns:
@@ -2352,7 +3008,7 @@ repository:
         end: (?=\))
         patterns:
         - include: '#comma-delimiter'
-        - include: '#number-type'
+        - include: '#type-number'
         - include: '#less-variables'
         - include: '#var-function'
     - name: meta.function-call.less
@@ -2369,9 +3025,9 @@ repository:
         end: (?=\))
         patterns:
         - include: '#comma-delimiter'
-        - include: '#percentage-type'
-        - include: '#length-type'
-        - include: '#number-type'
+        - include: '#type-percentage'
+        - include: '#type-length'
+        - include: '#type-number'
         - include: '#less-variables'
         - include: '#var-function'
     - name: meta.function-call.less
@@ -2387,9 +3043,9 @@ repository:
           '0': {name: punctuation.definition.group.begin.less}
         end: (?=\))
         patterns:
-        - include: '#percentage-type'
-        - include: '#length-type'
-        - include: '#number-type'
+        - include: '#type-percentage'
+        - include: '#type-length'
+        - include: '#type-number'
         - include: '#less-variables'
         - include: '#var-function'
     - name: meta.function-call.less
@@ -2405,7 +3061,7 @@ repository:
           '0': {name: punctuation.definition.group.begin.less}
         end: (?=\))
         patterns:
-        - include: '#angle-type'
+        - include: '#type-angle'
         - include: '#less-variables'
         - include: '#calc-function'
         - include: '#var-function'
@@ -2423,7 +3079,7 @@ repository:
         end: (?=\))
         patterns:
         - include: '#comma-delimiter'
-        - include: '#angle-type'
+        - include: '#type-angle'
         - include: '#less-variables'
         - include: '#calc-function'
         - include: '#var-function'
@@ -2440,7 +3096,7 @@ repository:
           '0': {name: punctuation.definition.group.begin.less}
         end: (?=\))
         patterns:
-        - include: '#length-type'
+        - include: '#type-length'
         - include: '#less-variables'
         - include: '#calc-function'
         - include: '#var-function'
@@ -2458,8 +3114,8 @@ repository:
         end: (?=\))
         patterns:
         - include: '#comma-delimiter'
-        - include: '#angle-type'
-        - include: '#number-type'
+        - include: '#type-angle'
+        - include: '#type-number'
         - include: '#less-variables'
         - include: '#calc-function'
         - include: '#var-function'
@@ -2477,10 +3133,61 @@ repository:
         end: (?=\))
         patterns:
         - include: '#comma-delimiter'
-        - include: '#number-type'
+        - include: '#type-number'
         - include: '#less-variables'
         - include: '#calc-function'
         - include: '#var-function'
+
+  type-angle:
+    name: constant.numeric.less
+    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(deg|grad|rad|turn))\b
+    captures:
+      '1': {name: keyword.other.unit.less}
+
+  type-frequency:
+    name: constant.numeric.less
+    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(Hz|kHz))\b
+    captures:
+      '1': {name: keyword.other.unit.less}
+
+  type-image:
+    patterns:
+    - include: '#cross-fade-function'
+    - include: '#gradient-functions'
+    - include: '#image-function'
+    - include: '#url-function'
+
+  type-integer:
+    name: constant.numeric.less
+    match: (?:[-+]?\d+)
+
+  type-length:
+    name: constant.numeric.less
+    match: 0|(?:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b
+    captures:
+      '1': {name: keyword.other.unit.less}
+
+  type-number:
+    name: constant.numeric.less
+    match: '[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))'
+
+  type-percentage:
+    name: constant.numeric.less
+    match: '[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(%)'
+    captures:
+      '1': {name: keyword.other.unit.less}
+
+  type-resolution:
+    name: constant.numeric.less
+    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(dpi|dpcm|dppx))\b
+    captures:
+      '1': {name: keyword.other.unit.less}
+
+  type-time:
+    name: constant.numeric.less
+    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(s|ms))\b
+    captures:
+      '1': {name: keyword.other.unit.less}
 
   unicode-range:
     name: support.unicode-range.less
@@ -2499,14 +3206,15 @@ repository:
     begin: \b(url)(?=\()
     beginCaptures:
       '1': {name: support.function.url.less}
-    end: \)
-    endCaptures:
-      '0': {name: punctuation.definition.group.end.less}
+    end: (?<=\))
     patterns:
-    - begin: \(
+    - name: meta.group.less
+      begin: \(
       beginCaptures:
         '0': {name: punctuation.definition.group.begin.less}
-      end: (?=\))
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
       patterns:
       - include: '#less-variables'
       - include: '#literal-string'
@@ -2531,6 +3239,7 @@ repository:
         - include: '#comma-delimiter'
         - include: '#custom-property-name'
         - include: '#less-variables'
+        - include: '#property-values'
 
   vendor-prefix:
     name: support.type.vendor-prefix.less

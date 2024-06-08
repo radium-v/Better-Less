@@ -1,0 +1,46 @@
+.animation-fill-mode {
+    animation-fill-mode: forwards;
+    animation-fill-mode: backwards;
+    animation-fill-mode: both;
+}
+
+.animation-play-state {
+    animation-play-state: paused;
+    animation-play-state: running;
+}
+
+.animation-timing-function {
+    animation-timing-function: ease;
+    animation-timing-function: linear;
+    animation-timing-function: ease-in;
+    animation-timing-function: ease-out;
+    animation-timing-function: ease-in-out;
+
+    .cubic-bezier {
+        // cubic-bezier variants
+        @bezier-start-x: 0.075;
+        @bezier-start-y: 0.82;
+        @bezier-end-x: 0.165;
+        @bezier-end-y: 1;
+        --bezier-start-x: 0.075;
+        --bezier-start-y: 0.82;
+        --bezier-end-x: 0.165;
+        --bezier-end-y: 1;
+
+        animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+        animation-timing-function: cubic-bezier(
+            @bezier-start-x,
+            @bezier-start-y,
+            @bezier-end-x,
+            @bezier-end-y
+        );
+
+        animation-timing-function: cubic-bezier(
+            var(--bezier-start-x, 0.075),
+            var(--bezier-start-y, 0.82),
+            var(--bezier-end-x, 0.165),
+            var(--bezier-end-y, 1)
+        );
+    }
+}

@@ -47,21 +47,6 @@
 	</array>
 	<key>repository</key>
 	<dict>
-		<key>angle-type</key>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.unit.less</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(deg|grad|rad|turn))\b</string>
-			<key>name</key>
-			<string>constant.numeric.less</string>
-		</dict>
 		<key>at-charset</key>
 		<dict>
 			<key>begin</key>
@@ -94,7 +79,7 @@
 		<key>at-counter-style</key>
 		<dict>
 			<key>begin</key>
-			<string>\s*((@)counter-style\b)\s+(?:(?i:\b(decimal|none)\b)|(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*))\s*(?=\{|$)</string>
+			<string>\s*((@)counter-style\b)\s+(?:(?i:\b(decimal|none)\b)|(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*))\s*(?=\{|$)</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -544,7 +529,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
+					<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)</string>
 					<key>name</key>
 					<string>entity.name.constant.namespace-prefix.less</string>
 				</dict>
@@ -760,11 +745,11 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#at-supports-parens</string>
+					<string>#rule-list-body</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#rule-list-body</string>
+					<string>$self</string>
 				</dict>
 			</array>
 		</dict>
@@ -880,7 +865,7 @@
 						</dict>
 						<dict>
 							<key>begin</key>
-							<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
+							<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)</string>
 							<key>end</key>
 							<string>(?=\))</string>
 							<key>name</key>
@@ -1018,15 +1003,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>\)</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.group.end.less</string>
-				</dict>
-			</dict>
+			<string>(?&lt;=\))</string>
 			<key>name</key>
 			<string>meta.function-call.less</string>
 			<key>patterns</key>
@@ -1043,7 +1020,17 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?=\))</string>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.end.less</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.group.less</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1135,11 +1122,11 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#number-type</string>
+									<string>#type-number</string>
 								</dict>
 							</array>
 						</dict>
@@ -1199,15 +1186,15 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#angle-type</string>
+									<string>#type-angle</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#number-type</string>
+									<string>#type-number</string>
 								</dict>
 							</array>
 						</dict>
@@ -1289,7 +1276,7 @@
 				<dict>
 					<key>begin</key>
 					<string>/\*</string>
-					<key>captures</key>
+					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
 						<dict>
@@ -1299,6 +1286,14 @@
 					</dict>
 					<key>end</key>
 					<string>\*/</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.comment.less</string>
+						</dict>
+					</dict>
 					<key>name</key>
 					<string>comment.block.less</string>
 				</dict>
@@ -1377,7 +1372,7 @@
 								</dict>
 								<dict>
 									<key>match</key>
-									<string>(?:--(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))+|-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
+									<string>(?:--(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))+|-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)</string>
 									<key>name</key>
 									<string>entity.other.counter-name.less</string>
 								</dict>
@@ -1446,7 +1441,7 @@
 							<array>
 								<dict>
 									<key>match</key>
-									<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
+									<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)</string>
 									<key>name</key>
 									<string>entity.other.counter-name.less string.unquoted.less</string>
 								</dict>
@@ -1537,7 +1532,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -1545,7 +1540,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#image-type</string>
+									<string>#type-image</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -1608,7 +1603,15 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#number-type</string>
+							<string>#type-number</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#less-variables</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#var-function</string>
 						</dict>
 					</array>
 				</dict>
@@ -1630,7 +1633,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\s*(--)((?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))+)</string>
+			<string>\s*(--)((?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))+)</string>
 			<key>name</key>
 			<string>support.type.custom-property.less</string>
 		</dict>
@@ -1640,23 +1643,23 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#angle-type</string>
+					<string>#type-angle</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#frequency-type</string>
+					<string>#type-frequency</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#length-type</string>
+					<string>#type-length</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#resolution-type</string>
+					<string>#type-resolution</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#time-type</string>
+					<string>#type-time</string>
 				</dict>
 			</array>
 		</dict>
@@ -1709,7 +1712,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#image-type</string>
+							<string>#type-image</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1773,7 +1776,7 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 							</array>
 						</dict>
@@ -1821,11 +1824,11 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#number-type</string>
+									<string>#type-number</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -1877,7 +1880,7 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -1929,7 +1932,7 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#angle-type</string>
+									<string>#type-angle</string>
 								</dict>
 							</array>
 						</dict>
@@ -1991,21 +1994,6 @@
 				</dict>
 			</array>
 		</dict>
-		<key>frequency-type</key>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.unit.less</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(Hz|kHz))\b</string>
-			<key>name</key>
-			<string>constant.numeric.less</string>
-		</dict>
 		<key>gradient-functions</key>
 		<dict>
 			<key>patterns</key>
@@ -2021,6 +2009,8 @@
 							<string>support.function.gradient.less</string>
 						</dict>
 					</dict>
+					<key>comment</key>
+					<string>linear-gradient function</string>
 					<key>end</key>
 					<string>\)</string>
 					<key>endCaptures</key>
@@ -2056,7 +2046,11 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#angle-type</string>
+									<string>#var-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#type-angle</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -2064,11 +2058,11 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -2101,6 +2095,8 @@
 							<string>support.function.gradient.less</string>
 						</dict>
 					</dict>
+					<key>comment</key>
+					<string>radial-gradient function</string>
 					<key>end</key>
 					<string>\)</string>
 					<key>endCaptures</key>
@@ -2136,15 +2132,19 @@
 								</dict>
 								<dict>
 									<key>include</key>
+									<string>#var-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
 									<string>#color-values</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -2159,6 +2159,92 @@
 								<dict>
 									<key>match</key>
 									<string>\b(top|right|bottom|left|center|(farthest|closest)-(corner|side))\b</string>
+									<key>name</key>
+									<string>support.constant.property-value.less</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\b((?:repeating-)?conic-gradient)(?=\()</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>support.function.gradient.less</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>conic-gradient function</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.end.less</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.function-call.less</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>\(</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.group.begin.less</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=\))</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#less-variables</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#var-function</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#color-values</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#type-length</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#type-percentage</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#type-angle</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#comma-delimiter</string>
+								</dict>
+								<dict>
+									<key>match</key>
+									<string>\b(at|from)\b</string>
+									<key>name</key>
+									<string>keyword.other.less</string>
+								</dict>
+								<dict>
+									<key>match</key>
+									<string>\b(top|right|bottom|left|center)\b</string>
 									<key>name</key>
 									<string>support.constant.property-value.less</string>
 								</dict>
@@ -2219,11 +2305,11 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#length-type</string>
+							<string>#type-length</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#percentage-type</string>
+							<string>#type-percentage</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -2231,7 +2317,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#integer-type</string>
+							<string>#type-integer</string>
 						</dict>
 						<dict>
 							<key>match</key>
@@ -2292,7 +2378,7 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#image-type</string>
+							<string>#type-image</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -2314,39 +2400,10 @@
 				</dict>
 			</array>
 		</dict>
-		<key>image-type</key>
-		<dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#cross-fade-function</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#gradient-functions</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#image-function</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#url-function</string>
-				</dict>
-			</array>
-		</dict>
-		<key>integer-type</key>
-		<dict>
-			<key>match</key>
-			<string>(?:[-+]?\d+)</string>
-			<key>name</key>
-			<string>constant.numeric.less</string>
-		</dict>
 		<key>keyframe-name</key>
 		<dict>
 			<key>begin</key>
-			<string>\s*(-?(?:[_a-z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\s\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*)?</string>
+			<string>\s*(-?(?:[_a-z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|\s)?)|\\[^\r\n\f0-9a-f]))(?:[_a-z0-9-]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|\s)?)|\\[^\r\n\f0-9a-f]))*)?</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -2365,21 +2422,6 @@
 					<string>punctuation.definition.arbitrary-repetition.less</string>
 				</dict>
 			</dict>
-		</dict>
-		<key>length-type</key>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.unit.less</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>0|(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b</string>
-			<key>name</key>
-			<string>constant.numeric.less</string>
 		</dict>
 		<key>less-boolean-function</key>
 		<dict>
@@ -2680,7 +2722,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 							</array>
 						</dict>
@@ -2736,7 +2778,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#number-type</string>
+									<string>#type-number</string>
 								</dict>
 							</array>
 						</dict>
@@ -2792,7 +2834,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 								<dict>
 									<key>match</key>
@@ -2854,7 +2896,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 							</array>
 						</dict>
@@ -2962,7 +3004,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 							</array>
 						</dict>
@@ -3081,15 +3123,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>\)</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.group.end.less</string>
-				</dict>
-			</dict>
+			<string>(?&lt;=\))</string>
 			<key>name</key>
 			<string>meta.function-call.less</string>
 			<key>patterns</key>
@@ -3106,7 +3140,17 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?=\))</string>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.end.less</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.group.less</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -3231,7 +3275,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#integer-type</string>
+									<string>#type-integer</string>
 								</dict>
 							</array>
 						</dict>
@@ -3287,7 +3331,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#integer-type</string>
+									<string>#type-integer</string>
 								</dict>
 							</array>
 						</dict>
@@ -3322,6 +3366,8 @@
 							<string>punctuation.definition.group.begin.less</string>
 						</dict>
 					</dict>
+					<key>contentName</key>
+					<string>meta.group.less</string>
 					<key>end</key>
 					<string>\)</string>
 					<key>endCaptures</key>
@@ -3332,8 +3378,6 @@
 							<string>punctuation.definition.group.end.less</string>
 						</dict>
 					</dict>
-					<key>name</key>
-					<string>meta.group.less</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -3435,15 +3479,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>\)</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.group.end.less</string>
-						</dict>
-					</dict>
+					<string>(?&lt;=\))</string>
 					<key>name</key>
 					<string>meta.function-call.less</string>
 					<key>patterns</key>
@@ -3460,7 +3496,17 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?=\))</string>
+							<string>\)</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.group.end.less</string>
+								</dict>
+							</dict>
+							<key>name</key>
+							<string>meta.group.less</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -3826,15 +3872,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>\)</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.group.end.less</string>
-						</dict>
-					</dict>
+					<string>(?&lt;=\))</string>
 					<key>name</key>
 					<string>meta.function-call.less</string>
 					<key>patterns</key>
@@ -3851,7 +3889,17 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?=\))</string>
+							<string>\)</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.group.end.less</string>
+								</dict>
+							</dict>
+							<key>name</key>
+							<string>meta.group.less</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -3904,7 +3952,7 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#angle-type</string>
+									<string>#type-angle</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -3916,11 +3964,11 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 								<dict>
 									<key>match</key>
@@ -4113,28 +4161,23 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(\()</string>
+					<string>\(</string>
 					<key>beginCaptures</key>
 					<dict>
-						<key>1</key>
+						<key>0</key>
 						<dict>
 							<key>name</key>
 							<string>punctuation.definition.group.begin.less</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(\))</string>
+					<string>\)</string>
 					<key>endCaptures</key>
 					<dict>
-						<key>1</key>
+						<key>0</key>
 						<dict>
 							<key>name</key>
 							<string>punctuation.definition.group.end.less</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.terminator.rule.less</string>
 						</dict>
 					</dict>
 					<key>name</key>
@@ -4430,25 +4473,17 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\b(is(number|string|color|keyword|url|pixel|em|percentage|ruleset))(?=\()</string>
+					<string>\bis(?:number|string|color|keyword|url|pixel|em|percentage|ruleset)(?=\()</string>
 					<key>beginCaptures</key>
 					<dict>
-						<key>1</key>
+						<key>0</key>
 						<dict>
 							<key>name</key>
 							<string>support.function.type.less</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>\)</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.group.end.less</string>
-						</dict>
-					</dict>
+					<string>(?&lt;=\))</string>
 					<key>name</key>
 					<string>meta.function-call.less</string>
 					<key>patterns</key>
@@ -4465,7 +4500,17 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?=\))</string>
+							<string>\)</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.group.end.less</string>
+								</dict>
+							</dict>
+							<key>name</key>
+							<string>meta.group.less</string>
 							<key>patterns</key>
 							<array>
 								<dict>
@@ -4590,7 +4635,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(@)(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
+					<string>(@)(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
@@ -4671,7 +4716,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(@{1,2})([-]?([_a-z]|[^\x{00}-\x{7F}]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
+					<string>(@{1,2})([-]?([_a-z]|[^\x{00}-\x{7F}]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
@@ -5119,7 +5164,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#length-type</string>
+							<string>#type-length</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -5135,13 +5180,6 @@
 				</dict>
 			</array>
 		</dict>
-		<key>number-type</key>
-		<dict>
-			<key>match</key>
-			<string>[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))</string>
-			<key>name</key>
-			<string>constant.numeric.less</string>
-		</dict>
 		<key>numeric-values</key>
 		<dict>
 			<key>patterns</key>
@@ -5152,28 +5190,13 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#percentage-type</string>
+					<string>#type-percentage</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#number-type</string>
+					<string>#type-number</string>
 				</dict>
 			</array>
-		</dict>
-		<key>percentage-type</key>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.unit.less</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(%)</string>
-			<key>name</key>
-			<string>constant.numeric.less</string>
 		</dict>
 		<key>property-list</key>
 		<dict>
@@ -5202,11 +5225,48 @@
 				</dict>
 			</array>
 		</dict>
+		<key>property-value</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.key-value.less</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>meta.property-value.less</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(((\+_?)?):)([\s\t]*)</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#less-variable-interpolation</string>
+				</dict>
+			</array>
+		</dict>
 		<key>property-value-constants</key>
 		<dict>
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>comment</key>
+					<string>Global Values</string>
+					<key>match</key>
+					<string>\b(inherit|initial|revert(-layer)?|unset)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>border properties</string>
 					<key>match</key>
 					<string>(?x)\b(
   border-(block|inline)(-(start|end))?(-(color|style|width))?
@@ -5215,168 +5275,570 @@
   | border(-(collapse|color|radius|spacing|style|width))
   | border-((end|start)-){2}radius
   | border-image(-(outset|repeat|slice|source|width))?
-  | border
-)</string>
+  | border(?!-)
+)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>position property values</string>
+					<key>match</key>
+					<string>\b(absolute|relative|static|sticky)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>inset/position property names (as values)</string>
+					<key>match</key>
+					<string>\binset-(block|inline)(-(start|end))?\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>list-style-type values</string>
+					<key>match</key>
+					<string>(?xi)\b(
+  arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal
+  |cjk-earthly-branch|cjk-heavenly-stem|cjk-ideographic
+  |decimal-leading-zero|decimal|devanagari|disc|disclosure-closed
+  |disclosure-open|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew
+  |hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada
+  |katakana-iroha|katakana|khmer|korean-hangul-formal
+  |korean-hanja-formal|korean-hanja-informal|lao|lower-alpha
+  |lower-armenian|lower-greek|lower-latin|lower-roman|malayalam
+  |mongolian|myanmar|oriya|persian|simp-chinese-formal
+  |simp-chinese-informal|square|tamil|telugu|thai|tibetan
+  |trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian
+  |upper-latin|upper-roman
+)\b
+</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>font-variant-ligatures values</string>
+					<key>match</key>
+					<string>(?i)\b(no-)?((common|discretionary|historical)-ligatures|contextual)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>font-variant-caps values</string>
+					<key>match</key>
+					<string>(?i)\b((all-)?(small|petite)-caps|unicase|titling-caps)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>animation values</string>
+					<key>match</key>
+					<string>\b(alternate(-reverse)?|backwards|both|forwards|infinite|paused|reverse|running|linear|ease(-in)?(-out)?|step-(start|end))\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>background values</string>
+					<key>match</key>
+					<string>\b(scroll|local|text|(no-)?repeat(-(x|y))?|space|round|contain|cover)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>shared values (values which are valid for multiple properties but have different meanings)</string>
+					<key>match</key>
+					<string>(?x)\b(
+  fixed
+  |bottom|center|left|right|top
+  |border-box|content-box|padding-box|margin-box
+)\b</string>
 					<key>name</key>
 					<string>support.constant.property-value.less</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>(?x)\b(
-  absolute|active|add
-|all(-(petite|small)-caps|-scroll)?
-|alpha(betic)?
-|alternate(-reverse)?
-|always|annotation|antialiased|at
-|auto(hiding-scrollbar)?
-|avoid(-column|-page|-region)?
-|background(-color|-image|-position|-size)?
-|backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink
-|block(-line-height)?
-|blur
-|bold(er)?
-|both|bottom
-|box(-shadow)?
-|break-(all|word)
-|brightness
-|butt(on)?
-|capitalize
-|cent(er|ral)
-|char(acter-variant)?
-|cjk-ideographic|clip|clone|close-quote
-|closest-(corner|side)
-|col-resize|collapse
-|color(-stop|-burn|-dodge)?
-|column((-count|-gap|-reverse|-rule(-color|-width)?|-width)|s)?
-|common-ligatures|condensed|consider-shifts|contain
-|content(-box|s)?
-|contextual|contrast|cover
-|crisp(-e|E)dges
-|crop
-|cross(hair)?
-|da(rken|shed)
-|default|dense|diagonal-fractions|difference|disabled
-|discretionary-ligatures|disregard-shifts
-|distribute(-all-lines|-letter|-space)?
-|dotted|double|drop-shadow
-|(nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize
-|ease(-in-out|-in|-out)?
-|element|ellipsis|embed|end|EndColorStr|evenodd
-|exclu(de(-ruby)?|sion)
-|expanded
-|(extra|semi|ultra)-(condensed|expanded)
-|farthest-(corner|side)?
-|fill(-box|-opacity)?
-|filter|fixed|flat
-|flex((-basis|-end|-grow|-shrink|-start)|box)?
-|flip|flood-color
-|font(-size(-adjust)?|-stretch|-weight)?
-|forwards
-|from(-image)?
-|full-width|geometricPrecision|glyphs|gradient|grayscale
-|grid(-height)?
-|groove|hand|hanging|hard-light|height|help|hidden|hide
-|historical-(forms|ligatures)
-|horizontal(-tb)?
-|hue
-|ideograph(-alpha|-numeric|-parenthesis|-space|ic)
-|inactive|include-ruby|infinite|inherit|initial
-|inline(-block|-box|-flex(box)?|-line-height|-table)?
-|inset|inside
-|inter(-ideograph|-word|sect)
-|invert|isolat(e|ion)|italic
-|jis(04|78|83|90)
-|justify(-all)?
-|keep-all
-|large[r]?
-|last|layout|left|letter-spacing
-|light(e[nr]|ing-color)
-|line(-edge|-height|-through)?
-|linear(-gradient|RGB)?
-|lining-nums|list-item|local|loose|lowercase|lr-tb|ltr
-|lumin(osity|ance)|manual
-|manipulation
-|margin(-bottom|-box|-left|-right|-top)?
-|marker(-offset|s)?
-|mathematical
-|max-(content|height|lines|size|width)
-|medium|middle
-|min-(content|height|width)
-|miter|mixed|move|multiply|newspaper
-|no-(change|clip|(close|open)-quote|(common|discretionary|historical)-ligatures|contextual|drop|repeat)
-|none|nonzero|normal|not-allowed|nowrap|oblique
-|offset(-after|-before|-end|-start)?
-|oldstyle-nums|opacity|open-quote
-|optimize(Legibility|Precision|Quality|Speed)
-|order|ordinal|ornaments
-|outline(-color|-offset|-width)?
-|outset|outside|over(line|-edge|lay)
-|padding(-bottom|-box|-left|-right|-top|-box)?
-|page|painted|paused
-|pan-(x|left|right|y|up|down)
-|perspective-origin
-|petite-caps|pixelated|pointer
-|pinch-zoom
-|pre(-line|-wrap)?
-|preserve-3d
-|progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)
-|progress
-|proportional-(nums|width)
-|radial-gradient|recto|region|relative
-|repeat(-[xy])?
-|repeating-(linear|radial)-gradient
-|replaced|reset-size|reverse|ridge|right
-|round
-|row(-resize|-reverse)?
-|rtl|ruby|running|saturat(e|ion)|screen
-|scroll(-position|bar)?
-|separate|sepia
-|scale-down
-|shape-(image-threshold|margin|outside)
-|show
-|sideways(-lr|-rl)?
-|simplified
-|size
-|slashed-zero|slice
-|small(-caps|er)?
-|smooth|snap|solid|soft-light
-|space(-around|-between)?
-|span|sRGB
-|stack(ed-fractions)?
-|start(ColorStr)?
-|static
-|step-(end|start)
-|sticky
-|stop-(color|opacity)
-|stretch|strict
-|stroke(-box|-dash(array|offset)|-miterlimit|-opacity|-width)?
-|style(set)?
-|stylistic
-|sub(grid|pixel-antialiased|tract)?
-|super|swash
-|table(-caption|-cell|(-column|-footer|-header|-row)-group|-column|-row)?
-|tabular-nums|tb-rl
-|text((-bottom|-(decoration|emphasis)-color|-indent|-(over|under)-edge|-shadow|-size(-adjust)?|-top)|field)?
-|thi(ck|n)
-|titling-ca(ps|se)
-|to[p]?
-|touch|traditional
-|transform(-origin)?
-|under(-edge|line)?
-|unicase|unset|uppercase|upright
-|use-(glyph-orientation|script)
-|verso
-|vertical(-align|-ideographic|-lr|-rl|-text)?
-|view-box
-|viewport-fill(-opacity)?
-|visibility
-|visible(Fill|Painted|Stroke)?
-|wait|wavy|weight|whitespace|(device-)?width|word-spacing
-|wrap(-reverse)?
-|x{1,2}-(large|small)
-|z-index|zero
-|zoom(-in|-out)?
-|((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman)))\b</string>
+   active
+  |add
+  |all-scroll
+  |all
+  |alphabetic
+  |alpha
+  |always
+  |annotation
+  |antialiased
+  |at
+  |autohiding-scrollbar
+  |auto
+  |avoid-column
+  |avoid-page
+  |avoid-region
+  |avoid
+  |background-color
+  |background-image
+  |background-position
+  |background-size
+  |background
+  |balance
+  |baseline
+  |below
+  |bevel
+  |bicubic
+  |bidi-override
+  |blink
+  |block-lineh-height
+  |block
+  |blur
+  |bold
+  |bolder
+  |bottom
+  |box
+  |box-shadow
+  |break-all
+  |break-word
+  |brightness
+  |butt
+  |button
+  |capitalize
+  |center
+  |central
+  |char
+  |character-variant
+  |clip
+  |clone
+  |close-quote
+  |closest-corner
+  |closest-side
+  |col-resize
+  |collapse
+  |color
+  |color-stop
+  |color-burn
+  |color-dodge
+  |column-count
+  |column-gap
+  |column-reverse
+  |column-rule
+  |column-rule-color
+  |column-rule-width
+  |column-width
+  |columns
+  |column
+  |condensed
+  |consider-shifts
+  |contain
+  |content-box
+  |contents
+  |content
+  |contrast
+  |cover
+  |crisp-edges
+  |crispEdges
+  |crop
+  |crosshair
+  |cross
+  |darken
+  |dashed
+  |default
+  |dense
+  |diagonal-fractions
+  |difference
+  |disabled
+  |disregard-shifts
+  |distribute-all-lines
+  |distribute-letter
+  |distribute-space
+  |distribute
+  |dotted
+  |double
+  |drop-shadow
+  |nwse-resize
+  |nesw-resize
+  |ns-resize
+  |ew-resize
+  |sw-resize
+  |se-resize
+  |nw-resize
+  |ne-resize
+  |w-resize
+  |s-resize
+  |e-resize
+  |n-resize
+  |ease-in-out
+  |ease-in
+  |ease-out
+  |ease
+  |element
+  |ellipsis
+  |embed
+  |end
+  |EndColorStr
+  |evenodd
+  |exclude-ruby
+  |exclude
+  |exclusion
+  |expanded
+  |extra-condensed
+  |semi-condensed
+  |ultra-condensed
+  |extra-expanded
+  |semi-expanded
+  |ultra-expanded
+  |farthest-side
+  |farthest-corner
+  |fill-box
+  |fill-opacity
+  |fill
+  |filter
+  |flat
+  |flex-basis
+  |flexbox
+  |flex-end
+  |flex-grow
+  |flex-shrink
+  |flex-start
+  |flex
+  |flip
+  |flood-color
+  |font-size
+  |font-size-adjust
+  |font-stretch
+  |font-weight
+  |font
+  |from-image
+  |from
+  |full-width
+  |geometricPrecision
+  |glyphs
+  |gradient
+  |grayscale
+  |grid-height
+  |grid
+  |groove
+  |hand
+  |hanging
+  |hard-light
+  |height
+  |help
+  |hidden
+  |hide
+  |historical-forms
+  |horizontal-tb
+  |horizontal
+  |hue
+  |ideographic
+  |ideograph-alpha
+  |ideograph-numeric
+  |ideograph-parenthesis
+  |ideograph-space
+  |inactive
+  |include-ruby
+  |inherit
+  |initial
+  |inline-block
+  |inline-box
+  |inline-flexbox
+  |inline-flex
+  |inline-line-height
+  |inline-table
+  |inline
+  |inset
+  |inside
+  |intersect
+  |inter-ideograph
+  |inter-word
+  |invert
+  |isolate
+  |isolation
+  |italic
+  |jis04
+  |jis78
+  |jis83
+  |jis90
+  |justify-all
+  |justify-content
+  |justify-items
+  |justify-self
+  |justify
+  |keep-all
+  |larger
+  |large
+  |last
+  |layout
+  |left
+  |letter-spacing
+  |lighter
+  |lighten
+  |lighting-color
+  |line-edge
+  |line-height
+  |line-through
+  |line
+  |linear-gradient
+  |linearRGB
+  |linear
+  |lining-nums
+  |list-item
+  |local
+  |loose
+  |lowercase
+  |lr-tb
+  |ltr
+  |luminosity
+  |luminance
+  |manual
+  |manipulation
+  |margin-bottom
+  |margin-box
+  |margin-left
+  |margin-right
+  |margin-top
+  |margin
+  |marker-offset
+  |markers
+  |marker
+  |mathematical
+  |max-content
+  |max-height
+  |max-lines
+  |max-size
+  |max-width
+  |medium
+  |middle
+  |min-content
+  |min-height
+  |min-width
+  |miter
+  |mixed
+  |move
+  |multiply
+  |newspaper
+  |no-close-quote
+  |no-open-quote
+  |no-change
+  |no-clip
+  |no-drop
+  |no-repeat
+  |none
+  |nonzero
+  |normal
+  |not-allowed
+  |nowrap
+  |oblique
+  |offset-after
+  |offset-before
+  |offset-end
+  |offset-start
+  |offset
+  |oldstyle-nums
+  |opacity
+  |open-quote
+  |optimizeLegibility
+  |optimizeSpeed
+  |optimizeQuality
+  |optimizePrecision
+  |order
+  |ordinal
+  |ornaments
+  |outline-color
+  |outline-offset
+  |outline-width
+  |outline
+  |outset
+  |outside
+  |overline
+  |over-edge
+  |overlay
+  |padding-bottom
+  |padding-box
+  |padding-left
+  |padding-right
+  |padding-top
+  |padding
+  |page
+  |painted
+  |paused
+  |pan-x
+  |pan-y
+  |pan-left
+  |pan-right
+  |pan-up
+  |pan-down
+  |perspective-origin
+  |pixelated
+  |pointer
+  |pinch-zoom
+  |pre-line
+  |pre-wrap
+  |pre
+  |preserve-3d
+  |progid:DXImageTransform.Microsoft.Alpha
+  |progid:DXImageTransform.Microsoft.Blur
+  |progid:DXImageTransform.Microsoft.dropshadow
+  |progid:DXImageTransform.Microsoft.gradient
+  |progid:DXImageTransform.Microsoft.Shadow
+  |progress
+  |proportional-nums
+  |proportional-width
+  |radial-gradient
+  |recto
+  |region
+  |repeat-x
+  |repeat-y
+  |repeat
+  |repeating-linear-gradient
+  |repeating-radial-gradient
+  |repeating-conic-gradient
+  |replaced
+  |reset-size
+  |ridge
+  |right
+  |round
+  |row-resize
+  |row-reverse
+  |row
+  |rtl
+  |ruby
+  |running
+  |saturation
+  |saturate
+  |screen
+  |scroll-position
+  |scrollbar
+  |separate
+  |sepia
+  |scale-down
+  |shape-image-threshold
+  |shape-margin
+  |shape-outside
+  |show
+  |sideways-lr
+  |sideways-rl
+  |sideways
+  |simplified
+  |size
+  |slashed-zero
+  |slice
+  |smaller
+  |small
+  |smooth
+  |snap
+  |solid
+  |soft-light
+  |space-around
+  |space-between
+  |space-evenly
+  |space
+  |span
+  |sRGB
+  |stacked-fractions
+  |stack
+  |startColorStr
+  |start
+  |step-end
+  |step-start
+  |stop-color
+  |stop-opacity
+  |stretch
+  |strict
+  |stroke-box
+  |stroke-dasharray
+  |stroke-dashoffset
+  |stroke-miterlimit
+  |stroke-opacity
+  |stroke-width
+  |stroke
+  |styleset
+  |style
+  |stylistic
+  |subgrid
+  |subpixel-antialiased
+  |subtract
+  |sub
+  |super
+  |swash
+  |table-caption
+  |table-cell
+  |table-column-group
+  |table-footer-group
+  |table-header-group
+  |table-row-group
+  |table-column
+  |table-row
+  |table
+  |tabular-nums
+  |tb-rl
+  |text-bottom
+  |text-top
+  |text-decoration-color
+  |text-emphasis-color
+  |text-indent
+  |text-over-edge
+  |text-under-edge
+  |text-shadow
+  |text-size-adjust
+  |text-size
+  |text-top
+  |textfield
+  |text
+  |thick
+  |thin
+  |titling-case
+  |top
+  |to
+  |touch
+  |traditional
+  |transform-origin
+  |transform
+  |under-edge
+  |underline
+  |unicase
+  |unset
+  |uppercase
+  |upright
+  |use-glyph-orientation
+  |use-script
+  |verso
+  |vertical-align
+  |vertical-ideographic
+  |vertical-lr
+  |vertical-rl
+  |vertical-text
+  |vertical
+  |view-box
+  |viewport-fill-opacity
+  |viewport-fill
+  |visibility
+  |visibleFill
+  |visiblePainted
+  |visibleStroke
+  |visible
+  |wait
+  |wavy
+  |weight
+  |whitespace
+  |device-width
+  |width
+  |word-spacing
+  |wrap-reverse
+  |wrap
+  |xx-large
+  |xx-small
+  |x-large
+  |x-small
+  |z-index
+  |zero
+  |zoom
+  |zoom-in
+  |zoom-out
+)\b</string>
 					<key>name</key>
 					<string>support.constant.property-value.less</string>
 				</dict>
@@ -5780,7 +6242,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?:(:{1,2})(?:before|after|first-line|first-letter)|(::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)))\b</string>
+					<string>(?:(:{1,2})(?:before|after|first-line|first-letter)|(::)(-(?:moz|ms|webkit)-)?(?:(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)))\b</string>
 					<key>name</key>
 					<string>entity.other.attribute-name.pseudo-element.less</string>
 				</dict>
@@ -5807,7 +6269,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?:(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)|(\*))?([|])(?!=)</string>
+			<string>(?:(-?(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)|(\*))?([|])(?!=)</string>
 		</dict>
 		<key>regexp-function</key>
 		<dict>
@@ -5851,21 +6313,6 @@
 					</array>
 				</dict>
 			</array>
-		</dict>
-		<key>resolution-type</key>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.unit.less</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(dpi|dpcm|dppx))\b</string>
-			<key>name</key>
-			<string>constant.numeric.less</string>
 		</dict>
 		<key>rule-list</key>
 		<dict>
@@ -5938,6 +6385,60 @@
 				</dict>
 				<dict>
 					<key>begin</key>
+					<string>(?=\s*@\{)</string>
+					<key>end</key>
+					<string>\s*(;)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.terminator.rule.less</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.variable.less</string>
+								</dict>
+								<key>2</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.expression.less</string>
+								</dict>
+								<key>3</key>
+								<dict>
+									<key>name</key>
+									<string>support.other.variable.less</string>
+								</dict>
+								<key>4</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.expression.less</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>(@)(\{)([-\w]+)(\})</string>
+							<key>name</key>
+							<string>variable.other.readwrite.less</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#property-value</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#property-values</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
 					<string>(?=[-a-z])</string>
 					<key>end</key>
 					<string>$|(?![-a-z])</string>
@@ -5956,6 +6457,49 @@
 							<string>#filter-function</string>
 						</dict>
 						<dict>
+							<key>begin</key>
+							<string>(?x)\b(
+  border-(block|inline)(-(start|end))?(-(color|style|width))?
+  | border-(left|right)(-(color|style|width))?
+  | border-(bottom|top)(-(color|style|width|(left|right)-radius))?
+  | border(-(collapse|color|radius|spacing|style|width))
+  | border-((end|start)-){2}radius
+  | border-image(-(outset|repeat|slice|source|width))?
+  | border
+)\b</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>support.type.property-name.less</string>
+								</dict>
+							</dict>
+							<key>comment</key>
+							<string>border properties</string>
+							<key>end</key>
+							<string>\s*(;)|(?=[})])</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.terminator.rule.less</string>
+								</dict>
+							</dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#property-value</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#property-values</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
 							<key>captures</key>
 							<dict>
 								<key>1</key>
@@ -5969,8 +6513,10 @@
 									<string>support.type.custom-property.name.less</string>
 								</dict>
 							</dict>
+							<key>comment</key>
+							<string>invalid custom property (ex. var-property)</string>
 							<key>match</key>
-							<string>\b(var-)(-?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)(?=\s)</string>
+							<string>\b(var-)(-?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)(?=\s)</string>
 							<key>name</key>
 							<string>invalid.deprecated.custom-property.less</string>
 						</dict>
@@ -5985,6 +6531,8 @@
 									<string>support.type.property-name.less</string>
 								</dict>
 							</dict>
+							<key>comment</key>
+							<string>font, font-family</string>
 							<key>end</key>
 							<string>\s*(;)|(?=[})])</string>
 							<key>endCaptures</key>
@@ -6022,7 +6570,7 @@
 								</dict>
 								<dict>
 									<key>match</key>
-									<string>-?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)*</string>
+									<string>-?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)*</string>
 									<key>name</key>
 									<string>string.unquoted.less</string>
 								</dict>
@@ -6045,6 +6593,8 @@
 									<string>support.type.property-name.less</string>
 								</dict>
 							</dict>
+							<key>comment</key>
+							<string>animation, animation-delay, animation-direction, animation-duration, animation-fill-mode, animation-iteration-count, animation-name, animation-play-state, animation-timing-function</string>
 							<key>end</key>
 							<string>\s*(;)|(?=[})])</string>
 							<key>endCaptures</key>
@@ -6084,7 +6634,24 @@
 									<array>
 										<dict>
 											<key>match</key>
-											<string>\b(linear|ease(-in)?(-out)?|step-(start|end)|none|forwards|backwards|both|normal|alternate(-reverse)?|reverse|running|paused)\b</string>
+											<string>(?x)\b(
+  linear
+| ease-in
+| ease-out
+| ease-in-out
+| step-start
+| step-end
+| none
+| forwards
+| backwards
+| both
+| normal
+| alternate-reverse
+| alternate
+| reverse
+| running
+| paused
+)\b</string>
 											<key>name</key>
 											<string>support.constant.property-value.less</string>
 										</dict>
@@ -6098,15 +6665,15 @@
 										</dict>
 										<dict>
 											<key>include</key>
-											<string>#time-type</string>
+											<string>#type-time</string>
 										</dict>
 										<dict>
 											<key>include</key>
-											<string>#number-type</string>
+											<string>#type-number</string>
 										</dict>
 										<dict>
 											<key>match</key>
-											<string>-?(?:[_a-zA-Z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\s\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[-_a-zA-Z0-9]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*</string>
+											<string>-?(?:[_a-zA-Z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|\s)?)|\\[^\r\n\f0-9a-f]))(?:[-_a-zA-Z0-9]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|\s)?)|\\[^\r\n\f0-9a-f]))*</string>
 											<key>name</key>
 											<string>variable.other.constant.animation-name.less</string>
 										</dict>
@@ -6142,6 +6709,8 @@
 									<string>support.type.property-name.less</string>
 								</dict>
 							</dict>
+							<key>comment</key>
+							<string>transition, transition-property, transition-duration, transition-delay, transition-timing-function</string>
 							<key>end</key>
 							<string>\s*(;)|(?=[})])</string>
 							<key>endCaptures</key>
@@ -6173,7 +6742,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#time-type</string>
+									<string>#type-time</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -6212,6 +6781,8 @@
 									<string>support.type.property-name.less</string>
 								</dict>
 							</dict>
+							<key>comment</key>
+							<string>backdrop-filter, filter</string>
 							<key>end</key>
 							<string>\s*(;)|(?=[})])</string>
 							<key>endCaptures</key>
@@ -6266,6 +6837,8 @@
 									<string>support.type.property-name.less</string>
 								</dict>
 							</dict>
+							<key>comment</key>
+							<string>will-change</string>
 							<key>end</key>
 							<string>\s*(;)|(?=[})])</string>
 							<key>endCaptures</key>
@@ -6305,7 +6878,7 @@
 								</dict>
 								<dict>
 									<key>match</key>
-									<string>-?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*</string>
+									<string>-?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*</string>
 									<key>name</key>
 									<string>support.constant.property-value.less</string>
 								</dict>
@@ -6334,6 +6907,8 @@
 									<string>support.type.property-name.less</string>
 								</dict>
 							</dict>
+							<key>comment</key>
+							<string>counter-increment</string>
 							<key>end</key>
 							<string>\s*(;)|(?=[})])</string>
 							<key>endCaptures</key>
@@ -6367,13 +6942,13 @@
 								</dict>
 								<dict>
 									<key>match</key>
-									<string>-?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*</string>
+									<string>-?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*</string>
 									<key>name</key>
 									<string>entity.name.constant.counter-name.less</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#integer-type</string>
+									<string>#type-integer</string>
 								</dict>
 								<dict>
 									<key>match</key>
@@ -6384,24 +6959,222 @@
 							</array>
 						</dict>
 						<dict>
-							<key>match</key>
-							<string>(?x)\b( accent-height | align-content | align-items | align-self | alignment-baseline | all | animation-timing-function | animation-play-state | animation-name | animation-iteration-count | animation-fill-mode | animation-duration | animation-direction | animation-delay | animation | appearance | ascent | azimuth | backface-visibility | background-size | background-repeat-y | background-repeat-x | background-repeat | background-position-y | background-position-x | background-position | background-origin | background-image | background-color | background-clip | background-blend-mode | background-attachment | background | baseline-shift | begin | bias | blend-mode | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing) | break-(after|before|inside) | caption-side | clear | clip-path | clip-rule | clip | color(-(interpolation(-filters)?|profile|rendering))? | columns | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width) | contain | content | counter-(increment|reset) | cursor | (c|d|f)(x|y) | direction | display | divisor | dominant-baseline | dur | elevation | empty-cells | enable-background | end | fallback | fill(-(opacity|rule))? | filter | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))? | float | flood-(color|opacity) | font-display | font-family | font-feature-settings | font-kerning | font-language-override | font-size(-adjust)? | font-smoothing | font-stretch | font-style | font-synthesis | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))? | font-weight | font | fr | glyph-orientation-(horizontal|vertical) | grid-(area|gap) | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))? | grid-template(-(areas|columns|rows))? | height | hyphens | image-(orientation|rendering|resolution) | isolation | justify-content | kerning | left | letter-spacing | lighting-color | line-(box-contain|break|clamp|height) | list-style(-(image|position|type))? | margin(-(bottom|left|right|top))? | marker(-(end|mid|start))? | mask(-(clip||composite|image|origin|position|repeat|size|type))? | (max|min)-(height|width) | mix-blend-mode | nbsp-mode | negative | object-(fit|position) | opacity | operator | order | orphans | outline(-(color|offset|style|width))? | overflow(-(scrolling|wrap|x|y))? | pad(ding(-(bottom|left|right|top))?)? | page(-break-(after|before|inside))? | paint-order | pause(-(after|before))? | perspective(-origin(-(x|y))?)? | pitch(-range)? | pointer-events | position | prefix | quotes | range | resize | right | rotate | scale | scroll-behavior | shape-(image-threshold|margin|outside|rendering) | size | speak(-as)? | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))? | suffix | symbols | system | tab-size | table-layout | tap-highlight-color | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))? | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|shadow|transform|underline-position) | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)? | transition(-(delay|duration|property|timing-function))? | translate | unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility | white-space | widows | width | will-change | word-(break|spacing|wrap) | writing-mode | z-index | zoom )\b</string>
+							<key>begin</key>
+							<string>(?xi)\b(
+    background-size
+  | background-repeat-y
+  | background-repeat-x
+  | background-repeat
+  | background-position-y
+  | background-position-x
+  | background-position
+  | background-origin
+  | background-image
+  | background-color
+  | background-clip
+  | background-blend-mode
+  | background-attachment
+  | background
+  )\b</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>support.type.property-name.less</string>
+								</dict>
+							</dict>
+							<key>comment</key>
+							<string>background</string>
+							<key>end</key>
+							<string>\s*(;)|(?=[})])</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.terminator.rule.less</string>
+								</dict>
+							</dict>
 							<key>name</key>
-							<string>support.type.property-name.less</string>
+							<string>meta.property-name.less</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#property-value</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#property-values</string>
+								</dict>
+							</array>
 						</dict>
 						<dict>
-							<key>match</key>
+							<key>begin</key>
 							<string>(?x)\b(
-  border-(block|inline)(-(start|end))?(-(color|style|width))?
-  | border-(left|right)(-(color|style|width))?
-  | border-(bottom|top)(-(color|style|width|(left|right)-radius))?
-  | border(-(collapse|color|radius|spacing|style|width))
-  | border-((end|start)-){2}radius
-  | border-image(-(outset|repeat|slice|source|width))?
-  | border
+  accent-height
+  | align-content
+  | align-items
+  | align-self
+  | all
+  | animation-timing-function
+  | animation-play-state
+  | animation-name
+  | animation-iteration-count
+  | animation-fill-mode
+  | animation-duration
+  | animation-direction
+  | animation-delay
+  | animation
+  | appearance
+  | ascent
+  | azimuth
+  | backface-visibility
+  | begin
+  | bias
+  | blend-mode
+  | bottom
+  | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)
+  | break-(after|before|inside)
+  | caption-side
+  | clear
+  | color
+  | columns
+  | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width)
+  | contain
+  | content
+  | counter-(increment|reset)
+  | cursor
+  | direction
+  | display
+  | divisor
+  | dur
+  | elevation
+  | empty-cells
+  | end
+  | fallback
+  | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))?
+  | float
+  | font-display
+  | font-family
+  | font-feature-settings
+  | font-kerning
+  | font-language-override
+  | font-size(-adjust)?
+  | font-smoothing
+  | font-stretch
+  | font-style
+  | font-synthesis
+  | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))?
+  | font-weight
+  | font
+  | fr
+  | grid-(area|gap)
+  | grid-auto-(columns|flow|rows)
+  | grid-(column|row)(-(end|gap|start))?
+  | grid-template(-(areas|columns|rows))?
+  | height
+  | hyphens
+  | image-(orientation|resolution)
+  | isolation
+  | justify-content
+  | left
+  | letter-spacing
+  | line-(box-contain|break|clamp|height)
+  | list-style(-(image|position|type))?
+  | margin(-(bottom|left|right|top))?
+  | mask(-(clip||composite|image|origin|position|repeat|size|type))?
+  | (max|min)-(height|width)
+  | mix-blend-mode
+  | nbsp-mode
+  | negative
+  | object-(fit|position)
+  | opacity
+  | operator
+  | order
+  | orphans
+  | outline(-(color|offset|style|width))?
+  | overflow(-(scrolling|wrap|x|y))?
+  | pad(ding(-(bottom|left|right|top))?)?
+  | page(-break-(after|before|inside))?
+  | paint-order
+  | pause(-(after|before))?
+  | perspective(-origin(-(x|y))?)?
+  | pitch(-range)?
+  | position
+  | prefix
+  | quotes
+  | range
+  | resize
+  | right
+  | rotate
+  | scale
+  | scroll-behavior
+  | shape-(image-threshold|margin|outside)
+  | size
+  | speak(-as)?
+  | src
+  | suffix
+  | symbols
+  | system
+  | tab-size
+  | table-layout
+  | tap-highlight-color
+  | text-align(-last)?
+  | text-decoration(-(color|line|style))?
+  | text-emphasis(-(color|position|style))?
+  | text-(fill-color|height|indent|justify|orientation|overflow|shadow|transform|underline-position)
+  | top
+  | touch-action
+  | transform(-origin(-(x|y))?)
+  | transform(-style)?
+  | transition(-(delay|duration|property|timing-function))?
+  | translate
+  | unicode-(bidi|range)
+  | user-(drag|select)
+  | vertical-align
+  | visibility
+  | white-space
+  | widows
+  | width
+  | will-change
+  | word-(break|spacing|wrap)
+  | writing-mode
+  | z-index
+  | zoom
 )\b</string>
-							<key>name</key>
-							<string>support.type.property-name.less</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>support.type.property-name.less</string>
+								</dict>
+							</dict>
+							<key>comment</key>
+							<string>all other properties</string>
+							<key>end</key>
+							<string>\s*(;)|(?=[})])</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.terminator.rule.less</string>
+								</dict>
+							</dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#property-value</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#property-values</string>
+								</dict>
+							</array>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -6412,7 +7185,7 @@
 				<dict>
 					<key>begin</key>
 					<string>\b(((\+_?)?):)([\s\t]*)</string>
-					<key>captures</key>
+					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
 						<dict>
@@ -6428,7 +7201,7 @@
 					<key>contentName</key>
 					<string>meta.property-value.less</string>
 					<key>end</key>
-					<string>\s*(;)|(?=[})])</string>
+					<string>(\;)|(?=[})])</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>1</key>
@@ -6510,7 +7283,139 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?x)\b( a | abbr | acronym | address | applet | area | article | aside | audio | b | base | basefont | bdi | bdo | big | blockquote | body | br | button | canvas | caption | circle | cite | clipPath | code | col | colgroup | content | data | dataList | dd | defs | del | details | dfn | dialog | dir | div | dl | dt | element | ellipse | em | embed | eventsource | fieldset | figcaption | figure | filter | footer | foreignObject | form | frame | frameset | g | glyph | glyphRef | h1 | h2 | h3 | h4 | h5 | h6 | head | header | hgroup | hr | html | i | iframe | image | img | input | ins | isindex | kbd | keygen | label | legend | li | line | linearGradient | link | main | map | mark | marker | mask | menu | meta | meter | nav | noframes | noscript | object | ol | optgroup | option | output | p | param | path | pattern | picture | polygon | polyline | pre | progress | q | radialGradient | rect | rp | ruby | rt | rtc | s | samp | script | section | select | shadow | small | source | span | stop | strike | strong | style | sub | summary | sup | svg | switch | symbol | table | tbody | td | template | textarea | textPath | tfoot | th | thead | time | title | tr | track | tref | tspan | tt | u | ul | use | var | video | wbr | xmp )\b</string>
+					<string>(?x)\b(
+  a
+| abbr
+| acronym
+| address
+| area
+| article
+| aside
+| audio
+| b
+| base
+| bdi
+| bdo
+| big
+| blockquote
+| body
+| br
+| button
+| canvas
+| caption
+| center
+| cite
+| code
+| col
+| colgroup
+| data
+| datalist
+| dd
+| del
+| details
+| dfn
+| dialog
+| dir
+| div
+| dl
+| dt
+| em
+| embed
+| fencedframe
+| fieldset
+| figcaption
+| figure
+| font
+| footer
+| form
+| frame
+| frameset
+| h1
+| h2
+| h3
+| h4
+| h5
+| h6
+| head
+| header
+| hgroup
+| hr
+| html
+| i
+| iframe
+| img
+| input
+| ins
+| kbd
+| label
+| legend
+| li
+| link
+| main
+| map
+| mark
+| marquee
+| menu
+| menuitem
+| meta
+| meter
+| nav
+| nobr
+| noframes
+| noscript
+| object
+| ol
+| optgroup
+| option
+| output
+| p
+| param
+| picture
+| plaintext
+| portal
+| pre
+| progress
+| q
+| rp
+| rt
+| rtc
+| ruby
+| s
+| samp
+| script
+| search
+| section
+| select
+| slot
+| small
+| source
+| span
+| strike
+| strong
+| style
+| sub
+| summary
+| sup
+| table
+| tbody
+| td
+| template
+| textarea
+| tfoot
+| th
+| thead
+| time
+| title
+| tr
+| track
+| tt
+| u
+| ul
+| var
+| video
+| wbr
+| xmp
+)\b</string>
 					<key>name</key>
 					<string>entity.name.tag.less</string>
 				</dict>
@@ -6539,10 +7444,10 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(#)</string>
+					<string>\#</string>
 					<key>beginCaptures</key>
 					<dict>
-						<key>1</key>
+						<key>0</key>
 						<dict>
 							<key>name</key>
 							<string>punctuation.definition.entity.less</string>
@@ -6646,7 +7551,7 @@
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
+							<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}\s?|\\[^\n\f\h]))*)</string>
 							<key>name</key>
 							<string>entity.other.attribute-name.less</string>
 						</dict>
@@ -6773,7 +7678,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -6831,11 +7736,11 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 							</array>
 						</dict>
@@ -6895,11 +7800,11 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 							</array>
 						</dict>
@@ -6953,11 +7858,11 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 							</array>
 						</dict>
@@ -7012,7 +7917,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#integer-type</string>
+							<string>#type-integer</string>
 						</dict>
 						<dict>
 							<key>match</key>
@@ -7103,26 +8008,11 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#image-type</string>
+							<string>#type-image</string>
 						</dict>
 					</array>
 				</dict>
 			</array>
-		</dict>
-		<key>time-type</key>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.unit.less</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(s|ms))\b</string>
-			<key>name</key>
-			<string>constant.numeric.less</string>
 		</dict>
 		<key>transform-functions</key>
 		<dict>
@@ -7174,7 +8064,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#number-type</string>
+									<string>#type-number</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -7234,15 +8124,15 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#number-type</string>
+									<string>#type-number</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -7298,15 +8188,15 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#type-percentage</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#number-type</string>
+									<string>#type-number</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -7362,7 +8252,7 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#angle-type</string>
+									<string>#type-angle</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -7426,7 +8316,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#angle-type</string>
+									<string>#type-angle</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -7486,7 +8376,7 @@
 							<array>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#type-length</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -7550,11 +8440,11 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#angle-type</string>
+									<string>#type-angle</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#number-type</string>
+									<string>#type-number</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -7618,7 +8508,7 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#number-type</string>
+									<string>#type-number</string>
 								</dict>
 								<dict>
 									<key>include</key>
@@ -7637,6 +8527,132 @@
 					</array>
 				</dict>
 			</array>
+		</dict>
+		<key>type-angle</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.unit.less</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(deg|grad|rad|turn))\b</string>
+			<key>name</key>
+			<string>constant.numeric.less</string>
+		</dict>
+		<key>type-frequency</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.unit.less</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(Hz|kHz))\b</string>
+			<key>name</key>
+			<string>constant.numeric.less</string>
+		</dict>
+		<key>type-image</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#cross-fade-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#gradient-functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#image-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#url-function</string>
+				</dict>
+			</array>
+		</dict>
+		<key>type-integer</key>
+		<dict>
+			<key>match</key>
+			<string>(?:[-+]?\d+)</string>
+			<key>name</key>
+			<string>constant.numeric.less</string>
+		</dict>
+		<key>type-length</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.unit.less</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>0|(?:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b</string>
+			<key>name</key>
+			<string>constant.numeric.less</string>
+		</dict>
+		<key>type-number</key>
+		<dict>
+			<key>match</key>
+			<string>[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))</string>
+			<key>name</key>
+			<string>constant.numeric.less</string>
+		</dict>
+		<key>type-percentage</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.unit.less</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(%)</string>
+			<key>name</key>
+			<string>constant.numeric.less</string>
+		</dict>
+		<key>type-resolution</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.unit.less</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(dpi|dpcm|dppx))\b</string>
+			<key>name</key>
+			<string>constant.numeric.less</string>
+		</dict>
+		<key>type-time</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.unit.less</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(s|ms))\b</string>
+			<key>name</key>
+			<string>constant.numeric.less</string>
 		</dict>
 		<key>unicode-range</key>
 		<dict>
@@ -7683,15 +8699,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>\)</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.group.end.less</string>
-				</dict>
-			</dict>
+			<string>(?&lt;=\))</string>
 			<key>name</key>
 			<string>meta.function-call.less</string>
 			<key>patterns</key>
@@ -7708,7 +8716,17 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?=\))</string>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.end.less</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.group.less</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -7786,6 +8804,10 @@
 								<dict>
 									<key>include</key>
 									<string>#less-variables</string>
+								</dict>
+								<dict>
+									<key>include</key>
+									<string>#property-values</string>
 								</dict>
 							</array>
 						</dict>
