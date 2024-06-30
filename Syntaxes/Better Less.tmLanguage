@@ -6230,6 +6230,14 @@
 											<string>#property-values</string>
 										</dict>
 										<dict>
+											<key>captures</key>
+											<dict>
+												<key>1</key>
+												<dict>
+													<key>name</key>
+													<string>punctuation.definition.arbitrary-repetition.less</string>
+												</dict>
+											</dict>
 											<key>match</key>
 											<string>\s*(?:(,))</string>
 										</dict>
@@ -6242,11 +6250,6 @@
 							<string>\b(transition(-(property|duration|delay|timing-function))?)\b</string>
 							<key>beginCaptures</key>
 							<dict>
-								<key>0</key>
-								<dict>
-									<key>name</key>
-									<string>meta.property-name.less</string>
-								</dict>
 								<key>1</key>
 								<dict>
 									<key>name</key>
@@ -6266,39 +6269,16 @@
 							<key>patterns</key>
 							<array>
 								<dict>
-									<key>captures</key>
+									<key>begin</key>
+									<string>(((\+_?)?):)(?=[\s\t]*)</string>
+									<key>beginCaptures</key>
 									<dict>
 										<key>1</key>
 										<dict>
 											<key>name</key>
 											<string>punctuation.separator.key-value.less</string>
 										</dict>
-										<key>4</key>
-										<dict>
-											<key>name</key>
-											<string>meta.property-value.less</string>
-										</dict>
 									</dict>
-									<key>match</key>
-									<string>(((\+_?)?):)([\s\t]*)</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#time-type</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#property-values</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#cubic-bezier-function</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#steps-function</string>
-								</dict>
-								<dict>
 									<key>captures</key>
 									<dict>
 										<key>1</key>
@@ -6307,8 +6287,41 @@
 											<string>punctuation.definition.arbitrary-repetition.less</string>
 										</dict>
 									</dict>
-									<key>match</key>
-									<string>\s*(?:(,))</string>
+									<key>contentName</key>
+									<string>meta.property-value.less</string>
+									<key>end</key>
+									<string>(?=\s*(;)|(?=[})]))</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>#time-type</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#property-values</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#cubic-bezier-function</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#steps-function</string>
+										</dict>
+										<dict>
+											<key>captures</key>
+											<dict>
+												<key>1</key>
+												<dict>
+													<key>name</key>
+													<string>punctuation.definition.arbitrary-repetition.less</string>
+												</dict>
+											</dict>
+											<key>match</key>
+											<string>\s*(?:(,))</string>
+										</dict>
+									</array>
 								</dict>
 							</array>
 						</dict>
@@ -6514,7 +6527,20 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>\b(((\+_?)?):)([\s\t]*)</string>
+					<string>\b((?:(?:\+_?)?):)([\s\t]*)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.key-value.less</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>meta.property-value.less</string>
+						</dict>
+					</dict>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
