@@ -1637,7 +1637,7 @@ repository:
           |border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?
           |both|bottom
           |box(-shadow)?
-          |break-(all|word)
+          |break-(all|word|spaces)
           |brightness
           |butt(on)?
           |capitalize
@@ -1656,7 +1656,7 @@ repository:
           |cross(hair)?
           |da(rken|shed)
           |default|dense|diagonal-fractions|difference|disabled
-          |discretionary-ligatures|disregard-shifts
+          |discard|discretionary-ligatures|disregard-shifts
           |distribute(-all-lines|-letter|-space)?
           |dotted|double|drop-shadow
           |(nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize
@@ -1723,7 +1723,7 @@ repository:
           |pinch-zoom
           |pretty
           |pre(-line|-wrap)?
-          |preserve-3d
+          |preserve(-3d|-breaks|-spaces)?
           |progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)
           |progress
           |proportional-(nums|width)
@@ -2133,7 +2133,7 @@ repository:
           | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)?
           | transition(-(delay|duration|property|timing-function))? | translate |
           unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility
-          | white-space | widows | width | will-change | word-(break|spacing|wrap)
+          | white-space(-collapse)? | widows | width | will-change | word-(break|spacing|wrap)
           | writing-mode | z-index | zoom )\b
       - name: support.type.property-name.less
         match: (?x)\b(((contain-intrinsic|max|min)-)?(block|inline)?-size)\b

@@ -150,3 +150,41 @@
 //                  ^^^^^^ support.constant.property-value.less
 //                        ^ punctuation.terminator.rule.less
 }
+
+.white-space-collapse {
+    white-space-collapse: collapse;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^^ meta.property-value.less
+//                        ^^^^^^^^ support.constant.property-value.less
+//                                ^ punctuation.terminator.rule.less
+    white-space-collapse: preserve;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^^ meta.property-value.less
+//                        ^^^^^^^^ support.constant.property-value.less
+//                                ^ punctuation.terminator.rule.less
+    white-space-collapse: preserve-breaks;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                        ^^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                       ^ punctuation.terminator.rule.less
+    white-space-collapse: preserve-spaces;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                        ^^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                       ^ punctuation.terminator.rule.less
+    white-space-collapse: break-spaces;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^^^^^^ meta.property-value.less
+//                        ^^^^^^^^^^^^ support.constant.property-value.less
+//                                    ^ punctuation.terminator.rule.less
+}
