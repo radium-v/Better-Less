@@ -1721,6 +1721,7 @@ repository:
           |perspective-origin
           |petite-caps|pixelated|pointer
           |pinch-zoom
+          |pretty
           |pre(-line|-wrap)?
           |preserve-3d
           |progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)
@@ -1746,6 +1747,7 @@ repository:
           |smooth|snap|solid|soft-light
           |space(-around|-between)?
           |span|sRGB
+          |stable
           |stack(ed-fractions)?
           |start(ColorStr)?
           |static
@@ -2127,7 +2129,7 @@ repository:
           | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))?
           | suffix | symbols | system | tab-size | table-layout | tap-highlight-color
           | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))?
-          | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|size-adjust|shadow|transform|underline-position)
+          | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|size-adjust|shadow|transform|underline-position|wrap)
           | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)?
           | transition(-(delay|duration|property|timing-function))? | translate |
           unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility
