@@ -2127,7 +2127,7 @@ repository:
           | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))?
           | suffix | symbols | system | tab-size | table-layout | tap-highlight-color
           | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))?
-          | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|shadow|transform|underline-position)
+          | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|size-adjust|shadow|transform|underline-position)
           | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)?
           | transition(-(delay|duration|property|timing-function))? | translate |
           unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility

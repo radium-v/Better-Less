@@ -1,0 +1,32 @@
+// SYNTAX TEST "Packages/Better-Less/Syntaxes/Better Less.tmLanguage"
+
+.text-size-adjust {
+    text-size-adjust: 80%;
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                  ^ punctuation.separator.key-value.less
+//                    ^^^ meta.property-value.less
+//                    ^^^ constant.numeric.less
+//                      ^ keyword.other.unit.less
+//                       ^ punctuation.terminator.rule.less
+
+    -webkit-text-size-adjust: 80%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^ support.type.vendor-prefix.less
+//          ^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                          ^ punctuation.separator.key-value.less
+//                           ^^^^ meta.property-value.less
+//                            ^^^ constant.numeric.less
+//                              ^ keyword.other.unit.less
+//                               ^ punctuation.terminator.rule.less
+
+    -moz-text-size-adjust: 80%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^ support.type.vendor-prefix.less
+//       ^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^ meta.property-value.less
+//                         ^^^ constant.numeric.less
+//                           ^ keyword.other.unit.less
+//                            ^ punctuation.terminator.rule.less
+}
