@@ -1637,7 +1637,7 @@ repository:
           |border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?
           |both|bottom
           |box(-shadow)?
-          |break-(all|word)
+          |break-(all|word|spaces)
           |brightness
           |butt(on)?
           |capitalize
@@ -1656,7 +1656,7 @@ repository:
           |cross(hair)?
           |da(rken|shed)
           |default|dense|diagonal-fractions|difference|disabled
-          |discretionary-ligatures|disregard-shifts
+          |discard|discretionary-ligatures|disregard-shifts
           |distribute(-all-lines|-letter|-space)?
           |dotted|double|drop-shadow
           |(nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize
@@ -1721,8 +1721,9 @@ repository:
           |perspective-origin
           |petite-caps|pixelated|pointer
           |pinch-zoom
+          |pretty
           |pre(-line|-wrap)?
-          |preserve-3d
+          |preserve(-3d|-breaks|-spaces)?
           |progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)
           |progress
           |proportional-(nums|width)
@@ -1746,6 +1747,7 @@ repository:
           |smooth|snap|solid|soft-light
           |space(-around|-between)?
           |span|sRGB
+          |stable
           |stack(ed-fractions)?
           |start(ColorStr)?
           |static
@@ -2127,11 +2129,11 @@ repository:
           | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))?
           | suffix | symbols | system | tab-size | table-layout | tap-highlight-color
           | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))?
-          | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|shadow|transform|underline-position)
+          | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|size-adjust|shadow|transform|underline-position|wrap)
           | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)?
           | transition(-(delay|duration|property|timing-function))? | translate |
           unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility
-          | white-space | widows | width | will-change | word-(break|spacing|wrap)
+          | white-space(-collapse)? | widows | width | will-change | word-(break|spacing|wrap)
           | writing-mode | z-index | zoom )\b
       - name: support.type.property-name.less
         match: (?x)\b(((contain-intrinsic|max|min)-)?(block|inline)?-size)\b
