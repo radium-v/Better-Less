@@ -1,0 +1,463 @@
+// SYNTAX TEST "Packages/Better-Less/Syntaxes/Better Less.tmLanguage"
+
+.gap-properties {
+
+    gap: 20px;
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//       ^^^^ meta.property-value.less
+//       ^^^^ constant.numeric.less
+//         ^^ keyword.other.unit.less
+//           ^ punctuation.terminator.rule.less
+
+    gap: 20%;
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//       ^^^ meta.property-value.less
+//       ^^^ constant.numeric.less
+//         ^ keyword.other.unit.less
+//          ^ punctuation.terminator.rule.less
+
+    gap: var(--gap-size);
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//       ^^^^^^^^^^^^^^^ meta.property-value.less
+//       ^^^^^^^^^^^^^^^ meta.function-call.less
+//       ^^^ support.function.var.less
+//          ^ punctuation.definition.group.begin.less
+//           ^^^^^^^^^^ support.type.custom-property.less
+//           ^^ punctuation.definition.custom-property.less
+//             ^^^^^^^^ support.type.custom-property.name.less
+//                     ^ punctuation.definition.group.end.less
+//                      ^ punctuation.terminator.rule.less
+
+    gap: var(--gap-size) var(--gap-size);
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//       ^^^^^^^^^^^^^^^ meta.function-call.less
+//       ^^^ support.function.var.less
+//          ^ punctuation.definition.group.begin.less
+//           ^^^^^^^^^^ support.type.custom-property.less
+//           ^^ punctuation.definition.custom-property.less
+//             ^^^^^^^^ support.type.custom-property.name.less
+//                     ^ punctuation.definition.group.end.less
+//                       ^^^^^^^^^^^^^^^ meta.function-call.less
+//                       ^^^ support.function.var.less
+//                          ^ punctuation.definition.group.begin.less
+//                           ^^^^^^^^^^ support.type.custom-property.less
+//                           ^^ punctuation.definition.custom-property.less
+//                             ^^^^^^^^ support.type.custom-property.name.less
+//                                     ^ punctuation.definition.group.end.less
+//                                      ^ punctuation.terminator.rule.less
+
+    gap: @gap-size;
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//       ^^^^^^^^^ meta.property-value.less
+//       ^^^^^^^^^ variable.other.readwrite.less
+//       ^ punctuation.definition.variable.less
+//        ^^^^^^^^ support.other.variable.less
+//                ^ punctuation.terminator.rule.less
+
+    gap: @gap-size @gap-size;
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//       ^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//       ^^^^^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//       ^ punctuation.definition.variable.less
+//        ^^^^^^^^ support.other.variable.less
+//                 ^ punctuation.definition.variable.less
+//                  ^^^^^^^^ support.other.variable.less
+//                          ^ punctuation.terminator.rule.less
+
+    gap: @gap-size var(--gap-size);
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//       ^^^^^^^^^ variable.other.readwrite.less
+//       ^ punctuation.definition.variable.less
+//        ^^^^^^^^ support.other.variable.less
+//                 ^^^^^^^^^^^^^^^ meta.function-call.less
+//                 ^^^ support.function.var.less
+//                    ^ punctuation.definition.group.begin.less
+//                     ^^^^^^^^^^ support.type.custom-property.less
+//                     ^^ punctuation.definition.custom-property.less
+//                       ^^^^^^^^ support.type.custom-property.name.less
+//                               ^ punctuation.definition.group.end.less
+//                                ^ punctuation.terminator.rule.less
+
+    gap: calc(var(--gap-size) + 10px);
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//       ^^^^ support.function.calc.less
+//           ^ punctuation.definition.group.begin.less
+//            ^^^^^^^^^^^^^^^ meta.function-call.less
+//            ^^^ support.function.var.less
+//               ^ punctuation.definition.group.begin.less
+//                ^^^^^^^^^^ support.type.custom-property.less
+//                ^^ punctuation.definition.custom-property.less
+//                  ^^^^^^^^ support.type.custom-property.name.less
+//                          ^ punctuation.definition.group.end.less
+//                            ^ keyword.operator.arithmetic.less
+//                              ^^^^ constant.numeric.less
+//                                ^^ keyword.other.unit.less
+//                                  ^ punctuation.definition.group.end.less
+//                                   ^ punctuation.terminator.rule.less
+
+    row-gap: 20px;
+//  ^^^^^^^ support.type.property-name.less
+//         ^ punctuation.separator.key-value.less
+//           ^^^^ meta.property-value.less
+//           ^^^^ constant.numeric.less
+//             ^^ keyword.other.unit.less
+//               ^ punctuation.terminator.rule.less
+
+    row-gap: 20%;
+//  ^^^^^^^ support.type.property-name.less
+//         ^ punctuation.separator.key-value.less
+//           ^^^ meta.property-value.less
+//           ^^^ constant.numeric.less
+//             ^ keyword.other.unit.less
+//              ^ punctuation.terminator.rule.less
+
+    row-gap: var(--gap-size);
+//  ^^^^^^^ support.type.property-name.less
+//         ^ punctuation.separator.key-value.less
+//           ^^^^^^^^^^^^^^^ meta.property-value.less
+//           ^^^^^^^^^^^^^^^ meta.function-call.less
+//           ^^^ support.function.var.less
+//              ^ punctuation.definition.group.begin.less
+//               ^^^^^^^^^^ support.type.custom-property.less
+//               ^^ punctuation.definition.custom-property.less
+//                 ^^^^^^^^ support.type.custom-property.name.less
+//                         ^ punctuation.definition.group.end.less
+//                          ^ punctuation.terminator.rule.less
+
+    row-gap: @gap-size;
+//  ^^^^^^^ support.type.property-name.less
+//         ^ punctuation.separator.key-value.less
+//           ^^^^^^^^^ meta.property-value.less
+//           ^^^^^^^^^ variable.other.readwrite.less
+//           ^ punctuation.definition.variable.less
+//            ^^^^^^^^ support.other.variable.less
+//                    ^ punctuation.terminator.rule.less
+
+    row-gap: calc(var(--gap-size) + 10px);
+//  ^^^^^^^ support.type.property-name.less
+//         ^ punctuation.separator.key-value.less
+//           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//           ^^^^ support.function.calc.less
+//               ^ punctuation.definition.group.begin.less
+//                ^^^^^^^^^^^^^^^ meta.function-call.less
+//                ^^^ support.function.var.less
+//                   ^ punctuation.definition.group.begin.less
+//                    ^^^^^^^^^^ support.type.custom-property.less
+//                    ^^ punctuation.definition.custom-property.less
+//                      ^^^^^^^^ support.type.custom-property.name.less
+//                              ^ punctuation.definition.group.end.less
+//                                ^ keyword.operator.arithmetic.less
+//                                  ^^^^ constant.numeric.less
+//                                    ^^ keyword.other.unit.less
+//                                      ^ punctuation.definition.group.end.less
+//                                       ^ punctuation.terminator.rule.less
+
+    column-gap: 20px;
+//  ^^^^^^^^^^ support.type.property-name.less
+//            ^ punctuation.separator.key-value.less
+//              ^^^^ meta.property-value.less
+//              ^^^^ constant.numeric.less
+//                ^^ keyword.other.unit.less
+//                  ^ punctuation.terminator.rule.less
+
+    column-gap: 20%;Ï
+//  ^^^^^^^^^^ support.type.property-name.less
+//            ^ punctuation.separator.key-value.less
+//              ^^^ meta.property-value.less
+//              ^^^ constant.numeric.less
+//                ^ keyword.other.unit.less
+//                 ^ punctuation.terminator.rule.less
+
+    column-gap: var(--gap-size);
+//  ^^^^^^^^^^ support.type.property-name.less
+//            ^ punctuation.separator.key-value.less
+//              ^^^^^^^^^^^^^^^ meta.property-value.less
+//              ^^^^^^^^^^^^^^^ meta.function-call.less
+//              ^^^ support.function.var.less
+//                 ^ punctuation.definition.group.begin.less
+//                  ^^^^^^^^^^ support.type.custom-property.less
+//                  ^^ punctuation.definition.custom-property.less
+//                    ^^^^^^^^ support.type.custom-property.name.less
+//                            ^ punctuation.definition.group.end.less
+//                             ^ punctuation.terminator.rule.less
+
+    column-gap: @gap-size;
+//  ^^^^^^^^^^ support.type.property-name.less
+//            ^ punctuation.separator.key-value.less
+//              ^^^^^^^^^ meta.property-value.less
+//              ^^^^^^^^^ variable.other.readwrite.less
+//              ^ punctuation.definition.variable.less
+//               ^^^^^^^^ support.other.variable.less
+//                       ^ punctuation.terminator.rule.less
+
+    column-gap: calc(var(--gap-size) + 10px);
+//  ^^^^^^^^^^ support.type.property-name.less
+//            ^ punctuation.separator.key-value.less
+//              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//              ^^^^ support.function.calc.less
+//                  ^ punctuation.definition.group.begin.less
+//                   ^^^^^^^^^^^^^^^ meta.function-call.less
+//                   ^^^ support.function.var.less
+//                      ^ punctuation.definition.group.begin.less
+//                       ^^^^^^^^^^ support.type.custom-property.less
+//                       ^^ punctuation.definition.custom-property.less
+//                         ^^^^^^^^ support.type.custom-property.name.less
+//                                 ^ punctuation.definition.group.end.less
+//                                   ^ keyword.operator.arithmetic.less
+//                                     ^^^^ constant.numeric.less
+//                                       ^^ keyword.other.unit.less
+//                                         ^ punctuation.definition.group.end.less
+//                                          ^ punctuation.terminator.rule.less
+
+    grid-gap: 20px;
+//  ^^^^^^^^ support.type.property-name.less
+//          ^ punctuation.separator.key-value.less
+//            ^^^^ meta.property-value.less
+//            ^^^^ constant.numeric.less
+//              ^^ keyword.other.unit.less
+//                ^ punctuation.terminator.rule.less
+
+    grid-gap: 20%;
+//  ^^^^^^^^ support.type.property-name.less
+//          ^ punctuation.separator.key-value.less
+//             ^^ meta.property-value.less constant.numeric.less
+//              ^ keyword.other.unit.less
+//               ^ punctuation.terminator.rule.less
+
+    grid-gap: var(--gap-size);
+//  ^^^^^^^^ support.type.property-name.less
+//          ^ punctuation.separator.key-value.less
+//            ^^^^^^^^^^^^^^^ meta.property-value.less
+//            ^^^^^^^^^^^^^^^ meta.function-call.less
+//            ^^^ support.function.var.less
+//               ^ punctuation.definition.group.begin.less
+//                ^^^^^^^^^^ support.type.custom-property.less
+//                ^^ punctuation.definition.custom-property.less
+//                  ^^^^^^^^ support.type.custom-property.name.less
+//                          ^ punctuation.definition.group.end.less
+//                           ^ punctuation.terminator.rule.less
+
+    grid-gap: var(--gap-size) var(--gap-size);
+//  ^^^^^^^^ support.type.property-name.less
+//          ^ punctuation.separator.key-value.less
+//             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//            ^^^^^^^^^^^^^^^ meta.function-call.less
+//            ^^^ support.function.var.less
+//               ^ punctuation.definition.group.begin.less
+//                ^^^^^^^^^^ support.type.custom-property.less
+//                ^^ punctuation.definition.custom-property.less
+//                  ^^^^^^^^ support.type.custom-property.name.less
+//                          ^ punctuation.definition.group.end.less
+//                            ^^^^^^^^^^^^^^^ meta.function-call.less
+//                            ^^^ support.function.var.less
+//                               ^ punctuation.definition.group.begin.less
+//                                ^^^^^^^^^^ support.type.custom-property.less
+//                                ^^ punctuation.definition.custom-property.less
+//                                  ^^^^^^^^ support.type.custom-property.name.less
+//                                          ^ punctuation.definition.group.end.less
+//                                           ^ punctuation.terminator.rule.less
+
+    grid-gap: @gap-size;
+//  ^^^^^^^^ support.type.property-name.less
+//          ^ punctuation.separator.key-value.less
+//            ^^^^^^^^^ meta.property-value.less
+//            ^^^^^^^^^ variable.other.readwrite.less
+//            ^ punctuation.definition.variable.less
+//             ^^^^^^^^ support.other.variable.less
+//                     ^ punctuation.terminator.rule.less
+
+    grid-gap: @gap-size @gap-size;
+//  ^^^^^^^^ support.type.property-name.less
+//          ^ punctuation.separator.key-value.less
+//            ^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//            ^^^^^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//            ^ punctuation.definition.variable.less
+//             ^^^^^^^^ support.other.variable.less
+//                      ^ punctuation.definition.variable.less
+//                       ^^^^^^^^ support.other.variable.less
+//                               ^ punctuation.terminator.rule.less
+
+    grid-gap: @gap-size var(--gap-size);
+//  ^^^^^^^^ support.type.property-name.less
+//          ^ punctuation.separator.key-value.less
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//            ^^^^^^^^^ variable.other.readwrite.less
+//            ^ punctuation.definition.variable.less
+//             ^^^^^^^^ support.other.variable.less
+//                      ^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^ support.function.var.less
+//                         ^ punctuation.definition.group.begin.less
+//                          ^^^^^^^^^^ support.type.custom-property.less
+//                          ^^ punctuation.definition.custom-property.less
+//                            ^^^^^^^^ support.type.custom-property.name.less
+//                                    ^ punctuation.definition.group.end.less
+//                                     ^ punctuation.terminator.rule.less
+
+    grid-gap: calc(var(--gap-size) + 10px);
+//  ^^^^^^^^ support.type.property-name.less
+//          ^ punctuation.separator.key-value.less
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//            ^^^^ support.function.calc.less
+//                ^ punctuation.definition.group.begin.less
+//                 ^^^^^^^^^^^^^^^ meta.function-call.less
+//                 ^^^ support.function.var.less
+//                    ^ punctuation.definition.group.begin.less
+//                     ^^^^^^^^^^ support.type.custom-property.less
+//                     ^^ punctuation.definition.custom-property.less
+//                       ^^^^^^^^ support.type.custom-property.name.less
+//                               ^ punctuation.definition.group.end.less
+//                                 ^ keyword.operator.arithmetic.less
+//                                   ^^^^ constant.numeric.less
+//                                     ^^ keyword.other.unit.less
+//                                       ^ punctuation.definition.group.end.less
+//                                        ^ punctuation.terminator.rule.less
+
+    grid-row-gap: 20px;
+//  ^^^^^^^^^^^^ support.type.property-name.less
+//              ^ punctuation.separator.key-value.less
+//                ^^^^ meta.property-value.less
+//                ^^^^ constant.numeric.less
+//                  ^^ keyword.other.unit.less
+//                    ^ punctuation.terminator.rule.less
+
+    grid-row-gap: 20%;
+//  ^^^^^^^^^^^^ support.type.property-name.less
+//              ^ punctuation.separator.key-value.less
+//                ^^^ meta.property-value.less
+//                ^^^ constant.numeric.less
+//                  ^ keyword.other.unit.less
+//                   ^ punctuation.terminator.rule.less
+
+    grid-row-gap: var(--gap-size);
+//  ^^^^^^^^^^^^ support.type.property-name.less
+//              ^ punctuation.separator.key-value.less
+//                ^^^^^^^^^^^^^^^ meta.property-value.less
+//                ^^^^^^^^^^^^^^^ meta.function-call.less
+//                ^^^ support.function.var.less
+//                   ^ punctuation.definition.group.begin.less
+//                    ^^^^^^^^^^ support.type.custom-property.less
+//                    ^^ punctuation.definition.custom-property.less
+//                      ^^^^^^^^ support.type.custom-property.name.less
+//                              ^ punctuation.definition.group.end.less
+//                               ^ punctuation.terminator.rule.less
+
+    grid-row-gap: @gap-size;
+//  ^^^^^^^^^^^^ support.type.property-name.less
+//              ^ punctuation.separator.key-value.less
+//                ^^^^^^^^^ meta.property-value.less
+//                ^^^^^^^^^ variable.other.readwrite.less
+//                ^ punctuation.definition.variable.less
+//                 ^^^^^^^^ support.other.variable.less
+//                         ^ punctuation.terminator.rule.less
+
+    grid-row-gap: calc(var(--gap-size) + 10px);
+//  ^^^^^^^^^^^^ support.type.property-name.less
+//              ^ punctuation.separator.key-value.less
+//                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                ^^^^ support.function.calc.less
+//                    ^ punctuation.definition.group.begin.less
+//                     ^^^^^^^^^^^^^^^ meta.function-call.less
+//                     ^^^ support.function.var.less
+//                        ^ punctuation.definition.group.begin.less
+//                         ^^^^^^^^^^ support.type.custom-property.less
+//                         ^^ punctuation.definition.custom-property.less
+//                           ^^^^^^^^ support.type.custom-property.name.less
+//                                   ^ punctuation.definition.group.end.less
+//                                     ^ keyword.operator.arithmetic.less
+//                                       ^^^^ constant.numeric.less
+//                                         ^^ keyword.other.unit.less
+//                                           ^ punctuation.definition.group.end.less
+//                                            ^ punctuation.terminator.rule.less
+
+    grid-column-gap: 20px;
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^^ meta.property-value.less
+//                   ^^^^ constant.numeric.less
+//                     ^^ keyword.other.unit.less
+//                       ^ punctuation.terminator.rule.less
+
+    grid-column-gap: 20%;Ï
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^ meta.property-value.less
+//                   ^^^ constant.numeric.less
+//                     ^ keyword.other.unit.less
+//                      ^ punctuation.terminator.rule.less
+
+    grid-column-gap: var(--gap-size);
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^^^ meta.function-call.less
+//                   ^^^ support.function.var.less
+//                      ^ punctuation.definition.group.begin.less
+//                       ^^^^^^^^^^ support.type.custom-property.less
+//                       ^^ punctuation.definition.custom-property.less
+//                         ^^^^^^^^ support.type.custom-property.name.less
+//                                 ^ punctuation.definition.group.end.less
+//                                  ^ punctuation.terminator.rule.less
+
+    grid-column-gap: @gap-size;
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^ variable.other.readwrite.less
+//                   ^ punctuation.definition.variable.less
+//                    ^^^^^^^^ support.other.variable.less
+//                            ^ punctuation.terminator.rule.less
+
+    grid-column-gap: calc(var(--gap-size) + 10px);
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                   ^^^^ support.function.calc.less
+//                       ^ punctuation.definition.group.begin.less
+//                        ^^^^^^^^^^^^^^^ meta.function-call.less
+//                        ^^^ support.function.var.less
+//                           ^ punctuation.definition.group.begin.less
+//                            ^^^^^^^^^^ support.type.custom-property.less
+//                            ^^ punctuation.definition.custom-property.less
+//                              ^^^^^^^^ support.type.custom-property.name.less
+//                                      ^ punctuation.definition.group.end.less
+//                                        ^ keyword.operator.arithmetic.less
+//                                          ^^^^ constant.numeric.less
+//                                            ^^ keyword.other.unit.less
+//                                              ^ punctuation.definition.group.end.less
+//                                               ^ punctuation.terminator.rule.less
+
+    transition-property: gap, column-gap, row-gap, grid-gap, grid-row-gap, grid-column-gap;
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^ support.constant.property-value.less
+//                          ^ punctuation.separator.less
+//                            ^^^^^^^^^^ support.constant.property-value.less
+//                                      ^ punctuation.separator.less
+//                                        ^^^^^^^ support.constant.property-value.less
+//                                               ^ punctuation.separator.less
+//                                                 ^^^^^^^^ support.constant.property-value.less
+//                                                         ^ punctuation.separator.less
+//                                                           ^^^^^^^^^^^^ support.constant.property-value.less
+//                                                                       ^ punctuation.separator.less
+//                                                                         ^^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                                                        ^ punctuation.terminator.rule.less
+
+}
