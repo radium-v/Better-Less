@@ -1676,8 +1676,8 @@ repository:
           |font(-size(-adjust)?|-stretch|-weight)?
           |forwards
           |from(-image)?
-          |full-width|geometricPrecision|glyphs|gradient|grayscale
-          |grid(-height)?
+          |full-width|gap|geometricPrecision|glyphs|gradient|grayscale
+          |grid((-column|-row)?-gap|-height)?
           |groove|hand|hanging|hard-light|height|help|hidden|hide
           |historical-(forms|ligatures)
           |horizontal(-tb)?
@@ -1731,7 +1731,7 @@ repository:
           |repeating-(linear|radial)-gradient
           |replaced|reset-size|reverse|revert(-layer)?|ridge|right
           |round
-          |row(-resize|-reverse)?
+          |row(-gap|-resize|-reverse)?
           |rtl|ruby|running|saturat(e|ion)|screen
           |scroll(-position|bar)?
           |separate|sepia
@@ -2106,7 +2106,7 @@ repository:
           | float | flood-(color|opacity) | font-display | font-family | font-feature-settings
           | font-kerning | font-language-override | font-size(-adjust)? | font-smoothing
           | font-stretch | font-style | font-synthesis | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))?
-          | font-weight | font | fr | glyph-orientation-(horizontal|vertical) | grid-(area|gap)
+          | font-weight | font | fr | ((column|row)-)?gap | glyph-orientation-(horizontal|vertical) | grid-(area|gap)
           | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))? |
           grid-template(-(areas|columns|rows))? | height | hyphens
           | image-(orientation|rendering|resolution)
