@@ -2004,25 +2004,30 @@ repository:
           - include: '#literal-string'
           - include: '#property-values'
           - match: \s*(?:(,))
+            captures:
+              '1': {name: punctuation.definition.arbitrary-repetition.less}
       - begin: \b(transition(-(property|duration|delay|timing-function))?)\b
         beginCaptures:
-          '0': {name: meta.property-name.less}
           '1': {name: support.type.property-name.less}
         end: \s*(;)|(?=[})])
         endCaptures:
           '1': {name: punctuation.terminator.rule.less}
         patterns:
-        - match: (((\+_?)?):)([\s\t]*)
-          captures:
+        - contentName: meta.property-value.less
+          begin: (((\+_?)?):)(?=[\s\t]*)
+          beginCaptures:
             '1': {name: punctuation.separator.key-value.less}
-            '4': {name: meta.property-value.less}
-        - include: '#time-type'
-        - include: '#property-values'
-        - include: '#cubic-bezier-function'
-        - include: '#steps-function'
-        - match: \s*(?:(,))
+          end: (?=\s*(;)|(?=[})]))
           captures:
             '1': {name: punctuation.definition.arbitrary-repetition.less}
+          patterns:
+          - include: '#time-type'
+          - include: '#property-values'
+          - include: '#cubic-bezier-function'
+          - include: '#steps-function'
+          - match: \s*(?:(,))
+            captures:
+              '1': {name: punctuation.definition.arbitrary-repetition.less}
       - name: meta.property-name.less
         begin: \b(?:backdrop-)?filter\b
         beginCaptures:
@@ -2132,7 +2137,10 @@ repository:
         match: (?x)\b(((contain-intrinsic|max|min)-)?(block|inline)?-size)\b
       - include: $self
     - contentName: meta.property-value.less
-      begin: \b(((\+_?)?):)([\s\t]*)
+      begin: \b((?:(?:\+_?)?):)([\s\t]*)
+      beginCaptures:
+        '1': {name: punctuation.separator.key-value.less}
+        '2': {name: meta.property-value.less}
       end: \s*(;)|(?=[})])
       endCaptures:
         '1': {name: punctuation.terminator.rule.less}
