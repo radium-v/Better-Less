@@ -1,7 +1,8 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
 name: Better Less
 scopeName: source.less
-fileTypes: [less]
+fileTypes:
+- less
 uuid: 4BA5F7E1-8D36-4634-8D88-86C0157A8E54
 
 patterns:
@@ -1619,170 +1620,170 @@ repository:
     - name: support.constant.property-value.less
       match: |-
         (?x)\b(
-            absolute|active|add
-          |all(-(petite|small)-caps|-scroll)?
-          |alpha(betic)?
-          |alternate(-reverse)?
-          |always|annotation|antialiased|at
-          |auto(hiding-scrollbar)?
-          |avoid(-column|-page|-region)?
-          |background(-color|-image|-position|-size)?
-          |backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink
-          |block(-(line-height|start|end))?
-          |blur
-          |bold(er)?
-          |border(-bottom|-left|-right|-top)?-(color|radius|width|style)
-          |border-(bottom|top)-(left|right)-radius
-          |border-image(-outset|-repeat|-slice|-source|-width)?
-          |border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?
-          |both|bottom
-          |box(-shadow)?
-          |break-(all|word|spaces)
-          |brightness
-          |butt(on)?
-          |capitalize
-          |cent(er|ral)
-          |char(acter-variant)?
-          |cjk-ideographic|clip|clone|close-quote
-          |closest-(corner|side)
-          |col-resize|collapse
-          |color(-stop|-burn|-dodge)?
-          |column((-count|-gap|-reverse|-rule(-color|-width)?|-width)|s)?
-          |common-ligatures|condensed|consider-shifts|contain
-          |content(-box|s)?
-          |contextual|contrast|cover
-          |crisp(-e|E)dges
-          |crop
-          |cross(hair)?
-          |da(rken|shed)
-          |default|dense|diagonal-fractions|difference|disabled
-          |discard|discretionary-ligatures|disregard-shifts
-          |distribute(-all-lines|-letter|-space)?
-          |dotted|double|drop-shadow
-          |(nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize
-          |ease(-in-out|-in|-out)?
-          |element|ellipsis|embed|end|EndColorStr|evenodd
-          |exclu(de(-ruby)?|sion)
-          |expanded
-          |(extra|semi|ultra)-(condensed|expanded)
-          |farthest-(corner|side)?
-          |fill(-box|-opacity)?
-          |filter
-          |fit-content
-          |fixed
-          |flat
-          |flex((-basis|-end|-grow|-shrink|-start)|box)?
-          |flip|flood-color
-          |font(-size(-adjust)?|-stretch|-weight)?
-          |forwards
-          |from(-image)?
-          |full-width|gap|geometricPrecision|glyphs|gradient|grayscale
-          |grid((-column|-row)?-gap|-height)?
-          |groove|hand|hanging|hard-light|height|help|hidden|hide
-          |historical-(forms|ligatures)
-          |horizontal(-tb)?
-          |hue
-          |ideograph(-alpha|-numeric|-parenthesis|-space|ic)
-          |inactive|include-ruby|infinite|inherit|initial
-          |inline(-(block|box|flex(box)?|line-height|table|start|end))?
-          |inset|inside
-          |inter(-ideograph|-word|sect)
-          |invert|isolat(e|ion)|italic
-          |jis(04|78|83|90)
-          |justify(-all)?
-          |keep-all
-          |large[r]?
-          |last|layout|left|letter-spacing
-          |light(e[nr]|ing-color)
-          |line(-edge|-height|-through)?
-          |linear(-gradient|RGB)?
-          |lining-nums|list-item|local|loose|lowercase|lr-tb|ltr
-          |lumin(osity|ance)|manual
-          |manipulation
-          |margin(-bottom|-box|-left|-right|-top)?
-          |marker(-offset|s)?
-          |match-parent
-          |mathematical
-          |max-(content|height|lines|size|width)
-          |medium|middle
-          |min-(content|height|width)
-          |miter|mixed|move|multiply|newspaper
-          |no-(change|clip|(close|open)-quote|(common|discretionary|historical)-ligatures|contextual|drop|repeat)
-          |none|nonzero|normal|not-allowed|nowrap|oblique
-          |offset(-after|-before|-end|-start)?
-          |oldstyle-nums|opacity|open-quote
-          |optimize(Legibility|Precision|Quality|Speed)
-          |order|ordinal|ornaments
-          |outline(-color|-offset|-width)?
-          |outset|outside|over(line|-edge|lay)
-          |padding(-bottom|-box|-left|-right|-top|-box)?
-          |page|paint(ed)?|paused
-          |pan-(x|left|right|y|up|down)
-          |perspective-origin
-          |petite-caps|pixelated|pointer
-          |pinch-zoom
-          |pretty
-          |pre(-line|-wrap)?
-          |preserve(-3d|-breaks|-spaces)?
-          |progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)
-          |progress
-          |proportional-(nums|width)
-          |radial-gradient|recto|region|relative
-          |repeat(-[xy])?
-          |repeating-(linear|radial)-gradient
-          |replaced|reset-size|reverse|revert(-layer)?|ridge|right
-          |round
-          |row(-gap|-resize|-reverse)?
-          |rtl|ruby|running|saturat(e|ion)|screen
-          |scroll(-position|bar)?
-          |separate|sepia
-          |scale-down
-          |shape-(image-threshold|margin|outside)
-          |show
-          |sideways(-lr|-rl)?
-          |simplified
-          |size
-          |slashed-zero|slice
-          |small(-caps|er)?
-          |smooth|snap|solid|soft-light
-          |space(-around|-between)?
-          |span|sRGB
-          |stable
-          |stack(ed-fractions)?
-          |start(ColorStr)?
-          |static
-          |step-(end|start)
-          |sticky
-          |stop-(color|opacity)
-          |stretch|strict
-          |stroke(-box|-dash(array|offset)|-miterlimit|-opacity|-width)?
-          |style(set)?
-          |stylistic
-          |sub(grid|pixel-antialiased|tract)?
-          |super|swash
-          |table(-caption|-cell|(-column|-footer|-header|-row)-group|-column|-row)?
-          |tabular-nums|tb-rl
-          |text((-bottom|-(decoration|emphasis)-color|-indent|-(over|under)-edge|-shadow|-size(-adjust)?|-top)|field)?
-          |thi(ck|n)
-          |titling-ca(ps|se)
-          |to[p]?
-          |touch|traditional
-          |transform(-origin)?
-          |under(-edge|line)?
-          |unicase|unset|uppercase|upright
-          |use-(glyph-orientation|script)
-          |verso
-          |vertical(-align|-ideographic|-lr|-rl|-text)?
-          |view-box
-          |viewport-fill(-opacity)?
-          |visibility
-          |visible(Fill|Painted|Stroke)?
-          |wait|wavy|weight|whitespace|(device-)?width|word-spacing
-          |wrap(-reverse)?
-          |x{1,2}-(large|small)
-          |z-index|zero
-          |zoom(-in|-out)?
-          |((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman)))\b
+          absolute|active|add
+        |all(-(petite|small)-caps|-scroll)?
+        |alpha(betic)?
+        |alternate(-reverse)?
+        |always|annotation|antialiased|at
+        |auto(hiding-scrollbar)?
+        |avoid(-column|-page|-region)?
+        |background(-color|-image|-position|-size)?
+        |backwards|balance|baseline|below|bevel|bicubic|bidi-override|blink
+        |block(-(line-height|start|end))?
+        |blur
+        |bold(er)?
+        |border(-bottom|-left|-right|-top)?-(color|radius|width|style)
+        |border-(bottom|top)-(left|right)-radius
+        |border-image(-outset|-repeat|-slice|-source|-width)?
+        |border(-bottom|-left|-right|-top|-collapse|-spacing|-box)?
+        |both|bottom
+        |box(-shadow)?
+        |break-(all|word|spaces)
+        |brightness
+        |butt(on)?
+        |capitalize
+        |cent(er|ral)
+        |char(acter-variant)?
+        |cjk-ideographic|clip|clone|close-quote
+        |closest-(corner|side)
+        |col-resize|collapse
+        |color(-stop|-burn|-dodge)?
+        |column((-count|-gap|-reverse|-rule(-color|-width)?|-width)|s)?
+        |common-ligatures|condensed|consider-shifts|contain
+        |content(-box|s)?
+        |contextual|contrast|cover
+        |crisp(-e|E)dges
+        |crop
+        |cross(hair)?
+        |da(rken|shed)
+        |default|dense|diagonal-fractions|difference|disabled
+        |discard|discretionary-ligatures|disregard-shifts
+        |distribute(-all-lines|-letter|-space)?
+        |dotted|double|drop-shadow
+        |(nwse|nesw|ns|ew|sw|se|nw|ne|w|s|e|n)-resize
+        |ease(-in-out|-in|-out)?
+        |element|ellipsis|embed|end|EndColorStr|evenodd
+        |exclu(de(-ruby)?|sion)
+        |expanded
+        |(extra|semi|ultra)-(condensed|expanded)
+        |farthest-(corner|side)?
+        |fill(-box|-opacity)?
+        |filter
+        |fit-content
+        |fixed
+        |flat
+        |flex((-basis|-end|-grow|-shrink|-start)|box)?
+        |flip|flood-color
+        |font(-size(-adjust)?|-stretch|-weight)?
+        |forwards
+        |from(-image)?
+        |full-width|gap|geometricPrecision|glyphs|gradient|grayscale
+        |grid((-column|-row)?-gap|-height)?
+        |groove|hand|hanging|hard-light|height|help|hidden|hide
+        |historical-(forms|ligatures)
+        |horizontal(-tb)?
+        |hue
+        |ideograph(-alpha|-numeric|-parenthesis|-space|ic)
+        |inactive|include-ruby|infinite|inherit|initial
+        |inline(-(block|box|flex(box)?|line-height|table|start|end))?
+        |inset|inside
+        |inter(-ideograph|-word|sect)
+        |invert|isolat(e|ion)|italic
+        |jis(04|78|83|90)
+        |justify(-all)?
+        |keep-all
+        |large[r]?
+        |last|layout|left|letter-spacing
+        |light(e[nr]|ing-color)
+        |line(-edge|-height|-through)?
+        |linear(-gradient|RGB)?
+        |lining-nums|list-item|local|loose|lowercase|lr-tb|ltr
+        |lumin(osity|ance)|manual
+        |manipulation
+        |margin(-bottom|-box|-left|-right|-top)?
+        |marker(-offset|s)?
+        |match-parent
+        |mathematical
+        |max-(content|height|lines|size|width)
+        |medium|middle
+        |min-(content|height|width)
+        |miter|mixed|move|multiply|newspaper
+        |no-(change|clip|(close|open)-quote|(common|discretionary|historical)-ligatures|contextual|drop|repeat)
+        |none|nonzero|normal|not-allowed|nowrap|oblique
+        |offset(-after|-before|-end|-start)?
+        |oldstyle-nums|opacity|open-quote
+        |optimize(Legibility|Precision|Quality|Speed)
+        |order|ordinal|ornaments
+        |outline(-color|-offset|-width)?
+        |outset|outside|over(line|-edge|lay)
+        |padding(-bottom|-box|-left|-right|-top|-box)?
+        |page|paint(ed)?|paused
+        |pan-(x|left|right|y|up|down)
+        |perspective-origin
+        |petite-caps|pixelated|pointer
+        |pinch-zoom
+        |pretty
+        |pre(-line|-wrap)?
+        |preserve(-3d|-breaks|-spaces)?
+        |progid:DXImageTransform.Microsoft.(Alpha|Blur|dropshadow|gradient|Shadow)
+        |progress
+        |proportional-(nums|width)
+        |radial-gradient|recto|region|relative
+        |repeat(-[xy])?
+        |repeating-(linear|radial)-gradient
+        |replaced|reset-size|reverse|revert(-layer)?|ridge|right
+        |round
+        |row(-gap|-resize|-reverse)?
+        |rtl|ruby|running|saturat(e|ion)|screen
+        |scroll(-position|bar)?
+        |separate|sepia
+        |scale-down
+        |shape-(image-threshold|margin|outside)
+        |show
+        |sideways(-lr|-rl)?
+        |simplified
+        |size
+        |slashed-zero|slice
+        |small(-caps|er)?
+        |smooth|snap|solid|soft-light
+        |space(-around|-between)?
+        |span|sRGB
+        |stable
+        |stack(ed-fractions)?
+        |start(ColorStr)?
+        |static
+        |step-(end|start)
+        |sticky
+        |stop-(color|opacity)
+        |stretch|strict
+        |stroke(-box|-dash(array|offset)|-miterlimit|-opacity|-width)?
+        |style(set)?
+        |stylistic
+        |sub(grid|pixel-antialiased|tract)?
+        |super|swash
+        |table(-caption|-cell|(-column|-footer|-header|-row)-group|-column|-row)?
+        |tabular-nums|tb-rl
+        |text((-bottom|-(decoration|emphasis)-color|-indent|-(over|under)-edge|-shadow|-size(-adjust)?|-top)|field)?
+        |thi(ck|n)
+        |titling-ca(ps|se)
+        |to[p]?
+        |touch|traditional
+        |transform(-origin)?
+        |under(-edge|line)?
+        |unicase|unset|uppercase|upright
+        |use-(glyph-orientation|script)
+        |verso
+        |vertical(-align|-ideographic|-lr|-rl|-text)?
+        |view-box
+        |viewport-fill(-opacity)?
+        |visibility
+        |visible(Fill|Painted|Stroke)?
+        |wait|wavy|weight|whitespace|(device-)?width|word-spacing
+        |wrap(-reverse)?
+        |x{1,2}-(large|small)
+        |z-index|zero
+        |zoom(-in|-out)?
+        |((?xi:arabic-indic|armenian|bengali|cambodian|circle|cjk-decimal|cjk-earthly-branch|cjk-heavenly-stem|decimal-leading-zero|decimal|devanagari|disclosure-closed|disclosure-open|disc|ethiopic-numeric|georgian|gujarati|gurmukhi|hebrew|hiragana-iroha|hiragana|japanese-formal|japanese-informal|kannada|katakana-iroha|katakana|khmer|korean-hangul-formal|korean-hanja-formal|korean-hanja-informal|lao|lower-alpha|lower-armenian|lower-greek|lower-latin|lower-roman|malayalam|mongolian|myanmar|oriya|persian|simp-chinese-formal|simp-chinese-informal|square|tamil|telugu|thai|tibetan|trad-chinese-formal|trad-chinese-informal|upper-alpha|upper-armenian|upper-latin|upper-roman)))\b
     - name: support.constant.font-name.less
       match: \b(?i:sans-serif|serif|monospace|fantasy|cursive)\b(?=\s*[;,\n}])
 
@@ -2090,43 +2091,35 @@ repository:
           | background-repeat-x | background-repeat | background-position-y | background-position-x
           | background-position | background-origin | background-image | background-color
           | background-clip | background-blend-mode | background-attachment | background
-          | baseline-shift | begin | bias | blend-mode
-          | border-((top|right|bottom|left|((block|inline)(-(start|end))?))-)?(width|style|color)
-          | border-((top|bottom)-(right|left)|((start|end)-?){1,2})-radius
-          | border-image-(width|source|slice|repeat|outset)
+          | baseline-shift | begin | bias | blend-mode | border-((top|right|bottom|left|((block|inline)(-(start|end))?))-)?(width|style|color)
+          | border-((top|bottom)-(right|left)|((start|end)-?){1,2})-radius | border-image-(width|source|slice|repeat|outset)
           | border-(top|right|bottom|left|collapse|image|radius|spacing|((block|inline)(-(start|end))?))
-          | border
-          | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)
+          | border | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)
           | break-(after|before|inside) | caption-side | clear | clip-path | clip-rule
           | clip | color(-(interpolation(-filters)?|profile|rendering))? | columns
           | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width)
-          | contain(-intrinsic-((((block|inline)-)?size)|height|width))?
-          | content | counter-(increment|reset) | cursor | (c|d|f)(x|y)
-          | direction | display | divisor | dominant-baseline | dur | elevation |
-          empty-cells | enable-background | end | fallback | fill(-(opacity|rule))?
-          | filter | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))?
+          | contain(-intrinsic-((((block|inline)-)?size)|height|width))? | content
+          | counter-(increment|reset) | cursor | (c|d|f)(x|y) | direction | display
+          | divisor | dominant-baseline | dur | elevation | empty-cells | enable-background
+          | end | fallback | fill(-(opacity|rule))? | filter | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))?
           | float | flood-(color|opacity) | font-display | font-family | font-feature-settings
           | font-kerning | font-language-override | font-size(-adjust)? | font-smoothing
           | font-stretch | font-style | font-synthesis | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))?
-          | font-weight | font | fr | ((column|row)-)?gap | glyph-orientation-(horizontal|vertical) | grid-(area|gap)
-          | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))? |
-          grid-template(-(areas|columns|rows))? | height | hyphens
-          | image-(orientation|rendering|resolution)
-          | inset(-(block|inline))?(-(start|end))?
-          | isolation | justify-content | kerning | left | letter-spacing | lighting-color
-          | line-(box-contain|break|clamp|height) | list-style(-(image|position|type))?
-          | (margin|padding)(-(bottom|left|right|top)|(-(block|inline)?(-(end|start))?))?
+          | font-weight | font | fr | ((column|row)-)?gap | glyph-orientation-(horizontal|vertical)
+          | grid-(area|gap) | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))?
+          | grid-template(-(areas|columns|rows))? | height | hyphens | image-(orientation|rendering|resolution)
+          | inset(-(block|inline))?(-(start|end))? | isolation | justify-content |
+          kerning | left | letter-spacing | lighting-color | line-(box-contain|break|clamp|height)
+          | list-style(-(image|position|type))? | (margin|padding)(-(bottom|left|right|top)|(-(block|inline)?(-(end|start))?))?
           | marker(-(end|mid|start))? | mask(-(clip||composite|image|origin|position|repeat|size|type))?
           | (max|min)-(height|width) | mix-blend-mode | nbsp-mode | negative | object-(fit|position)
           | opacity | operator | order | orphans | outline(-(color|offset|style|width))?
-          | overflow(-((inline|block)|scrolling|wrap|x|y))?
-          | overscroll-behavior(-block|-(inline|x|y))?
-          | pad(ding(-(bottom|left|right|top))?)?
-          | page(-break-(after|before|inside))? | paint-order | pause(-(after|before))?
-          | perspective(-origin(-(x|y))?)? | pitch(-range)? | pointer-events | position
-          | prefix | quotes | range | resize | right | rotate | scale | scroll-behavior
-          | shape-(image-threshold|margin|outside|rendering) | size | speak(-as)?
-          | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))?
+          | overflow(-((inline|block)|scrolling|wrap|x|y))? | overscroll-behavior(-block|-(inline|x|y))?
+          | pad(ding(-(bottom|left|right|top))?)? | page(-break-(after|before|inside))?
+          | paint-order | pause(-(after|before))? | perspective(-origin(-(x|y))?)?
+          | pitch(-range)? | pointer-events | position | prefix | quotes | range |
+          resize | right | rotate | scale | scroll-behavior | shape-(image-threshold|margin|outside|rendering)
+          | size | speak(-as)? | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))?
           | suffix | symbols | system | tab-size | table-layout | tap-highlight-color
           | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))?
           | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|size-adjust|shadow|transform|underline-position|wrap)
