@@ -1617,6 +1617,14 @@ repository:
 
   property-value-constants:
     patterns:
+    - comment: align-content, align-items, align-self, justify-content, justify-items, justify-self
+      name: support.constant.property-value.less
+      match: |-
+        (?x)\b(?:
+          flex-start|flex-end|start|end|space-between|space-around|space-evenly
+          |stretch|baseline|safe|unsafe|legacy|anchor-center|first|last|self-start|self-end
+        )\b
+
     - name: support.constant.property-value.less
       match: |-
         (?x)\b(
@@ -2083,8 +2091,8 @@ repository:
         - name: invalid.illegal.property-value.less
           match: unset|initial|inherit|auto
       - name: support.type.property-name.less
-        match: (?x)\b( accent-height | align-content | align-items | align-self |
-          alignment-baseline | all | animation-timing-function | animation-play-state
+        match: (?x)\b( accent-height | align-content | align-items | align-self
+          | alignment-baseline | all | animation-timing-function | animation-play-state
           | animation-name | animation-iteration-count | animation-fill-mode | animation-duration
           | animation-direction | animation-delay | animation | appearance | ascent
           | azimuth | backface-visibility | background-size | background-repeat-y
@@ -2108,8 +2116,8 @@ repository:
           | font-weight | font | fr | ((column|row)-)?gap | glyph-orientation-(horizontal|vertical)
           | grid-(area|gap) | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))?
           | grid-template(-(areas|columns|rows))? | height | hyphens | image-(orientation|rendering|resolution)
-          | inset(-(block|inline))?(-(start|end))? | isolation | justify-content |
-          kerning | left | letter-spacing | lighting-color | line-(box-contain|break|clamp|height)
+          | inset(-(block|inline))?(-(start|end))? | isolation | justify-content | justify-items | justify-self
+          | kerning | left | letter-spacing | lighting-color | line-(box-contain|break|clamp|height)
           | list-style(-(image|position|type))? | (margin|padding)(-(bottom|left|right|top)|(-(block|inline)?(-(end|start))?))?
           | marker(-(end|mid|start))? | mask(-(clip||composite|image|origin|position|repeat|size|type))?
           | (max|min)-(height|width) | mix-blend-mode | nbsp-mode | negative | object-(fit|position)
@@ -2117,15 +2125,15 @@ repository:
           | overflow(-((inline|block)|scrolling|wrap|x|y))? | overscroll-behavior(-block|-(inline|x|y))?
           | pad(ding(-(bottom|left|right|top))?)? | page(-break-(after|before|inside))?
           | paint-order | pause(-(after|before))? | perspective(-origin(-(x|y))?)?
-          | pitch(-range)? | pointer-events | position | prefix | quotes | range |
-          resize | right | rotate | scale | scroll-behavior | shape-(image-threshold|margin|outside|rendering)
+          | pitch(-range)? | place-content | place-self | pointer-events | position | prefix | quotes | range
+          | resize | right | rotate | scale | scroll-behavior | shape-(image-threshold|margin|outside|rendering)
           | size | speak(-as)? | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))?
           | suffix | symbols | system | tab-size | table-layout | tap-highlight-color
           | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))?
           | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|size-adjust|shadow|transform|underline-position|wrap)
           | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)?
-          | transition(-(delay|duration|property|timing-function))? | translate |
-          unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility
+          | transition(-(delay|duration|property|timing-function))? | translate
+          | unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility
           | white-space(-collapse)? | widows | width | will-change | word-(break|spacing|wrap)
           | writing-mode | z-index | zoom )\b
       - name: support.type.property-name.less
