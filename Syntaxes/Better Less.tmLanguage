@@ -5331,6 +5331,17 @@
 					<string>support.constant.property-value.less</string>
 				</dict>
 				<dict>
+					<key>comment</key>
+					<string>alignment-baseline</string>
+					<key>match</key>
+					<string>(?x)\b(?:
+  text-before-edge|before-edge|middle|central|text-after-edge
+  |after-edge|ideographic|alphabetic|hanging|mathematical|top|center|bottom
+)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
 					<key>match</key>
 					<string>(?x)\b(
   absolute|active|add
