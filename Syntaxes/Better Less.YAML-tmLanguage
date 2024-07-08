@@ -1625,6 +1625,14 @@ repository:
           |stretch|baseline|safe|unsafe|legacy|anchor-center|first|last|self-start|self-end
         )\b
 
+    - comment: alignment-baseline
+      name: support.constant.property-value.less
+      match: |-
+        (?x)\b(?:
+          text-before-edge|before-edge|middle|central|text-after-edge
+          |after-edge|ideographic|alphabetic|hanging|mathematical|top|center|bottom
+        )\b
+
     - name: support.constant.property-value.less
       match: |-
         (?x)\b(
