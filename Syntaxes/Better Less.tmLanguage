@@ -5342,6 +5342,14 @@
 					<string>support.constant.property-value.less</string>
 				</dict>
 				<dict>
+					<key>comment</key>
+					<string>all/global values</string>
+					<key>match</key>
+					<string>\b(?:initial|inherit|unset|revert-layer|revert)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
 					<key>match</key>
 					<string>(?x)\b(
   absolute|active|add
