@@ -1633,6 +1633,10 @@ repository:
           |after-edge|ideographic|alphabetic|hanging|mathematical|top|center|bottom
         )\b
 
+    - comment: all/global values
+      name: support.constant.property-value.less
+      match: \b(?:initial|inherit|unset|revert-layer|revert)\b
+
     - name: support.constant.property-value.less
       match: |-
         (?x)\b(

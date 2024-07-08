@@ -1,0 +1,39 @@
+// SYNTAX TEST "Packages/Better-Less/Syntaxes/Better Less.tmLanguage"
+
+.all {
+    all: initial;
+//^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//      ^^^^^^^^ meta.property-value.less
+//       ^^^^^^^ support.constant.property-value.less
+//              ^ punctuation.terminator.rule.less
+    all: inherit;
+//^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//      ^^^^^^^^ meta.property-value.less
+//       ^^^^^^^ support.constant.property-value.less
+//              ^ punctuation.terminator.rule.less
+    all: unset;
+//^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//      ^^^^^^ meta.property-value.less
+//       ^^^^^ support.constant.property-value.less
+//            ^ punctuation.terminator.rule.less
+    all: revert;
+//^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//      ^^^^^^^ meta.property-value.less
+//       ^^^^^^ support.constant.property-value.less
+//             ^ punctuation.terminator.rule.less
+    all: revert-layer;
+//^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^ support.type.property-name.less
+//     ^ punctuation.separator.key-value.less
+//      ^^^^^^^^^^^^^ meta.property-value.less
+//       ^^^^^^^^^^^^ support.constant.property-value.less
+//                   ^ punctuation.terminator.rule.less
+}
