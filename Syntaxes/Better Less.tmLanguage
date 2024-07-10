@@ -1601,15 +1601,22 @@
 		<key>cubic-bezier-function</key>
 		<dict>
 			<key>begin</key>
-			<string>\b(cubic-bezier)(?=\()</string>
+			<string>\b(cubic-bezier)(\()</string>
 			<key>beginCaptures</key>
 			<dict>
-				<key>0</key>
+				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>support.function.timing.less</string>
 				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.group.begin.less</string>
+				</dict>
 			</dict>
+			<key>contentName</key>
+			<string>meta.group.less</string>
 			<key>end</key>
 			<string>\)</string>
 			<key>endCaptures</key>
@@ -1625,33 +1632,28 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>\(</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.group.begin.less</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(?=\))</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#var-function</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#comma-delimiter</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#number-type</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#less-functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#calc-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#less-variables</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#var-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comma-delimiter</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#number-type</string>
 				</dict>
 			</array>
 		</dict>

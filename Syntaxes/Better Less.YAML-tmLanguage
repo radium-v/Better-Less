@@ -498,21 +498,21 @@ repository:
 
   cubic-bezier-function:
     name: meta.function-call.less
-    begin: \b(cubic-bezier)(?=\()
+    contentName: meta.group.less
+    begin: \b(cubic-bezier)(\()
     beginCaptures:
-      '0': {name: support.function.timing.less}
+      '1': {name: support.function.timing.less}
+      '2': {name: punctuation.definition.group.begin.less}
     end: \)
     endCaptures:
       '0': {name: punctuation.definition.group.end.less}
     patterns:
-    - begin: \(
-      beginCaptures:
-        '0': {name: punctuation.definition.group.begin.less}
-      end: (?=\))
-      patterns:
-      - include: '#var-function'
-      - include: '#comma-delimiter'
-      - include: '#number-type'
+    - include: '#less-functions'
+    - include: '#calc-function'
+    - include: '#less-variables'
+    - include: '#var-function'
+    - include: '#comma-delimiter'
+    - include: '#number-type'
 
   custom-property-name:
     name: support.type.custom-property.less
