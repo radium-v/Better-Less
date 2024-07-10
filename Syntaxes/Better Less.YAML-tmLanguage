@@ -757,6 +757,12 @@ repository:
     - include: '#image-function'
     - include: '#url-function'
 
+  important:
+    name: keyword.other.important.less
+    match: (\!)\s*important
+    captures:
+      '1': {name: punctuation.separator.less}
+
   integer-type:
     name: constant.numeric.less
     match: (?:[-+]?\d+)
@@ -1827,10 +1833,7 @@ repository:
     - include: '#less-math'
     - include: '#literal-string'
     - include: '#comma-delimiter'
-    - name: keyword.other.important.less
-      match: (\!)\s*important
-      captures:
-        '1': {name: punctuation.separator.less}
+    - include: '#important'
 
   pseudo-classes:
     patterns:
@@ -2177,10 +2180,7 @@ repository:
       - include: '#selectors'
       - include: '#less-namespace-accessors'
       - include: '#less-variable-interpolation'
-      - name: keyword.other.important.less
-        match: (\!)\s*important
-        captures:
-          '1': {name: punctuation.separator.less}
+      - include: '#important'
 
   selectors:
     patterns:

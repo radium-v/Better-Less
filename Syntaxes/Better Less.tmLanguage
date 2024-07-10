@@ -2450,6 +2450,21 @@
 				</dict>
 			</array>
 		</dict>
+		<key>important</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.less</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(\!)\s*important</string>
+			<key>name</key>
+			<string>keyword.other.important.less</string>
+		</dict>
 		<key>integer-type</key>
 		<dict>
 			<key>match</key>
@@ -5597,18 +5612,8 @@
 					<string>#comma-delimiter</string>
 				</dict>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.separator.less</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>(\!)\s*important</string>
-					<key>name</key>
-					<string>keyword.other.important.less</string>
+					<key>include</key>
+					<string>#important</string>
 				</dict>
 			</array>
 		</dict>
@@ -6639,18 +6644,8 @@
 							<string>#less-variable-interpolation</string>
 						</dict>
 						<dict>
-							<key>captures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.separator.less</string>
-								</dict>
-							</dict>
-							<key>match</key>
-							<string>(\!)\s*important</string>
-							<key>name</key>
-							<string>keyword.other.important.less</string>
+							<key>include</key>
+							<string>#important</string>
 						</dict>
 					</array>
 				</dict>
