@@ -27,6 +27,11 @@ repository:
     captures:
       '1': {name: keyword.other.unit.less}
 
+  arbitrary-repetition:
+    match: \s*(?:(,))
+    captures:
+      '1': {name: punctuation.definition.arbitrary-repetition.less}
+
   at-charset:
     name: meta.at-rule.charset.less
     begin: \s*((@)charset\b)\s*
@@ -2048,9 +2053,7 @@ repository:
           - include: '#property-values'
           - include: '#cubic-bezier-function'
           - include: '#steps-function'
-          - match: \s*(?:(,))
-            captures:
-              '1': {name: punctuation.definition.arbitrary-repetition.less}
+          - include: '#arbitrary-repetition'
       - name: meta.property-name.less
         begin: \b(?:backdrop-)?filter\b
         beginCaptures:
@@ -2082,9 +2085,7 @@ repository:
           match: unset|initial|inherit|will-change|auto|scroll-position|contents
         - name: support.constant.property-value.less
           match: -?(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*
-        - match: \s*(?:(,))
-          captures:
-            '1': {name: punctuation.definition.arbitrary-repetition.less}
+        - include: '#arbitrary-repetition'
       - name: meta.property-name.less
         begin: \bcounter-(increment|(re)?set)\b
         beginCaptures:
@@ -2259,9 +2260,7 @@ repository:
             '1': {name: keyword.other.less}
         - name: punctuation.definition.entity.less
           match: \]
-    - match: \s*(?:(,))
-      captures:
-        '1': {name: punctuation.definition.arbitrary-repetition.less}
+    - include: '#arbitrary-repetition'
     - name: entity.name.tag.wildcard.less
       match: \*
 

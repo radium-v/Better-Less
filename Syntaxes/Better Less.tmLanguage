@@ -62,6 +62,19 @@
 			<key>name</key>
 			<string>constant.numeric.less</string>
 		</dict>
+		<key>arbitrary-repetition</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arbitrary-repetition.less</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\s*(?:(,))</string>
+		</dict>
 		<key>at-charset</key>
 		<dict>
 			<key>begin</key>
@@ -6342,16 +6355,8 @@
 											<string>#steps-function</string>
 										</dict>
 										<dict>
-											<key>captures</key>
-											<dict>
-												<key>1</key>
-												<dict>
-													<key>name</key>
-													<string>punctuation.definition.arbitrary-repetition.less</string>
-												</dict>
-											</dict>
-											<key>match</key>
-											<string>\s*(?:(,))</string>
+											<key>include</key>
+											<string>#arbitrary-repetition</string>
 										</dict>
 									</array>
 								</dict>
@@ -6466,16 +6471,8 @@
 									<string>support.constant.property-value.less</string>
 								</dict>
 								<dict>
-									<key>captures</key>
-									<dict>
-										<key>1</key>
-										<dict>
-											<key>name</key>
-											<string>punctuation.definition.arbitrary-repetition.less</string>
-										</dict>
-									</dict>
-									<key>match</key>
-									<string>\s*(?:(,))</string>
+									<key>include</key>
+									<string>#arbitrary-repetition</string>
 								</dict>
 							</array>
 						</dict>
@@ -6863,16 +6860,8 @@
 					</array>
 				</dict>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arbitrary-repetition.less</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>\s*(?:(,))</string>
+					<key>include</key>
+					<string>#arbitrary-repetition</string>
 				</dict>
 				<dict>
 					<key>match</key>
