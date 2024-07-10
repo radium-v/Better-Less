@@ -5380,6 +5380,69 @@
 					<string>support.constant.property-value.less</string>
 				</dict>
 				<dict>
+					<key>include</key>
+					<string>#cubic-bezier-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#steps-function</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>animation-composition</string>
+					<key>match</key>
+					<string>\b(?:replace|add|accumulate)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>animation-direction</string>
+					<key>match</key>
+					<string>\b(?:normal|alternate-reverse|alternate|reverse)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>animation-fill-mode</string>
+					<key>match</key>
+					<string>\b(?:forwards|backwards|both)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>animation-iteration-count</string>
+					<key>match</key>
+					<string>\b(?:infinite)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>animation-play-state</string>
+					<key>match</key>
+					<string>\b(?:running|paused)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>animation-range, animation-range-start, animation-range-end</string>
+					<key>match</key>
+					<string>\b(?:entry-crossing|exit-crossing|entry|exit)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>animation-timing-function</string>
+					<key>match</key>
+					<string>\b(?:linear|ease-in-out|ease-in|ease-out|ease|step-start|step-end)\b</string>
+					<key>name</key>
+					<string>support.constant.property-value.less</string>
+				</dict>
 					<key>match</key>
 					<string>(?x)\b(
   absolute|active|add
@@ -6199,7 +6262,7 @@
 						</dict>
 						<dict>
 							<key>begin</key>
-							<string>\banimation(-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function))?\b</string>
+							<string>\banimation(?:-name)?(?=(?:\+_?)?:)\b</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>0</key>
@@ -6246,52 +6309,46 @@
 									<key>patterns</key>
 									<array>
 										<dict>
-											<key>match</key>
-											<string>\b(linear|ease(-in)?(-out)?|step-(start|end)|none|forwards|backwards|both|normal|alternate(-reverse)?|reverse|running|paused)\b</string>
-											<key>name</key>
-											<string>support.constant.property-value.less</string>
+											<key>include</key>
+											<string>#comment-block</string>
 										</dict>
 										<dict>
 											<key>include</key>
-											<string>#cubic-bezier-function</string>
+											<string>#builtin-functions</string>
 										</dict>
 										<dict>
 											<key>include</key>
-											<string>#steps-function</string>
+											<string>#less-functions</string>
 										</dict>
 										<dict>
 											<key>include</key>
-											<string>#time-type</string>
+											<string>#less-variables</string>
 										</dict>
 										<dict>
 											<key>include</key>
-											<string>#number-type</string>
+											<string>#numeric-values</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#property-value-constants</string>
 										</dict>
 										<dict>
 											<key>match</key>
 											<string>-?(?:[_a-zA-Z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\s\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[-_a-zA-Z0-9]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*</string>
 											<key>name</key>
-											<string>variable.other.constant.animation-name.less</string>
+											<string>variable.other.constant.animation-name.less string.unquoted.less</string>
 										</dict>
 										<dict>
 											<key>include</key>
-											<string>#literal-string</string>
+											<string>#less-math</string>
 										</dict>
 										<dict>
 											<key>include</key>
-											<string>#property-values</string>
+											<string>#arbitrary-repetition</string>
 										</dict>
 										<dict>
-											<key>captures</key>
-											<dict>
-												<key>1</key>
-												<dict>
-													<key>name</key>
-													<string>punctuation.definition.arbitrary-repetition.less</string>
-												</dict>
-											</dict>
-											<key>match</key>
-											<string>\s*(?:(,))</string>
+											<key>include</key>
+											<string>#important</string>
 										</dict>
 									</array>
 								</dict>
@@ -6545,7 +6602,7 @@
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>(?x)\b( accent-height | align-content | align-items | align-self | alignment-baseline | all | animation-timing-function | animation-play-state | animation-name | animation-iteration-count | animation-fill-mode | animation-duration | animation-direction | animation-delay | animation | appearance | ascent | azimuth | backface-visibility | background-size | background-repeat-y | background-repeat-x | background-repeat | background-position-y | background-position-x | background-position | background-origin | background-image | background-color | background-clip | background-blend-mode | background-attachment | background | baseline-shift | begin | bias | blend-mode | border-((top|right|bottom|left|((block|inline)(-(start|end))?))-)?(width|style|color) | border-((top|bottom)-(right|left)|((start|end)-?){1,2})-radius | border-image-(width|source|slice|repeat|outset) | border-(top|right|bottom|left|collapse|image|radius|spacing|((block|inline)(-(start|end))?)) | border | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing) | break-(after|before|inside) | caption-side | clear | clip-path | clip-rule | clip | color(-(interpolation(-filters)?|profile|rendering))? | columns | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width) | contain(-intrinsic-((((block|inline)-)?size)|height|width))? | content | counter-(increment|reset) | cursor | (c|d|f)(x|y) | direction | display | divisor | dominant-baseline | dur | elevation | empty-cells | enable-background | end | fallback | fill(-(opacity|rule))? | filter | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))? | float | flood-(color|opacity) | font-display | font-family | font-feature-settings | font-kerning | font-language-override | font-size(-adjust)? | font-smoothing | font-stretch | font-style | font-synthesis | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))? | font-weight | font | fr | ((column|row)-)?gap | glyph-orientation-(horizontal|vertical) | grid-(area|gap) | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))? | grid-template(-(areas|columns|rows))? | height | hyphens | image-(orientation|rendering|resolution) | inset(-(block|inline))?(-(start|end))? | isolation | justify-content | justify-items | justify-self | kerning | left | letter-spacing | lighting-color | line-(box-contain|break|clamp|height) | list-style(-(image|position|type))? | (margin|padding)(-(bottom|left|right|top)|(-(block|inline)?(-(end|start))?))? | marker(-(end|mid|start))? | mask(-(clip||composite|image|origin|position|repeat|size|type))? | (max|min)-(height|width) | mix-blend-mode | nbsp-mode | negative | object-(fit|position) | opacity | operator | order | orphans | outline(-(color|offset|style|width))? | overflow(-((inline|block)|scrolling|wrap|x|y))? | overscroll-behavior(-block|-(inline|x|y))? | pad(ding(-(bottom|left|right|top))?)? | page(-break-(after|before|inside))? | paint-order | pause(-(after|before))? | perspective(-origin(-(x|y))?)? | pitch(-range)? | place-content | place-self | pointer-events | position | prefix | quotes | range | resize | right | rotate | scale | scroll-behavior | shape-(image-threshold|margin|outside|rendering) | size | speak(-as)? | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))? | suffix | symbols | system | tab-size | table-layout | tap-highlight-color | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))? | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|size-adjust|shadow|transform|underline-position|wrap) | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)? | transition(-(delay|duration|property|timing-function))? | translate | unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility | white-space(-collapse)? | widows | width | will-change | word-(break|spacing|wrap) | writing-mode | z-index | zoom )\b</string>
+							<string>(?x)\b( accent-height | align-content | align-items | align-self | alignment-baseline | all | animation-timing-function | animation-range-start | animation-range-end | animation-range | animation-play-state | animation-name | animation-iteration-count | animation-fill-mode | animation-duration | animation-direction | animation-delay | animation-composition | animation | appearance | ascent | azimuth | backface-visibility | background-size | background-repeat-y | background-repeat-x | background-repeat | background-position-y | background-position-x | background-position | background-origin | background-image | background-color | background-clip | background-blend-mode | background-attachment | background | baseline-shift | begin | bias | blend-mode | border-((top|right|bottom|left|((block|inline)(-(start|end))?))-)?(width|style|color) | border-((top|bottom)-(right|left)|((start|end)-?){1,2})-radius | border-image-(width|source|slice|repeat|outset) | border-(top|right|bottom|left|collapse|image|radius|spacing|((block|inline)(-(start|end))?)) | border | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing) | break-(after|before|inside) | caption-side | clear | clip-path | clip-rule | clip | color(-(interpolation(-filters)?|profile|rendering))? | columns | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width) | contain(-intrinsic-((((block|inline)-)?size)|height|width))? | content | counter-(increment|reset) | cursor | (c|d|f)(x|y) | direction | display | divisor | dominant-baseline | dur | elevation | empty-cells | enable-background | end | fallback | fill(-(opacity|rule))? | filter | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))? | float | flood-(color|opacity) | font-display | font-family | font-feature-settings | font-kerning | font-language-override | font-size(-adjust)? | font-smoothing | font-stretch | font-style | font-synthesis | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))? | font-weight | font | fr | ((column|row)-)?gap | glyph-orientation-(horizontal|vertical) | grid-(area|gap) | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))? | grid-template(-(areas|columns|rows))? | height | hyphens | image-(orientation|rendering|resolution) | inset(-(block|inline))?(-(start|end))? | isolation | justify-content | justify-items | justify-self | kerning | left | letter-spacing | lighting-color | line-(box-contain|break|clamp|height) | list-style(-(image|position|type))? | (margin|padding)(-(bottom|left|right|top)|(-(block|inline)?(-(end|start))?))? | marker(-(end|mid|start))? | mask(-(clip||composite|image|origin|position|repeat|size|type))? | (max|min)-(height|width) | mix-blend-mode | nbsp-mode | negative | object-(fit|position) | opacity | operator | order | orphans | outline(-(color|offset|style|width))? | overflow(-((inline|block)|scrolling|wrap|x|y))? | overscroll-behavior(-block|-(inline|x|y))? | pad(ding(-(bottom|left|right|top))?)? | page(-break-(after|before|inside))? | paint-order | pause(-(after|before))? | perspective(-origin(-(x|y))?)? | pitch(-range)? | place-content | place-self | pointer-events | position | prefix | quotes | range | resize | right | rotate | scale | scroll-behavior | shape-(image-threshold|margin|outside|rendering) | size | speak(-as)? | src | stop-(color|opacity) | stroke(-(dash(array|offset)|line(cap|join)|miterlimit|opacity|width))? | suffix | symbols | system | tab-size | table-layout | tap-highlight-color | text-align(-last)? | text-decoration(-(color|line|style))? | text-emphasis(-(color|position|style))? | text-(anchor|fill-color|height|indent|justify|orientation|overflow|rendering|size-adjust|shadow|transform|underline-position|wrap) | top | touch-action | transform(-origin(-(x|y))?) | transform(-style)? | transition(-(delay|duration|property|timing-function))? | translate | unicode-(bidi|range) | user-(drag|select) | vertical-align | visibility | white-space(-collapse)? | widows | width | will-change | word-(break|spacing|wrap) | writing-mode | z-index | zoom )\b</string>
 							<key>name</key>
 							<string>support.type.property-name.less</string>
 						</dict>
@@ -7115,15 +7172,22 @@
 		<key>steps-function</key>
 		<dict>
 			<key>begin</key>
-			<string>\b(steps)(?=\()</string>
+			<string>\b(steps)(\()</string>
 			<key>beginCaptures</key>
 			<dict>
-				<key>0</key>
+				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>support.function.timing.less</string>
 				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.group.begin.less</string>
+				</dict>
 			</dict>
+			<key>contentName</key>
+			<string>meta.group.less</string>
 			<key>end</key>
 			<string>\)</string>
 			<key>endCaptures</key>
@@ -7139,35 +7203,30 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>\(</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.group.begin.less</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(?=\))</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#comma-delimiter</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#integer-type</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>(end|middle|start)</string>
-							<key>name</key>
-							<string>support.keyword.timing-direction.less</string>
-						</dict>
-					</array>
+					<key>match</key>
+					<string>jump-start|jump-end|jump-none|jump-both|start|end</string>
+					<key>name</key>
+					<string>support.constant.step-position.less</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comma-delimiter</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#integer-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#less-variables</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#var-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#calc-function</string>
 				</dict>
 			</array>
 		</dict>

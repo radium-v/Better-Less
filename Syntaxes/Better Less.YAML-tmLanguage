@@ -1647,7 +1647,29 @@ repository:
     - comment: all/global values
       name: support.constant.property-value.less
       match: \b(?:initial|inherit|unset|revert-layer|revert)\b
-
+    - include: '#cubic-bezier-function'
+    - include: '#steps-function'
+    - comment: animation-composition
+      name: support.constant.property-value.less
+      match: \b(?:replace|add|accumulate)\b
+    - comment: animation-direction
+      name: support.constant.property-value.less
+      match: \b(?:normal|alternate-reverse|alternate|reverse)\b
+    - comment: animation-fill-mode
+      name: support.constant.property-value.less
+      match: \b(?:forwards|backwards|both)\b
+    - comment: animation-iteration-count
+      name: support.constant.property-value.less
+      match: \b(?:infinite)\b
+    - comment: animation-play-state
+      name: support.constant.property-value.less
+      match: \b(?:running|paused)\b
+    - comment: animation-range, animation-range-start, animation-range-end
+      name: support.constant.property-value.less
+      match: \b(?:entry-crossing|exit-crossing|entry|exit)\b
+    - comment: animation-timing-function
+      name: support.constant.property-value.less
+      match: \b(?:linear|ease-in-out|ease-in|ease-out|ease|step-start|step-end)\b
     - name: support.constant.property-value.less
       match: |-
         (?x)\b(
@@ -2009,7 +2031,7 @@ repository:
           match: -?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)*
         - name: punctuation.separator.less
           match: ','
-      - begin: \banimation(-(delay|direction|duration|fill-mode|iteration-count|name|play-state|timing-function))?\b
+      - begin: \banimation(?:-name)?(?=(?:\+_?)?:)\b
         beginCaptures:
           '0': {name: support.type.property-name.less}
         end: \s*(;)|(?=[})])
@@ -2024,19 +2046,17 @@ repository:
           captures:
             '1': {name: punctuation.definition.arbitrary-repetition.less}
           patterns:
-          - name: support.constant.property-value.less
-            match: \b(linear|ease(-in)?(-out)?|step-(start|end)|none|forwards|backwards|both|normal|alternate(-reverse)?|reverse|running|paused)\b
-          - include: '#cubic-bezier-function'
-          - include: '#steps-function'
-          - include: '#time-type'
-          - include: '#number-type'
-          - name: variable.other.constant.animation-name.less
+          - include: '#comment-block'
+          - include: '#builtin-functions'
+          - include: '#less-functions'
+          - include: '#less-variables'
+          - include: '#numeric-values'
+          - include: '#property-value-constants'
+          - name: variable.other.constant.animation-name.less string.unquoted.less
             match: -?(?:[_a-zA-Z]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\s\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))(?:[-_a-zA-Z0-9]|[^\x{00}-\x{7F}]|(?:(:?\\[0-9a-f]{1,6}(\r\n|[\t\r\n\f])?)|\\[^\r\n\f0-9a-f]))*
-          - include: '#literal-string'
-          - include: '#property-values'
-          - match: \s*(?:(,))
-            captures:
-              '1': {name: punctuation.definition.arbitrary-repetition.less}
+          - include: '#less-math'
+          - include: '#arbitrary-repetition'
+          - include: '#important'
       - begin: \b(transition(-(property|duration|delay|timing-function))?)\b
         beginCaptures:
           '1': {name: support.type.property-name.less}
@@ -2107,15 +2127,16 @@ repository:
         - name: invalid.illegal.property-value.less
           match: unset|initial|inherit|auto
       - name: support.type.property-name.less
-        match: (?x)\b( accent-height | align-content | align-items | align-self
-          | alignment-baseline | all | animation-timing-function | animation-play-state
-          | animation-name | animation-iteration-count | animation-fill-mode | animation-duration
-          | animation-direction | animation-delay | animation | appearance | ascent
-          | azimuth | backface-visibility | background-size | background-repeat-y
-          | background-repeat-x | background-repeat | background-position-y | background-position-x
-          | background-position | background-origin | background-image | background-color
-          | background-clip | background-blend-mode | background-attachment | background
-          | baseline-shift | begin | bias | blend-mode | border-((top|right|bottom|left|((block|inline)(-(start|end))?))-)?(width|style|color)
+        match: (?x)\b( accent-height | align-content | align-items | align-self |
+          alignment-baseline | all | animation-timing-function | animation-range-start
+          | animation-range-end | animation-range | animation-play-state | animation-name
+          | animation-iteration-count | animation-fill-mode | animation-duration |
+          animation-direction | animation-delay | animation-composition | animation
+          | appearance | ascent | azimuth | backface-visibility | background-size
+          | background-repeat-y | background-repeat-x | background-repeat | background-position-y
+          | background-position-x | background-position | background-origin | background-image
+          | background-color | background-clip | background-blend-mode | background-attachment
+          | background | baseline-shift | begin | bias | blend-mode | border-((top|right|bottom|left|((block|inline)(-(start|end))?))-)?(width|style|color)
           | border-((top|bottom)-(right|left)|((start|end)-?){1,2})-radius | border-image-(width|source|slice|repeat|outset)
           | border-(top|right|bottom|left|collapse|image|radius|spacing|((block|inline)(-(start|end))?))
           | border | bottom | box-(align|decoration-break|direction|flex|ordinal-group|orient|pack|shadow|sizing)
@@ -2339,22 +2360,22 @@ repository:
 
   steps-function:
     name: meta.function-call.less
-    begin: \b(steps)(?=\()
+    contentName: meta.group.less
+    begin: \b(steps)(\()
     beginCaptures:
-      '0': {name: support.function.timing.less}
+      '1': {name: support.function.timing.less}
+      '2': {name: punctuation.definition.group.begin.less}
     end: \)
     endCaptures:
       '0': {name: punctuation.definition.group.end.less}
     patterns:
-    - begin: \(
-      beginCaptures:
-        '0': {name: punctuation.definition.group.begin.less}
-      end: (?=\))
-      patterns:
-      - include: '#comma-delimiter'
-      - include: '#integer-type'
-      - name: support.keyword.timing-direction.less
-        match: (end|middle|start)
+    - name: support.constant.step-position.less
+      match: jump-start|jump-end|jump-none|jump-both|start|end
+    - include: '#comma-delimiter'
+    - include: '#integer-type'
+    - include: '#less-variables'
+    - include: '#var-function'
+    - include: '#calc-function'
 
   string-content:
     patterns:
