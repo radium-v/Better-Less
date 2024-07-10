@@ -1691,15 +1691,15 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#time-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#length-type</string>
 				</dict>
 				<dict>
 					<key>include</key>
 					<string>#resolution-type</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#time-type</string>
 				</dict>
 			</array>
 		</dict>

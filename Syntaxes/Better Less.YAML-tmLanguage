@@ -525,9 +525,9 @@ repository:
     patterns:
     - include: '#angle-type'
     - include: '#frequency-type'
+    - include: '#time-type'
     - include: '#length-type'
     - include: '#resolution-type'
-    - include: '#time-type'
 
   filter-function:
     name: meta.function-call.less
