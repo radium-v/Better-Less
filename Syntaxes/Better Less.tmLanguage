@@ -436,6 +436,10 @@
 							<key>include</key>
 							<string>#keyframe-name</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#arbitrary-repetition</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
@@ -5443,6 +5447,7 @@
 					<key>name</key>
 					<string>support.constant.property-value.less</string>
 				</dict>
+				<dict>
 					<key>match</key>
 					<string>(?x)\b(
   absolute|active|add
@@ -6262,7 +6267,7 @@
 						</dict>
 						<dict>
 							<key>begin</key>
-							<string>\banimation(?:-name)?(?=(?:\+_?)?:)\b</string>
+							<string>\banimation-timeline\b</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>0</key>
@@ -6294,12 +6299,80 @@
 											<string>punctuation.separator.key-value.less</string>
 										</dict>
 									</dict>
-									<key>captures</key>
+									<key>contentName</key>
+									<string>meta.property-value.less</string>
+									<key>end</key>
+									<string>(?=\s*(;)|(?=[})]))</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>#comment-block</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#custom-property-name</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#scroll-function</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#view-function</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#property-values</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#less-variables</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#arbitrary-repetition</string>
+										</dict>
+										<dict>
+											<key>include</key>
+											<string>#important</string>
+										</dict>
+									</array>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>\banimation(?:-name)?(?=(?:\+_?)?:)\b</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>support.type.property-name.less</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>\s*(;)|(?=[})])</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.terminator.rule.less</string>
+								</dict>
+							</dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>begin</key>
+									<string>(((\+_?)?):)(?=[\s\t]*)</string>
+									<key>beginCaptures</key>
 									<dict>
 										<key>1</key>
 										<dict>
 											<key>name</key>
-											<string>punctuation.definition.arbitrary-repetition.less</string>
+											<string>punctuation.separator.key-value.less</string>
 										</dict>
 									</dict>
 									<key>contentName</key>
@@ -6386,14 +6459,6 @@
 										<dict>
 											<key>name</key>
 											<string>punctuation.separator.key-value.less</string>
-										</dict>
-									</dict>
-									<key>captures</key>
-									<dict>
-										<key>1</key>
-										<dict>
-											<key>name</key>
-											<string>punctuation.definition.arbitrary-repetition.less</string>
 										</dict>
 									</dict>
 									<key>contentName</key>
@@ -6670,6 +6735,59 @@
 				<dict>
 					<key>include</key>
 					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<key>scroll-function</key>
+		<dict>
+			<key>begin</key>
+			<string>\b(scroll)(\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.scroll.less</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.group.begin.less</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.group.end.less</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.function-call.less</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>root|nearest|self</string>
+					<key>name</key>
+					<string>support.constant.scroller.less</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>block|inline|x|y</string>
+					<key>name</key>
+					<string>support.constant.axis.less</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#less-variables</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#var-function</string>
 				</dict>
 			</array>
 		</dict>
@@ -7939,65 +8057,60 @@
 		</dict>
 		<key>var-function</key>
 		<dict>
+			<key>begin</key>
+			<string>\b(var)(?=\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.var.less</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.group.end.less</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.function-call.less</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\b(var)(?=\()</string>
+					<string>\(</string>
 					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>support.function.var.less</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>\)</string>
-					<key>endCaptures</key>
 					<dict>
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.group.end.less</string>
+							<string>punctuation.definition.group.begin.less</string>
 						</dict>
 					</dict>
-					<key>name</key>
-					<string>meta.function-call.less</string>
+					<key>end</key>
+					<string>(?=\))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>begin</key>
-							<string>\(</string>
-							<key>beginCaptures</key>
-							<dict>
-								<key>0</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.definition.group.begin.less</string>
-								</dict>
-							</dict>
-							<key>end</key>
-							<string>(?=\))</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>#comma-delimiter</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#custom-property-name</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#less-variables</string>
-								</dict>
-								<dict>
-									<key>include</key>
-									<string>#property-values</string>
-								</dict>
-							</array>
+							<key>include</key>
+							<string>#comma-delimiter</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#custom-property-name</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#less-variables</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#property-values</string>
 						</dict>
 					</array>
 				</dict>
@@ -8009,6 +8122,81 @@
 			<string>-(?:webkit|moz(-osx)?|ms|o)-</string>
 			<key>name</key>
 			<string>support.type.vendor-prefix.less</string>
+		</dict>
+		<key>view-function</key>
+		<dict>
+			<key>begin</key>
+			<string>\b(view)(?=\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.view.less</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.group.end.less</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.function-call.less</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.begin.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=\))</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>match</key>
+							<string>block|inline|x|y|auto</string>
+							<key>name</key>
+							<string>support.constant.property-value.less</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#length-type</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#percentage-type</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#less-variables</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#var-function</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#calc-function</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#arbitrary-repetition</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
 		</dict>
 	</dict>
 	<key>scopeName</key>

@@ -141,6 +141,7 @@ repository:
       end: \s*(?=\{)
       patterns:
       - include: '#keyframe-name'
+      - include: '#arbitrary-repetition'
 
   at-media:
     begin: (?=\s*@media\b)
@@ -2031,6 +2032,27 @@ repository:
           match: -?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*(\s+-?(?:[[_a-zA-Z][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{9f}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)*
         - name: punctuation.separator.less
           match: ','
+      - begin: \banimation-timeline\b
+        beginCaptures:
+          '0': {name: support.type.property-name.less}
+        end: \s*(;)|(?=[})])
+        endCaptures:
+          '1': {name: punctuation.terminator.rule.less}
+        patterns:
+        - contentName: meta.property-value.less
+          begin: (((\+_?)?):)(?=[\s\t]*)
+          beginCaptures:
+            '1': {name: punctuation.separator.key-value.less}
+          end: (?=\s*(;)|(?=[})]))
+          patterns:
+          - include: '#comment-block'
+          - include: '#custom-property-name'
+          - include: '#scroll-function'
+          - include: '#view-function'
+          - include: '#property-values'
+          - include: '#less-variables'
+          - include: '#arbitrary-repetition'
+          - include: '#important'
       - begin: \banimation(?:-name)?(?=(?:\+_?)?:)\b
         beginCaptures:
           '0': {name: support.type.property-name.less}
@@ -2043,8 +2065,6 @@ repository:
           beginCaptures:
             '1': {name: punctuation.separator.key-value.less}
           end: (?=\s*(;)|(?=[})]))
-          captures:
-            '1': {name: punctuation.definition.arbitrary-repetition.less}
           patterns:
           - include: '#comment-block'
           - include: '#builtin-functions'
@@ -2069,8 +2089,6 @@ repository:
           beginCaptures:
             '1': {name: punctuation.separator.key-value.less}
           end: (?=\s*(;)|(?=[})]))
-          captures:
-            '1': {name: punctuation.definition.arbitrary-repetition.less}
           patterns:
           - include: '#time-type'
           - include: '#property-values'
@@ -2190,6 +2208,23 @@ repository:
       patterns:
       - include: '#property-values'
     - include: $self
+
+  scroll-function:
+    name: meta.function-call.less
+    begin: \b(scroll)(\()
+    beginCaptures:
+      '1': {name: support.function.scroll.less}
+      '2': {name: punctuation.definition.group.begin.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - name: support.constant.scroller.less
+      match: root|nearest|self
+    - name: support.constant.axis.less
+      match: block|inline|x|y
+    - include: '#less-variables'
+    - include: '#var-function'
 
   selector:
     patterns:
@@ -2589,28 +2624,50 @@ repository:
       - include: '#var-function'
 
   var-function:
+    name: meta.function-call.less
+    begin: \b(var)(?=\()
+    beginCaptures:
+      '1': {name: support.function.var.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
     patterns:
-    - name: meta.function-call.less
-      begin: \b(var)(?=\()
+    - begin: \(
       beginCaptures:
-        '1': {name: support.function.var.less}
-      end: \)
-      endCaptures:
-        '0': {name: punctuation.definition.group.end.less}
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
       patterns:
-      - begin: \(
-        beginCaptures:
-          '0': {name: punctuation.definition.group.begin.less}
-        end: (?=\))
-        patterns:
-        - include: '#comma-delimiter'
-        - include: '#custom-property-name'
-        - include: '#less-variables'
-        - include: '#property-values'
+      - include: '#comma-delimiter'
+      - include: '#custom-property-name'
+      - include: '#less-variables'
+      - include: '#property-values'
 
   vendor-prefix:
     name: support.type.vendor-prefix.less
     match: -(?:webkit|moz(-osx)?|ms|o)-
+
+  view-function:
+    name: meta.function-call.less
+    begin: \b(view)(?=\()
+    beginCaptures:
+      '1': {name: support.function.view.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - name: support.constant.property-value.less
+        match: block|inline|x|y|auto
+      - include: '#length-type'
+      - include: '#percentage-type'
+      - include: '#less-variables'
+      - include: '#var-function'
+      - include: '#calc-function'
+      - include: '#arbitrary-repetition'
 foldingStartMarker: /\*\*(?!\*)|\{\s*($|/\*(?!.*?\*/.*\S))
 foldingStopMarker: (?<!\*)\*\*/|^\s*\}
 keyEquivalent: ^~L
