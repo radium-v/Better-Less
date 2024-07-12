@@ -1,0 +1,2617 @@
+// SYNTAX TEST "Packages/Better-Less/Syntaxes/Better Less.tmLanguage"
+
+.animation-composition {
+    animation-composition: replace;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^ support.constant.property-value.less
+//                                ^ punctuation.terminator.rule.less
+    animation-composition: add;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^ meta.property-value.less
+//                         ^^^ support.constant.property-value.less
+//                            ^ punctuation.terminator.rule.less
+    animation-composition: accumulate;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^ support.constant.property-value.less
+//                                   ^ punctuation.terminator.rule.less
+    animation-composition: accumulate, add, replace;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^ support.constant.property-value.less
+//                                   ^ punctuation.separator.less
+//                                     ^^^ support.constant.property-value.less
+//                                        ^ punctuation.separator.less
+//                                          ^^^^^^^ support.constant.property-value.less
+//                                                 ^ punctuation.terminator.rule.less
+    animation-composition: @composition, var(--composition);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^^^ variable.other.readwrite.less
+//                         ^ punctuation.definition.variable.less
+//                          ^^^^^^^^^^^ support.other.variable.less
+//                                     ^ punctuation.separator.less
+//                                       ^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                       ^^^ support.function.var.less
+//                                          ^ punctuation.definition.group.begin.less
+//                                           ^^^^^^^^^^^^^ support.type.custom-property.less
+//                                           ^^ punctuation.definition.custom-property.less
+//                                             ^^^^^^^^^^^ support.type.custom-property.name.less
+//                                                        ^ punctuation.definition.group.end.less
+//                                                         ^ punctuation.terminator.rule.less
+}
+
+.animation-delay {
+    animation-delay: 0s;
+//^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^ meta.property-value.less
+//                   ^^ constant.numeric.less
+//                    ^ keyword.other.unit.less
+//                     ^ punctuation.terminator.rule.less
+    animation-delay: 0ms;
+//^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^ meta.property-value.less
+//                   ^^^ constant.numeric.less
+//                    ^^ keyword.other.unit.less
+//                      ^ punctuation.terminator.rule.less
+    animation-delay: 1s, 1ms;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^ meta.property-value.less
+//                   ^^ constant.numeric.less
+//                    ^ keyword.other.unit.less
+//                     ^ punctuation.separator.less
+//                       ^^^ constant.numeric.less
+//                        ^^ keyword.other.unit.less
+//                          ^ punctuation.terminator.rule.less
+    animation-delay: calc(1s + 1ms);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^^ meta.function-call.less
+//                   ^^^^ support.function.calc.less
+//                       ^ punctuation.definition.group.begin.less
+//                        ^^ constant.numeric.less
+//                         ^ keyword.other.unit.less
+//                           ^ keyword.operator.arithmetic.less
+//                             ^^^ constant.numeric.less
+//                              ^^ keyword.other.unit.less
+//                                ^ punctuation.definition.group.end.less
+//                                 ^ punctuation.terminator.rule.less
+    animation-delay: @delay, var(--delay);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^ variable.other.readwrite.less
+//                   ^ punctuation.definition.variable.less
+//                    ^^^^^ support.other.variable.less
+//                         ^ punctuation.separator.less
+//                           ^^^^^^^^^^^^ meta.function-call.less
+//                           ^^^ support.function.var.less
+//                              ^ punctuation.definition.group.begin.less
+//                               ^^^^^^^ support.type.custom-property.less
+//                               ^^ punctuation.definition.custom-property.less
+//                                 ^^^^^ support.type.custom-property.name.less
+//                                      ^ punctuation.definition.group.end.less
+//                                       ^ punctuation.terminator.rule.less
+}
+
+.animation-direction {
+    animation-direction: normal;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^ meta.property-value.less
+//                       ^^^^^^ support.constant.property-value.less
+//                             ^ punctuation.terminator.rule.less
+    animation-direction: reverse;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    animation-direction: alternate;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^ support.constant.property-value.less
+//                                ^ punctuation.terminator.rule.less
+    animation-direction: alternate-reverse;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                        ^ punctuation.terminator.rule.less
+    animation-direction: normal, reverse, alternate, alternate-reverse;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^ support.constant.property-value.less
+//                             ^ punctuation.separator.less
+//                               ^^^^^^^ support.constant.property-value.less
+//                                      ^ punctuation.separator.less
+//                                        ^^^^^^^^^ support.constant.property-value.less
+//                                                 ^ punctuation.separator.less
+//                                                   ^^^^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                                    ^ punctuation.terminator.rule.less
+    animation-direction: @direction, var(--direction);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^ variable.other.readwrite.less
+//                       ^ punctuation.definition.variable.less
+//                        ^^^^^^^^^ support.other.variable.less
+//                                 ^ punctuation.separator.less
+//                                   ^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                   ^^^ support.function.var.less
+//                                      ^ punctuation.definition.group.begin.less
+//                                       ^^^^^^^^^^^ support.type.custom-property.less
+//                                       ^^ punctuation.definition.custom-property.less
+//                                         ^^^^^^^^^ support.type.custom-property.name.less
+//                                                  ^ punctuation.definition.group.end.less
+//                                                   ^ punctuation.terminator.rule.less
+}
+
+.animation-duration {
+    animation-duration: 0s;
+//^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^ meta.property-value.less
+//                      ^^ constant.numeric.less
+//                       ^ keyword.other.unit.less
+//                        ^ punctuation.terminator.rule.less
+    animation-duration: 0ms;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^ meta.property-value.less
+//                      ^^^ constant.numeric.less
+//                       ^^ keyword.other.unit.less
+//                         ^ punctuation.terminator.rule.less
+    animation-duration: 1s, 1ms;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^ meta.property-value.less
+//                      ^^ constant.numeric.less
+//                       ^ keyword.other.unit.less
+//                        ^ punctuation.separator.less
+//                          ^^^ constant.numeric.less
+//                           ^^ keyword.other.unit.less
+//                             ^ punctuation.terminator.rule.less
+    animation-duration: calc(1s + 1ms);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.calc.less
+//                          ^ punctuation.definition.group.begin.less
+//                           ^^ constant.numeric.less
+//                            ^ keyword.other.unit.less
+//                              ^ keyword.operator.arithmetic.less
+//                                ^^^ constant.numeric.less
+//                                 ^^ keyword.other.unit.less
+//                                   ^ punctuation.definition.group.end.less
+//                                    ^ punctuation.terminator.rule.less
+    animation-duration: @duration, var(--duration);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^ variable.other.readwrite.less
+//                      ^ punctuation.definition.variable.less
+//                       ^^^^^^^^ support.other.variable.less
+//                               ^ punctuation.separator.less
+//                                 ^^^^^^^^^^^^^^^ meta.function-call.less
+//                                 ^^^ support.function.var.less
+//                                    ^ punctuation.definition.group.begin.less
+//                                     ^^^^^^^^^^ support.type.custom-property.less
+//                                     ^^ punctuation.definition.custom-property.less
+//                                       ^^^^^^^^ support.type.custom-property.name.less
+//                                               ^ punctuation.definition.group.end.less
+//                                                ^ punctuation.terminator.rule.less
+}
+
+.animation-fill-mode {
+    animation-fill-mode: none;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^ meta.property-value.less
+//                       ^^^^ support.constant.property-value.less
+//                           ^ punctuation.terminator.rule.less
+    animation-fill-mode: forwards;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^ support.constant.property-value.less
+//                               ^ punctuation.terminator.rule.less
+    animation-fill-mode: backwards;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^ support.constant.property-value.less
+//                                ^ punctuation.terminator.rule.less
+    animation-fill-mode: both;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^ meta.property-value.less
+//                       ^^^^ support.constant.property-value.less
+//                           ^ punctuation.terminator.rule.less
+    animation-fill-mode: none, forwards, backwards, both;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^ support.constant.property-value.less
+//                           ^ punctuation.separator.less
+//                             ^^^^^^^^ support.constant.property-value.less
+//                                     ^ punctuation.separator.less
+//                                       ^^^^^^^^^ support.constant.property-value.less
+//                                                ^ punctuation.separator.less
+//                                                  ^^^^ support.constant.property-value.less
+//                                                      ^ punctuation.terminator.rule.less
+    animation-fill-mode: @fill-mode, var(--fill-mode);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^ variable.other.readwrite.less
+//                       ^ punctuation.definition.variable.less
+//                        ^^^^^^^^^ support.other.variable.less
+//                                 ^ punctuation.separator.less
+//                                   ^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                   ^^^ support.function.var.less
+//                                      ^ punctuation.definition.group.begin.less
+//                                       ^^^^^^^^^^^ support.type.custom-property.less
+//                                       ^^ punctuation.definition.custom-property.less
+//                                         ^^^^^^^^^ support.type.custom-property.name.less
+//                                                  ^ punctuation.definition.group.end.less
+//                                                   ^ punctuation.terminator.rule.less
+}
+
+.animation-iteration-count {
+    animation-iteration-count: 1;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^ meta.property-value.less
+//                             ^ constant.numeric.less
+//                              ^ punctuation.terminator.rule.less
+    animation-iteration-count: infinite;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^ support.constant.property-value.less
+//                                     ^ punctuation.terminator.rule.less
+    animation-iteration-count: 1, infinite;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^ meta.property-value.less
+//                             ^ constant.numeric.less
+//                              ^ punctuation.separator.less
+//                                ^^^^^^^^ support.constant.property-value.less
+//                                        ^ punctuation.terminator.rule.less
+    animation-iteration-count: @iteration, var(--iteration);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^ variable.other.readwrite.less
+//                             ^ punctuation.definition.variable.less
+//                              ^^^^^^^^^ support.other.variable.less
+//                                       ^ punctuation.separator.less
+//                                         ^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                         ^^^ support.function.var.less
+//                                            ^ punctuation.definition.group.begin.less
+//                                             ^^^^^^^^^^^ support.type.custom-property.less
+//                                             ^^ punctuation.definition.custom-property.less
+//                                               ^^^^^^^^^ support.type.custom-property.name.less
+//                                                        ^ punctuation.definition.group.end.less
+//                                                         ^ punctuation.terminator.rule.less
+}
+
+.animation-name {
+    animation-name: none;
+//^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^ meta.property-value.less
+//                  ^^^^ support.constant.property-value.less
+//                      ^ punctuation.terminator.rule.less
+    animation-name: test_05;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^ variable.other.constant.animation-name.less string.unquoted.less
+//                         ^ punctuation.terminator.rule.less
+    animation-name: -specific;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^^^ variable.other.constant.animation-name.less string.unquoted.less
+//                           ^ punctuation.terminator.rule.less
+    animation-name: sliding-vertically;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^^^^^^^^^^^^ variable.other.constant.animation-name.less string.unquoted.less
+//                                    ^ punctuation.terminator.rule.less
+    animation-name: test1, animation4;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^^^ variable.other.constant.animation-name.less string.unquoted.less
+//                       ^ punctuation.definition.arbitrary-repetition.less
+//                         ^^^^^^^^^^ variable.other.constant.animation-name.less string.unquoted.less
+//                                   ^ punctuation.terminator.rule.less
+    animation-name: none, -specific, sliding;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^^ support.constant.property-value.less
+//                      ^ punctuation.definition.arbitrary-repetition.less
+//                        ^^^^^^^^^ variable.other.constant.animation-name.less string.unquoted.less
+//                                 ^ punctuation.definition.arbitrary-repetition.less
+//                                   ^^^^^^^ variable.other.constant.animation-name.less string.unquoted.less
+//                                          ^ punctuation.terminator.rule.less
+    animation-name: inherit;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^ support.constant.property-value.less
+//                         ^ punctuation.terminator.rule.less
+    animation-name: initial;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^ support.constant.property-value.less
+//                         ^ punctuation.terminator.rule.less
+    animation-name: revert;
+//^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^ meta.property-value.less
+//                  ^^^^^^ support.constant.property-value.less
+//                        ^ punctuation.terminator.rule.less
+    animation-name: revert-layer;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    animation-name: unset;
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^ meta.property-value.less
+//                  ^^^^^ support.constant.property-value.less
+//                       ^ punctuation.terminator.rule.less
+    animation-name: none, test1, -specific, sliding, inherit, initial, revert, revert-layer, unset;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^^ support.constant.property-value.less
+//                      ^ punctuation.definition.arbitrary-repetition.less
+//                        ^^^^^ variable.other.constant.animation-name.less string.unquoted.less
+//                             ^ punctuation.definition.arbitrary-repetition.less
+//                               ^^^^^^^^^ variable.other.constant.animation-name.less string.unquoted.less
+//                                        ^ punctuation.definition.arbitrary-repetition.less
+//                                          ^^^^^^^ variable.other.constant.animation-name.less string.unquoted.less
+//                                                 ^ punctuation.definition.arbitrary-repetition.less
+//                                                   ^^^^^^^ support.constant.property-value.less
+//                                                          ^ punctuation.definition.arbitrary-repetition.less
+//                                                            ^^^^^^^ support.constant.property-value.less
+//                                                                   ^ punctuation.definition.arbitrary-repetition.less
+//                                                                     ^^^^^^ support.constant.property-value.less
+//                                                                           ^ punctuation.definition.arbitrary-repetition.less
+//                                                                             ^^^^^^^^^^^^ support.constant.property-value.less
+//                                                                                         ^ punctuation.definition.arbitrary-repetition.less
+//                                                                                           ^^^^^ support.constant.property-value.less
+//                                                                                                ^ punctuation.terminator.rule.less
+    animation-name: @name, var(--name);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                 ^^^^^^ variable.other.readwrite.less
+//                  ^ punctuation.definition.variable.less
+//                   ^^^^ support.other.variable.less
+//                       ^ punctuation.definition.arbitrary-repetition.less
+//                         ^^^^^^^^^^^ meta.function-call.less
+//                         ^^^ support.function.var.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^^^^^^ support.type.custom-property.less
+//                             ^^ punctuation.definition.custom-property.less
+//                               ^^^^ support.type.custom-property.name.less
+//                                   ^ punctuation.definition.group.end.less
+//                                    ^ punctuation.terminator.rule.less
+}
+
+.animation-play-state {
+    animation-play-state: running;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^ meta.property-value.less
+//                        ^^^^^^^ support.constant.property-value.less
+//                               ^ punctuation.terminator.rule.less
+    animation-play-state: paused;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                       ^^^^^^^ meta.property-value.less
+//                        ^^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    animation-play-state: running, paused;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                        ^^^^^^^ support.constant.property-value.less
+//                               ^ punctuation.separator.less
+//                                 ^^^^^^ support.constant.property-value.less
+//                                       ^ punctuation.terminator.rule.less
+    animation-play-state: @state, var(--state);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                        ^^^^^^ variable.other.readwrite.less
+//                        ^ punctuation.definition.variable.less
+//                         ^^^^^ support.other.variable.less
+//                              ^ punctuation.separator.less
+//                                ^^^^^^^^^^^^ meta.function-call.less
+//                                ^^^ support.function.var.less
+//                                   ^ punctuation.definition.group.begin.less
+//                                    ^^^^^^^ support.type.custom-property.less
+//                                    ^^ punctuation.definition.custom-property.less
+//                                      ^^^^^ support.type.custom-property.name.less
+//                                           ^ punctuation.definition.group.end.less
+//                                            ^ punctuation.terminator.rule.less
+}
+
+.animation-range {
+    animation-range-start: normal;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^ meta.property-value.less
+//                         ^^^^^^ support.constant.property-value.less
+//                               ^ punctuation.terminator.rule.less
+    animation-range-start: 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^ meta.property-value.less
+//                         ^^^ constant.numeric.less
+//                           ^ keyword.other.unit.less
+//                            ^ punctuation.terminator.rule.less
+    animation-range-start: cover;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^ meta.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    animation-range-start: contain;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^ support.constant.property-value.less
+//                                ^ punctuation.terminator.rule.less
+    animation-range-start: entry;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^ meta.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    animation-range-start: exit;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^ meta.property-value.less
+//                         ^^^^ support.constant.property-value.less
+//                             ^ punctuation.terminator.rule.less
+    animation-range-start: entry-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                       ^ punctuation.terminator.rule.less
+    animation-range-start: exit-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                      ^ punctuation.terminator.rule.less
+    animation-range-start: cover 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                               ^^^ constant.numeric.less
+//                                 ^ keyword.other.unit.less
+//                                  ^ punctuation.terminator.rule.less
+    animation-range-start: contain 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^ support.constant.property-value.less
+//                                 ^^^ constant.numeric.less
+//                                   ^ keyword.other.unit.less
+//                                    ^ punctuation.terminator.rule.less
+    animation-range-start: entry 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                               ^^^ constant.numeric.less
+//                                 ^ keyword.other.unit.less
+//                                  ^ punctuation.terminator.rule.less
+    animation-range-start: exit 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^ meta.property-value.less
+//                         ^^^^ support.constant.property-value.less
+//                              ^^^ constant.numeric.less
+//                                ^ keyword.other.unit.less
+//                                 ^ punctuation.terminator.rule.less
+    animation-range-start: entry-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                        ^^^ constant.numeric.less
+//                                          ^ keyword.other.unit.less
+//                                           ^ punctuation.terminator.rule.less
+    animation-range-start: exit-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                       ^^^ constant.numeric.less
+//                                         ^ keyword.other.unit.less
+//                                          ^ punctuation.terminator.rule.less
+    animation-range-start: cover 10%, exit-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                               ^^^ constant.numeric.less
+//                                 ^ keyword.other.unit.less
+//                                  ^ punctuation.separator.less
+//                                    ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                 ^ punctuation.terminator.rule.less
+    animation-range-start: contain 10%, entry-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^ support.constant.property-value.less
+//                                 ^^^ constant.numeric.less
+//                                   ^ keyword.other.unit.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                    ^ punctuation.terminator.rule.less
+    animation-range-start: entry 10%, exit;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                               ^^^ constant.numeric.less
+//                                 ^ keyword.other.unit.less
+//                                  ^ punctuation.separator.less
+//                                    ^^^^ support.constant.property-value.less
+//                                        ^ punctuation.terminator.rule.less
+    animation-range-start: exit 10%, entry;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^ support.constant.property-value.less
+//                              ^^^ constant.numeric.less
+//                                ^ keyword.other.unit.less
+//                                 ^ punctuation.separator.less
+//                                   ^^^^^ support.constant.property-value.less
+//                                        ^ punctuation.terminator.rule.less
+    animation-range-start: entry-crossing 10%, contain;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                        ^^^ constant.numeric.less
+//                                          ^ keyword.other.unit.less
+//                                           ^ punctuation.separator.less
+//                                             ^^^^^^^ support.constant.property-value.less
+//                                                    ^ punctuation.terminator.rule.less
+    animation-range-start: exit-crossing 10%, cover;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                       ^^^ constant.numeric.less
+//                                         ^ keyword.other.unit.less
+//                                          ^ punctuation.separator.less
+//                                            ^^^^^ support.constant.property-value.less
+//                                                 ^ punctuation.terminator.rule.less
+    animation-range-start: cover, exit-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                              ^ punctuation.separator.less
+//                                ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                              ^^^ constant.numeric.less
+//                                                ^ keyword.other.unit.less
+//                                                 ^ punctuation.terminator.rule.less
+    animation-range-start: contain, entry-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^ support.constant.property-value.less
+//                                ^ punctuation.separator.less
+//                                  ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                 ^^^ constant.numeric.less
+//                                                   ^ keyword.other.unit.less
+//                                                    ^ punctuation.terminator.rule.less
+    animation-range-start: entry, exit 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                              ^ punctuation.separator.less
+//                                ^^^^ support.constant.property-value.less
+//                                     ^^^ constant.numeric.less
+//                                       ^ keyword.other.unit.less
+//                                        ^ punctuation.terminator.rule.less
+    animation-range-start: exit, entry 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^ support.constant.property-value.less
+//                             ^ punctuation.separator.less
+//                               ^^^^^ support.constant.property-value.less
+//                                     ^^^ constant.numeric.less
+//                                       ^ keyword.other.unit.less
+//                                        ^ punctuation.terminator.rule.less
+    animation-range-start: entry-crossing, contain 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                       ^ punctuation.separator.less
+//                                         ^^^^^^^ support.constant.property-value.less
+//                                                 ^^^ constant.numeric.less
+//                                                   ^ keyword.other.unit.less
+//                                                    ^ punctuation.terminator.rule.less
+    animation-range-start: exit-crossing, cover 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                      ^ punctuation.separator.less
+//                                        ^^^^^ support.constant.property-value.less
+//                                              ^^^ constant.numeric.less
+//                                                ^ keyword.other.unit.less
+//                                                 ^ punctuation.terminator.rule.less
+    animation-range-start: cover 10%, exit-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                               ^^^ constant.numeric.less
+//                                 ^ keyword.other.unit.less
+//                                  ^ punctuation.separator.less
+//                                    ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                  ^^^ constant.numeric.less
+//                                                    ^ keyword.other.unit.less
+//                                                     ^ punctuation.terminator.rule.less
+    animation-range-start: contain 10%, entry-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^ support.constant.property-value.less
+//                                 ^^^ constant.numeric.less
+//                                   ^ keyword.other.unit.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                     ^^^ constant.numeric.less
+//                                                       ^ keyword.other.unit.less
+//                                                        ^ punctuation.terminator.rule.less
+    animation-range-start: entry 10%, exit 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                               ^^^ constant.numeric.less
+//                                 ^ keyword.other.unit.less
+//                                  ^ punctuation.separator.less
+//                                    ^^^^ support.constant.property-value.less
+//                                         ^^^ constant.numeric.less
+//                                           ^ keyword.other.unit.less
+//                                            ^ punctuation.terminator.rule.less
+    animation-range-start: exit 10%, entry 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^ support.constant.property-value.less
+//                              ^^^ constant.numeric.less
+//                                ^ keyword.other.unit.less
+//                                 ^ punctuation.separator.less
+//                                   ^^^^^ support.constant.property-value.less
+//                                         ^^^ constant.numeric.less
+//                                           ^ keyword.other.unit.less
+//                                            ^ punctuation.terminator.rule.less
+    animation-range-start: entry-crossing 10%, contain 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                        ^^^ constant.numeric.less
+//                                          ^ keyword.other.unit.less
+//                                           ^ punctuation.separator.less
+//                                             ^^^^^^^ support.constant.property-value.less
+//                                                     ^^^ constant.numeric.less
+//                                                       ^ keyword.other.unit.less
+//                                                        ^ punctuation.terminator.rule.less
+    animation-range-start: exit-crossing 10%, cover 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                       ^ punctuation.separator.key-value.less
+//                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                         ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                       ^^^ constant.numeric.less
+//                                         ^ keyword.other.unit.less
+//                                          ^ punctuation.separator.less
+//                                            ^^^^^ support.constant.property-value.less
+//                                                  ^^^ constant.numeric.less
+//                                                    ^ keyword.other.unit.less
+//                                                     ^ punctuation.terminator.rule.less
+    animation-range-end: normal;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^ meta.property-value.less
+//                       ^^^^^^ support.constant.property-value.less
+//                             ^ punctuation.terminator.rule.less
+    animation-range-end: 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^ meta.property-value.less
+//                       ^^^ constant.numeric.less
+//                         ^ keyword.other.unit.less
+//                          ^ punctuation.terminator.rule.less
+    animation-range-end: cover;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^ meta.property-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                            ^ punctuation.terminator.rule.less
+    animation-range-end: contain;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    animation-range-end: entry;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^ meta.property-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                            ^ punctuation.terminator.rule.less
+    animation-range-end: exit;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^ meta.property-value.less
+//                       ^^^^ support.constant.property-value.less
+//                           ^ punctuation.terminator.rule.less
+    animation-range-end: entry-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                     ^ punctuation.terminator.rule.less
+    animation-range-end: exit-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                    ^ punctuation.terminator.rule.less
+    animation-range-end: cover 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                             ^^^ constant.numeric.less
+//                               ^ keyword.other.unit.less
+//                                ^ punctuation.terminator.rule.less
+    animation-range-end: contain 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^ support.constant.property-value.less
+//                               ^^^ constant.numeric.less
+//                                 ^ keyword.other.unit.less
+//                                  ^ punctuation.terminator.rule.less
+    animation-range-end: entry 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                             ^^^ constant.numeric.less
+//                               ^ keyword.other.unit.less
+//                                ^ punctuation.terminator.rule.less
+    animation-range-end: exit 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^ meta.property-value.less
+//                       ^^^^ support.constant.property-value.less
+//                            ^^^ constant.numeric.less
+//                              ^ keyword.other.unit.less
+//                               ^ punctuation.terminator.rule.less
+    animation-range-end: entry-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                      ^^^ constant.numeric.less
+//                                        ^ keyword.other.unit.less
+//                                         ^ punctuation.terminator.rule.less
+    animation-range-end: exit-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                     ^^^ constant.numeric.less
+//                                       ^ keyword.other.unit.less
+//                                        ^ punctuation.terminator.rule.less
+    animation-range-end: cover 10%, exit-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                             ^^^ constant.numeric.less
+//                               ^ keyword.other.unit.less
+//                                ^ punctuation.separator.less
+//                                  ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                               ^ punctuation.terminator.rule.less
+    animation-range-end: contain 10%, entry-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^ support.constant.property-value.less
+//                               ^^^ constant.numeric.less
+//                                 ^ keyword.other.unit.less
+//                                  ^ punctuation.separator.less
+//                                    ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                  ^ punctuation.terminator.rule.less
+    animation-range-end: entry 10%, exit;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                             ^^^ constant.numeric.less
+//                               ^ keyword.other.unit.less
+//                                ^ punctuation.separator.less
+//                                  ^^^^ support.constant.property-value.less
+//                                      ^ punctuation.terminator.rule.less
+    animation-range-end: exit 10%, entry;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^ support.constant.property-value.less
+//                            ^^^ constant.numeric.less
+//                              ^ keyword.other.unit.less
+//                               ^ punctuation.separator.less
+//                                 ^^^^^ support.constant.property-value.less
+//                                      ^ punctuation.terminator.rule.less
+    animation-range-end: entry-crossing 10%, contain;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                      ^^^ constant.numeric.less
+//                                        ^ keyword.other.unit.less
+//                                         ^ punctuation.separator.less
+//                                           ^^^^^^^ support.constant.property-value.less
+//                                                  ^ punctuation.terminator.rule.less
+    animation-range-end: exit-crossing 10%, cover;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                     ^^^ constant.numeric.less
+//                                       ^ keyword.other.unit.less
+//                                        ^ punctuation.separator.less
+//                                          ^^^^^ support.constant.property-value.less
+//                                               ^ punctuation.terminator.rule.less
+    animation-range-end: cover, exit-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                            ^ punctuation.separator.less
+//                              ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                            ^^^ constant.numeric.less
+//                                              ^ keyword.other.unit.less
+//                                               ^ punctuation.terminator.rule.less
+    animation-range-end: contain, entry-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^ support.constant.property-value.less
+//                              ^ punctuation.separator.less
+//                                ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                               ^^^ constant.numeric.less
+//                                                 ^ keyword.other.unit.less
+//                                                  ^ punctuation.terminator.rule.less
+    animation-range-end: entry, exit 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                            ^ punctuation.separator.less
+//                              ^^^^ support.constant.property-value.less
+//                                   ^^^ constant.numeric.less
+//                                     ^ keyword.other.unit.less
+//                                      ^ punctuation.terminator.rule.less
+    animation-range-end: exit, entry 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^ support.constant.property-value.less
+//                           ^ punctuation.separator.less
+//                             ^^^^^ support.constant.property-value.less
+//                                   ^^^ constant.numeric.less
+//                                     ^ keyword.other.unit.less
+//                                      ^ punctuation.terminator.rule.less
+    animation-range-end: entry-crossing, contain 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                     ^ punctuation.separator.less
+//                                       ^^^^^^^ support.constant.property-value.less
+//                                               ^^^ constant.numeric.less
+//                                                 ^ keyword.other.unit.less
+//                                                  ^ punctuation.terminator.rule.less
+    animation-range-end: exit-crossing, cover 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^ support.constant.property-value.less
+//                                            ^^^ constant.numeric.less
+//                                              ^ keyword.other.unit.less
+//                                               ^ punctuation.terminator.rule.less
+    animation-range-end: cover 10%, exit-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                             ^^^ constant.numeric.less
+//                               ^ keyword.other.unit.less
+//                                ^ punctuation.separator.less
+//                                  ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                ^^^ constant.numeric.less
+//                                                  ^ keyword.other.unit.less
+//                                                   ^ punctuation.terminator.rule.less
+    animation-range-end: contain 10%, entry-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^ support.constant.property-value.less
+//                               ^^^ constant.numeric.less
+//                                 ^ keyword.other.unit.less
+//                                  ^ punctuation.separator.less
+//                                    ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                   ^^^ constant.numeric.less
+//                                                     ^ keyword.other.unit.less
+//                                                      ^ punctuation.terminator.rule.less
+    animation-range-end: entry 10%, exit 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                             ^^^ constant.numeric.less
+//                               ^ keyword.other.unit.less
+//                                ^ punctuation.separator.less
+//                                  ^^^^ support.constant.property-value.less
+//                                       ^^^ constant.numeric.less
+//                                         ^ keyword.other.unit.less
+//                                          ^ punctuation.terminator.rule.less
+    animation-range-end: exit 10%, entry 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^ support.constant.property-value.less
+//                            ^^^ constant.numeric.less
+//                              ^ keyword.other.unit.less
+//                               ^ punctuation.separator.less
+//                                 ^^^^^ support.constant.property-value.less
+//                                       ^^^ constant.numeric.less
+//                                         ^ keyword.other.unit.less
+//                                          ^ punctuation.terminator.rule.less
+    animation-range-end: entry-crossing 10%, contain 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                      ^^^ constant.numeric.less
+//                                        ^ keyword.other.unit.less
+//                                         ^ punctuation.separator.less
+//                                           ^^^^^^^ support.constant.property-value.less
+//                                                   ^^^ constant.numeric.less
+//                                                     ^ keyword.other.unit.less
+//                                                      ^ punctuation.terminator.rule.less
+    animation-range-end: exit-crossing 10%, cover 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                       ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                     ^^^ constant.numeric.less
+//                                       ^ keyword.other.unit.less
+//                                        ^ punctuation.separator.less
+//                                          ^^^^^ support.constant.property-value.less
+//                                                ^^^ constant.numeric.less
+//                                                  ^ keyword.other.unit.less
+//                                                   ^ punctuation.terminator.rule.less
+    animation-range: normal normal;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^ support.constant.property-value.less
+//                          ^^^^^^ support.constant.property-value.less
+//                                ^ punctuation.terminator.rule.less
+    animation-range: 10% 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^ meta.property-value.less
+//                   ^^^ constant.numeric.less
+//                     ^ keyword.other.unit.less
+//                       ^^^ constant.numeric.less
+//                         ^ keyword.other.unit.less
+//                          ^ punctuation.terminator.rule.less
+    animation-range: cover cover;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^ support.constant.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    animation-range: contain contain;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^ support.constant.property-value.less
+//                           ^^^^^^^ support.constant.property-value.less
+//                                  ^ punctuation.terminator.rule.less
+    animation-range: entry entry;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^ support.constant.property-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    animation-range: exit exit;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^ meta.property-value.less
+//                   ^^^^ support.constant.property-value.less
+//                        ^^^^ support.constant.property-value.less
+//                            ^ punctuation.terminator.rule.less
+    animation-range: entry-crossing entry-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                  ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                ^ punctuation.terminator.rule.less
+    animation-range: exit-crossing exit-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                 ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                              ^ punctuation.terminator.rule.less
+    animation-range: cover 10% cover 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^ support.constant.property-value.less
+//                         ^^^ constant.numeric.less
+//                           ^ keyword.other.unit.less
+//                             ^^^^^ support.constant.property-value.less
+//                                   ^^^ constant.numeric.less
+//                                     ^ keyword.other.unit.less
+//                                      ^ punctuation.terminator.rule.less
+    animation-range: contain 10% contain 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^ support.constant.property-value.less
+//                           ^^^ constant.numeric.less
+//                             ^ keyword.other.unit.less
+//                               ^^^^^^^ support.constant.property-value.less
+//                                       ^^^ constant.numeric.less
+//                                         ^ keyword.other.unit.less
+//                                          ^ punctuation.terminator.rule.less
+    animation-range: entry 10% entry 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^ support.constant.property-value.less
+//                         ^^^ constant.numeric.less
+//                           ^ keyword.other.unit.less
+//                             ^^^^^ support.constant.property-value.less
+//                                   ^^^ constant.numeric.less
+//                                     ^ keyword.other.unit.less
+//                                      ^ punctuation.terminator.rule.less
+    animation-range: exit 10% exit 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^ support.constant.property-value.less
+//                        ^^^ constant.numeric.less
+//                          ^ keyword.other.unit.less
+//                            ^^^^ support.constant.property-value.less
+//                                 ^^^ constant.numeric.less
+//                                   ^ keyword.other.unit.less
+//                                    ^ punctuation.terminator.rule.less
+    animation-range: entry-crossing 10% entry-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                  ^^^ constant.numeric.less
+//                                    ^ keyword.other.unit.less
+//                                      ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                     ^^^ constant.numeric.less
+//                                                       ^ keyword.other.unit.less
+//                                                        ^ punctuation.terminator.rule.less
+    animation-range: exit-crossing 10% exit-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                 ^^^ constant.numeric.less
+//                                   ^ keyword.other.unit.less
+//                                     ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                   ^^^ constant.numeric.less
+//                                                     ^ keyword.other.unit.less
+//                                                      ^ punctuation.terminator.rule.less
+    animation-range: cover 10% exit-crossing, cover 10% exit-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^ support.constant.property-value.less
+//                         ^^^ constant.numeric.less
+//                           ^ keyword.other.unit.less
+//                             ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                          ^ punctuation.separator.less
+//                                            ^^^^^ support.constant.property-value.less
+//                                                  ^^^ constant.numeric.less
+//                                                    ^ keyword.other.unit.less
+//                                                      ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                                   ^ punctuation.terminator.rule.less
+    animation-range: contain 10% entry-crossing, contain 10% entry-crossing;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^ support.constant.property-value.less
+//                           ^^^ constant.numeric.less
+//                             ^ keyword.other.unit.less
+//                               ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                             ^ punctuation.separator.less
+//                                               ^^^^^^^ support.constant.property-value.less
+//                                                       ^^^ constant.numeric.less
+//                                                         ^ keyword.other.unit.less
+//                                                           ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                                         ^ punctuation.terminator.rule.less
+    animation-range: entry 10% exit, entry 10% exit;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^ support.constant.property-value.less
+//                         ^^^ constant.numeric.less
+//                           ^ keyword.other.unit.less
+//                             ^^^^ support.constant.property-value.less
+//                                 ^ punctuation.separator.less
+//                                   ^^^^^ support.constant.property-value.less
+//                                         ^^^ constant.numeric.less
+//                                           ^ keyword.other.unit.less
+//                                             ^^^^ support.constant.property-value.less
+//                                                 ^ punctuation.terminator.rule.less
+    animation-range: exit 10% entry, exit 10% entry;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^ support.constant.property-value.less
+//                        ^^^ constant.numeric.less
+//                          ^ keyword.other.unit.less
+//                            ^^^^^ support.constant.property-value.less
+//                                 ^ punctuation.separator.less
+//                                   ^^^^ support.constant.property-value.less
+//                                        ^^^ constant.numeric.less
+//                                          ^ keyword.other.unit.less
+//                                            ^^^^^ support.constant.property-value.less
+//                                                 ^ punctuation.terminator.rule.less
+    animation-range: entry-crossing 10% contain, entry-crossing 10% contain;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                  ^^^ constant.numeric.less
+//                                    ^ keyword.other.unit.less
+//                                      ^^^^^^^ support.constant.property-value.less
+//                                             ^ punctuation.separator.less
+//                                               ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                              ^^^ constant.numeric.less
+//                                                                ^ keyword.other.unit.less
+//                                                                  ^^^^^^^ support.constant.property-value.less
+//                                                                         ^ punctuation.terminator.rule.less
+    animation-range: exit-crossing 10% cover, exit-crossing 10% cover;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                 ^^^ constant.numeric.less
+//                                   ^ keyword.other.unit.less
+//                                     ^^^^^ support.constant.property-value.less
+//                                          ^ punctuation.separator.less
+//                                            ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                          ^^^ constant.numeric.less
+//                                                            ^ keyword.other.unit.less
+//                                                              ^^^^^ support.constant.property-value.less
+//                                                                   ^ punctuation.terminator.rule.less
+    animation-range: cover exit-crossing 10%, cover exit-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^ support.constant.property-value.less
+//                         ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                       ^^^ constant.numeric.less
+//                                         ^ keyword.other.unit.less
+//                                          ^ punctuation.separator.less
+//                                            ^^^^^ support.constant.property-value.less
+//                                                  ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                                ^^^ constant.numeric.less
+//                                                                  ^ keyword.other.unit.less
+//                                                                   ^ punctuation.terminator.rule.less
+    animation-range: contain entry-crossing 10%, contain entry-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^ support.constant.property-value.less
+//                           ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                          ^^^ constant.numeric.less
+//                                            ^ keyword.other.unit.less
+//                                             ^ punctuation.separator.less
+//                                               ^^^^^^^ support.constant.property-value.less
+//                                                       ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                                      ^^^ constant.numeric.less
+//                                                                        ^ keyword.other.unit.less
+//                                                                         ^ punctuation.terminator.rule.less
+    animation-range: entry exit 10%, entry exit 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^ support.constant.property-value.less
+//                         ^^^^ support.constant.property-value.less
+//                              ^^^ constant.numeric.less
+//                                ^ keyword.other.unit.less
+//                                 ^ punctuation.separator.less
+//                                   ^^^^^ support.constant.property-value.less
+//                                         ^^^^ support.constant.property-value.less
+//                                              ^^^ constant.numeric.less
+//                                                ^ keyword.other.unit.less
+//                                                 ^ punctuation.terminator.rule.less
+    animation-range: exit entry 10%, exit entry 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^ support.constant.property-value.less
+//                        ^^^^^ support.constant.property-value.less
+//                              ^^^ constant.numeric.less
+//                                ^ keyword.other.unit.less
+//                                 ^ punctuation.separator.less
+//                                   ^^^^ support.constant.property-value.less
+//                                        ^^^^^ support.constant.property-value.less
+//                                              ^^^ constant.numeric.less
+//                                                ^ keyword.other.unit.less
+//                                                 ^ punctuation.terminator.rule.less
+    animation-range: entry-crossing contain 10%, entry-crossing contain 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                  ^^^^^^^ support.constant.property-value.less
+//                                          ^^^ constant.numeric.less
+//                                            ^ keyword.other.unit.less
+//                                             ^ punctuation.separator.less
+//                                               ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                              ^^^^^^^ support.constant.property-value.less
+//                                                                      ^^^ constant.numeric.less
+//                                                                        ^ keyword.other.unit.less
+//                                                                         ^ punctuation.terminator.rule.less
+    animation-range: exit-crossing cover 10%, exit-crossing cover 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                 ^^^^^ support.constant.property-value.less
+//                                       ^^^ constant.numeric.less
+//                                         ^ keyword.other.unit.less
+//                                          ^ punctuation.separator.less
+//                                            ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                          ^^^^^ support.constant.property-value.less
+//                                                                ^^^ constant.numeric.less
+//                                                                  ^ keyword.other.unit.less
+//                                                                   ^ punctuation.terminator.rule.less
+    animation-range: cover 10% exit-crossing 10%, cover 10% exit-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^ support.constant.property-value.less
+//                         ^^^ constant.numeric.less
+//                           ^ keyword.other.unit.less
+//                             ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                           ^^^ constant.numeric.less
+//                                             ^ keyword.other.unit.less
+//                                              ^ punctuation.separator.less
+//                                                ^^^^^ support.constant.property-value.less
+//                                                      ^^^ constant.numeric.less
+//                                                        ^ keyword.other.unit.less
+//                                                          ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                                        ^^^ constant.numeric.less
+//                                                                          ^ keyword.other.unit.less
+//                                                                           ^ punctuation.terminator.rule.less
+    animation-range: contain 10% entry-crossing 10%, contain 10% entry-crossing 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^ support.constant.property-value.less
+//                           ^^^ constant.numeric.less
+//                             ^ keyword.other.unit.less
+//                               ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                              ^^^ constant.numeric.less
+//                                                ^ keyword.other.unit.less
+//                                                 ^ punctuation.separator.less
+//                                                   ^^^^^^^ support.constant.property-value.less
+//                                                           ^^^ constant.numeric.less
+//                                                             ^ keyword.other.unit.less
+//                                                               ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                                              ^^^ constant.numeric.less
+//                                                                                ^ keyword.other.unit.less
+//                                                                                 ^ punctuation.terminator.rule.less
+    animation-range: entry 10% exit 10%, entry 10% exit 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^ support.constant.property-value.less
+//                         ^^^ constant.numeric.less
+//                           ^ keyword.other.unit.less
+//                             ^^^^ support.constant.property-value.less
+//                                  ^^^ constant.numeric.less
+//                                    ^ keyword.other.unit.less
+//                                     ^ punctuation.separator.less
+//                                       ^^^^^ support.constant.property-value.less
+//                                             ^^^ constant.numeric.less
+//                                               ^ keyword.other.unit.less
+//                                                 ^^^^ support.constant.property-value.less
+//                                                      ^^^ constant.numeric.less
+//                                                        ^ keyword.other.unit.less
+//                                                         ^ punctuation.terminator.rule.less
+    animation-range: exit 10% entry 10%, exit 10% entry 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^ support.constant.property-value.less
+//                        ^^^ constant.numeric.less
+//                          ^ keyword.other.unit.less
+//                            ^^^^^ support.constant.property-value.less
+//                                  ^^^ constant.numeric.less
+//                                    ^ keyword.other.unit.less
+//                                     ^ punctuation.separator.less
+//                                       ^^^^ support.constant.property-value.less
+//                                            ^^^ constant.numeric.less
+//                                              ^ keyword.other.unit.less
+//                                                ^^^^^ support.constant.property-value.less
+//                                                      ^^^ constant.numeric.less
+//                                                        ^ keyword.other.unit.less
+//                                                         ^ punctuation.terminator.rule.less
+    animation-range: entry-crossing 10% contain 10%, entry-crossing 10% contain 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                  ^^^ constant.numeric.less
+//                                    ^ keyword.other.unit.less
+//                                      ^^^^^^^ support.constant.property-value.less
+//                                              ^^^ constant.numeric.less
+//                                                ^ keyword.other.unit.less
+//                                                 ^ punctuation.separator.less
+//                                                   ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                                  ^^^ constant.numeric.less
+//                                                                    ^ keyword.other.unit.less
+//                                                                      ^^^^^^^ support.constant.property-value.less
+//                                                                              ^^^ constant.numeric.less
+//                                                                                ^ keyword.other.unit.less
+//                                                                                 ^ punctuation.terminator.rule.less
+    animation-range: exit-crossing 10% cover 10%, exit-crossing 10% cover 10%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                 ^^^ constant.numeric.less
+//                                   ^ keyword.other.unit.less
+//                                     ^^^^^ support.constant.property-value.less
+//                                           ^^^ constant.numeric.less
+//                                             ^ keyword.other.unit.less
+//                                              ^ punctuation.separator.less
+//                                                ^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                              ^^^ constant.numeric.less
+//                                                                ^ keyword.other.unit.less
+//                                                                  ^^^^^ support.constant.property-value.less
+//                                                                        ^^^ constant.numeric.less
+//                                                                          ^ keyword.other.unit.less
+//                                                                           ^ punctuation.terminator.rule.less
+    animation-range: @animation-range-start @animation-range-end, var(--animation-range-start) var(--animation-range-end);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//                 ^ punctuation.separator.key-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//                   ^ punctuation.definition.variable.less
+//                    ^^^^^^^^^^^^^^^^^^^^^ support.other.variable.less
+//                                          ^ punctuation.definition.variable.less
+//                                           ^^^^^^^^^^^^^^^^^^^ support.other.variable.less
+//                                                              ^ punctuation.separator.less
+//                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                                ^^^ support.function.var.less
+//                                                                   ^ punctuation.definition.group.begin.less
+//                                                                    ^^^^^^^^^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                                                                    ^^ punctuation.definition.custom-property.less
+//                                                                      ^^^^^^^^^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                                                                           ^ punctuation.definition.group.end.less
+//                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                                                             ^^^ support.function.var.less
+//                                                                                                ^ punctuation.definition.group.begin.less
+//                                                                                                 ^^^^^^^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                                                                                                 ^^ punctuation.definition.custom-property.less
+//                                                                                                   ^^^^^^^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                                                                                                      ^ punctuation.definition.group.end.less
+//                                                                                                                       ^ punctuation.terminator.rule.less
+}
+
+.animation-timeline {
+    animation-timeline: none;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^ meta.property-value.less
+//                      ^^^^ support.constant.property-value.less
+//                          ^ punctuation.terminator.rule.less
+    animation-timeline: auto;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^ meta.property-value.less
+//                      ^^^^ support.constant.property-value.less
+//                          ^ punctuation.terminator.rule.less
+    animation-timeline: --dashed-ident;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^ meta.property-value.less support.type.custom-property.less
+//                      ^^ punctuation.definition.custom-property.less
+//                        ^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                    ^ punctuation.terminator.rule.less
+    animation-timeline: --dashed-ident, --another-ident;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                     ^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                      ^^ punctuation.definition.custom-property.less
+//                        ^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                                      ^^ punctuation.definition.custom-property.less
+//                                        ^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                                     ^ punctuation.terminator.rule.less
+    animation-timeline: --dashed-ident, auto;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                     ^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                      ^^ punctuation.definition.custom-property.less
+//                        ^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^ support.constant.property-value.less
+//                                          ^ punctuation.terminator.rule.less
+    animation-timeline: @less-variable;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^ meta.property-value.less variable.other.readwrite.less
+//                      ^ punctuation.definition.variable.less
+//                       ^^^^^^^^^^^^^ support.other.variable.less
+//                                    ^ punctuation.terminator.rule.less
+    animation-timeline: @less-variable, @another-less-variable;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                     ^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//                      ^ punctuation.definition.variable.less
+//                       ^^^^^^^^^^^^^ support.other.variable.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//                                      ^ punctuation.definition.variable.less
+//                                       ^^^^^^^^^^^^^^^^^^^^^ support.other.variable.less
+//                                                            ^ punctuation.terminator.rule.less
+    animation-timeline: @less-variable, auto;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                     ^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//                      ^ punctuation.definition.variable.less
+//                       ^^^^^^^^^^^^^ support.other.variable.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^ support.constant.property-value.less
+//                                          ^ punctuation.terminator.rule.less
+    animation-timeline: @less-variable, --dashed-ident;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                     ^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//                      ^ punctuation.definition.variable.less
+//                       ^^^^^^^^^^^^^ support.other.variable.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^^^^^^^^ support.type.custom-property.less
+//                                      ^^ punctuation.definition.custom-property.less
+//                                        ^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                                    ^ punctuation.terminator.rule.less
+    animation-timeline: scroll();
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^ meta.function-call.less
+//                      ^^^^^^ support.function.scroll.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^ punctuation.definition.group.end.less
+//                              ^ punctuation.terminator.rule.less
+    animation-timeline: scroll(root);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^^^ support.function.scroll.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^^^^ support.constant.scroller.less
+//                                 ^ punctuation.definition.group.end.less
+//                                  ^ punctuation.terminator.rule.less
+    animation-timeline: scroll(nearest);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^^^ support.function.scroll.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^^^^^^^ support.constant.scroller.less
+//                                    ^ punctuation.definition.group.end.less
+//                                     ^ punctuation.terminator.rule.less
+    animation-timeline: scroll(self);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^^^ support.function.scroll.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^^^^ support.constant.scroller.less
+//                                 ^ punctuation.definition.group.end.less
+//                                  ^ punctuation.terminator.rule.less
+    animation-timeline: scroll(block);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^^^ support.function.scroll.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^^^^^ support.constant.axis.less
+//                                  ^ punctuation.definition.group.end.less
+//                                   ^ punctuation.terminator.rule.less
+    animation-timeline: scroll(inline);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^^^ support.function.scroll.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^^^^^^ support.constant.axis.less
+//                                   ^ punctuation.definition.group.end.less
+//                                    ^ punctuation.terminator.rule.less
+    animation-timeline: scroll(x);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^ meta.function-call.less
+//                      ^^^^^^ support.function.scroll.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^ support.constant.axis.less
+//                              ^ punctuation.definition.group.end.less
+//                               ^ punctuation.terminator.rule.less
+    animation-timeline: scroll(y);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^ meta.function-call.less
+//                      ^^^^^^ support.function.scroll.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^ support.constant.axis.less
+//                              ^ punctuation.definition.group.end.less
+//                               ^ punctuation.terminator.rule.less
+    animation-timeline: scroll(var(--scroll-target));
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^^^ support.function.scroll.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^ support.function.var.less
+//                                ^ punctuation.definition.group.begin.less
+//                                 ^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                                 ^^ punctuation.definition.custom-property.less
+//                                   ^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                                ^ punctuation.definition.group.end.less
+//                                                 ^ punctuation.definition.group.end.less
+//                                                  ^ punctuation.terminator.rule.less
+    animation-timeline: scroll(@scroll-target);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^^^ support.function.scroll.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^^^^^^^^^^^^^^ variable.other.readwrite.less
+//                             ^ punctuation.definition.variable.less
+//                              ^^^^^^^^^^^^^ support.other.variable.less
+//                                           ^ punctuation.definition.group.end.less
+//                                            ^ punctuation.terminator.rule.less
+    animation-timeline: view();
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^ meta.property-value.less
+//                      ^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^ punctuation.definition.group.end.less
+//                            ^ punctuation.terminator.rule.less
+    animation-timeline: view(block);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^^ support.constant.property-value.less
+//                                ^ punctuation.definition.group.end.less
+//                                 ^ punctuation.terminator.rule.less
+    animation-timeline: view(inline);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^^^ support.constant.property-value.less
+//                                 ^ punctuation.definition.group.end.less
+//                                  ^ punctuation.terminator.rule.less
+    animation-timeline: view(x);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^ support.constant.property-value.less
+//                            ^ punctuation.definition.group.end.less
+//                             ^ punctuation.terminator.rule.less
+    animation-timeline: view(y);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^ support.constant.property-value.less
+//                            ^ punctuation.definition.group.end.less
+//                             ^ punctuation.terminator.rule.less
+    animation-timeline: view(auto);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^ support.constant.property-value.less
+//                               ^ punctuation.definition.group.end.less
+//                                ^ punctuation.terminator.rule.less
+    animation-timeline: view(20%);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^ constant.numeric.less
+//                             ^ keyword.other.unit.less
+//                              ^ punctuation.definition.group.end.less
+//                               ^ punctuation.terminator.rule.less
+    animation-timeline: view(200px);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^^ constant.numeric.less
+//                              ^^ keyword.other.unit.less
+//                                ^ punctuation.definition.group.end.less
+//                                 ^ punctuation.terminator.rule.less
+    animation-timeline: view(@timeline-inset);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//                           ^ punctuation.definition.variable.less
+//                            ^^^^^^^^^^^^^^ support.other.variable.less
+//                                          ^ punctuation.definition.group.end.less
+//                                           ^ punctuation.terminator.rule.less
+    animation-timeline: view(@timeline-start @timeline-end);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//                           ^ punctuation.definition.variable.less
+//                            ^^^^^^^^^^^^^^ support.other.variable.less
+//                                           ^ punctuation.definition.variable.less
+//                                            ^^^^^^^^^^^^ support.other.variable.less
+//                                                        ^ punctuation.definition.group.end.less
+//                                                         ^ punctuation.terminator.rule.less
+    animation-timeline: view(20% 40%);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^ constant.numeric.less
+//                             ^ keyword.other.unit.less
+//                               ^^^ constant.numeric.less
+//                                 ^ keyword.other.unit.less
+//                                  ^ punctuation.definition.group.end.less
+//                                   ^ punctuation.terminator.rule.less
+    animation-timeline: view(20% 200px);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^ constant.numeric.less
+//                             ^ keyword.other.unit.less
+//                               ^^^^^ constant.numeric.less
+//                                  ^^ keyword.other.unit.less
+//                                    ^ punctuation.definition.group.end.less
+//                                     ^ punctuation.terminator.rule.less
+    animation-timeline: view(100px 200px);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^^ constant.numeric.less
+//                              ^^ keyword.other.unit.less
+//                                 ^^^^^ constant.numeric.less
+//                                    ^^ keyword.other.unit.less
+//                                      ^ punctuation.definition.group.end.less
+//                                       ^ punctuation.terminator.rule.less
+    animation-timeline: view(auto 200px);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^ support.constant.property-value.less
+//                                ^^^^^ constant.numeric.less
+//                                   ^^ keyword.other.unit.less
+//                                     ^ punctuation.definition.group.end.less
+//                                      ^ punctuation.terminator.rule.less
+    animation-timeline: view(block auto);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^^ support.constant.property-value.less
+//                                 ^^^^ support.constant.property-value.less
+//                                     ^ punctuation.definition.group.end.less
+//                                      ^ punctuation.terminator.rule.less
+    animation-timeline: view(block auto);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^^ support.constant.property-value.less
+//                                 ^^^^ support.constant.property-value.less
+//                                     ^ punctuation.definition.group.end.less
+//                                      ^ punctuation.terminator.rule.less
+    animation-timeline: view(auto, auto);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^ support.constant.property-value.less
+//                               ^ punctuation.definition.arbitrary-repetition.less
+//                                 ^^^^ support.constant.property-value.less
+//                                     ^ punctuation.definition.group.end.less
+//                                      ^ punctuation.terminator.rule.less
+    animation-timeline: view(auto 200px, auto auto);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^ support.constant.property-value.less
+//                                ^^^^^ constant.numeric.less
+//                                   ^^ keyword.other.unit.less
+//                                     ^ punctuation.definition.arbitrary-repetition.less
+//                                       ^^^^ support.constant.property-value.less
+//                                            ^^^^ support.constant.property-value.less
+//                                                ^ punctuation.definition.group.end.less
+//                                                 ^ punctuation.terminator.rule.less
+    animation-timeline: view(auto 200px, auto block);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^ support.constant.property-value.less
+//                                ^^^^^ constant.numeric.less
+//                                   ^^ keyword.other.unit.less
+//                                     ^ punctuation.definition.arbitrary-repetition.less
+//                                       ^^^^ support.constant.property-value.less
+//                                            ^^^^^ support.constant.property-value.less
+//                                                 ^ punctuation.definition.group.end.less
+//                                                  ^ punctuation.terminator.rule.less
+    animation-timeline: view(auto 200px, auto inline);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^ support.constant.property-value.less
+//                                ^^^^^ constant.numeric.less
+//                                   ^^ keyword.other.unit.less
+//                                     ^ punctuation.definition.arbitrary-repetition.less
+//                                       ^^^^ support.constant.property-value.less
+//                                            ^^^^^^ support.constant.property-value.less
+//                                                  ^ punctuation.definition.group.end.less
+//                                                   ^ punctuation.terminator.rule.less
+    animation-timeline: view(auto 200px, auto x);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^ support.constant.property-value.less
+//                                ^^^^^ constant.numeric.less
+//                                   ^^ keyword.other.unit.less
+//                                     ^ punctuation.definition.arbitrary-repetition.less
+//                                       ^^^^ support.constant.property-value.less
+//                                            ^ support.constant.property-value.less
+//                                             ^ punctuation.definition.group.end.less
+//                                              ^ punctuation.terminator.rule.less
+    animation-timeline: view(auto 200px, auto y);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^ support.constant.property-value.less
+//                                ^^^^^ constant.numeric.less
+//                                   ^^ keyword.other.unit.less
+//                                     ^ punctuation.definition.arbitrary-repetition.less
+//                                       ^^^^ support.constant.property-value.less
+//                                            ^ support.constant.property-value.less
+//                                             ^ punctuation.definition.group.end.less
+//                                              ^ punctuation.terminator.rule.less
+    animation-timeline: view(auto 200px, auto y);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                    ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                      ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                      ^^^^ support.function.view.less
+//                           ^^^^ support.constant.property-value.less
+//                                ^^^^^ constant.numeric.less
+//                                   ^^ keyword.other.unit.less
+//                                     ^ punctuation.definition.arbitrary-repetition.less
+//                                       ^^^^ support.constant.property-value.less
+//                                            ^ support.constant.property-value.less
+//                                             ^ punctuation.definition.group.end.less
+//                                              ^ punctuation.terminator.rule.less
+}
+
+.animation-timing-function {
+    animation-timing-function: ease;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^ meta.property-value.less
+//                             ^^^^ support.constant.property-value.less
+//                                 ^ punctuation.terminator.rule.less
+    animation-timing-function: ease-in;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^ support.constant.property-value.less
+//                                    ^ punctuation.terminator.rule.less
+    animation-timing-function: ease-out;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^ support.constant.property-value.less
+//                                     ^ punctuation.terminator.rule.less
+    animation-timing-function: ease-in-out;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^ support.constant.property-value.less
+//                                        ^ punctuation.terminator.rule.less
+    animation-timing-function: linear;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^ meta.property-value.less
+//                             ^^^^^^ support.constant.property-value.less
+//                                   ^ punctuation.terminator.rule.less
+    animation-timing-function: step-start;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^ support.constant.property-value.less
+//                                       ^ punctuation.terminator.rule.less
+    animation-timing-function: step-end;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^ support.constant.property-value.less
+//                                     ^ punctuation.terminator.rule.less
+    animation-timing-function: steps(5, jump-start);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^ support.function.timing.less
+//                                  ^ punctuation.definition.group.begin.less
+//                                   ^^^^^^^^^^^^^ meta.group.less
+//                                   ^ constant.numeric.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^^^^ support.constant.step-position.less
+//                                                ^ punctuation.definition.group.end.less
+//                                                 ^ punctuation.terminator.rule.less
+    animation-timing-function: steps(5, jump-end);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^ support.function.timing.less
+//                                  ^ punctuation.definition.group.begin.less
+//                                   ^^^^^^^^^^^ meta.group.less
+//                                   ^ constant.numeric.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^^ support.constant.step-position.less
+//                                              ^ punctuation.definition.group.end.less
+//                                               ^ punctuation.terminator.rule.less
+    animation-timing-function: steps(5, jump-none);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^ support.function.timing.less
+//                                  ^ punctuation.definition.group.begin.less
+//                                   ^^^^^^^^^^^^ meta.group.less
+//                                   ^ constant.numeric.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^^^ support.constant.step-position.less
+//                                               ^ punctuation.definition.group.end.less
+//                                                ^ punctuation.terminator.rule.less
+    animation-timing-function: steps(5, jump-both);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^ support.function.timing.less
+//                                  ^ punctuation.definition.group.begin.less
+//                                   ^^^^^^^^^^^^ meta.group.less
+//                                   ^ constant.numeric.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^^^ support.constant.step-position.less
+//                                               ^ punctuation.definition.group.end.less
+//                                                ^ punctuation.terminator.rule.less
+    animation-timing-function: steps(5, start);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^ support.function.timing.less
+//                                  ^ punctuation.definition.group.begin.less
+//                                   ^^^^^^^^ meta.group.less
+//                                   ^ constant.numeric.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^ support.constant.step-position.less
+//                                           ^ punctuation.definition.group.end.less
+//                                            ^ punctuation.terminator.rule.less
+    animation-timing-function: steps(5, end);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^ support.function.timing.less
+//                                  ^ punctuation.definition.group.begin.less
+//                                   ^^^^^^ meta.group.less
+//                                   ^ constant.numeric.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^ support.constant.step-position.less
+//                                         ^ punctuation.definition.group.end.less
+//                                          ^ punctuation.terminator.rule.less
+    animation-timing-function: steps(5, @step-position);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^ support.function.timing.less
+//                                  ^ punctuation.definition.group.begin.less
+//                                   ^^^^^^^^^^^^^^^^^ meta.group.less
+//                                   ^ constant.numeric.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^^^^^^^^ variable.other.readwrite.less
+//                                      ^ punctuation.definition.variable.less
+//                                       ^^^^^^^^^^^^^ support.other.variable.less
+//                                                    ^ punctuation.definition.group.end.less
+//                                                     ^ punctuation.terminator.rule.less
+    animation-timing-function: steps(5, var(--step-position));
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^ support.function.timing.less
+//                                  ^ punctuation.definition.group.begin.less
+//                                   ^^^^^^^^^^^^^^^^^^^^^^^ meta.group.less
+//                                   ^ constant.numeric.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                      ^^^ support.function.var.less
+//                                         ^ punctuation.definition.group.begin.less
+//                                          ^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                                          ^^ punctuation.definition.custom-property.less
+//                                            ^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                                         ^ punctuation.definition.group.end.less
+//                                                          ^ punctuation.definition.group.end.less
+//                                                           ^ punctuation.terminator.rule.less
+    animation-timing-function: steps(calc(var(--step) + 5), var(--step-position));
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^ support.function.timing.less
+//                                  ^ punctuation.definition.group.begin.less
+//                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.group.less
+//                                   ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                   ^^^^ support.function.calc.less
+//                                       ^ punctuation.definition.group.begin.less
+//                                        ^^^^^^^^^^^ meta.function-call.less
+//                                        ^^^ support.function.var.less
+//                                           ^ punctuation.definition.group.begin.less
+//                                            ^^^^^^ support.type.custom-property.less
+//                                            ^^ punctuation.definition.custom-property.less
+//                                              ^^^^ support.type.custom-property.name.less
+//                                                  ^ punctuation.definition.group.end.less
+//                                                    ^ keyword.operator.arithmetic.less
+//                                                      ^ constant.numeric.less
+//                                                       ^ punctuation.definition.group.end.less
+//                                                        ^ punctuation.separator.less
+//                                                          ^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                          ^^^ support.function.var.less
+//                                                             ^ punctuation.definition.group.begin.less
+//                                                              ^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                                                              ^^ punctuation.definition.custom-property.less
+//                                                                ^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                                                             ^ punctuation.definition.group.end.less
+//                                                                              ^ punctuation.definition.group.end.less
+//                                                                               ^ punctuation.terminator.rule.less
+    animation-timing-function: linear, ease, steps(calc(var(--step) + 5), @step-position);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^ support.constant.property-value.less
+//                                   ^ punctuation.separator.less
+//                                     ^^^^ support.constant.property-value.less
+//                                         ^ punctuation.separator.less
+//                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                           ^^^^^ support.function.timing.less
+//                                                ^ punctuation.definition.group.begin.less
+//                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.group.less
+//                                                 ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                 ^^^^ support.function.calc.less
+//                                                     ^ punctuation.definition.group.begin.less
+//                                                      ^^^^^^^^^^^ meta.function-call.less
+//                                                      ^^^ support.function.var.less
+//                                                         ^ punctuation.definition.group.begin.less
+//                                                          ^^^^^^ support.type.custom-property.less
+//                                                          ^^ punctuation.definition.custom-property.less
+//                                                            ^^^^ support.type.custom-property.name.less
+//                                                                ^ punctuation.definition.group.end.less
+//                                                                  ^ keyword.operator.arithmetic.less
+//                                                                    ^ constant.numeric.less
+//                                                                     ^ punctuation.definition.group.end.less
+//                                                                      ^ punctuation.separator.less
+//                                                                        ^^^^^^^^^^^^^^ variable.other.readwrite.less
+//                                                                        ^ punctuation.definition.variable.less
+//                                                                         ^^^^^^^^^^^^^ support.other.variable.less
+//                                                                                      ^ punctuation.definition.group.end.less
+//                                                                                       ^ punctuation.terminator.rule.less
+
+    animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^^^^^^^^ support.function.timing.less
+//                                         ^ punctuation.definition.group.begin.less
+//                                          ^^^^^^^^^^^^^^^^^^ meta.group.less
+//                                          ^^^ constant.numeric.less
+//                                             ^ punctuation.separator.less
+//                                               ^^^ constant.numeric.less
+//                                                  ^ punctuation.separator.less
+//                                                    ^^^ constant.numeric.less
+//                                                       ^ punctuation.separator.less
+//                                                         ^^^ constant.numeric.less
+//                                                            ^ punctuation.definition.group.end.less
+//                                                             ^ punctuation.terminator.rule.less
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^^^^^^^^ support.function.timing.less
+//                                         ^ punctuation.definition.group.begin.less
+//                                          ^^^^^^^^^^^^^^^^^^^^^ meta.group.less
+//                                          ^^^^^ constant.numeric.less
+//                                               ^ punctuation.separator.less
+//                                                 ^^^^ constant.numeric.less
+//                                                     ^ punctuation.separator.less
+//                                                       ^^^^^ constant.numeric.less
+//                                                            ^ punctuation.separator.less
+//                                                              ^ constant.numeric.less
+//                                                               ^ punctuation.definition.group.end.less
+//                                                                ^ punctuation.terminator.rule.less
+    animation-timing-function: cubic-bezier(@x1, @y1, @x2, @y2);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^^^^^^^^ support.function.timing.less
+//                                         ^ punctuation.definition.group.begin.less
+//                                          ^^^^^^^^^^^^^^^^^^ meta.group.less
+//                                          ^^^ variable.other.readwrite.less
+//                                          ^ punctuation.definition.variable.less
+//                                           ^^ support.other.variable.less
+//                                             ^ punctuation.separator.less
+//                                               ^^^ variable.other.readwrite.less
+//                                               ^ punctuation.definition.variable.less
+//                                                ^^ support.other.variable.less
+//                                                  ^ punctuation.separator.less
+//                                                    ^^^ variable.other.readwrite.less
+//                                                    ^ punctuation.definition.variable.less
+//                                                     ^^ support.other.variable.less
+//                                                       ^ punctuation.separator.less
+//                                                         ^^^ variable.other.readwrite.less
+//                                                         ^ punctuation.definition.variable.less
+//                                                          ^^ support.other.variable.less
+//                                                            ^ punctuation.definition.group.end.less
+//                                                             ^ punctuation.terminator.rule.less
+    animation-timing-function: cubic-bezier(var(--x1), var(--y1), var(--x2), var(--y2));
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^^^^^^^^ support.function.timing.less
+//                                         ^ punctuation.definition.group.begin.less
+//                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.group.less
+//                                          ^^^^^^^^^ meta.function-call.less
+//                                          ^^^ support.function.var.less
+//                                             ^ punctuation.definition.group.begin.less
+//                                              ^^^^ support.type.custom-property.less
+//                                              ^^ punctuation.definition.custom-property.less
+//                                                ^^ support.type.custom-property.name.less
+//                                                  ^ punctuation.definition.group.end.less
+//                                                   ^ punctuation.separator.less
+//                                                     ^^^^^^^^^ meta.function-call.less
+//                                                     ^^^ support.function.var.less
+//                                                        ^ punctuation.definition.group.begin.less
+//                                                         ^^^^ support.type.custom-property.less
+//                                                         ^^ punctuation.definition.custom-property.less
+//                                                           ^^ support.type.custom-property.name.less
+//                                                             ^ punctuation.definition.group.end.less
+//                                                              ^ punctuation.separator.less
+//                                                                ^^^^^^^^^ meta.function-call.less
+//                                                                ^^^ support.function.var.less
+//                                                                   ^ punctuation.definition.group.begin.less
+//                                                                    ^^^^ support.type.custom-property.less
+//                                                                    ^^ punctuation.definition.custom-property.less
+//                                                                      ^^ support.type.custom-property.name.less
+//                                                                        ^ punctuation.definition.group.end.less
+//                                                                         ^ punctuation.separator.less
+//                                                                           ^^^^^^^^^ meta.function-call.less
+//                                                                           ^^^ support.function.var.less
+//                                                                              ^ punctuation.definition.group.begin.less
+//                                                                               ^^^^ support.type.custom-property.less
+//                                                                               ^^ punctuation.definition.custom-property.less
+//                                                                                 ^^ support.type.custom-property.name.less
+//                                                                                   ^ punctuation.definition.group.end.less
+//                                                                                    ^ punctuation.definition.group.end.less
+//                                                                                     ^ punctuation.terminator.rule.less
+    animation-timing-function: cubic-bezier(calc(var(--x1) + 0.1), calc(var(--y1) + 0.1), calc(var(--x2) + 0.1), calc(var(--y2) + 0.1));
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                           ^ punctuation.separator.key-value.less
+//                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^^^^^^^^^^ support.function.timing.less
+//                                         ^ punctuation.definition.group.begin.less
+//                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.group.less
+//                                          ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                          ^^^^ support.function.calc.less
+//                                              ^ punctuation.definition.group.begin.less
+//                                               ^^^^^^^^^ meta.function-call.less
+//                                               ^^^ support.function.var.less
+//                                                  ^ punctuation.definition.group.begin.less
+//                                                   ^^^^ support.type.custom-property.less
+//                                                   ^^ punctuation.definition.custom-property.less
+//                                                     ^^ support.type.custom-property.name.less
+//                                                       ^ punctuation.definition.group.end.less
+//                                                         ^ keyword.operator.arithmetic.less
+//                                                           ^^^ constant.numeric.less
+//                                                              ^ punctuation.definition.group.end.less
+//                                                               ^ punctuation.separator.less
+//                                                                 ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                                 ^^^^ support.function.calc.less
+//                                                                     ^ punctuation.definition.group.begin.less
+//                                                                      ^^^^^^^^^ meta.function-call.less
+//                                                                      ^^^ support.function.var.less
+//                                                                         ^ punctuation.definition.group.begin.less
+//                                                                          ^^^^ support.type.custom-property.less
+//                                                                          ^^ punctuation.definition.custom-property.less
+//                                                                            ^^ support.type.custom-property.name.less
+//                                                                              ^ punctuation.definition.group.end.less
+//                                                                                ^ keyword.operator.arithmetic.less
+//                                                                                  ^^^ constant.numeric.less
+//                                                                                     ^ punctuation.definition.group.end.less
+//                                                                                      ^ punctuation.separator.less
+//                                                                                        ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                                                        ^^^^ support.function.calc.less
+//                                                                                            ^ punctuation.definition.group.begin.less
+//                                                                                             ^^^^^^^^^ meta.function-call.less
+//                                                                                             ^^^ support.function.var.less
+//                                                                                                ^ punctuation.definition.group.begin.less
+//                                                                                                 ^^^^ support.type.custom-property.less
+//                                                                                                 ^^ punctuation.definition.custom-property.less
+//                                                                                                   ^^ support.type.custom-property.name.less
+//                                                                                                     ^ punctuation.definition.group.end.less
+//                                                                                                       ^ keyword.operator.arithmetic.less
+//                                                                                                         ^^^ constant.numeric.less
+//                                                                                                            ^ punctuation.definition.group.end.less
+//                                                                                                             ^ punctuation.separator.less
+//                                                                                                               ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                                                                               ^^^^ support.function.calc.less
+//                                                                                                                   ^ punctuation.definition.group.begin.less
+//                                                                                                                    ^^^^^^^^^ meta.function-call.less
+//                                                                                                                    ^^^ support.function.var.less
+//                                                                                                                       ^ punctuation.definition.group.begin.less
+//                                                                                                                        ^^^^ support.type.custom-property.less
+//                                                                                                                        ^^ punctuation.definition.custom-property.less
+//                                                                                                                          ^^ support.type.custom-property.name.less
+//                                                                                                                            ^ punctuation.definition.group.end.less
+//                                                                                                                              ^ keyword.operator.arithmetic.less
+//                                                                                                                                ^^^ constant.numeric.less
+//                                                                                                                                   ^ punctuation.definition.group.end.less
+//                                                                                                                                    ^ punctuation.definition.group.end.less
+//                                                                                                                                     ^ punctuation.terminator.rule.less
+}
+
+.animation {
+    animation: test1 1s 2s infinite linear alternate-reverse both paused;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^ support.type.property-name.less
+//           ^ punctuation.separator.key-value.less
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//             ^^^^^ variable.other.constant.animation-name.less string.unquoted.less
+//                   ^^ constant.numeric.less
+//                    ^ keyword.other.unit.less
+//                      ^^ constant.numeric.less
+//                       ^ keyword.other.unit.less
+//                         ^^^^^^^^ support.constant.property-value.less
+//                                  ^^^^^^ support.constant.property-value.less
+//                                         ^^^^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                                           ^^^^ support.constant.property-value.less
+//                                                                ^^^^^^ support.constant.property-value.less
+//                                                                      ^ punctuation.terminator.rule.less
+    animation: var(--name) var(--duration) var(--delay) var(--iteration-count) var(--timing-function) var(--direction) var(--fill-mode) var(--play-state);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^ support.type.property-name.less
+//           ^ punctuation.separator.key-value.less
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//             ^^^^^^^^^^^ meta.function-call.less
+//             ^^^ support.function.var.less
+//                ^ punctuation.definition.group.begin.less
+//                 ^^^^^^ support.type.custom-property.less
+//                 ^^ punctuation.definition.custom-property.less
+//                   ^^^^ support.type.custom-property.name.less
+//                       ^ punctuation.definition.group.end.less
+//                         ^^^^^^^^^^^^^^^ meta.function-call.less
+//                         ^^^ support.function.var.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^^^^^^^^^^ support.type.custom-property.less
+//                             ^^ punctuation.definition.custom-property.less
+//                               ^^^^^^^^ support.type.custom-property.name.less
+//                                       ^ punctuation.definition.group.end.less
+//                                         ^^^^^^^^^^^^ meta.function-call.less
+//                                         ^^^ support.function.var.less
+//                                            ^ punctuation.definition.group.begin.less
+//                                             ^^^^^^^ support.type.custom-property.less
+//                                             ^^ punctuation.definition.custom-property.less
+//                                               ^^^^^ support.type.custom-property.name.less
+//                                                    ^ punctuation.definition.group.end.less
+//                                                      ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                      ^^^ support.function.var.less
+//                                                         ^ punctuation.definition.group.begin.less
+//                                                          ^^^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                                                          ^^ punctuation.definition.custom-property.less
+//                                                            ^^^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                                                           ^ punctuation.definition.group.end.less
+//                                                                             ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                                             ^^^ support.function.var.less
+//                                                                                ^ punctuation.definition.group.begin.less
+//                                                                                 ^^^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                                                                                 ^^ punctuation.definition.custom-property.less
+//                                                                                   ^^^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                                                                                  ^ punctuation.definition.group.end.less
+//                                                                                                    ^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                                                                    ^^^ support.function.var.less
+//                                                                                                       ^ punctuation.definition.group.begin.less
+//                                                                                                        ^^^^^^^^^^^ support.type.custom-property.less
+//                                                                                                        ^^ punctuation.definition.custom-property.less
+//                                                                                                          ^^^^^^^^^ support.type.custom-property.name.less
+//                                                                                                                   ^ punctuation.definition.group.end.less
+//                                                                                                                     ^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                                                                                     ^^^ support.function.var.less
+//                                                                                                                        ^ punctuation.definition.group.begin.less
+//                                                                                                                         ^^^^^^^^^^^ support.type.custom-property.less
+//                                                                                                                         ^^ punctuation.definition.custom-property.less
+//                                                                                                                           ^^^^^^^^^ support.type.custom-property.name.less
+//                                                                                                                                    ^ punctuation.definition.group.end.less
+//                                                                                                                                      ^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                                                                                                      ^^^ support.function.var.less
+//                                                                                                                                         ^ punctuation.definition.group.begin.less
+//                                                                                                                                          ^^^^^^^^^^^^ support.type.custom-property.less
+//                                                                                                                                          ^^ punctuation.definition.custom-property.less
+//                                                                                                                                            ^^^^^^^^^^ support.type.custom-property.name.less
+//                                                                                                                                                      ^ punctuation.definition.group.end.less
+//                                                                                                                                                       ^ punctuation.terminator.rule.less
+    animation: @name @duration @delay @iteration-count @timing-function @direction @fill-mode @play-state;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^ support.type.property-name.less
+//           ^ punctuation.separator.key-value.less
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less variable.other.readwrite.less
+//             ^ punctuation.definition.variable.less
+//              ^^^^ support.other.variable.less
+//                   ^ punctuation.definition.variable.less
+//                    ^^^^^^^^ support.other.variable.less
+//                             ^ punctuation.definition.variable.less
+//                              ^^^^^ support.other.variable.less
+//                                    ^ punctuation.definition.variable.less
+//                                     ^^^^^^^^^^^^^^^ support.other.variable.less
+//                                                     ^ punctuation.definition.variable.less
+//                                                      ^^^^^^^^^^^^^^^ support.other.variable.less
+//                                                                      ^ punctuation.definition.variable.less
+//                                                                       ^^^^^^^^^ support.other.variable.less
+//                                                                                 ^ punctuation.definition.variable.less
+//                                                                                  ^^^^^^^^^ support.other.variable.less
+//                                                                                            ^ punctuation.definition.variable.less
+//                                                                                             ^^^^^^^^^^ support.other.variable.less
+//                                                                                                       ^ punctuation.terminator.rule.less
+}
