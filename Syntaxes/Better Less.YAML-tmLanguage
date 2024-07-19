@@ -42,6 +42,80 @@ repository:
     patterns:
     - include: '#literal-string'
 
+  at-container:
+    begin: (?=\s*@container)
+    end: \s*(\})
+    endCaptures:
+      '1': {name: punctuation.definition.block.end.less}
+    patterns:
+    - name: meta.at-rule.container.less
+      begin: ((@)container)
+      beginCaptures:
+        '1': {name: keyword.control.at-rule.container.less}
+        '2': {name: punctuation.definition.keyword.less}
+        '3': {name: support.constant.container.less}
+      end: (?=\{)
+      patterns:
+      - begin: \s*(?=[^{;])
+        end: \s*(?=[{;])
+        patterns:
+        - include: '#container-condition'
+    - begin: \s*(\{)
+      beginCaptures:
+        '1': {name: punctuation.definition.block.begin.less}
+      end: (?=\})
+      patterns:
+      - include: '#rule-list-body'
+      - include: $self
+
+  container-condition:
+    patterns:
+    - name: variable.other.constant.container-name.less
+      match: (?:--|-?(?:(?'nonascii'[a-zA-Z_\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C\u200D\u203F\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u10000-\uEFFFF])|(?'escape'\\([^\n\r\f0-9a-fA-F]|[0-9a-fA-F]{1,6}\s?))))(([-0-9]|\g'nonascii')|\g'escape')*
+    - include: '#container-query'
+
+  container-query:
+    begin: \s*(not)?
+    beginCaptures:
+      '1': {name: keyword.operator.logic.media.less}
+    end: \s*(?:(,)|(?=[{;]))
+    endCaptures:
+      '1': {name: punctuation.definition.arbitrary-repetition.less}
+    patterns:
+    - include: '#less-variables'
+    - include: '#custom-property-name'
+    - name: meta.group.less
+      begin: \s*(and)?\s*(\()\s*
+      beginCaptures:
+        '1': {name: keyword.operator.logic.media.less}
+        '2': {name: punctuation.definition.group.begin.less}
+      end: \)
+      endCaptures:
+        '0': {name: punctuation.definition.group.end.less}
+      patterns:
+      - begin: ((-webkit-|-o-)?((min|max)-)?(-moz-)?(((device-)?(height|width|aspect-ratio|pixel-ratio))|(color(-index)?)|monochrome|resolution))|grid|scan|orientation\s*(?=[:)])
+        beginCaptures:
+          '0': {name: support.type.property-name.media.less}
+          '2': {name: support.type.vendor-prefix.less}
+          '5': {name: support.type.vendor-prefix.less}
+        end: (((\+_?)?):)|(?=\))
+        endCaptures:
+          '1': {name: punctuation.separator.key-value.less}
+      - name: support.constant.property-value.less
+        match: \b(portrait|landscape|progressive|interlace)
+      - match: \s*(\d+)(/)(\d+)
+        captures:
+          '1': {name: constant.numeric.less}
+          '2': {name: keyword.operator.arithmetic.less}
+          '3': {name: constant.numeric.less}
+      - include: '#less-math'
+
+  # query-in-parens:
+  # size-feature:
+  # style-query:
+  # style-in-parens:
+  # general-enclosed:
+
   at-counter-style:
     name: meta.at-rule.counter-style.less
     begin: \s*((@)counter-style\b)\s+(?:(?i:\b(decimal|none)\b)|(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*))\s*(?=\{|$)
@@ -196,6 +270,7 @@ repository:
   at-rules:
     patterns:
     - include: '#at-charset'
+    - include: '#at-container'
     - include: '#at-counter-style'
     - include: '#at-custom-media'
     - include: '#at-font-face'
@@ -462,11 +537,11 @@ repository:
           '0': {name: punctuation.definition.group.begin.less}
         end: (?=\))
         patterns:
+        - name: entity.other.counter-name.less
+          match: (?:--|-?(?:(?<nonascii>[a-zA-Z_]|\u00B7|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u037D]|[\u037F-\u1FFF]|\u200C|\u200D|\u203F|\u2040|[\u2070-\u218F]|[\u2C00-\u2FEF]|[\u3001-\uD7FF]|[\uF900-\uFDCF]|[\uFDF0-\uFFFD]|[\u10000-\uEFFFF])|(?<escape>\\([^\n\r\f0-9a-fA-F]|[0-9a-fA-F]{1,6}\s?))))(([0-9-]|\g<nonascii>)|\g<escape>)*
         - include: '#less-strings'
         - include: '#less-variables'
         - include: '#var-function'
-        - name: entity.other.counter-name.less
-          match: (?:--(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))+|-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)
         - begin: (?=,)
           end: (?=\))
           patterns:
@@ -486,8 +561,8 @@ repository:
           '0': {name: punctuation.definition.group.begin.less}
         end: (?=\))
         patterns:
-        - name: entity.other.counter-name.less string.unquoted.less
-          match: (-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)
+        - name: support.type.custom-ident.less
+          match: (?:--|-?(?:(?<nonascii>[a-zA-Z_]|\u00B7|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u037D]|[\u037F-\u1FFF]|\u200C|\u200D|\u203F|\u2040|[\u2070-\u218F]|[\u2C00-\u2FEF]|[\u3001-\uD7FF]|[\uF900-\uFDCF]|[\uFDF0-\uFFFD]|[\u10000-\uEFFFF])|(?<escape>\\([^\n\r\f0-9a-fA-F]|[0-9a-fA-F]{1,6}\s?))))(([0-9-]|\g<nonascii>)|\g<escape>)*
         - begin: (?=,)
           end: (?=\))
           patterns:

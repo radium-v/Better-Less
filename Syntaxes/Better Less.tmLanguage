@@ -104,6 +104,91 @@
 				</dict>
 			</array>
 		</dict>
+		<key>at-container</key>
+		<dict>
+			<key>begin</key>
+			<string>(?=\s*@container)</string>
+			<key>end</key>
+			<string>\s*(\})</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.block.end.less</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>((@)container)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.control.at-rule.container.less</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.keyword.less</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>support.constant.container.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=\{)</string>
+					<key>name</key>
+					<string>meta.at-rule.container.less</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>\s*(?=[^{;])</string>
+							<key>end</key>
+							<string>\s*(?=[{;])</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#container-condition</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\s*(\{)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.block.begin.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=\})</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#rule-list-body</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>$self</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
 		<key>at-counter-style</key>
 		<dict>
 			<key>begin</key>
@@ -615,6 +700,10 @@
 				<dict>
 					<key>include</key>
 					<string>#at-charset</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#at-container</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1438,6 +1527,152 @@
 			<key>name</key>
 			<string>comment.line.double-slash.less</string>
 		</dict>
+		<key>container-condition</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(?:--|-?(?:(?'nonascii'[a-zA-Z_\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C\u200D\u203F\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u10000-\uEFFFF])|(?'escape'\\([^\n\r\f0-9a-fA-F]|[0-9a-fA-F]{1,6}\s?))))(([-0-9]|\g'nonascii')|\g'escape')*</string>
+					<key>name</key>
+					<string>variable.other.constant.container-name.less</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#container-query</string>
+				</dict>
+			</array>
+		</dict>
+		<key>container-query</key>
+		<dict>
+			<key>begin</key>
+			<string>\s*(not)?</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.logic.media.less</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\s*(?:(,)|(?=[{;]))</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arbitrary-repetition.less</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#less-variables</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#custom-property-name</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\s*(and)?\s*(\()\s*</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.logic.media.less</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.begin.less</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.group.end.less</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.group.less</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>((-webkit-|-o-)?((min|max)-)?(-moz-)?(((device-)?(height|width|aspect-ratio|pixel-ratio))|(color(-index)?)|monochrome|resolution))|grid|scan|orientation\s*(?=[:)])</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>support.type.property-name.media.less</string>
+								</dict>
+								<key>2</key>
+								<dict>
+									<key>name</key>
+									<string>support.type.vendor-prefix.less</string>
+								</dict>
+								<key>5</key>
+								<dict>
+									<key>name</key>
+									<string>support.type.vendor-prefix.less</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(((\+_?)?):)|(?=\))</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.separator.key-value.less</string>
+								</dict>
+							</dict>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\b(portrait|landscape|progressive|interlace)</string>
+							<key>name</key>
+							<string>support.constant.property-value.less</string>
+						</dict>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>constant.numeric.less</string>
+								</dict>
+								<key>2</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.operator.arithmetic.less</string>
+								</dict>
+								<key>3</key>
+								<dict>
+									<key>name</key>
+									<string>constant.numeric.less</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>\s*(\d+)(/)(\d+)</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#less-math</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
 		<key>counter-functions</key>
 		<dict>
 			<key>patterns</key>
@@ -1483,6 +1718,12 @@
 							<key>patterns</key>
 							<array>
 								<dict>
+									<key>match</key>
+									<string>(?:--|-?(?:(?&lt;nonascii&gt;[a-zA-Z_]|\u00B7|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u037D]|[\u037F-\u1FFF]|\u200C|\u200D|\u203F|\u2040|[\u2070-\u218F]|[\u2C00-\u2FEF]|[\u3001-\uD7FF]|[\uF900-\uFDCF]|[\uFDF0-\uFFFD]|[\u10000-\uEFFFF])|(?&lt;escape&gt;\\([^\n\r\f0-9a-fA-F]|[0-9a-fA-F]{1,6}\s?))))(([0-9-]|\g&lt;nonascii&gt;)|\g&lt;escape&gt;)*</string>
+									<key>name</key>
+									<string>entity.other.counter-name.less</string>
+								</dict>
+								<dict>
 									<key>include</key>
 									<string>#less-strings</string>
 								</dict>
@@ -1493,12 +1734,6 @@
 								<dict>
 									<key>include</key>
 									<string>#var-function</string>
-								</dict>
-								<dict>
-									<key>match</key>
-									<string>(?:--(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))+|-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
-									<key>name</key>
-									<string>entity.other.counter-name.less</string>
 								</dict>
 								<dict>
 									<key>begin</key>
@@ -1565,9 +1800,9 @@
 							<array>
 								<dict>
 									<key>match</key>
-									<string>(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*)</string>
+									<string>(?:--|-?(?:(?&lt;nonascii&gt;[a-zA-Z_]|\u00B7|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u037D]|[\u037F-\u1FFF]|\u200C|\u200D|\u203F|\u2040|[\u2070-\u218F]|[\u2C00-\u2FEF]|[\u3001-\uD7FF]|[\uF900-\uFDCF]|[\uFDF0-\uFFFD]|[\u10000-\uEFFFF])|(?&lt;escape&gt;\\([^\n\r\f0-9a-fA-F]|[0-9a-fA-F]{1,6}\s?))))(([0-9-]|\g&lt;nonascii&gt;)|\g&lt;escape&gt;)*</string>
 									<key>name</key>
-									<string>entity.other.counter-name.less string.unquoted.less</string>
+									<string>support.type.custom-ident.less</string>
 								</dict>
 								<dict>
 									<key>begin</key>
