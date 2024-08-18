@@ -42,6 +42,78 @@ repository:
     patterns:
     - include: '#literal-string'
 
+  at-container:
+    begin: (?=\s*@container)
+    end: \s*(\})
+    endCaptures:
+      '1': {name: punctuation.definition.block.end.less}
+    patterns:
+    - name: meta.at-rule.container.less
+      begin: ((@)container)
+      beginCaptures:
+        '1': {name: keyword.control.at-rule.container.less}
+        '2': {name: punctuation.definition.keyword.less}
+        '3': {name: support.constant.container.less}
+      end: (?=\{)
+      patterns:
+      - begin: \s*(?=[^{;])
+        end: \s*(?=[{;])
+        patterns:
+        - name: keyword.operator.comparison.less
+          match: \b(not|and|or)\b
+        - name: meta.at-rule.container-query.less
+          begin: \(
+          beginCaptures:
+            '0': {name: punctuation.definition.group.begin.less}
+          end: \)
+          endCaptures:
+            '0': {name: punctuation.definition.group.end.less}
+          patterns:
+          - name: support.constant.size-feature.less
+            match: \b(aspect-ratio|block-size|height|inline-size|orientation|width)\b
+            captures:
+              '1': {name: support.type.property-name.less}
+          - name: keyword.operator.comparison.less
+            match: ((<|>)=?)|=|\/
+          - name: punctuation.separator.key-value.less
+            match: ':'
+          - name: support.constant.property-value.less
+            match: portrait|landscape
+          - include: '#numeric-values'
+          - name: keyword.operator.arithmetic.less
+            match: \/
+          - include: '#var-function'
+          - include: '#less-variables'
+          - include: '#less-variable-interpolation'
+        - include: '#style-function'
+        - name: variable.parameter.container-name.css
+          match: --|(?:-?(?:(?:[a-zA-Z_]|[\x{00B7}\x{00C0}-\x{00D6}\x{00D8}-\x{00F6}\x{00F8}-\x{037D}\x{037F}-\x{1FFF}\x{200C}\x{200D}\x{203F}\x{2040}\x{2070}-\x{218F}\x{2C00}-\x{2FEF}\x{3001}-\x{D7FF}\x{F900}-\x{FDCF}\x{FDF0}-\x{FFFD}\x{10000}-\x{EFFFF}])|(?:\\(?:\N|[[:^xdigit:]]|[[:xdigit:]]{1,6}[\s\R]))))(?:(?:[-\da-zA-Z_]|[\x{00B7}\x{00C0}-\x{00D6}\x{00D8}-\x{00F6}\x{00F8}-\x{037D}\x{037F}-\x{1FFF}\x{200C}\x{200D}\x{203F}\x{2040}\x{2070}-\x{218F}\x{2C00}-\x{2FEF}\x{3001}-\x{D7FF}\x{F900}-\x{FDCF}\x{FDF0}-\x{FFFD}\x{10000}-\x{EFFFF}])|(?:\\(?:\N|[[:^xdigit:]]|[[:xdigit:]]{1,6}[\s\R])))*
+        - include: '#arbitrary-repetition'
+        - include: '#less-variables'
+    - begin: \s*(\{)
+      beginCaptures:
+        '1': {name: punctuation.definition.block.begin.less}
+      end: (?=\})
+      patterns:
+      - include: '#rule-list-body'
+      - include: $self
+
+  style-function:
+    name: meta.function-call.less
+    begin: \b(style)(?=\()
+    beginCaptures:
+      '0': {name: support.function.style.less}
+    end: \)
+    endCaptures:
+      '0': {name: punctuation.definition.group.end.less}
+    patterns:
+    - begin: \(
+      beginCaptures:
+        '0': {name: punctuation.definition.group.begin.less}
+      end: (?=\))
+      patterns:
+      - include: '#rule-list-body'
+
   at-counter-style:
     name: meta.at-rule.counter-style.less
     begin: \s*((@)counter-style\b)\s+(?:(?i:\b(decimal|none)\b)|(-?(?:[[_a-zA-Z][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))(?:[[-\w][^\x{00}-\x{7F}]]|(?:\\\h{1,6}[\s\t\n\f]?|\\[^\n\f\h]))*))\s*(?=\{|$)
@@ -196,6 +268,7 @@ repository:
   at-rules:
     patterns:
     - include: '#at-charset'
+    - include: '#at-container'
     - include: '#at-counter-style'
     - include: '#at-custom-media'
     - include: '#at-font-face'
@@ -1674,6 +1747,10 @@ repository:
       patterns:
       - include: '#rule-list'
 
+  global-property-values:
+    name: support.constant.property-value.less
+    match: \b(?:initial|inherit|unset|revert-layer|revert)\b
+
   property-value-constants:
     patterns:
     - comment: align-content, align-items, align-self, justify-content, justify-items,
@@ -1691,9 +1768,7 @@ repository:
           text-before-edge|before-edge|middle|central|text-after-edge
           |after-edge|ideographic|alphabetic|hanging|mathematical|top|center|bottom
         )\b
-    - comment: all/global values
-      name: support.constant.property-value.less
-      match: \b(?:initial|inherit|unset|revert-layer|revert)\b
+    - include: '#global-property-values'
     - include: '#cubic-bezier-function'
     - include: '#steps-function'
     - comment: animation-composition
@@ -1843,7 +1918,16 @@ repository:
         |hue
         |ideograph(-alpha|-numeric|-parenthesis|-space|ic)
         |inactive|include-ruby|infinite|inherit|initial
-        |inline(-(block|box|flex(box)?|line-height|table|start|end))?
+        |inline-end
+        |inline-size
+        |inline-start
+        |inline-table
+        |inline-line-height
+        |inline-flexbox
+        |inline-flex
+        |inline-box
+        |inline-block
+        |inline
         |inset|inside
         |inter(-ideograph|-word|sect)
         |invert|isolat(e|ion)|italic
@@ -2271,13 +2355,34 @@ repository:
         - include: '#integer-type'
         - name: invalid.illegal.property-value.less
           match: unset|initial|inherit|auto
+      - begin: \bcontainer(?:-name)?(?=\s*?:)
+        name: support.type.property-name.less
+        end: \s*(;)|(?=[})])
+        endCaptures:
+          '1': {name: punctuation.terminator.rule.less}
+        patterns:
+        - contentName: meta.property-value.less
+          begin: (((\+_?)?):)(?=[\s\t]*)
+          beginCaptures:
+            '1': {name: punctuation.separator.key-value.less}
+          end: (?=\s*(;)|(?=[})]))
+          patterns:
+          - name: invalid.illegal.property-value.less
+            match: \bdefault\b
+          - include: '#global-property-values'
+          - include: '#custom-property-name'
+          - contentName: variable.other.constant.container-name.less
+            name: support.constant.property-value.less
+            match: --|(?:-?(?:(?:[a-zA-Z_]|[\x{00B7}\x{00C0}-\x{00D6}\x{00D8}-\x{00F6}\x{00F8}-\x{037D}\x{037F}-\x{1FFF}\x{200C}\x{200D}\x{203F}\x{2040}\x{2070}-\x{218F}\x{2C00}-\x{2FEF}\x{3001}-\x{D7FF}\x{F900}-\x{FDCF}\x{FDF0}-\x{FFFD}\x{10000}-\x{EFFFF}])|(?:\\(?:\N|[[:^xdigit:]]|[[:xdigit:]]{1,6}[\s\R]))))(?:(?:[-\da-zA-Z_]|[\x{00B7}\x{00C0}-\x{00D6}\x{00D8}-\x{00F6}\x{00F8}-\x{037D}\x{037F}-\x{1FFF}\x{200C}\x{200D}\x{203F}\x{2040}\x{2070}-\x{218F}\x{2C00}-\x{2FEF}\x{3001}-\x{D7FF}\x{F900}-\x{FDCF}\x{FDF0}-\x{FFFD}\x{10000}-\x{EFFFF}])|(?:\\(?:\N|[[:^xdigit:]]|[[:xdigit:]]{1,6}[\s\R])))*
+          - include: '#property-values'
+
       - name: support.type.property-name.less
         match: (?x)\b( accent-height | align-content | align-items | align-self |
           alignment-baseline | all | animation-timing-function | animation-range-start
           | animation-range-end | animation-range | animation-play-state | animation-name
           | animation-iteration-count | animation-fill-mode | animation-duration |
           animation-direction | animation-delay | animation-composition | animation
-          | appearance | ascent | azimuth | backface-visibility | background-size
+          | appearance | ascent | aspect-ratio | azimuth | backface-visibility | background-size
           | background-repeat-y | background-repeat-x | background-repeat | background-position-y
           | background-position-x | background-position | background-origin | background-image
           | background-color | background-clip | background-blend-mode | background-attachment
@@ -2302,7 +2407,16 @@ repository:
           | break-(after|before|inside) | caption-side | clear | clip-path | clip-rule
           | clip | color(-(interpolation(-filters)?|profile|rendering))? | columns
           | column-(break-before|count|fill|gap|(rule(-(color|style|width))?)|span|width)
-          | contain(-intrinsic-((((block|inline)-)?size)|height|width))? | content
+          | container-name
+          | container-type
+          | container
+          | contain-intrinsic-block-size
+          | contain-intrinsic-inline-size
+          | contain-intrinsic-height
+          | contain-intrinsic-size
+          | contain-intrinsic-width
+          | contain
+          | content
           | counter-(increment|reset) | cursor | (c|d|f)(x|y) | direction | display
           | divisor | dominant-baseline | dur | elevation | empty-cells | enable-background
           | end | fallback | fill(-(opacity|rule))? | filter | flex(-(align|basis|direction|flow|grow|item-align|line-pack|negative|order|pack|positive|preferred-size|shrink|wrap))?
