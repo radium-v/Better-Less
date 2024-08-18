@@ -1,0 +1,823 @@
+// SYNTAX TEST "Packages/Better-Less/Syntaxes/Better Less.tmLanguage"
+
+.container-type {
+    container-type: normal;
+//^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^ meta.property-value.less
+//                  ^^^^^^ support.constant.property-value.less
+//                        ^ punctuation.terminator.rule.less
+    container-type: inline-size;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^^^^^ support.constant.property-value.less
+//                             ^ punctuation.terminator.rule.less
+    container-type: size;
+//^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^ meta.property-value.less
+//                  ^^^^ support.constant.property-value.less
+//                      ^ punctuation.terminator.rule.less
+    container-type: inherit;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^ support.constant.property-value.less
+//                         ^ punctuation.terminator.rule.less
+    container-type: initial;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^ support.constant.property-value.less
+//                         ^ punctuation.terminator.rule.less
+    container-type: revert;
+//^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^ meta.property-value.less
+//                  ^^^^^^ support.constant.property-value.less
+//                        ^ punctuation.terminator.rule.less
+    container-type: revert-layer;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    container-type: unset;
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^ meta.property-value.less
+//                  ^^^^^ support.constant.property-value.less
+//                       ^ punctuation.terminator.rule.less
+    container-type: var(--container-type);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                  ^^^ support.function.var.less
+//                     ^ punctuation.definition.group.begin.less
+//                      ^^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                      ^^ punctuation.definition.custom-property.less
+//                        ^^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                      ^ punctuation.definition.group.end.less
+//                                       ^ punctuation.terminator.rule.less
+    container-type: @container-type;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//                  ^ punctuation.definition.variable.less
+//                   ^^^^^^^^^^^^^^ support.other.variable.less
+//                                 ^ punctuation.terminator.rule.less
+}
+
+.container-name {
+    container-name: custom-name;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^^^^^ support.constant.property-value.less
+//                             ^ punctuation.terminator.rule.less
+    container-name: --custom-name;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^^ meta.property-value.less support.type.custom-property.less
+//                  ^^ punctuation.definition.custom-property.less
+//                    ^^^^^^^^^^^ support.type.custom-property.name.less
+//                               ^ punctuation.terminator.rule.less
+    container-name: one two buckle my shoe;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^ support.constant.property-value.less
+//                      ^^^ support.constant.property-value.less
+//                          ^^^^^^ support.constant.property-value.less
+//                                 ^^ support.constant.property-value.less
+//                                    ^^^^ support.constant.property-value.less
+//                                        ^ punctuation.terminator.rule.less
+    container-name: inherit;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^ support.constant.property-value.less
+//                         ^ punctuation.terminator.rule.less
+    container-name: initial;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^ support.constant.property-value.less
+//                         ^ punctuation.terminator.rule.less
+    container-name: revert;
+//^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^ meta.property-value.less
+//                  ^^^^^^ support.constant.property-value.less
+//                        ^ punctuation.terminator.rule.less
+    container-name: revert-layer;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    container-name: unset;
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^ meta.property-value.less
+//                  ^^^^^ support.constant.property-value.less
+//                       ^ punctuation.terminator.rule.less
+    container-name: default;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^ meta.property-value.less
+//                  ^^^^^^^ invalid.illegal.property-value.less
+//                         ^ punctuation.terminator.rule.less
+    container-name: @custom-name;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                ^ punctuation.separator.key-value.less
+//                 ^^^^^^^^^^^^^ meta.property-value.less variable.other.readwrite.less
+//                  ^ punctuation.definition.variable.less
+//                   ^^^^^^^^^^^ support.other.variable.less
+//                              ^ punctuation.terminator.rule.less
+}
+
+@container {}
+//^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^ punctuation.definition.block.begin.less
+//          ^ punctuation.definition.block.end.less
+@container () {}
+//^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^ punctuation.definition.group.end.less
+//            ^ punctuation.definition.block.begin.less
+//             ^ punctuation.definition.block.end.less
+@container (aspect-ratio: 1 / 1) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                        ^ constant.numeric.less
+//                          ^ keyword.operator.comparison.less
+//                            ^ constant.numeric.less
+//                             ^ punctuation.definition.group.end.less
+//                               ^ punctuation.definition.block.begin.less
+//                                ^ punctuation.definition.block.end.less
+@container (aspect-ratio: 1) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                        ^ constant.numeric.less
+//                         ^ punctuation.definition.group.end.less
+//                           ^ punctuation.definition.block.begin.less
+//                            ^ punctuation.definition.block.end.less
+@container (aspect-ratio: 1 / 2) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                        ^ constant.numeric.less
+//                          ^ keyword.operator.comparison.less
+//                            ^ constant.numeric.less
+//                             ^ punctuation.definition.group.end.less
+//                               ^ punctuation.definition.block.begin.less
+//                                ^ punctuation.definition.block.end.less
+@container (aspect-ratio: 0.5) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^ punctuation.separator.key-value.less
+//                        ^^^ constant.numeric.less
+//                           ^ punctuation.definition.group.end.less
+//                             ^ punctuation.definition.block.begin.less
+//                              ^ punctuation.definition.block.end.less
+@container (block-size > 100px) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                     ^ keyword.operator.comparison.less
+//                       ^^^^^ constant.numeric.less
+//                          ^^ keyword.other.unit.less
+//                            ^ punctuation.definition.group.end.less
+//                              ^ punctuation.definition.block.begin.less
+//                               ^ punctuation.definition.block.end.less
+@container (block-size < 100px) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                     ^ keyword.operator.comparison.less
+//                       ^^^^^ constant.numeric.less
+//                          ^^ keyword.other.unit.less
+//                            ^ punctuation.definition.group.end.less
+//                              ^ punctuation.definition.block.begin.less
+//                               ^ punctuation.definition.block.end.less
+@container (block-size >= var(--size)) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                     ^^ keyword.operator.comparison.less
+//                        ^^^^^^^^^^^ meta.function-call.less
+//                        ^^^ support.function.var.less
+//                           ^ punctuation.definition.group.begin.less
+//                            ^^^^^^ support.type.custom-property.less
+//                            ^^ punctuation.definition.custom-property.less
+//                              ^^^^ support.type.custom-property.name.less
+//                                  ^ punctuation.definition.group.end.less
+//                                   ^ punctuation.definition.group.end.less
+//                                     ^ punctuation.definition.block.begin.less
+//                                      ^ punctuation.definition.block.end.less
+@container (block-size <= @size) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                     ^^ keyword.operator.comparison.less
+//                       ^^^^^^ variable.other.readwrite.less
+//                        ^ punctuation.definition.variable.less
+//                         ^^^^ support.other.variable.less
+//                             ^ punctuation.definition.group.end.less
+//                               ^ punctuation.definition.block.begin.less
+//                                ^ punctuation.definition.block.end.less
+@container (inline-size > 100px) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^ keyword.operator.comparison.less
+//                        ^^^^^ constant.numeric.less
+//                           ^^ keyword.other.unit.less
+//                             ^ punctuation.definition.group.end.less
+//                               ^ punctuation.definition.block.begin.less
+//                                ^ punctuation.definition.block.end.less
+@container (inline-size < 100px) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^ keyword.operator.comparison.less
+//                        ^^^^^ constant.numeric.less
+//                           ^^ keyword.other.unit.less
+//                             ^ punctuation.definition.group.end.less
+//                               ^ punctuation.definition.block.begin.less
+//                                ^ punctuation.definition.block.end.less
+@container (inline-size >= var(--size)) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^^ keyword.operator.comparison.less
+//                         ^^^^^^^^^^^ meta.function-call.less
+//                         ^^^ support.function.var.less
+//                            ^ punctuation.definition.group.begin.less
+//                             ^^^^^^ support.type.custom-property.less
+//                             ^^ punctuation.definition.custom-property.less
+//                               ^^^^ support.type.custom-property.name.less
+//                                   ^ punctuation.definition.group.end.less
+//                                    ^ punctuation.definition.group.end.less
+//                                      ^ punctuation.definition.block.begin.less
+//                                       ^ punctuation.definition.block.end.less
+@container (inline-size <= @size) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^^ keyword.operator.comparison.less
+//                        ^^^^^^ variable.other.readwrite.less
+//                         ^ punctuation.definition.variable.less
+//                          ^^^^ support.other.variable.less
+//                              ^ punctuation.definition.group.end.less
+//                                ^ punctuation.definition.block.begin.less
+//                                 ^ punctuation.definition.block.end.less
+@container (width > 100px) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                ^ keyword.operator.comparison.less
+//                  ^^^^^ constant.numeric.less
+//                     ^^ keyword.other.unit.less
+//                       ^ punctuation.definition.group.end.less
+//                         ^ punctuation.definition.block.begin.less
+//                          ^ punctuation.definition.block.end.less
+@container (width < 100px) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                ^ keyword.operator.comparison.less
+//                  ^^^^^ constant.numeric.less
+//                     ^^ keyword.other.unit.less
+//                       ^ punctuation.definition.group.end.less
+//                         ^ punctuation.definition.block.begin.less
+//                          ^ punctuation.definition.block.end.less
+@container (width >= var(--size)) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                ^^ keyword.operator.comparison.less
+//                   ^^^^^^^^^^^ meta.function-call.less
+//                   ^^^ support.function.var.less
+//                      ^ punctuation.definition.group.begin.less
+//                       ^^^^^^ support.type.custom-property.less
+//                       ^^ punctuation.definition.custom-property.less
+//                         ^^^^ support.type.custom-property.name.less
+//                             ^ punctuation.definition.group.end.less
+//                              ^ punctuation.definition.group.end.less
+//                                ^ punctuation.definition.block.begin.less
+//                                 ^ punctuation.definition.block.end.less
+@container (width <= @size) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                ^^ keyword.operator.comparison.less
+//                  ^^^^^^ variable.other.readwrite.less
+//                   ^ punctuation.definition.variable.less
+//                    ^^^^ support.other.variable.less
+//                        ^ punctuation.definition.group.end.less
+//                          ^ punctuation.definition.block.begin.less
+//                           ^ punctuation.definition.block.end.less
+@container (height > 100px) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                 ^ keyword.operator.comparison.less
+//                   ^^^^^ constant.numeric.less
+//                      ^^ keyword.other.unit.less
+//                        ^ punctuation.definition.group.end.less
+//                          ^ punctuation.definition.block.begin.less
+//                           ^ punctuation.definition.block.end.less
+@container (height < 100px) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                 ^ keyword.operator.comparison.less
+//                   ^^^^^ constant.numeric.less
+//                      ^^ keyword.other.unit.less
+//                        ^ punctuation.definition.group.end.less
+//                          ^ punctuation.definition.block.begin.less
+//                           ^ punctuation.definition.block.end.less
+@container (height >= var(--size)) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                 ^^ keyword.operator.comparison.less
+//                    ^^^^^^^^^^^ meta.function-call.less
+//                    ^^^ support.function.var.less
+//                       ^ punctuation.definition.group.begin.less
+//                        ^^^^^^ support.type.custom-property.less
+//                        ^^ punctuation.definition.custom-property.less
+//                          ^^^^ support.type.custom-property.name.less
+//                              ^ punctuation.definition.group.end.less
+//                               ^ punctuation.definition.group.end.less
+//                                 ^ punctuation.definition.block.begin.less
+//                                  ^ punctuation.definition.block.end.less
+@container (height <= @size) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                 ^^ keyword.operator.comparison.less
+//                   ^^^^^^ variable.other.readwrite.less
+//                    ^ punctuation.definition.variable.less
+//                     ^^^^ support.other.variable.less
+//                         ^ punctuation.definition.group.end.less
+//                           ^ punctuation.definition.block.begin.less
+//                            ^ punctuation.definition.block.end.less
+@container (orientation: portrait) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^ support.constant.property-value.less
+//                               ^ punctuation.definition.group.end.less
+//                                 ^ punctuation.definition.block.begin.less
+//                                  ^ punctuation.definition.block.end.less
+@container (orientation: landscape) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^^ support.constant.property-value.less
+//                                ^ punctuation.definition.group.end.less
+//                                  ^ punctuation.definition.block.begin.less
+//                                   ^ punctuation.definition.block.end.less
+@container (orientation: @orientation) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                      ^^^^^^^^^^^^^ variable.other.readwrite.less
+//                       ^ punctuation.definition.variable.less
+//                        ^^^^^^^^^^^ support.other.variable.less
+//                                   ^ punctuation.definition.group.end.less
+//                                     ^ punctuation.definition.block.begin.less
+//                                      ^ punctuation.definition.block.end.less
+@container (orientation: var(--orientation)) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                     ^ punctuation.separator.key-value.less
+//                       ^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                       ^^^ support.function.var.less
+//                          ^ punctuation.definition.group.begin.less
+//                           ^^^^^^^^^^^^^ support.type.custom-property.less
+//                           ^^ punctuation.definition.custom-property.less
+//                             ^^^^^^^^^^^ support.type.custom-property.name.less
+//                                        ^ punctuation.definition.group.end.less
+//                                         ^ punctuation.definition.group.end.less
+//                                           ^ punctuation.definition.block.begin.less
+//                                            ^ punctuation.definition.block.end.less
+@container (orientation = portrait) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^ keyword.operator.comparison.less
+//                        ^^^^^^^^ support.constant.property-value.less
+//                                ^ punctuation.definition.group.end.less
+//                                  ^ punctuation.definition.block.begin.less
+//                                   ^ punctuation.definition.block.end.less
+@container (orientation = landscape) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^ keyword.operator.comparison.less
+//                        ^^^^^^^^^ support.constant.property-value.less
+//                                 ^ punctuation.definition.group.end.less
+//                                   ^ punctuation.definition.block.begin.less
+//                                    ^ punctuation.definition.block.end.less
+@container (orientation = @orientation) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^ keyword.operator.comparison.less
+//                       ^^^^^^^^^^^^^ variable.other.readwrite.less
+//                        ^ punctuation.definition.variable.less
+//                         ^^^^^^^^^^^ support.other.variable.less
+//                                    ^ punctuation.definition.group.end.less
+//                                      ^ punctuation.definition.block.begin.less
+//                                       ^ punctuation.definition.block.end.less
+@container (orientation = var(--orientation)) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                      ^ keyword.operator.comparison.less
+//                        ^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                        ^^^ support.function.var.less
+//                           ^ punctuation.definition.group.begin.less
+//                            ^^^^^^^^^^^^^ support.type.custom-property.less
+//                            ^^ punctuation.definition.custom-property.less
+//                              ^^^^^^^^^^^ support.type.custom-property.name.less
+//                                         ^ punctuation.definition.group.end.less
+//                                          ^ punctuation.definition.group.end.less
+//                                            ^ punctuation.definition.block.begin.less
+//                                             ^ punctuation.definition.block.end.less
+@container (@container-feature: 1) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//          ^ punctuation.definition.variable.less
+//           ^^^^^^^^^^^^^^^^^ support.other.variable.less
+//                            ^ punctuation.separator.key-value.less
+//                              ^ constant.numeric.less
+//                               ^ punctuation.definition.group.end.less
+//                                 ^ punctuation.definition.block.begin.less
+//                                  ^ punctuation.definition.block.end.less
+@container (@container-feature > 100px) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//          ^ punctuation.definition.variable.less
+//           ^^^^^^^^^^^^^^^^^ support.other.variable.less
+//                             ^ keyword.operator.comparison.less
+//                               ^^^^^ constant.numeric.less
+//                                  ^^ keyword.other.unit.less
+//                                    ^ punctuation.definition.group.end.less
+//                                      ^ punctuation.definition.block.begin.less
+//                                       ^ punctuation.definition.block.end.less
+@container (@container-feature < 100px) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//          ^ punctuation.definition.variable.less
+//           ^^^^^^^^^^^^^^^^^ support.other.variable.less
+//                             ^ keyword.operator.comparison.less
+//                               ^^^^^ constant.numeric.less
+//                                  ^^ keyword.other.unit.less
+//                                    ^ punctuation.definition.group.end.less
+//                                      ^ punctuation.definition.block.begin.less
+//                                       ^ punctuation.definition.block.end.less
+@container (@container-feature >= var(--feature)) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//          ^ punctuation.definition.variable.less
+//           ^^^^^^^^^^^^^^^^^ support.other.variable.less
+//                             ^^ keyword.operator.comparison.less
+//                                ^^^^^^^^^^^^^^ meta.function-call.less
+//                                ^^^ support.function.var.less
+//                                   ^ punctuation.definition.group.begin.less
+//                                    ^^^^^^^^^ support.type.custom-property.less
+//                                    ^^ punctuation.definition.custom-property.less
+//                                      ^^^^^^^ support.type.custom-property.name.less
+//                                             ^ punctuation.definition.group.end.less
+//                                              ^ punctuation.definition.group.end.less
+//                                                ^ punctuation.definition.block.begin.less
+//                                                 ^ punctuation.definition.block.end.less
+@container (@container-feature <= @feature) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//         ^ punctuation.definition.group.begin.less
+//          ^^^^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//          ^ punctuation.definition.variable.less
+//           ^^^^^^^^^^^^^^^^^ support.other.variable.less
+//                             ^^ keyword.operator.comparison.less
+//                               ^^^^^^^^^ variable.other.readwrite.less
+//                                ^ punctuation.definition.variable.less
+//                                 ^^^^^^^ support.other.variable.less
+//                                        ^ punctuation.definition.group.end.less
+//                                          ^ punctuation.definition.block.begin.less
+//                                           ^ punctuation.definition.block.end.less
+@container style(--property-name) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^ support.function.style.less
+//              ^ punctuation.definition.group.begin.less
+//               ^^^^^^^^^^^^^^^ support.type.custom-property.less
+//               ^^ punctuation.definition.custom-property.less
+//                 ^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                              ^ punctuation.definition.group.end.less
+//                                ^ punctuation.definition.block.begin.less
+//                                 ^ punctuation.definition.block.end.less
+@container style(background-color: red) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^ support.function.style.less
+//              ^ punctuation.definition.group.begin.less
+//               ^^^^^^^^^^^^^^^^ support.type.property-name.less
+//                               ^ punctuation.separator.key-value.less
+//                                ^^^^ meta.property-value.less
+//                                 ^^^ support.constant.color.w3c-standard-color-name.less
+//                                    ^ punctuation.definition.group.end.less
+//                                      ^ punctuation.definition.block.begin.less
+//                                       ^ punctuation.definition.block.end.less
+@container style(--property-name: red) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^ support.function.style.less
+//              ^ punctuation.definition.group.begin.less
+//               ^^^^^^^^^^^^^^^ support.type.custom-property.less
+//               ^^ punctuation.definition.custom-property.less
+//                 ^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                              ^ punctuation.separator.key-value.less
+//                               ^^^^ meta.property-value.less
+//                                ^^^ support.constant.color.w3c-standard-color-name.less
+//                                   ^ punctuation.definition.group.end.less
+//                                     ^ punctuation.definition.block.begin.less
+//                                      ^ punctuation.definition.block.end.less
+@container style(--property-name: var(--color)) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//         ^^^^^ support.function.style.less
+//              ^ punctuation.definition.group.begin.less
+//               ^^^^^^^^^^^^^^^ support.type.custom-property.less
+//               ^^ punctuation.definition.custom-property.less
+//                 ^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                              ^ punctuation.separator.key-value.less
+//                               ^^^^^^^^^^^^^ meta.property-value.less
+//                                ^^^^^^^^^^^^ meta.function-call.less
+//                                ^^^ support.function.var.less
+//                                   ^ punctuation.definition.group.begin.less
+//                                    ^^^^^^^ support.type.custom-property.less
+//                                    ^^ punctuation.definition.custom-property.less
+//                                      ^^^^^ support.type.custom-property.name.less
+//                                           ^ punctuation.definition.group.end.less
+//                                            ^ punctuation.definition.group.end.less
+//                                              ^ punctuation.definition.block.begin.less
+//                                               ^ punctuation.definition.block.end.less
+@container container-name (aspect-ratio: 1 / 1) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^ variable.parameter.container-name.css
+//                        ^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//                        ^ punctuation.definition.group.begin.less
+//                         ^^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                                     ^ punctuation.separator.key-value.less
+//                                       ^ constant.numeric.less
+//                                         ^ keyword.operator.comparison.less
+//                                           ^ constant.numeric.less
+//                                            ^ punctuation.definition.group.end.less
+//                                              ^ punctuation.definition.block.begin.less
+//                                               ^ punctuation.definition.block.end.less
+@container container-name style(--property-name) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^ variable.parameter.container-name.css
+//                        ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                        ^^^^^ support.function.style.less
+//                             ^ punctuation.definition.group.begin.less
+//                              ^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                              ^^ punctuation.definition.custom-property.less
+//                                ^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                             ^ punctuation.definition.group.end.less
+//                                               ^ punctuation.definition.block.begin.less
+//                                                ^ punctuation.definition.block.end.less
+@container container-name not style(--property-name) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^ variable.parameter.container-name.css
+//                        ^^^ keyword.operator.comparison.less
+//                            ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                            ^^^^^ support.function.style.less
+//                                 ^ punctuation.definition.group.begin.less
+//                                  ^^^^^^^^^^^^^^^ support.type.custom-property.less
+//                                  ^^ punctuation.definition.custom-property.less
+//                                    ^^^^^^^^^^^^^ support.type.custom-property.name.less
+//                                                 ^ punctuation.definition.group.end.less
+//                                                   ^ punctuation.definition.block.begin.less
+//                                                    ^ punctuation.definition.block.end.less
+@container @container-name (aspect-ratio: 1 / 1) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^^ variable.other.readwrite.less
+//         ^ punctuation.definition.variable.less
+//          ^^^^^^^^^^^^^^ support.other.variable.less
+//                         ^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//                         ^ punctuation.definition.group.begin.less
+//                          ^^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                                      ^ punctuation.separator.key-value.less
+//                                        ^ constant.numeric.less
+//                                          ^ keyword.operator.comparison.less
+//                                            ^ constant.numeric.less
+//                                             ^ punctuation.definition.group.end.less
+//                                               ^ punctuation.definition.block.begin.less
+//                                                ^ punctuation.definition.block.end.less
+@container container-name (aspect-ratio: 1) and (block-size > 100px), (aspect-ratio: 1) and (block-size > 100px) { a { width: 100%; } }
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//^^^^^^^^ keyword.control.at-rule.container.less
+//         ^^^^^^^^^^^^^^ variable.parameter.container-name.css
+//                        ^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//                        ^ punctuation.definition.group.begin.less
+//                         ^^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                                     ^ punctuation.separator.key-value.less
+//                                       ^ constant.numeric.less
+//                                        ^ punctuation.definition.group.end.less
+//                                          ^^^ keyword.operator.comparison.less
+//                                              ^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//                                              ^ punctuation.definition.group.begin.less
+//                                               ^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                                                          ^ keyword.operator.comparison.less
+//                                                            ^^^^^ constant.numeric.less
+//                                                               ^^ keyword.other.unit.less
+//                                                                 ^ punctuation.definition.group.end.less
+//                                                                  ^ punctuation.definition.arbitrary-repetition.less
+//                                                                    ^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//                                                                    ^ punctuation.definition.group.begin.less
+//                                                                     ^^^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                                                                                 ^ punctuation.separator.key-value.less
+//                                                                                   ^ constant.numeric.less
+//                                                                                    ^ punctuation.definition.group.end.less
+//                                                                                      ^^^ keyword.operator.comparison.less
+//                                                                                          ^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container-query.less
+//                                                                                          ^ punctuation.definition.group.begin.less
+//                                                                                           ^^^^^^^^^^ support.constant.size-feature.less support.type.property-name.less
+//                                                                                                      ^ keyword.operator.comparison.less
+//                                                                                                        ^^^^^ constant.numeric.less
+//                                                                                                           ^^ keyword.other.unit.less
+//                                                                                                             ^ punctuation.definition.group.end.less
+//                                                                                                               ^ punctuation.definition.block.begin.less
+//                                                                                                                 ^^ meta.selector.less
+//                                                                                                                 ^ entity.name.tag.less
+//                                                                                                                   ^^^^^^^^^^^^^^ meta.property-list.less
+//                                                                                                                   ^ punctuation.definition.block.begin.less
+//                                                                                                                     ^^^^^ support.type.property-name.less
+//                                                                                                                          ^ punctuation.separator.key-value.less
+//                                                                                                                           ^^^^^ meta.property-value.less
+//                                                                                                                            ^^^^ constant.numeric.less
+//                                                                                                                               ^ keyword.other.unit.less
+//                                                                                                                                ^ punctuation.terminator.rule.less
+//                                                                                                                                  ^ punctuation.definition.block.end.less
+//                                                                                                                                    ^ punctuation.definition.block.end.less
+   @container summary style(min-width: 400px) { @container style(min-width: 800px) { a { width: 100%; } } }
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+// ^^^^^^^^^^ keyword.control.at-rule.container.less
+// ^ punctuation.definition.keyword.less
+//            ^^^^^^^ variable.parameter.container-name.css
+//                    ^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                    ^^^^^ support.function.style.less
+//                         ^ punctuation.definition.group.begin.less
+//                          ^^^^^^^^^ support.type.property-name.less
+//                                   ^ punctuation.separator.key-value.less
+//                                    ^^^^^^ meta.property-value.less
+//                                     ^^^^^ constant.numeric.less
+//                                        ^^ keyword.other.unit.less
+//                                          ^ punctuation.definition.group.end.less
+//                                            ^ punctuation.definition.block.begin.less
+//                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.container.less
+//                                              ^^^^^^^^^^ keyword.control.at-rule.container.less
+//                                              ^ punctuation.definition.keyword.less
+//                                                         ^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                                                         ^^^^^ support.function.style.less
+//                                                              ^ punctuation.definition.group.begin.less
+//                                                               ^^^^^^^^^ support.type.property-name.less
+//                                                                        ^ punctuation.separator.key-value.less
+//                                                                         ^^^^^^ meta.property-value.less
+//                                                                          ^^^^^ constant.numeric.less
+//                                                                             ^^ keyword.other.unit.less
+//                                                                               ^ punctuation.definition.group.end.less
+//                                                                                 ^ punctuation.definition.block.begin.less
+//                                                                                   ^^ meta.selector.less
+//                                                                                   ^ entity.name.tag.less
+//                                                                                     ^^^^^^^^^^^^^^ meta.property-list.less
+//                                                                                     ^ punctuation.definition.block.begin.less
+//                                                                                       ^^^^^ support.type.property-name.less
+//                                                                                            ^ punctuation.separator.key-value.less
+//                                                                                             ^^^^^ meta.property-value.less
+//                                                                                              ^^^^ constant.numeric.less
+//                                                                                                 ^ keyword.other.unit.less
+//                                                                                                  ^ punctuation.terminator.rule.less
+//                                                                                                    ^ punctuation.definition.block.end.less
+//                                                                                                      ^ punctuation.definition.block.end.less
+//                                                                                                        ^ punctuation.definition.block.end.less
