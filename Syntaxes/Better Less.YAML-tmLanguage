@@ -2318,7 +2318,7 @@ repository:
           | font-stretch | font-style | font-synthesis | font-variant(-(alternates|caps|east-asian|ligatures|numeric|position))?
           | font-weight | font | fr | ((column|row)-)?gap | glyph-orientation-(horizontal|vertical)
           | grid-(area|gap) | grid-auto-(columns|flow|rows) | grid-(column|row)(-(end|gap|start))?
-          | grid-template(-(areas|columns|rows))? | height | hyphens | image-(orientation|rendering|resolution)
+          | grid-template(-(areas|columns|rows))? | grid | height | hyphens | image-(orientation|rendering|resolution)
           | inset(-(block|inline))?(-(start|end))? | isolation | justify-content |
           justify-items | justify-self | kerning | left | letter-spacing | lighting-color
           | line-(box-contain|break|clamp|height) | list-style(-(image|position|type))?
