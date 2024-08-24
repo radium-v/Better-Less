@@ -6504,6 +6504,8 @@
 											<string>punctuation.separator.key-value.less</string>
 										</dict>
 									</dict>
+									<key>contentName</key>
+									<string>meta.property-value.less</string>
 									<key>end</key>
 									<string>(?=\s*(;)|(?=[})]))</string>
 									<key>patterns</key>

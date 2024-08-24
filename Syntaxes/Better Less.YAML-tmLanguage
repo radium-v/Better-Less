@@ -2101,6 +2101,7 @@ repository:
           beginCaptures:
             '1': {name: punctuation.separator.key-value.less}
           end: (?=\s*(;)|(?=[})]))
+          contentName: meta.property-value.less
           patterns:
           - include: '#property-values'
           - name: support.constant.property-value.less
