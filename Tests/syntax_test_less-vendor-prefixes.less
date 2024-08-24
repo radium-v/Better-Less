@@ -1,0 +1,817 @@
+// SYNTAX TEST "Packages/Better-Less/Syntaxes/Better Less.tmLanguage"
+
+.properties {
+    -webkit-border-before: 1px;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^ constant.numeric.less
+//                          ^^ keyword.other.unit.less
+//                            ^ punctuation.terminator.rule.less
+    -webkit-border-before: 2px dotted;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^ constant.numeric.less
+//                          ^^ keyword.other.unit.less
+//                             ^^^^^^ support.constant.property-value.less
+//                                   ^ punctuation.terminator.rule.less
+    -webkit-border-before: medium dashed blue;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^^ support.constant.property-value.less
+//                                ^^^^^^ support.constant.property-value.less
+//                                       ^^^^ support.constant.color.w3c-standard-color-name.less
+//                                           ^ punctuation.terminator.rule.less
+    -webkit-box-reflect: above;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                     ^ punctuation.separator.key-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                            ^ punctuation.terminator.rule.less
+    -webkit-box-reflect: below;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                     ^ punctuation.separator.key-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                            ^ punctuation.terminator.rule.less
+    -webkit-box-reflect: left;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                     ^ punctuation.separator.key-value.less
+//                       ^^^^ support.constant.property-value.less
+//                           ^ punctuation.terminator.rule.less
+    -webkit-box-reflect: right;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                     ^ punctuation.separator.key-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                            ^ punctuation.terminator.rule.less
+    -webkit-box-reflect: below 10px;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                     ^ punctuation.separator.key-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                             ^^^^ constant.numeric.less
+//                               ^^ keyword.other.unit.less
+//                                 ^ punctuation.terminator.rule.less
+    -webkit-box-reflect: below 0 linear-gradient(transparent, white);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                     ^ punctuation.separator.key-value.less
+//                       ^^^^^ support.constant.property-value.less
+//                             ^ constant.numeric.less
+//                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                               ^^^^^^^^^^^^^^^ support.function.gradient.less
+//                                              ^ punctuation.definition.group.begin.less
+//                                               ^^^^^^^^^^^ support.constant.color.w3c-special-color-keyword.less
+//                                                          ^ punctuation.separator.less
+//                                                            ^^^^^ support.constant.color.w3c-standard-color-name.less
+//                                                                 ^ punctuation.definition.group.end.less
+//                                                                  ^ punctuation.terminator.rule.less
+    -webkit-line-clamp: none;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                    ^ punctuation.separator.key-value.less
+//                      ^^^^ support.constant.property-value.less
+//                          ^ punctuation.terminator.rule.less
+    -webkit-line-clamp: 3;
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                    ^ punctuation.separator.key-value.less
+//                      ^ constant.numeric.less
+//                       ^ punctuation.terminator.rule.less
+    -webkit-line-clamp: 10;
+//^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                    ^ punctuation.separator.key-value.less
+//                      ^^ constant.numeric.less
+//                        ^ punctuation.terminator.rule.less
+    -webkit-mask-box-image: none;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    -webkit-mask-box-image: url(image.png);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^^^^^ meta.function-call.less
+//                          ^^^ support.function.url.less
+//                             ^ punctuation.definition.group.begin.less
+//                              ^^^^^^^^^ string.unquoted.less
+//                                       ^ punctuation.definition.group.end.less
+//                                        ^ punctuation.terminator.rule.less
+    -webkit-mask-box-image: url(image.png) 10 20 20 10;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^^^^^ meta.function-call.less
+//                          ^^^ support.function.url.less
+//                             ^ punctuation.definition.group.begin.less
+//                              ^^^^^^^^^ string.unquoted.less
+//                                       ^ punctuation.definition.group.end.less
+//                                         ^^ constant.numeric.less
+//                                            ^^ constant.numeric.less
+//                                               ^^ constant.numeric.less
+//                                                  ^^ constant.numeric.less
+//                                                    ^ punctuation.terminator.rule.less
+    -webkit-mask-box-image: url(image.png) 10px 20px 20px 10px;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^^^^^ meta.function-call.less
+//                          ^^^ support.function.url.less
+//                             ^ punctuation.definition.group.begin.less
+//                              ^^^^^^^^^ string.unquoted.less
+//                                       ^ punctuation.definition.group.end.less
+//                                         ^^^^ constant.numeric.less
+//                                           ^^ keyword.other.unit.less
+//                                              ^^^^ constant.numeric.less
+//                                                ^^ keyword.other.unit.less
+//                                                   ^^^^ constant.numeric.less
+//                                                     ^^ keyword.other.unit.less
+//                                                        ^^^^ constant.numeric.less
+//                                                          ^^ keyword.other.unit.less
+//                                                            ^ punctuation.terminator.rule.less
+    -webkit-mask-box-image: url(image.png) space repeat;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^^^^^ meta.function-call.less
+//                          ^^^ support.function.url.less
+//                             ^ punctuation.definition.group.begin.less
+//                              ^^^^^^^^^ string.unquoted.less
+//                                       ^ punctuation.definition.group.end.less
+//                                         ^^^^^ support.constant.property-value.less
+//                                               ^^^^^^ support.constant.property-value.less
+//                                                     ^ punctuation.terminator.rule.less
+    -webkit-mask-box-image: url(image.png) 10px 20px 20px 10px space repeat;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^^^^^ meta.function-call.less
+//                          ^^^ support.function.url.less
+//                             ^ punctuation.definition.group.begin.less
+//                              ^^^^^^^^^ string.unquoted.less
+//                                       ^ punctuation.definition.group.end.less
+//                                         ^^^^ constant.numeric.less
+//                                           ^^ keyword.other.unit.less
+//                                              ^^^^ constant.numeric.less
+//                                                   ^^^^ constant.numeric.less
+//                                                     ^^ keyword.other.unit.less
+//                                                        ^^^^ constant.numeric.less
+//                                                          ^^ keyword.other.unit.less
+//                                                             ^^^^^ support.constant.property-value.less
+//                                                                   ^^^^^^ support.constant.property-value.less
+//                                                                         ^ punctuation.terminator.rule.less
+    -webkit-mask-composite: clear;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^ support.constant.property-value.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-composite: copy;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    -webkit-mask-composite: source-over;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^^ support.constant.property-value.less
+//                                     ^ punctuation.terminator.rule.less
+    -webkit-mask-composite: source-in;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^ support.constant.property-value.less
+//                                   ^ punctuation.terminator.rule.less
+    -webkit-mask-composite: source-out;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^ support.constant.property-value.less
+//                                    ^ punctuation.terminator.rule.less
+    -webkit-mask-composite: source-atop;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^^ support.constant.property-value.less
+//                                     ^ punctuation.terminator.rule.less
+    -webkit-mask-composite: destination-over;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                          ^ punctuation.terminator.rule.less
+    -webkit-mask-composite: destination-in;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                        ^ punctuation.terminator.rule.less
+    -webkit-mask-composite: destination-out;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                         ^ punctuation.terminator.rule.less
+    -webkit-mask-composite: destination-atop;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^^^^^^^^^^^^^^ support.constant.property-value.less
+//                                          ^ punctuation.terminator.rule.less
+    -webkit-mask-composite: xor;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                        ^ punctuation.separator.key-value.less
+//                          ^^^ support.constant.property-value.less
+//                             ^ punctuation.terminator.rule.less
+    -webkit-mask-position-x: left;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^ support.constant.property-value.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-position-x: center;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^^^ support.constant.property-value.less
+//                                 ^ punctuation.terminator.rule.less
+    -webkit-mask-position-x: right;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^^ support.constant.property-value.less
+//                                ^ punctuation.terminator.rule.less
+    -webkit-mask-position-x: 100%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^ constant.numeric.less
+//                              ^ keyword.other.unit.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-position-x: -50%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^ constant.numeric.less
+//                              ^ keyword.other.unit.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-position-x: 50px;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^ constant.numeric.less
+//                             ^^ keyword.other.unit.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-position-x: -1cm;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^ constant.numeric.less
+//                             ^^ keyword.other.unit.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-position-x: 50px, 25%, -3em;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^ constant.numeric.less
+//                             ^^ keyword.other.unit.less
+//                               ^ punctuation.separator.less
+//                                 ^^^ constant.numeric.less
+//                                   ^ keyword.other.unit.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^ constant.numeric.less
+//                                        ^^ keyword.other.unit.less
+//                                          ^ punctuation.terminator.rule.less
+    -webkit-mask-position-y: top;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    -webkit-mask-position-y: center;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^^^ support.constant.property-value.less
+//                                 ^ punctuation.terminator.rule.less
+    -webkit-mask-position-y: bottom;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^^^ support.constant.property-value.less
+//                                 ^ punctuation.terminator.rule.less
+    -webkit-mask-position-y: 100%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^ constant.numeric.less
+//                              ^ keyword.other.unit.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-position-y: -50%;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^ constant.numeric.less
+//                              ^ keyword.other.unit.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-position-y: 50px;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^ constant.numeric.less
+//                             ^^ keyword.other.unit.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-position-y: -1cm;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^ constant.numeric.less
+//                             ^^ keyword.other.unit.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-position-y: 50px, 25%, -3em;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^ constant.numeric.less
+//                             ^^ keyword.other.unit.less
+//                               ^ punctuation.separator.less
+//                                 ^^^ constant.numeric.less
+//                                   ^ keyword.other.unit.less
+//                                    ^ punctuation.separator.less
+//                                      ^^^^ constant.numeric.less
+//                                        ^^ keyword.other.unit.less
+//                                          ^ punctuation.terminator.rule.less
+    -webkit-mask-repeat-x: repeat;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^^ support.constant.property-value.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-repeat-x: no-repeat;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^^^^^ support.constant.property-value.less
+//                                  ^ punctuation.terminator.rule.less
+    -webkit-mask-repeat-x: space;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    -webkit-mask-repeat-x: round;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    -webkit-mask-repeat-x: repeat, no-repeat, space;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^^ support.constant.property-value.less
+//                               ^ punctuation.separator.less
+//                                 ^^^^^^^^^ support.constant.property-value.less
+//                                          ^ punctuation.separator.less
+//                                            ^^^^^ support.constant.property-value.less
+//                                                 ^ punctuation.terminator.rule.less
+    -webkit-mask-repeat-y: repeat;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^^ support.constant.property-value.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-mask-repeat-y: no-repeat;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^^^^^ support.constant.property-value.less
+//                                  ^ punctuation.terminator.rule.less
+    -webkit-mask-repeat-y: space;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    -webkit-mask-repeat-y: round;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    -webkit-mask-repeat-y: repeat, no-repeat, space;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^^ support.constant.property-value.less
+//                               ^ punctuation.separator.less
+//                                 ^^^^^^^^^ support.constant.property-value.less
+//                                          ^ punctuation.separator.less
+//                                            ^^^^^ support.constant.property-value.less
+//                                                 ^ punctuation.terminator.rule.less
+    -webkit-tap-highlight-color: red;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                             ^ punctuation.separator.key-value.less
+//                               ^^^ support.constant.color.w3c-standard-color-name.less
+//                                  ^ punctuation.terminator.rule.less
+    -webkit-tap-highlight-color: transparent;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                             ^ punctuation.separator.key-value.less
+//                               ^^^^^^^^^^^ support.constant.color.w3c-special-color-keyword.less
+//                                          ^ punctuation.terminator.rule.less
+    -webkit-text-fill-color: red;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^ support.constant.color.w3c-standard-color-name.less
+//                              ^ punctuation.terminator.rule.less
+    -webkit-text-fill-color: #000000;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^^^^ constant.other.color.rgb-value.less
+//                           ^ punctuation.definition.constant.less
+//                                  ^ punctuation.terminator.rule.less
+    -webkit-text-fill-color: rgb(100 200 0);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                         ^ punctuation.separator.key-value.less
+//                           ^^^^^^^^^^^^^^ meta.function-call.less
+//                           ^^^ support.function.color.less
+//                              ^ punctuation.definition.group.begin.less
+//                               ^^^ constant.numeric.less
+//                                   ^^^ constant.numeric.less
+//                                       ^ constant.numeric.less
+//                                        ^ punctuation.definition.group.end.less
+//                                         ^ punctuation.terminator.rule.less
+    -webkit-text-security: circle;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^^ support.constant.property-value.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-text-security: disc;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^ support.constant.property-value.less
+//                             ^ punctuation.terminator.rule.less
+    -webkit-text-security: square;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^^ support.constant.property-value.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-text-security: none;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^ support.constant.property-value.less
+//                             ^ punctuation.terminator.rule.less
+    -webkit-text-stroke: 4px navy;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                     ^ punctuation.separator.key-value.less
+//                       ^^^ constant.numeric.less
+//                        ^^ keyword.other.unit.less
+//                           ^^^^ support.constant.color.w3c-standard-color-name.less
+//                               ^ punctuation.terminator.rule.less
+    -webkit-text-stroke-color: red;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                           ^ punctuation.separator.key-value.less
+//                             ^^^ support.constant.color.w3c-standard-color-name.less
+//                                ^ punctuation.terminator.rule.less
+    -webkit-text-stroke-color: #e08ab4;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                           ^ punctuation.separator.key-value.less
+//                             ^^^^^^^ constant.other.color.rgb-value.less
+//                             ^ punctuation.definition.constant.less
+//                                    ^ punctuation.terminator.rule.less
+    -webkit-text-stroke-color: rgb(200 100 0);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                           ^ punctuation.separator.key-value.less
+//                             ^^^^^^^^^^^^^^ meta.function-call.less
+//                             ^^^ support.function.color.less
+//                                ^ punctuation.definition.group.begin.less
+//                                 ^^^ constant.numeric.less
+//                                     ^^^ constant.numeric.less
+//                                         ^ constant.numeric.less
+//                                          ^ punctuation.definition.group.end.less
+//                                           ^ punctuation.terminator.rule.less
+    -webkit-text-stroke-width: thin;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                           ^ punctuation.separator.key-value.less
+//                             ^^^^ support.constant.property-value.less
+//                                 ^ punctuation.terminator.rule.less
+    -webkit-text-stroke-width: medium;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                           ^ punctuation.separator.key-value.less
+//                             ^^^^^^ support.constant.property-value.less
+//                                   ^ punctuation.terminator.rule.less
+    -webkit-text-stroke-width: thick;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                           ^ punctuation.separator.key-value.less
+//                             ^^^^^ support.constant.property-value.less
+//                                  ^ punctuation.terminator.rule.less
+    -webkit-touch-callout: default;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^^^^ support.constant.property-value.less
+//                                ^ punctuation.terminator.rule.less
+    -webkit-touch-callout: none;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^^^^ meta.namespace.vendor-prefix.less
+//                       ^ punctuation.separator.key-value.less
+//                         ^^^^ support.constant.property-value.less
+//                             ^ punctuation.terminator.rule.less
+    -moz-float-edge: content-box;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^^^^^^^^^ support.constant.property-value.less
+//                              ^ punctuation.terminator.rule.less
+    -moz-float-edge: margin-box;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^^^^^^^^ support.constant.property-value.less
+//                             ^ punctuation.terminator.rule.less
+    -moz-force-broken-image-icon: 1;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//                              ^ punctuation.separator.key-value.less
+//                                ^ constant.numeric.less
+//                                 ^ punctuation.terminator.rule.less
+    -moz-image-region: auto;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//                   ^ punctuation.separator.key-value.less
+//                     ^^^^ support.constant.property-value.less
+//                         ^ punctuation.terminator.rule.less
+    -moz-image-region: rect(0, 8px, 4px, 4px);
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//                   ^ punctuation.separator.key-value.less
+//                     ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.less
+//                     ^^^^ support.function.shape.less
+//                         ^ punctuation.definition.group.begin.less
+//                          ^ constant.numeric.less
+//                           ^ punctuation.separator.less
+//                             ^^^ constant.numeric.less
+//                              ^^ keyword.other.unit.less
+//                                ^ punctuation.separator.less
+//                                  ^^^ constant.numeric.less
+//                                   ^^ keyword.other.unit.less
+//                                     ^ punctuation.separator.less
+//                                       ^^^ constant.numeric.less
+//                                        ^^ keyword.other.unit.less
+//                                          ^ punctuation.definition.group.end.less
+//                                           ^ punctuation.terminator.rule.less
+    -moz-orient: inline;
+//^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//             ^ punctuation.separator.key-value.less
+//               ^^^^^^ support.constant.property-value.less
+//                     ^ punctuation.terminator.rule.less
+    -moz-orient: block;
+//^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//             ^ punctuation.separator.key-value.less
+//               ^^^^^ support.constant.property-value.less
+//                    ^ punctuation.terminator.rule.less
+    -moz-orient: horizontal;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//             ^ punctuation.separator.key-value.less
+//               ^^^^^^^^^^ support.constant.property-value.less
+//                         ^ punctuation.terminator.rule.less
+    -moz-orient: vertical;
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//             ^ punctuation.separator.key-value.less
+//               ^^^^^^^^ support.constant.property-value.less
+//                       ^ punctuation.terminator.rule.less
+    -moz-user-focus: none;
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^^ support.constant.property-value.less
+//                       ^ punctuation.terminator.rule.less
+    -moz-user-focus: normal;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^^^^ support.constant.property-value.less
+//                         ^ punctuation.terminator.rule.less
+    -moz-user-focus: ignore;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^^^^ support.constant.property-value.less
+//                         ^ punctuation.terminator.rule.less
+    -moz-user-input: auto;
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^^ support.constant.property-value.less
+//                       ^ punctuation.terminator.rule.less
+    -moz-user-input: none;
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^^^^^^^^^^^ meta.property-name.less
+//  ^^^^^^^^^^^^^^^ support.type.property-name.less
+//  ^^^^^ meta.namespace.vendor-prefix.less
+//                 ^ punctuation.separator.key-value.less
+//                   ^^^^ support.constant.property-value.less
+//                       ^ punctuation.terminator.rule.less
+}
