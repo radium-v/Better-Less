@@ -2088,7 +2088,6 @@ repository:
       patterns:
       - include: '#custom-property-name'
       - comment: vendor-prefixed properties
-        name: meta.property-name.less
         begin: (-[\w-]+?-)((?:(?:[a-zA-Z_]|[\x{00B7}\x{00C0}-\x{00D6}\x{00D8}-\x{00F6}\x{00F8}-\x{037D}\x{037F}-\x{1FFF}\x{200C}\x{200D}\x{203F}\x{2040}\x{2070}-\x{218F}\x{2C00}-\x{2FEF}\x{3001}-\x{D7FF}\x{F900}-\x{FDCF}\x{FDF0}-\x{FFFD}\x{10000}-\x{EFFFF}])|(?:\\(?:\N|[[:^xdigit:]]|[[:xdigit:]]{1,6}[\s\R])))(?:(?:[-\da-zA-Z_]|[\x{00B7}\x{00C0}-\x{00D6}\x{00D8}-\x{00F6}\x{00F8}-\x{037D}\x{037F}-\x{1FFF}\x{200C}\x{200D}\x{203F}\x{2040}\x{2070}-\x{218F}\x{2C00}-\x{2FEF}\x{3001}-\x{D7FF}\x{F900}-\x{FDCF}\x{FDF0}-\x{FFFD}\x{10000}-\x{EFFFF}])|(?:\\(?:\N|[[:^xdigit:]]|[[:xdigit:]]{1,6}[\s\R])))*)\b
         beginCaptures:
           '0': {name: support.type.property-name.less}

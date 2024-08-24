@@ -6489,8 +6489,6 @@
 									<string>punctuation.terminator.rule.less</string>
 								</dict>
 							</dict>
-							<key>name</key>
-							<string>meta.property-name.less</string>
 							<key>patterns</key>
 							<array>
 								<dict>
