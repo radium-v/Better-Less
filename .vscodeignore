@@ -1,0 +1,7 @@
+.vscode/
+Preferences/
+Tests/
+info.plist
+issue_template.md
+less_completions.py
+*.vsix
