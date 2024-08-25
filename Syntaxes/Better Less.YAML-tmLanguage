@@ -693,8 +693,8 @@ repository:
       - include: '#less-variables'
       - include: '#var-function'
       - include: '#calc-function'
-      - include: '#length-type'
       - include: '#percentage-type'
+      - include: '#length-type'
 
   format-function:
     patterns:
@@ -844,10 +844,14 @@ repository:
       '1': {name: punctuation.definition.arbitrary-repetition.less}
 
   length-type:
-    name: constant.numeric.less
-    match: (?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?(em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|m|q|in|pt|pc|px|fr|dpi|dpcm|dppx|x)?
-    captures:
-      '1': {name: keyword.other.unit.less}
+    patterns:
+    - name: constant.numeric.less
+      match: (?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?(em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|m|q|in|pt|pc|px|fr|dpi|dpcm|dppx|x)
+      captures:
+        '1': {name: keyword.other.unit.less}
+    - name: constant.numeric.less
+      match: \b(?:[-+]?)0\b
+
 
   less-boolean-function:
     name: meta.function-call.less
@@ -2832,8 +2836,8 @@ repository:
       patterns:
       - name: support.constant.property-value.less
         match: block|inline|x|y|auto
-      - include: '#length-type'
       - include: '#percentage-type'
+      - include: '#length-type'
       - include: '#less-variables'
       - include: '#var-function'
       - include: '#calc-function'

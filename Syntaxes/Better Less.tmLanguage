@@ -2253,11 +2253,11 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#length-type</string>
+							<string>#percentage-type</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#percentage-type</string>
+							<string>#length-type</string>
 						</dict>
 					</array>
 				</dict>
@@ -2724,18 +2724,29 @@
 		</dict>
 		<key>length-type</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
+			<key>patterns</key>
+			<array>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.unit.less</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?(em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|m|q|in|pt|pc|px|fr|dpi|dpcm|dppx|x)</string>
 					<key>name</key>
-					<string>keyword.other.unit.less</string>
+					<string>constant.numeric.less</string>
 				</dict>
-			</dict>
-			<key>match</key>
-			<string>(?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?(em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|m|q|in|pt|pc|px|fr|dpi|dpcm|dppx|x)?</string>
-			<key>name</key>
-			<string>constant.numeric.less</string>
+				<dict>
+					<key>match</key>
+					<string>\b(?:[-+]?)0\b</string>
+					<key>name</key>
+					<string>constant.numeric.less</string>
+				</dict>
+			</array>
 		</dict>
 		<key>less-boolean-function</key>
 		<dict>
@@ -8697,11 +8708,11 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#length-type</string>
+							<string>#percentage-type</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#percentage-type</string>
+							<string>#length-type</string>
 						</dict>
 						<dict>
 							<key>include</key>
