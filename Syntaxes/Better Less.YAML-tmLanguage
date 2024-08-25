@@ -590,8 +590,8 @@ repository:
     - include: '#angle-type'
     - include: '#frequency-type'
     - include: '#time-type'
-    - include: '#length-type'
     - include: '#percentage-type'
+    - include: '#length-type'
 
   filter-function:
     name: meta.function-call.less

@@ -2401,11 +2401,11 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#length-type</string>
+									<string>#percentage-type</string>
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#percentage-type</string>
+									<string>#length-type</string>
 								</dict>
 								<dict>
 									<key>include</key>
