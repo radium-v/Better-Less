@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.7.0 - Modernize me, Captain
 * Add `backdrop-filter` support
 * Fix nested `var` values
 * Add support for logical properties:
@@ -14,6 +14,17 @@
   * `overflow-block`, `overflow-inline`, `overscroll-behavior-block`, `overscroll-behavior-inline`, `overscroll-behavior-x`, `overscroll-behavior-y`, `overscroll-behavior`
   * `inline-start` and `inline-end` values for `clear`, `float`, and `caption-side`
   * `fit-content()` function
+* fix `transition` properties (#33)
+* add `gap`, `column-gap`, and `row-gap` properties (#34)
+* add `text-size-adjust`, `text-wrap`, and `white-space-collapse` properties (#35)
+* add `place-content`, `place-items`, `place-self`, and `justify-items` (#36)
+* separate `alignment-baseline` property values (#37)
+* separate values for the `all` property (#38)
+* Update and add `animation-*` properties (#39)
+* Update `border` properties (#40)
+* add support for container queries (#53)
+* change how vendor prefixes are handled (#54)
+* Fix units on `0` (#55)
 
 ## 0.6.1 - Fast Follow
 * Fix regex compatibility error for animation names in Sublime Text 2
