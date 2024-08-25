@@ -1399,17 +1399,11 @@ repository:
       patterns:
       - include: '#less-variable-assignment'
       - include: '#comma-delimiter'
-      - match: \s*(;)|(?=[})])
-        captures:
-          '1': {name: punctuation.terminator.rule.less}
       - include: '#property-values'
       - include: '#rule-list-body'
-
-  less-number-units:
-    patterns:
-    - name: keyword.other.unit.less
-      match: \b((c|m)?m|in|p(t|c)|m?s|g?rad|deg|turn)\b
-    - match: \b(r?em|ex|ch|vw|vh|vmin|vmax|cm|mm|q|in|pt|pc|px|fr|s|ms|Hz|kHz|dpi|dpcm|dppx|deg|grad|rad|turn)\b
+    - match: (;)|(?=[})])
+      captures:
+        '1': {name: punctuation.terminator.rule.less}
 
   less-string-functions:
     patterns:
@@ -2082,7 +2076,22 @@ repository:
     - include: '#comment-line'
     - include: '#at-rules'
     - include: '#less-variable-assignment'
-    - include: '#less-variable-interpolation'
+    - begin: (?=[-\w]*?@\{.*\}[-\w]*?\s*:[^;{(]*(?=[;})]))
+      end: (?=\s*(;)|(?=[})]))
+      patterns:
+      - begin: (?=[^\s:])
+        end: (?=(((\+_?)?):)[\s\t]*)
+        name: support.type.property-name.less
+        patterns:
+        - include: '#less-variable-interpolation'
+      - contentName: meta.property-value.less
+        begin: (((\+_?)?):)(?=[\s\t]*)
+        contentName: support.type.property-name.less
+        beginCaptures:
+          '1': {name: punctuation.separator.key-value.less}
+        end: (?=\s*(;)|(?=[})]))
+        patterns:
+        - include: '#property-values'
     - begin: (?=[-a-z])
       end: $|(?![-a-z])
       patterns:
