@@ -1913,11 +1913,11 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#length-type</string>
+					<string>#percentage-type</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#resolution-type</string>
+					<string>#length-type</string>
 				</dict>
 			</array>
 		</dict>
@@ -2253,11 +2253,11 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#length-type</string>
+							<string>#percentage-type</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#percentage-type</string>
+							<string>#length-type</string>
 						</dict>
 					</array>
 				</dict>
@@ -2724,18 +2724,29 @@
 		</dict>
 		<key>length-type</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
+			<key>patterns</key>
+			<array>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.unit.less</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?(em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|m|q|in|pt|pc|px|fr|dpi|dpcm|dppx|x)</string>
 					<key>name</key>
-					<string>keyword.other.unit.less</string>
+					<string>constant.numeric.less</string>
 				</dict>
-			</dict>
-			<key>match</key>
-			<string>0|(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b</string>
-			<key>name</key>
-			<string>constant.numeric.less</string>
+				<dict>
+					<key>match</key>
+					<string>\b(?:[-+]?)0\b</string>
+					<key>name</key>
+					<string>constant.numeric.less</string>
+				</dict>
+			</array>
 		</dict>
 		<key>less-boolean-function</key>
 		<dict>
@@ -4151,10 +4162,6 @@
 								</dict>
 								<dict>
 									<key>include</key>
-									<string>#dimensions</string>
-								</dict>
-								<dict>
-									<key>include</key>
 									<string>#numeric-values</string>
 								</dict>
 								<dict>
@@ -4594,18 +4601,6 @@
 							<string>#comma-delimiter</string>
 						</dict>
 						<dict>
-							<key>captures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.terminator.rule.less</string>
-								</dict>
-							</dict>
-							<key>match</key>
-							<string>\s*(;)|(?=[})])</string>
-						</dict>
-						<dict>
 							<key>include</key>
 							<string>#property-values</string>
 						</dict>
@@ -4615,21 +4610,17 @@
 						</dict>
 					</array>
 				</dict>
-			</array>
-		</dict>
-		<key>less-number-units</key>
-		<dict>
-			<key>patterns</key>
-			<array>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.terminator.rule.less</string>
+						</dict>
+					</dict>
 					<key>match</key>
-					<string>\b((c|m)?m|in|p(t|c)|m?s|g?rad|deg|turn)\b</string>
-					<key>name</key>
-					<string>keyword.other.unit.less</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(r?em|ex|ch|vw|vh|vmin|vmax|cm|mm|q|in|pt|pc|px|fr|s|ms|Hz|kHz|dpi|dpcm|dppx|deg|grad|rad|turn)\b</string>
+					<string>(;)|(?=[})])</string>
 				</dict>
 			</array>
 		</dict>
@@ -5585,7 +5576,7 @@
 		<key>number-type</key>
 		<dict>
 			<key>match</key>
-			<string>[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))</string>
+			<string>(?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?</string>
 			<key>name</key>
 			<string>constant.numeric.less</string>
 		</dict>
@@ -5618,7 +5609,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(%)</string>
+			<string>(?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?(%)</string>
 			<key>name</key>
 			<string>constant.numeric.less</string>
 		</dict>
@@ -6366,21 +6357,6 @@
 				</dict>
 			</array>
 		</dict>
-		<key>resolution-type</key>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.unit.less</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(dpi|dpcm|dppx))\b</string>
-			<key>name</key>
-			<string>constant.numeric.less</string>
-		</dict>
 		<key>rule-list</key>
 		<dict>
 			<key>patterns</key>
@@ -6447,8 +6423,51 @@
 					<string>#less-variable-assignment</string>
 				</dict>
 				<dict>
-					<key>include</key>
-					<string>#less-variable-interpolation</string>
+					<key>begin</key>
+					<string>(?=[-\w]*?@\{.*\}[-\w]*?\s*:[^;{(]*(?=[;})]))</string>
+					<key>end</key>
+					<string>(?=\s*(;)|(?=[})]))</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>(?=[^\s:])</string>
+							<key>end</key>
+							<string>(?=(((\+_?)?):)[\s\t]*)</string>
+							<key>name</key>
+							<string>support.type.property-name.less</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#less-variable-interpolation</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>(((\+_?)?):)(?=[\s\t]*)</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.separator.key-value.less</string>
+								</dict>
+							</dict>
+							<key>contentName</key>
+							<string>support.type.property-name.less</string>
+							<key>end</key>
+							<string>(?=\s*(;)|(?=[})]))</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#property-values</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -8689,11 +8708,11 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#length-type</string>
+							<string>#percentage-type</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#percentage-type</string>
+							<string>#length-type</string>
 						</dict>
 						<dict>
 							<key>include</key>

@@ -1,0 +1,162 @@
+// SYNTAX TEST "Packages/Better-Less/Syntaxes/Better Less.tmLanguage"
+
+.number {
+    column-count: 3;
+//^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^ support.type.property-name.less
+//              ^ punctuation.separator.key-value.less
+//               ^^ meta.property-value.less
+//                ^ constant.numeric.less
+//                 ^ punctuation.terminator.rule.less
+    z-index: 1;
+//^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^ support.type.property-name.less
+//         ^ punctuation.separator.key-value.less
+//          ^^ meta.property-value.less
+//           ^ constant.numeric.less
+//            ^ punctuation.terminator.rule.less
+    opacity: 0.5;
+//^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^ support.type.property-name.less
+//         ^ punctuation.separator.key-value.less
+//          ^^^^ meta.property-value.less
+//           ^^^ constant.numeric.less
+//              ^ punctuation.terminator.rule.less
+    opacity: 0;
+//^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^ support.type.property-name.less
+//         ^ punctuation.separator.key-value.less
+//          ^^ meta.property-value.less
+//           ^ constant.numeric.less
+//            ^ punctuation.terminator.rule.less
+
+}
+
+.percentage {
+    width: -0%;
+//^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^ support.type.property-name.less
+//       ^ punctuation.separator.key-value.less
+//        ^^^^ meta.property-value.less
+//         ^^^ constant.numeric.less
+//           ^ keyword.other.unit.less
+//            ^ punctuation.terminator.rule.less
+    width: 0%;
+//^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^ support.type.property-name.less
+//       ^ punctuation.separator.key-value.less
+//        ^^^ meta.property-value.less
+//         ^^ constant.numeric.less
+//          ^ keyword.other.unit.less
+//           ^ punctuation.terminator.rule.less
+    width: +0%;
+//^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^ support.type.property-name.less
+//       ^ punctuation.separator.key-value.less
+//        ^^^^ meta.property-value.less
+//         ^^^ constant.numeric.less
+//           ^ keyword.other.unit.less
+//            ^ punctuation.terminator.rule.less
+    width: 10%;
+//^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^ support.type.property-name.less
+//       ^ punctuation.separator.key-value.less
+//        ^^^^ meta.property-value.less
+//         ^^^ constant.numeric.less
+//           ^ keyword.other.unit.less
+//            ^ punctuation.terminator.rule.less
+    width: 10.5%;
+//^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^ support.type.property-name.less
+//       ^ punctuation.separator.key-value.less
+//        ^^^^^^ meta.property-value.less
+//         ^^^^^ constant.numeric.less
+//             ^ keyword.other.unit.less
+//              ^ punctuation.terminator.rule.less
+    width: 100%;
+//^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^ support.type.property-name.less
+//       ^ punctuation.separator.key-value.less
+//        ^^^^^ meta.property-value.less
+//         ^^^^ constant.numeric.less
+//            ^ keyword.other.unit.less
+//             ^ punctuation.terminator.rule.less
+    width: -100%;
+//^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^ support.type.property-name.less
+//       ^ punctuation.separator.key-value.less
+//        ^^^^^^ meta.property-value.less
+//         ^^^^^ constant.numeric.less
+//             ^ keyword.other.unit.less
+//              ^ punctuation.terminator.rule.less
+}
+
+.ratio {
+    aspect-ratio: 16 / 9;
+//^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^ support.type.property-name.less
+//              ^ punctuation.separator.key-value.less
+//               ^^^^^^^ meta.property-value.less
+//                ^^ constant.numeric.less
+//                   ^ keyword.operator.arithmetic.less
+//                     ^ constant.numeric.less
+//                      ^ punctuation.terminator.rule.less
+    aspect-ratio: 1.7777777777777777;
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-list.less
+//  ^^^^^^^^^^^^ support.type.property-name.less
+//              ^ punctuation.separator.key-value.less
+//               ^^^^^^^^^^^^^^^^^^^ meta.property-value.less
+//                ^^^^^^^^^^^^^^^^^^ constant.numeric.less
+//                                  ^ punctuation.terminator.rule.less
+}
+
+@media print and (min-resolution: 300dpi) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.media.less
+//^^^^ keyword.control.at-rule.media.less
+//     ^^^^^ support.constant.media.less
+//          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.group.less
+//           ^^^ keyword.operator.logic.media.less
+//               ^ punctuation.definition.group.begin.less
+//                ^^^^^^^^^^^^^^ support.type.property-name.media.less
+//                              ^ punctuation.separator.key-value.less
+//                                ^^^^^^ constant.numeric.less
+//                                   ^^^ keyword.other.unit.less
+//                                      ^ punctuation.definition.group.end.less
+//                                        ^ punctuation.definition.block.begin.less
+//                                         ^ punctuation.definition.block.end.less
+@media (resolution: 120dpcm) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.media.less
+//^^^^ keyword.control.at-rule.media.less
+//     ^^^^^^^^^^^^^^^^^^^^^ meta.group.less
+//     ^ punctuation.definition.group.begin.less
+//      ^^^^^^^^^^ support.type.property-name.media.less
+//                ^ punctuation.separator.key-value.less
+//                  ^^^^^^^ constant.numeric.less
+//                     ^^^^ keyword.other.unit.less
+//                         ^ punctuation.definition.group.end.less
+//                           ^ punctuation.definition.block.begin.less
+//                            ^ punctuation.definition.block.end.less
+@media (min-resolution: 2dppx) {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.media.less
+//^^^^ keyword.control.at-rule.media.less
+//     ^^^^^^^^^^^^^^^^^^^^^^^ meta.group.less
+//     ^ punctuation.definition.group.begin.less
+//      ^^^^^^^^^^^^^^ support.type.property-name.media.less
+//                    ^ punctuation.separator.key-value.less
+//                      ^^^^^ constant.numeric.less
+//                       ^^^^ keyword.other.unit.less
+//                           ^ punctuation.definition.group.end.less
+//                             ^ punctuation.definition.block.begin.less
+//                              ^ punctuation.definition.block.end.less
+@media (resolution: 1x) {}
+//^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.media.less
+//^^^^ keyword.control.at-rule.media.less
+//     ^^^^^^^^^^^^^^^^ meta.group.less
+//     ^ punctuation.definition.group.begin.less
+//      ^^^^^^^^^^ support.type.property-name.media.less
+//                ^ punctuation.separator.key-value.less
+//                  ^^ constant.numeric.less
+//                   ^ keyword.other.unit.less
+//                    ^ punctuation.definition.group.end.less
+//                      ^ punctuation.definition.block.begin.less
+//                       ^ punctuation.definition.block.end.less

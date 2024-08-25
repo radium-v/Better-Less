@@ -590,8 +590,8 @@ repository:
     - include: '#angle-type'
     - include: '#frequency-type'
     - include: '#time-type'
+    - include: '#percentage-type'
     - include: '#length-type'
-    - include: '#resolution-type'
 
   filter-function:
     name: meta.function-call.less
@@ -693,8 +693,8 @@ repository:
       - include: '#less-variables'
       - include: '#var-function'
       - include: '#calc-function'
-      - include: '#length-type'
       - include: '#percentage-type'
+      - include: '#length-type'
 
   format-function:
     patterns:
@@ -844,10 +844,14 @@ repository:
       '1': {name: punctuation.definition.arbitrary-repetition.less}
 
   length-type:
-    name: constant.numeric.less
-    match: 0|(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b
-    captures:
-      '1': {name: keyword.other.unit.less}
+    patterns:
+    - name: constant.numeric.less
+      match: (?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?(em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|m|q|in|pt|pc|px|fr|dpi|dpcm|dppx|x)
+      captures:
+        '1': {name: keyword.other.unit.less}
+    - name: constant.numeric.less
+      match: \b(?:[-+]?)0\b
+
 
   less-boolean-function:
     name: meta.function-call.less
@@ -1272,7 +1276,6 @@ repository:
         end: (?=\))
         patterns:
         - include: '#less-variables'
-        - include: '#dimensions'
         - include: '#numeric-values'
         - include: '#literal-string'
         - include: '#comma-delimiter'
@@ -1399,17 +1402,11 @@ repository:
       patterns:
       - include: '#less-variable-assignment'
       - include: '#comma-delimiter'
-      - match: \s*(;)|(?=[})])
-        captures:
-          '1': {name: punctuation.terminator.rule.less}
       - include: '#property-values'
       - include: '#rule-list-body'
-
-  less-number-units:
-    patterns:
-    - name: keyword.other.unit.less
-      match: \b((c|m)?m|in|p(t|c)|m?s|g?rad|deg|turn)\b
-    - match: \b(r?em|ex|ch|vw|vh|vmin|vmax|cm|mm|q|in|pt|pc|px|fr|s|ms|Hz|kHz|dpi|dpcm|dppx|deg|grad|rad|turn)\b
+    - match: (;)|(?=[})])
+      captures:
+        '1': {name: punctuation.terminator.rule.less}
 
   less-string-functions:
     patterns:
@@ -1694,7 +1691,7 @@ repository:
 
   number-type:
     name: constant.numeric.less
-    match: '[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))'
+    match: (?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?
 
   numeric-values:
     patterns:
@@ -1704,7 +1701,7 @@ repository:
 
   percentage-type:
     name: constant.numeric.less
-    match: '[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(%)'
+    match: (?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?(%)
     captures:
       '1': {name: keyword.other.unit.less}
 
@@ -2056,12 +2053,6 @@ repository:
     - name: keyword.other.less
       match: \b[hslawbch]\b
 
-  resolution-type:
-    name: constant.numeric.less
-    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(dpi|dpcm|dppx))\b
-    captures:
-      '1': {name: keyword.other.unit.less}
-
   rule-list:
     patterns:
     - name: meta.property-list.less
@@ -2082,7 +2073,22 @@ repository:
     - include: '#comment-line'
     - include: '#at-rules'
     - include: '#less-variable-assignment'
-    - include: '#less-variable-interpolation'
+    - begin: (?=[-\w]*?@\{.*\}[-\w]*?\s*:[^;{(]*(?=[;})]))
+      end: (?=\s*(;)|(?=[})]))
+      patterns:
+      - begin: (?=[^\s:])
+        end: (?=(((\+_?)?):)[\s\t]*)
+        name: support.type.property-name.less
+        patterns:
+        - include: '#less-variable-interpolation'
+      - contentName: meta.property-value.less
+        begin: (((\+_?)?):)(?=[\s\t]*)
+        contentName: support.type.property-name.less
+        beginCaptures:
+          '1': {name: punctuation.separator.key-value.less}
+        end: (?=\s*(;)|(?=[})]))
+        patterns:
+        - include: '#property-values'
     - begin: (?=[-a-z])
       end: $|(?![-a-z])
       patterns:
@@ -2830,8 +2836,8 @@ repository:
       patterns:
       - name: support.constant.property-value.less
         match: block|inline|x|y|auto
-      - include: '#length-type'
       - include: '#percentage-type'
+      - include: '#length-type'
       - include: '#less-variables'
       - include: '#var-function'
       - include: '#calc-function'
