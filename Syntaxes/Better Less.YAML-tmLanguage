@@ -591,7 +591,7 @@ repository:
     - include: '#frequency-type'
     - include: '#time-type'
     - include: '#length-type'
-    - include: '#resolution-type'
+    - include: '#percentage-type'
 
   filter-function:
     name: meta.function-call.less
@@ -845,7 +845,7 @@ repository:
 
   length-type:
     name: constant.numeric.less
-    match: 0|(?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(em|ex|ch|rem|vw|vh|vmin|vmax|(c|m)?m|q|in|pt|pc|px|fr))\b
+    match: (?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?(em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|m|q|in|pt|pc|px|fr|dpi|dpcm|dppx|x)?
     captures:
       '1': {name: keyword.other.unit.less}
 
@@ -1272,7 +1272,6 @@ repository:
         end: (?=\))
         patterns:
         - include: '#less-variables'
-        - include: '#dimensions'
         - include: '#numeric-values'
         - include: '#literal-string'
         - include: '#comma-delimiter'
@@ -1688,7 +1687,7 @@ repository:
 
   number-type:
     name: constant.numeric.less
-    match: '[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))'
+    match: (?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?
 
   numeric-values:
     patterns:
@@ -1698,7 +1697,7 @@ repository:
 
   percentage-type:
     name: constant.numeric.less
-    match: '[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(%)'
+    match: (?:[-+]?)(?:\d+\.\d+|\.?\d+)(?:[eE][-+]?\d+)?(%)
     captures:
       '1': {name: keyword.other.unit.less}
 
@@ -2049,12 +2048,6 @@ repository:
       match: from
     - name: keyword.other.less
       match: \b[hslawbch]\b
-
-  resolution-type:
-    name: constant.numeric.less
-    match: (?i:[-+]?(?:(?:\d*\.\d+(?:[eE](?:[-+]?\d+))*)|(?:[-+]?\d+))(dpi|dpcm|dppx))\b
-    captures:
-      '1': {name: keyword.other.unit.less}
 
   rule-list:
     patterns:
